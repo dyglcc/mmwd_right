@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_background" >
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <LinearLayout
+            android:id="@+id/ll_about"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/form_pageitem_height"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:src="@drawable/more_item_about" />
+
+            <TextView
+                style="@style/common_text_content_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="@string/more_item_about"
+                android:textColor="@color/common_text_black" />
+        </LinearLayout>
+
+        <View style="@style/form_line_horizontal" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <LinearLayout
+            android:id="@+id/ll_recommend"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/form_pageitem_height"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:src="@drawable/more_item_recommend" />
+
+            <TextView
+                style="@style/common_text_content_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="@string/more_item_recommend"
+                android:textColor="@color/common_text_black" />
+        </LinearLayout>
+
+        <View style="@style/form_line_horizontal" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <LinearLayout
+            android:id="@+id/ll_officialshop"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/form_pageitem_height"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:src="@drawable/more_item_about" />
+
+            <TextView
+                style="@style/common_text_content_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="喵喵官方店"
+                android:textColor="@color/common_text_black" />
+        </LinearLayout>
+
+        <View style="@style/form_line_horizontal" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <LinearLayout
+            android:id="@+id/ll_logout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/form_pageitem_height"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:src="@drawable/more_item_logout" />
+
+            <TextView
+                style="@style/common_text_content_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="@string/more_item_logout"
+                android:textColor="@color/common_text_black" />
+        </LinearLayout>
+
+        <!-- 以下直到这个LL结束为止全都是多余的界面绘制相关代码 -->
+
+        <View style="@style/form_line_horizontal" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:layout_gravity="right" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginTop="50dp" />
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="right" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/more_background" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/common_text_content_big"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:paddingBottom="17dp"
+            android:paddingLeft="12dp"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_checkupdate"
+            style="@style/common_text_content_big"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:paddingBottom="17dp"
+            android:text="@string/more_img_checkupdate"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

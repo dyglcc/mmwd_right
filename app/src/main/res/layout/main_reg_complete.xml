@@ -1,0 +1,138 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_reg_compelete" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingLeft="26dip"
+        android:paddingRight="26dip" >
+
+        <ImageView
+            android:id="@+id/iv_shop_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="68dip"
+            android:layout_marginTop="30dip"
+            android:src="@drawable/reg_title" />
+
+        <RelativeLayout
+            android:id="@+id/layout_shop_info"
+            android:layout_width="fill_parent"
+            android:layout_height="120dip"
+            android:layout_marginTop="64dip"
+            android:paddingRight="10dip"
+            android:background="@drawable/reg_success_frame"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:id="@+id/layout_takepic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dip"
+                android:clickable="true"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:layout_gravity="center_vertical|left"
+                    android:src="@drawable/defaul_tavator" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar1"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/layout_takepic"
+                android:layout_marginLeft="10dip"
+                android:text="喵喵美甲店"
+                android:textColor="@color/title_bg_color"
+                android:textSize="22dip" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="fill_parent"
+            android:layout_height="44dip"
+            android:layout_below="@+id/layout_shop_info"
+            android:layout_marginLeft="6dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="18dip"
+            android:background="@drawable/selector_main_reds"
+            android:paddingLeft="14dip"
+            android:paddingRight="14dip"
+            android:singleLine="true"
+            android:text="@string/startInShop"
+            android:textColor="@color/selector_color_title_press"
+            android:textSize="20dip" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="1dip"
+            android:layout_below="@+id/btn_save"
+            android:layout_marginTop="16dip"
+            android:background="@drawable/dash" />
+
+        <ImageButton
+            android:id="@+id/btn_inputRegBankActivity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_save"
+            android:layout_marginTop="26dip"
+            android:background="@null"
+            android:src="@drawable/add_card" />
+
+        <ImageView
+            android:id="@+id/iv_ball"
+            android:layout_alignTop="@+id/layout_shop_info"
+            android:layout_marginTop="-50dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ballon_release"
+            android:visibility="visible" />
+        
+        <ImageView
+            android:layout_below="@+id/iv_ball"
+            android:id="@+id/iv_chick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-4dip"
+            android:layout_marginTop="-4dip"
+            android:background="@anim/anim_cheap_chick"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_lovely_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/btn_save"
+            android:layout_alignTop="@+id/btn_save"
+            android:layout_marginTop="-44dip"
+            android:background="@anim/anim_lovely_cat"
+            android:scaleType="center" />
+    </RelativeLayout>
+
+</LinearLayout>

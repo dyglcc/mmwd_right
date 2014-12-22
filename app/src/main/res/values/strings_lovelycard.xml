@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pageitem_edit">萌片页编辑</string>
+    <string name="pageitem_comment">查看萌片页评论</string>
+    <string name="pageitem_bg_title">萌片页背景图</string>
+    <string name="pageitem_bg_subtitle">据说越高清越好,火速上传一张吧</string>
+    <string name="pageitem_name">起个酷酷的店主名</string>
+    <string name="pageitem_label1">自己的标签自己做主 ! (限 4 个字)</string>
+    <string name="pageitem_label2">自己的标签自己做主 ! (限 4 个字)</string>
+    <string name="pageitem_notice">想对你的顾客说些什么......</string>
+</resources>

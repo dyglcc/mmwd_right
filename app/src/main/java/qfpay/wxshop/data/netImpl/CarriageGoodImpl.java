@@ -1,0 +1,95 @@
+package qfpay.wxshop.data.netImpl;
+
+import qfpay.wxshop.utils.MobAgentTools;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.json.JSONObject;
+
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.config.WDConfig;
+import qfpay.wxshop.data.net.AbstractNet;
+import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.utils.T;
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.os.Bundle;
+
+public class CarriageGoodImpl extends AbstractNet {
+
+
+	
+	public CarriageGoodImpl(Activity act) {
+		super(act);
+		setNoNeedShowDialog();
+	}
+
+	@Override
+	protected Map<String, Object> setRequestParameter(Bundle parameter2) {
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
+		try {
+
+			String goodid = parameter2.getString("goodid");
+			map.put("goodid", goodid);
+			map.put(ConstValue.REQUEST_URL, WDConfig.getInstance().deleteItem(ConstValue.HTTP_POST));
+
+			map.put(ConstValue.HTTP_METHOD, ConstValue.HTTP_POST);
+			/** 参数正确 */
+			map.put(ConstValue.NET_RETURN, ConstValue.NET_RETURN_SUCCESS);
+		} catch (Exception e) {
+			T.e(e);
+			/** 请求参数错误 */
+			map.put(ConstValue.NET_RETURN, ConstValue.NET_RETURN_PARAMETER);
+		}
+		return map;
+	}
+
+	@Override
+	protected Bundle jsonParse(String jsonStr) {
+
+		if (jsonStr != null && jsonStr.length() > 0) {
+			try {
+				JSONObject root = new JSONObject(jsonStr);
+				String resultState = root.getString("respcd");
+				if (resultState.equals("0000")) {
+					bundle.putString(ConstValue.ERROR_MSG, ConstValue.SUCCESS);
+//					{
+//						  "resperr": "",
+//						  "respcd": "0000",
+//						  "respmsg": "",
+//						  "data": null
+//						}
+//						错误返回：
+//						{
+//						  "resperr": "错误信息",
+//						  "respcd": "2013",
+//						  "respmsg": "错误信息",
+//						  "data": null}
+					
+				}else if (!resultState.equals("0000")) {
+					bundle.putInt(ConstValue.JSON_RETURN,
+							ConstValue.JSON_FAILED);
+					T.i("jsonStr is null or jsonStr.length is 0");
+					bundle.putString(ConstValue.ERROR_MSG,
+							"未知错误，请重试");
+					return bundle;
+				}
+
+				Long key = System.currentTimeMillis();
+				/** 界面上展示的时候直接根据key取存储类的数据 */
+				bundle.putString(ConstValue.CACHE_KEY, key + "");
+				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
+			} catch (Exception e) {
+				T.e(e);
+				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_FAILED);
+			}
+		} else {
+			bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_FAILED);
+			T.i("jsonStr is null or jsonStr.length is 0");
+		}
+		return bundle;
+	}
+}

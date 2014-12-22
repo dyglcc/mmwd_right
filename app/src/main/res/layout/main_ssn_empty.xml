@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lyt_publish"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/content_bg"
+    android:orientation="vertical" >
+
+
+        <Button
+            android:id="@+id/btn_empty_see"
+            android:layout_width="fill_parent"
+            android:layout_height="45dip"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:layout_marginTop="14dip"
+            android:background="@drawable/selector_main_reds"
+            android:text="发布我的第一个碎碎念"
+            android:textColor="@color/white"
+            android:textSize="18dip" />
+
+
+</LinearLayout>

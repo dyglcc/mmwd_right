@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_publish_goods" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <qfpay.wxshop.ui.view.AutoGridView
+                android:id="@+id/photoList"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="3dp"
+                android:listSelector="@null"
+                android:numColumns="4"
+                android:paddingBottom="@dimen/newitem_sec_margin"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="@dimen/newitem_sec_margin"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="3dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <View style="@style/form_line_horizontal" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/form_pageitem_height"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        style="@style/common_text_content_mid"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/item_name"
+                        android:textColor="@color/common_text_black" />
+
+                    <View style="@style/form_line_vertical" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        style="@style/common_text_content_mid"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="3"
+                        android:background="@null"
+                        android:gravity="center|left"
+                        android:inputType="text"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:textColor="@color/common_text_black" />
+                </LinearLayout>
+
+                <View
+                    style="@style/form_line_horizontal"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="90dp"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        style="@style/common_text_content_mid"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/form_pageitem_height"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/item_description"
+                        android:textColor="@color/common_text_black" />
+
+                    <View style="@style/form_line_vertical" />
+
+                    <EditText
+                        android:id="@+id/et_description"
+                        style="@style/common_text_content_mid"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="3"
+                        android:background="@null"
+                        android:gravity="left|top"
+                        android:inputType="textMultiLine"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="5dp"
+                        android:textColor="@color/common_text_black" />
+                </LinearLayout>
+
+                <View
+                    style="@style/form_line_horizontal"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/form_pageitem_height"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            style="@style/common_text_content_mid"
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/item_price"
+                            android:textColor="@color/common_text_black" />
+
+                        <View style="@style/form_line_vertical" />
+
+                        <qfpay.wxshop.ui.view.MoneyEditTextView
+                            android:id="@+id/et_price"
+                            style="@style/common_text_content_mid"
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center|left"
+                            android:inputType="numberDecimal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:textColor="@color/common_text_black" />
+                    </LinearLayout>
+
+                    <View style="@style/form_line_vertical" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            style="@style/common_text_content_mid"
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/item_postage"
+                            android:textColor="@color/common_text_black" />
+
+                        <View style="@style/form_line_vertical" />
+
+                        <qfpay.wxshop.ui.view.MoneyEditTextView
+                            android:id="@+id/et_postage"
+                            style="@style/common_text_content_mid"
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center|left"
+                            android:hint="@string/item_postage_hint"
+                            android:inputType="numberDecimal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:textColor="@color/common_text_black"
+                            android:textColorHint="@color/common_text_grey" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/form_line_horizontal" />
+
+                <View
+                    style="@style/form_line_horizontal"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_unit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <View style="@style/form_line_horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/ll_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/newitem_item_add" />
+
+                    <TextView
+                        style="@style/common_text_content_mid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/btn_addnewitem"
+                        android:textColor="@color/title_bg_color" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_announce"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_main_reds"
+                android:gravity="center"
+                android:text="@string/btn_announce"
+                android:textColor="@color/white"
+                android:textSize="19sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

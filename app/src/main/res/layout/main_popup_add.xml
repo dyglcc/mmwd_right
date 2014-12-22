@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_background_layer" >
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="4" />
+        <ImageView
+            android:id="@+id/iv_addcommodity"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="25dp"
+            android:layout_weight="1"
+            android:src="@drawable/main_tab_add_commodity" />
+
+        <ImageView
+            android:id="@+id/iv_addbuyersshow"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/main_tab_add_buyersshow" />
+        <ImageView
+            android:id="@+id/iv_addsuisuinian"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="90dp"
+            android:src="@drawable/main_tab_add_ssn" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_add"
+        android:layout_width="116dp"
+        android:layout_height="78dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/iv_egg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@id/iv_add"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="100dp"
+        android:src="@drawable/main_add_eggs_replay"
+        android:visibility="gone" />
+
+</RelativeLayout>

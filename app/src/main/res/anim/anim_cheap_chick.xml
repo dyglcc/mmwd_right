@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"
+     >
+
+    <item
+        android:drawable="@drawable/an_chick1"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/an_chick2"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/an_chick3"
+        android:duration="300"/>
+    <item
+        android:drawable="@drawable/an_chick4"
+        android:duration="300"/>
+
+</animation-list>

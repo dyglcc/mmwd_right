@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dip"
+    android:background="#edfbfc"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:visibility="visible" >
+
+    <ImageView
+        android:id="@+id/layer_iv_share_result"
+        android:layout_width="58dip"
+        android:layout_height="58dip"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dip"
+        android:src="@drawable/ic_launcher" />
+
+    <LinearLayout
+        android:id="@+id/layout_1111"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dip"
+        android:layout_toRightOf="@+id/layer_iv_share_result"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发布成功!"
+            android:textColor="@color/title_bg_color"
+            android:textSize="18dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dip"
+            android:text="继续分享到："
+            android:textColor="#777777"
+            android:textSize="14dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_moment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="22dip"
+        android:layout_toLeftOf="@+id/layout_friend"
+        android:background="@drawable/selector_title_man_imag_red"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/weixin_pengyong_maijiaxiu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dip"
+            android:text="微信好友"
+            android:textColor="#777777"
+            android:textSize="12dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dip"
+        android:layout_toLeftOf="@+id/ib_close"
+        android:background="@drawable/selector_title_man_imag_red"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/weixin_moments_maijiaxiu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dip"
+            android:text="朋友圈"
+            android:textColor="#777777"
+            android:textSize="12dip" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ib_close"
+        android:layout_width="26dip"
+        android:layout_height="26dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dip"
+        android:background="@drawable/close_icon_maijiaxiu" />
+
+</RelativeLayout>

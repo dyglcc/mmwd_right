@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/qfpay.wxshop"
+    android:layout_width="225dp"
+    android:layout_height="wrap_content"
+    android:paddingRight="10dp" >
+
+    <FrameLayout
+        android:id="@+id/fl_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/actionbar_shape_backgroundw"
+        android:padding="2dp" >
+
+        <LinearLayout
+            android:id="@+id/contentList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actionbar_shape_background"
+            android:orientation="vertical"
+            android:paddingBottom="5dp" >
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_wx"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="15dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:textColor="#fec3cc"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_shopsite"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:textColor="#fec3cc"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/actionbar_shape_backgroundv" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <com.makeramen.RoundedImageView
+        android:id="@+id/iv_shopbg"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="2dp"
+        android:scaleType="centerCrop"
+        app:border_color="@color/common_background"
+        app:border_width="1dp"
+        app:corner_radius="50dp"
+        app:mutate_background="true"
+        app:oval="false" />
+
+</FrameLayout>

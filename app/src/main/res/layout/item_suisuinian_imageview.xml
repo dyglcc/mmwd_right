@@ -1,0 +1,24 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/line_margin_bottom_edittext"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleSmallInverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /> -->
+
+    <!-- <include
+        layout="@layout/item_suisuinian_img_menu"
+        android:layout_width="fill_parent"
+        android:visibility="invisible"
+        android:layout_height="fill_parent" /> -->
+
+</FrameLayout>

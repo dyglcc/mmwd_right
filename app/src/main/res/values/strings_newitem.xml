@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <string name="item_name">商品名称</string>
+    <string name="item_price">商品价格</string>
+    <string name="item_postage">邮费</string>
+    <string name="item_postage_hint">可不填</string>
+    <string name="item_description">商品描述</string>
+    <string name="item_unit">规格</string>
+    <string name="item_quantity">库存</string>
+    <string name="btn_addnewitem">添加规格</string>
+    <string name="btn_announce">发布商品</string>
+    <string name="btn_edit">保存商品</string>
+    <string name="toast_imgupload_error_none">图片上传失败, 请检查网络后重试</string>
+    <string name="toast_imgupload_error">有 %d 张图片上传失败, 请检查网络后编辑商品重新上传</string>
+    <string-array name="header_img_url">
+        <item>http://imgstore01.qiniudn.com/header1.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header2.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header4.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header5.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header6.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header7.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header8.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header9.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header10.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header11.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header12.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header13.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header14.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header15.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header16.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header17.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header18.jpg</item>
+        <item>http://imgstore01.qiniudn.com/header19.jpg</item>
+    </string-array>
+    
+    </resources>

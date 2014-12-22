@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="18dip"
+        android:orientation="horizontal"
+        android:paddingLeft="10dip" >
+
+        <!--
+         <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <View
+            android:id="@+id/line_1"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/grey" />
+        -->
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="74dip"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="left|top"
+            android:singleLine="true"
+            android:text="6月10号"
+            android:textColor="#222222"
+            android:textSize="17dip" />
+        <!-- </LinearLayout> -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:paddingLeft="2dip"
+                android:id="@+id/tv_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|top"
+                android:lineSpacingExtra="2dip"
+                android:text="asdkfaskdfkasdkf阿克苏的罚款卡萨丁付款奥斯卡的罚款是"
+                android:textColor="#444444"
+                android:textSize="15dip" />
+
+            <ImageView
+                android:id="@+id/iv_extra_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="100dip"
+                android:minHeight="100dip"
+                android:adjustViewBounds="true"
+                android:maxHeight="180dip"
+                android:background="@color/grey"
+                android:maxWidth="200dip" />
+
+            <RelativeLayout
+                android:id="@+id/layout_images_parent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <include
+                    android:id="@+id/layout_images"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/layout_maijiaxiu_item1"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dip"
+                android:gravity="right"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="0px"
+                    android:layout_marginLeft="4dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="日期"
+                    android:textColor="#999999"
+                    android:textSize="12dip" />
+
+                <Button
+                    android:id="@+id/btn_edit"
+                    android:layout_width="22dip"
+                    android:layout_height="22dip"
+                    android:layout_marginRight="16dip"
+                    android:background="@drawable/maijiaxiu_edit" />
+
+                <Button
+                    android:id="@+id/btn_del"
+                    android:layout_width="22dip"
+                    android:layout_height="22dip"
+                    android:background="@drawable/maijiaxiu_delete" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line_1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_marginBottom="8dip"
+                android:layout_marginTop="8dip"
+                android:background="@color/grey" />
+            <!--  -->
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="8dip"
+        android:background="@color/grey" />
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mask_overall"
+    android:orientation="vertical" >
+
+    <!--
+         <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_publish_goods" />
+    -->
+
+   <!--  <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@drawable/mask_overall" /> -->
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="300dip"
+        android:layout_height="500dip"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ggtmc" />
+
+</ScrollView>

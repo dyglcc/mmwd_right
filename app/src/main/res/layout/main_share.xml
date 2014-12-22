@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fbfefa"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fadingEdge="none"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dip"
+                android:layout_marginRight="8dip"
+                android:layout_marginLeft="8dip"
+                android:minHeight="120dip" >
+
+                <ImageView
+                    android:id="@+id/iv_content"
+                    android:layout_width="36dip"
+                    android:layout_height="36dip"
+                    android:layout_marginTop="-6dip"
+                    android:src="@drawable/icon_ssl_text" />
+
+                <EditText
+                    android:id="@+id/textContent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dip"
+                    android:background="@null"
+                    android:inputType="textMultiLine"
+                    android:maxLength="120"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/text_size_normal"
+                    android:gravity="left|top" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:background="@color/grey" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginTop="8dip" >
+
+                    <ImageView
+                        android:id="@+id/imageViewPic"
+                        android:layout_width="48dip"
+                        android:layout_height="48dip"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_share"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_marginRight="10dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:text="0/120"
+                    android:textColor="@color/red"
+                    android:layout_centerVertical="true"
+                    android:textSize="18dip" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dip"
+                android:background="#edeeea" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="6dip"
+                    android:gravity="center"
+                    android:layout_marginLeft="14dip"
+                    android:text="同步到:"
+                    android:textSize="16dip" />
+
+                <CheckBox
+                    android:id="@+id/ck_sina"
+                    style="@style/MyCheckBoxSina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="14dip"
+                    android:checked="true" />
+
+                <CheckBox
+                    android:id="@+id/ck_zone"
+                    style="@style/MyCheckBoxQzone"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="14dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="true" />
+
+                <CheckBox
+                    android:id="@+id/ck_qqweibo"
+                    style="@style/MyCheckBoxTencent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="14dip"
+                    android:checked="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

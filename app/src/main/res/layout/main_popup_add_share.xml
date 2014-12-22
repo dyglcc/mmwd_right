@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp" >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/popup_replay_bg" />
+
+        <TextView
+            style="@style/common_text_content_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/share_add_anidone"
+            android:textColor="@color/common_text_black" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/userguide_star" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="22dp"
+            android:src="@drawable/userguide_star" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/userguide_star" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/rl_share"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                style="@style/common_text_content_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分享"
+                android:textColor="@color/common_background_red" />
+        </RelativeLayout>
+
+        <View
+            style="@style/form_line_vertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_later"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                style="@style/common_text_content_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下次再说"
+                android:textColor="@color/common_background_red" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        style="@style/form_line_horizontal"
+        android:layout_above="@id/ll_buttons"
+        android:layout_marginLeft="29dp"
+        android:layout_marginRight="29dp" />
+
+</RelativeLayout>

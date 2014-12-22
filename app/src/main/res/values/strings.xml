@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <!-- 公共 -->
+    <string name="dialog_btn_positive">确定</string>
+    <string name="dialog_btn_negative">取消</string>
+
+    <string name="actionbar_button_complete">完成</string>
+    
+    <string name="share_faxiangemiao_title">这么牛逼的文，不推荐给你简直对不起咱俩的情谊！</string>
+    
+    <!-- 下拉刷新 -->
+    <string name="header_hint_refresh_normal">下拉刷新</string>
+    <string name="header_hint_refresh_ready">松手刷新</string>
+    <string name="header_hint_refresh_loading">刷新&#8230;</string>
+    <string name="header_hint_refresh_time">Time：</string>
+    <string name="footer_hint_load_normal">上拉加载更多</string>
+    <string name="footer_hint_load_ready">松开开始加载</string>
+    
+    <!-- 分享 -->
+    <string name="actionbar_share_wxfirend">微信好友</string>
+    <string name="actionbar_share_wxmoments">朋友圈</string>
+    <string name="actionbar_share_onekey">一键分享微博 空间</string>
+    <string name="actionbar_share_copy">复制链接</string>
+    <string name="share_item_copy">复制成功</string>
+    <string name="share_loading_waiting">请稍等,正在努力分享呀!</string>
+    
+    <!-- 头图选择页面 -->
+    <string name="shopheader_pagetitle">更换店铺背景图</string>
+    <string name="shopheader_preview_pagetitle">预览店铺背景图</string>
+    
+    <!-- 更多页面 -->
+    <string name="more_title">更多</string>
+    <string name="more_item_about">关于喵喵</string>
+    <string name="more_item_recommend">喵喵推荐</string>
+    <string name="more_item_logout">退出登录</string>
+    <string name="more_img_version">版本号 : %s</string>
+    <string name="more_img_checkupdate">检查更新</string>
+    
+    <!-- 自定义相册页面 -->
+    <string name="gallery_toast_cantselect">最多只能选择%d张图片哦</string>
+    <string name="gallery_title_btn">完成 %s</string>
+    
+    
+    
+    
+    <string name="app_name">喵喵微店</string>
+    <string name="version">当前版本：</string>
+    <string name="filepathException">找不到文件路径</string>
+    <string name="weixinhao">店主微信号    可选填</string>
+    <string name="miaomiaotishi">喵喵提示</string>
+    <!-- Kris -->
+    <string name="OK">确定</string>
+    <string name="cancel">取消</string>
+    <string name="mm_hint">喵喵提示</string>
+    <string name="input_store_name">请输入店铺名称</string>
+    <string name="fail_upload">上传图片出错</string>
+    <string name="passwd_input">请输入密码</string>
+    <string name="phonenumber_wrong">手机号有误</string>
+    <string name="know">知道了</string>
+    <string name="know_i">我知道了</string>
+    <string name="open_collection">添加银行卡</string>
+    <string name="contact_customer_service">联系客服</string>
+    <string name="about_us">关于我们</string>
+    <string name="complete">完成</string>
+    <string name="hint">提示</string>
+    <string name="loading">加载中...</string>
+    <string name="card_number_wrong">喵！银行卡号有误，快检查一下再输入~</string>
+    <string name="wrong_security_code_2">验证码输入错啦！点击获取验证码重新获取~</string>
+    <string name="input_account_name">请输入开户名</string>
+    <string name="mm_protocol">喵喵微店协议</string>
+    <string name="resume">重新获取</string>
+    <string name="send_OK">短信已发送，请注意查收</string>
+    <string name="fail_get_security_code">咦？收不到验证码吗？快找微信客服！</string>
+    <string name="haiwaiTips">海外用户？也快找微信客服</string>
+    <string name="passwd_at_lease_6_2">咦，密码输入的位数不对，至少6位呦!</string>
+    <string name="passwd_at_lease_6_3">咦，密码输入的位数不对，请输入6-10位密码呦！</string>
+    <string name="sending">发送中</string>
+    <string name="install_weichat_qin">亲，您还没有安装微信？请先安装微信客户端。</string>
+    <string name="focus_on_qmm_weichat">访问网站weixin.qq.com下载客户端并关注\"喵喵微店\"</string>
+    <string name="order_manage">订单管理</string>
+    <string name="wrong_address">出错了，地址空了</string>
+    <string name="copy">已复制到粘贴板</string>
+    <string name="start_share">启动分享...</string>
+    <string name="fail_share2">请重试</string>
+    <string name="existing_phonenum">手机号已经存在</string>
+    <string name="no_found_SD">未找到sdcard,暂时不能拍照，不能选择图片。</string>
+    <string name="no_found_SD_2">未找到sdcard，不能进行拍照和从相册选择图片</string>
+    <string name="fail_new_tmp">创建临时文件失败，没法子往下走了，问问喵喵客服寻求帮助吧</string>
+    <string name="open_file_wrong">打开文件错误，文件有问题！</string>
+    <string name="pic_no_exist">该照片在原始路径已经不存在，请核实！</string>
+    <string name="file_size">文件大小：</string>
+    <string name="bad_net">喵~网络不给力哦</string>
+    <string name="access_refused">访问拒绝</string>
+
+    <!-- main_login_preview -->
+    <string name="wxshop_show">漂亮小店展示</string>
+    <string name="free_register">免费注册</string>
+    <string name="log_in">登录</string>
+    <string name="log_in_old">老用户登录</string>
+
+    <!-- main_login -->
+    <string name="phonenum">手机号</string>
+    <string name="password">密码</string>
+
+    <!-- main_myshop -->
+    <string name="add_item">发布商品</string>
+    <string name="edit_item">编辑商品</string>
+    <string name="store_message">编辑店铺信息</string>
+
+    <!-- main_other_shops -->
+    <!-- main_reg_bank_setting -->
+    <string name="money_receive_NBD">请如实填写银行卡信息,确保交易金额及时到账,为保证资金安全,开户人姓名填写后不可变更,请谨慎填写</string>
+    <string name="bankpicker_tips">喵喵微店目前只支持国内主流银行,如果亲的银行卡不在列表中,请联系  瞄瞄微店客服</string>
+    <string name="card_num">收款卡号  仅支持储蓄卡</string>
+    <string name="card_user_name">持卡人姓名</string>
+    <string name="bank">开户银行</string>
+    <string name="fill_in_later">稍后再填</string>
+    <string name="submit">提交信息</string>
+
+    <!-- main_reg_improvement -->
+    <string name="wxshop_name">店铺名称</string>
+
+    <!-- main_erg_step1 -->
+    <string name="get_security_code">获取验证码</string>
+    <string name="note_security_code">短信验证码</string>
+    <string name="click_ok">点击"注册账号"即同意 喵喵微店</string>
+    <string name="use_protocol"> 使用协议 </string>
+    <string name="and">和</string>
+    <string name="lock_up_agreement"> 禁售协议</string>
+
+    <!-- main_weixin -->
+    <string name="mm_wx_service">喵喵微信客服</string>
+    <!-- title_help -->
+    <string name="help_message">帮助信息</string>
+
+    <!-- title_main -->
+    <!-- title_other_shop -->
+    <string name="back">返回</string>
+    <string name="fineness_store">漂亮小店展示</string>
+
+    <!-- title_publish_goods -->
+    <string name="share">分享</string>
+
+    <!-- title_reg_step1 -->
+    <string name="register">注册账号</string>
+
+    <!-- title_reg_step2 -->
+    <string name="next">下一步</string>
+
+    <!-- title_shop_info -->
+    <string name="save">保存</string>
+
+    <!-- title_verfy_shop -->
+    <string name="title_activity_more">MoreActivity</string>
+    <!-- main_manage_shop -->
+    <string name="myIncome">我的收入</string>
+    <string name="click_ok_update">  点击检查更新</string>
+    <string name="download_url_empty">异常！下载地址是空</string>
+    <string name="update_apk_log_text">更新日志</string>
+    <string name="download_done">下载完成</string>
+    <string name="start_setup">安装新版本~</string>
+    <string name="apk_downloading">下载中</string>
+    <string name="update_text">更新</string>
+    <string name="setup_now">开始安装</string>
+    <string name="later">稍后再说</string>
+    <string name="check_update">检查更新</string>
+    <string name="aleady_newest">已经是最新版本</string>
+    <string name="error404">访问地址错误，请联系喵喵</string>
+    <string name="error500">加载失败</string>
+    <string name="timeout">访问超时</string>
+    <string name="errorNoNet">没有联网</string>
+    <string name="exchange">货源交流</string>
+    <string name="needInputBranchName">请输入支行</string>
+    <string name="bankcard_reg_success">提交成功</string>
+    <string name="myAccountcard">收款银行卡</string>
+    <string name="accountInfo">账号信息</string>
+    <string name="confirm">确认</string>
+    <string name="show">样例展示</string>
+    <string name="title_select_pics">选择图片</string>
+    <string name="title_select_bucket">相册</string>
+    <string name="share_content">分享内容</string>
+    <string name="create_complete">创建成功</string>
+    <string name="startInShop">进入我的喵喵微店</string>
+    <string name="changePwd">忘记密码?</string>
+    <string name="startlogin">开始登录</string>
+    <string name="title">标题</string>
+    <string name="changePwdtitle">更改密码</string>
+    <string name="stat_title">店铺统计</string>
+    <string name="gonglue">玩转微店攻略</string>
+    <string name="more_app">应用推荐</string>
+    <string name="learn_more">了解更多</string>
+    <string name="changeBankAccout">修改收款账号</string>
+    <string name="addbankcard">添加银行卡</string>
+    <string name="mycardinfo">收款银行卡</string>
+    
+    <string name="plaeas_select">选择</string>
+    <string name="share2">分享到</string>
+    <string name="launch_share">启动分享..</string>
+    <string name="haveNoData">木有了...</string>
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+    
+    <string name="errcode_success">分享成功</string>
+	<string name="errcode_cancel">取消分享</string>
+	<string name="errcode_deny">分享被拒绝</string>
+	<string name="errcode_unknown">分享返回</string>
+	<string name="tip_needinstallkehuduan">亲，先安装微信客户端</string>
+	<string name="qqshareFail">TAT空间分享失败了！\n安装了QQ轻聊版本？求换普通版本嗷~</string>
+	
+	<!--  -->
+	<string name="suisuinian_content">正文写这里~</string>
+	<string name="show_more">显示更多</string>
+	<string name="ssn_publish_title">标题赞赞哒，才会有人看唷~</string>
+	<string name="ssn_publish_goodlink">把想宣传的商品加进来呗~</string>
+	<string name="ssn_have_look">TAT,写不粗来？先瞅瞅别人的吧</string>
+
+</resources>

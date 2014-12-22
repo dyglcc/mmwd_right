@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_reg_step2" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:fadingEdge="none"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/reg_shopinfo_text" />
+
+            <RelativeLayout
+                android:id="@+id/layout_takepic"
+                android:layout_width="fill_parent"
+                android:layout_height="120dip"
+                android:layout_gravity="center_horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:layout_width="119dip"
+                    android:layout_height="119dip"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/reg_shopinfo_deflaut" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingLeft="125dp"
+                    android:src="@drawable/reg_shopinfo_miaomiao" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/et_shopname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@drawable/selector_input_reg"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="@string/wxshop_name"
+                    android:maxLength="30" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dip"
+                android:layout_marginTop="20dip"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/et_weixinhao"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@drawable/selector_input_reg"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="@string/weixinhao"
+                    android:maxLength="20" >
+                </EditText>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="40dip" >
+            </View>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

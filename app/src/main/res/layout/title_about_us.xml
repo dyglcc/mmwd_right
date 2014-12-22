@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_icon_back"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/title_bg_color"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/tv_back"
+        android:layout_width="64dip"
+        android:gravity="center"
+        android:layout_height="@dimen/title_height"
+        android:text="@string/cancel"
+        android:background="@drawable/selector_button_click"
+        android:textColor="@color/selector_color_title_press"
+        android:textSize="18dip" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="100dip"
+        android:layout_height="@dimen/title_height"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="6dip"
+        android:gravity="center"
+        android:text="@string/about_us"
+        android:textSize="20dip"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/tv_complete"
+        android:layout_width="64dip"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="@string/complete"
+        android:visibility="invisible"
+        android:background="@drawable/selector_button_click"
+        android:textColor="@color/selector_color_title_press"
+        android:textSize="18dip" />
+
+</RelativeLayout>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <!-- CommonColor -->
+    <color name="common_line_grey">#D2D2D2</color>
+    <color name="common_text_black">#626262</color>
+    <color name="common_text_grey">#979797</color>
+    <color name="common_text_red">#fd778e</color>
+    <color name="common_background">#fbfefa</color>
+    <color name="transparent">#000000</color>
+    <color name="common_background_layer">#99000000</color>
+    <color name="common_background_red">#fd778e</color>
+    <color name="common_background_grey">#ECECEA</color>
+    <color name="common_black">#000000</color>
+    <color name="common_white">#ffffff</color>
+    
+	
+    
+    <color name="textHintColor">#d6bfc1</color>
+    <color name="grey">#dbdbdb</color>
+    <color name="red">#ff0000</color>
+    <color name="title_bg_color">#fffd778e</color>
+    <color name="content_bg">#fffefcf2</color>
+    <color name="text_blue">#0291cd</color>
+    <color name="white_trans_parent">#f7ffffff</color>
+	<color name="white">#ffffff</color>
+	<color name="blue">#0000FF</color>
+	<color name="grey777">#777</color>
+    <color name="zong">#4c2020</color>
+    
+    <color name="dialog_cancle_blue">#afe5f9</color>
+    <drawable name="dialog_cancle_blue">#afe5f9</drawable>
+    <color name="promo_text_color">#808080</color>
+    <color name="promo_red_text_color">#ef505a</color>
+    
+    <color name="text_content">#827E7E</color>
+    <color name="tag_default_color">#555555</color>
+    <color name="text_hint_color">#91948d</color>
+    <color name="text_color">#333333</color>
+    
+    
+    <!-- tabindicator -->
+    
+    </resources>

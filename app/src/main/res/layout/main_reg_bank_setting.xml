@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lyt_reg_bank"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/content_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_reg_banksetting" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fadingEdge="none"
+        android:paddingTop="10dip"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="82dip"
+                    android:layout_height="53dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dip"
+                    android:clickable="false"
+                    android:src="@drawable/chick" />
+
+                <TextView
+                    android:id="@+id/tv_knowmore"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/money_receive_NBD"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:layout_marginTop="20dip"
+                android:gravity="left|center_vertical"
+                android:text="银行卡信息"
+                android:textColor="@color/title_bg_color"
+                android:textSize="14sp" />
+            
+            <TextView
+                android:id="@+id/et_bank"
+                android:layout_width="fill_parent"
+                android:layout_height="48dip"
+                android:background="@drawable/selector_input_reg"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/bank"
+                android:textSize="17sp"
+                android:textColor="#000000" />
+
+            <!-- 输入卡号的时候字体为26sp -->
+            <EditText
+                android:id="@+id/et_card"
+                android:layout_width="fill_parent"
+                android:layout_height="48dip"
+                android:maxLength="24"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dip"
+                android:ems="10"
+                android:inputType="number"
+                android:background="@drawable/selector_input_reg"
+                android:hint="@string/card_num"
+                android:textSize="17sp"
+                android:textColor="#000000" />
+
+            <EditText
+                android:id="@+id/et_account"
+                android:layout_width="fill_parent"
+                android:layout_height="48dip"
+                android:layout_marginTop="20dip"
+                android:background="@drawable/selector_input_reg"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/card_user_name"
+                android:maxLength="30"
+                android:textSize="17sp"
+                android:textColor="#000000" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="14dip"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/tv_later"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_main_reds"
+                    android:gravity="center"
+                    android:text="@string/fill_in_later"
+                    android:textColor="@color/selector_color_title_press"
+                    android:textSize="22sp" />
+
+                <Button
+                    android:id="@+id/tv_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_main_reds"
+                    android:gravity="center"
+                    android:text="@string/submit"
+                    android:textColor="@color/selector_color_title_press"
+                    android:textSize="22sp" />
+            </LinearLayout>
+            
+        </LinearLayout>
+        
+    </ScrollView>
+
+</LinearLayout>

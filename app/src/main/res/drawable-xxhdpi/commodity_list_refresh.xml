@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/commodity_list_refresh_00000" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00001" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00002" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00010" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00011" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00012" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00020" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00021" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00022" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00030" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00031" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00032" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00040" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00041" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00042" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00050" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00051" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00052" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00060" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00061" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00062" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00070" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00071" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00072" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00080" android:duration="700"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00081" android:duration="100"/>
+    <item android:drawable="@drawable/commodity_list_refresh_00082" android:duration="100"/>
+</animation-list>

@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lyt_reg_bank"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/content_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_publish_goods" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dip"
+        android:fadingEdge="none"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="82dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dip"
+                    android:clickable="false"
+                    android:src="@drawable/weixin_payment_icon" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="6dip"
+                        android:layout_marginRight="10dip"
+                        android:gravity="center_vertical"
+                        android:text="一键向微信好友收款，安全方便"
+                        android:textSize="16dip" />
+
+                     <TextView
+                        android:id="@+id/tv_to_knowMore"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_marginTop="4dip"
+                        android:layout_marginBottom="2dip"
+                        android:gravity="left"
+                        android:text="收款商品名称请认真填写"
+                        android:textColor="@color/title_bg_color"
+                        android:textSize="12dip" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/grey" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="10dip" >
+
+                <EditText
+                    android:id="@+id/et_goods_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dip"
+                    android:background="@drawable/selector_input_reg"
+                    android:gravity="center_vertical"
+                    android:maxLength="20"
+                    android:hint="请填写商品名称" />
+
+                <qfpay.wxshop.ui.view.MoneyEditTextView
+                    android:layout_marginTop="10dip"
+                    android:id="@+id/et_money"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dip"
+                    android:background="@drawable/selector_input_reg"
+                    android:cursorVisible="true"
+                    android:gravity="center_vertical|left"
+                    android:hint="请填写金额"
+                    android:inputType="numberDecimal"
+                    android:minWidth="4dip"
+                    android:singleLine="true" >
+                </qfpay.wxshop.ui.view.MoneyEditTextView>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="fill_parent"
+                android:layout_height="44dip"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/selector_main_reds"
+                android:paddingLeft="14dip"
+                android:paddingRight="14dip"
+                android:singleLine="true"
+                android:text="去收款！"
+                android:textColor="@color/selector_color_title_press"
+                android:textSize="20dip" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

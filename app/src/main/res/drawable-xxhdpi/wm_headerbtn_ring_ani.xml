@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/wm_headerbtn_ring_01" android:duration="100"/>
+    <item android:drawable="@drawable/wm_headerbtn_ring_02" android:duration="100"/>
+    <item android:drawable="@drawable/wm_headerbtn_ring_03" android:duration="100"/>
+    <item android:drawable="@drawable/wm_headerbtn_ring_04" android:duration="100"/>
+    <item android:drawable="@drawable/wm_headerbtn_ring_05" android:duration="100"/>
+    <item android:drawable="@drawable/wm_headerbtn_ring_06" android:duration="100"/>
+    <item android:drawable="@drawable/wm_headerbtn_ring_07" android:duration="100"/>
+    <item android:drawable="@drawable/wm_headerbtn_ring_08" android:duration="100"/>
+</animation-list>

@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/common_background_layer"
+    android:gravity="center"
+    android:id="@+id/layout_mengceng"
+    android:orientation="horizontal" >
+
+    <EditText
+        android:id="@+id/et_request_focus"
+        android:layout_width="10dip"
+        android:layout_height="1dip"
+        android:background="@null"
+        android:inputType="none" />
+
+    <View
+        android:id="@+id/view_spacing"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_image_del"
+            android:layout_width="60dip"
+            android:layout_height="70dip"
+            android:background="@drawable/selector_ssn_image_close"/>
+    </LinearLayout>
+
+</RelativeLayout>

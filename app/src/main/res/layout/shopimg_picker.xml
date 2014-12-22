@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rl_photo"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp" >
+
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="centerCrop"
+                android:src="#ffffff" />
+
+            <TextView
+                style="@style/common_text_content_big"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/common_background_layer"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="当前店铺背景图"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/common_line_grey" />
+
+            <LinearLayout
+                android:id="@+id/ll_fromgallery"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/form_pageitem_height"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/common_text_content_big"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="从手机相册选择"
+                    android:textColor="@color/common_text_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/common_line_grey" />
+
+            <LinearLayout
+                android:id="@+id/ll_takephoto"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/form_pageitem_height"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/common_text_content_big"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="拍照"
+                    android:textColor="@color/common_text_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/common_line_grey" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/common_line_grey" />
+
+        <LinearLayout
+            android:id="@+id/ll_fromserver"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/form_pageitem_height"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/common_text_content_big"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="喵喵私家图片集"
+                android:textColor="@color/common_text_black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/common_line_grey" />
+    </LinearLayout>
+
+</ScrollView>

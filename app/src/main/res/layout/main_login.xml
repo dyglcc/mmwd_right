@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_reg_login" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/et_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="60dip"
+                android:layout_weight="1"
+                android:background="@drawable/selector_input_reg"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/phonenum"
+                android:inputType="number"
+                android:maxLength="13" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/et_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="60dip"
+                android:layout_weight="1"
+                android:background="@drawable/selector_input_reg"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:textSize="18dip" >
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/layout_et_changePwd"
+            android:layout_width="wrap_content"
+            android:layout_height="48dip"
+            android:layout_marginRight="4dip"
+            android:layout_gravity="right"
+            android:gravity="right|center_vertical"
+            android:text="@string/changePwd"
+            android:textColor="@color/selector_color_protocol"
+            android:textSize="14dip" >
+        </TextView>
+    </LinearLayout>
+
+</LinearLayout>

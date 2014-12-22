@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bankarray">
+        <item >中国工商银行#1</item>
+        <item >中国建设银行#2</item>
+        <item >中国农业银行#3</item>
+        <item >招商银行#4</item>
+        <item >中国邮政储蓄银行#5</item>
+        <item >中国银行#6</item>
+        <item >交通银行#7</item>
+        <item >中信银行#8</item>
+        <item >中国民生银行#9</item>
+        <item >兴业银行#10</item>
+        <item >光大银行#11</item>
+        <item >平安银行#12</item>
+        <item >上海浦东发展银行#13</item>
+        <item >广东发展银行#14</item>
+        <item >深圳发展银行#15</item>
+    </string-array>
+</resources>

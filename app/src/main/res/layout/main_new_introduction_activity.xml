@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/qfpay.wxshop"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <!--
+         <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="center"
+        android:src="@drawable/az01" />
+    -->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <com.indicator.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:padding="10dip"
+        app:fillColor="#ffffff"
+        app:radius="4dip"
+        app:strokeColor="#ffffff"
+        app:strokeWidth="1dip" />
+
+</FrameLayout>

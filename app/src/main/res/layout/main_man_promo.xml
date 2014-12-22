@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<qfpay.wxshop.ui.view.KeyboardLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lyt_reg_bank"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/content_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/title_publish_goods" />
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/content_bg" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fadingEdge="none"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginTop="15dip"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/promo_setting_title" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingBottom="18dip"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip"
+                    android:paddingTop="18dip" >
+
+                    <ImageView
+                        android:id="@+id/iv_good_pic"
+                        android:layout_width="90dip"
+                        android:layout_height="90dip"
+                        android:src="@drawable/main_shop_list_item_icon_bg" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="12dip"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="商品原价："
+                                android:textColor="@color/promo_text_color"
+                                android:textSize="16dip" />
+
+                            <TextView
+                                android:id="@+id/tv_price"
+                                android:layout_width="80dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="2400"
+                                android:textSize="16dip" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="元"
+                                android:textSize="20dip" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dip"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="秒杀价格："
+                                android:textColor="@color/promo_text_color"
+                                android:textSize="16dip" />
+
+                            <qfpay.wxshop.ui.view.MoneyEditTextView
+                                android:id="@+id/etProPrice"
+                                android:layout_width="80dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/selector_input_reg"
+                                android:gravity="center"
+                                android:imeOptions="actionDone"
+                                android:inputType="numberDecimal"
+                                android:textColor="@color/promo_red_text_color"
+                                android:textSize="16dip" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="元"
+                                android:textColor="@color/promo_red_text_color"
+                                android:textSize="20dip" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/grey" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="6dip"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:id="@+id/tv_province_front"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开始时间"
+                        android:textColor="@color/promo_text_color"
+                        android:textSize="16dip" />
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10dip"
+                        android:layout_marginRight="10dip"
+                        android:background="@color/grey" />
+
+                    <TextView
+                        android:id="@+id/etStartTime"
+                        android:layout_width="0dip"
+                        android:layout_height="48dip"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:gravity="center_vertical"
+                        android:hint="开始时间"
+                        android:textColor="@color/promo_red_text_color" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/arrow_white_right" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:id="@+id/tv_endtime_front"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="结束时间"
+                        android:textColor="@color/promo_text_color"
+                        android:textSize="16dip" />
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10dip"
+                        android:layout_marginRight="10dip"
+                        android:background="@color/grey" />
+
+                    <TextView
+                        android:id="@+id/etEndTime"
+                        android:layout_width="0dip"
+                        android:layout_height="48dip"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:gravity="center_vertical"
+                        android:hint="结束时间"
+                        android:textColor="@color/promo_red_text_color" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/arrow_white_right" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/grey" />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dip"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="16dip"
+                    android:background="@drawable/selector_main_reds"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip"
+                    android:singleLine="true"
+                    android:text="设置秒杀"
+                    android:textColor="@color/selector_color_title_press"
+                    android:textSize="20dip" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <qfpay.wxshop.wheel.timepicker.TimePickerWheel
+        android:id="@+id/timepickerview"
+        android:layout_width="fill_parent"
+        android:layout_height="214dip"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
+
+</qfpay.wxshop.ui.view.KeyboardLayout>

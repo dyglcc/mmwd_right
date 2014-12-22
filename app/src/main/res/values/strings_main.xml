@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <!-- ShopManager / CommodityList -->
+    <string name="item_title_price">价格 : ￥</string>
+    <string name="item_title_stock">库存 : </string>
+    <string name="item_title_date">日期 : </string>
+    <string name="item_title_salesvolume">销量 : </string>
+    <string name="item_menu_title_share">分享商品</string>
+    <string name="item_menu_title_promotation">秒杀活动</string>
+    <string name="item_menu_title_edit">编辑商品</string>
+    <string name="item_menu_title_top">置顶</string>
+    <string name="item_menu_title_canceltop">取消置顶</string>
+    <string name="item_menu_title_preview">预览商品</string>
+    <string name="item_menu_title_offshelf">下架</string>
+    
+    <string name="item_dialog_title_offshelf">下架</string>
+    <string name="item_dialog_title_taketop_success">置顶成功</string>
+    <string name="item_dialog_msg_taketop_success">已经置顶成功了哟!去看看效果吧</string>
+    <string name="item_dialog_positivebtn_taketop">看看效果</string>
+    <string name="item_dialog_negative_taketop">不看了</string>
+    <string name="item_dialog_title_taketop_cancel">取消置顶</string>
+    <string name="item_dialog_msg_taketop_cancel">确定取消置顶嘛？商品会回到原位哦！</string>
+    <string name="item_dialog_title_taketop_replace">确认置顶</string>
+    <string name="item_dialog_msg_taketop_replace">是否替换之前置顶商品？</string>
+    
+    <string name="promotion_dialog_title_cancel">取消秒杀</string>
+    <string name="promotion_dialog_msg_cancel">确认关闭此秒杀？</string>
+    
+    <string name="edit_toast_editedsuccess">商品编辑成功</string>
+    
+    <!-- ShopManager / ShopInfo -->
+    <string name="shopinfo_text_null">未设置</string>
+    <string name="shopinfo_title_icon">店铺头像</string>
+    <string name="shopinfo_title_name">店铺名称</string>
+    <string name="shopinfo_title_weixin">微信号</string>
+    <string name="shopinfo_title_headerimg">店铺背景图</string>
+    <string name="shopinfo_title_notice">店铺公告</string>
+    <string name="shopinfo_title_link">店铺链接</string>
+    
+    <!-- BusinessCommunityFragment -->
+    <string name="community_pagertitle_commoditysource">货源交流</string>
+    <string name="community_pagertitle_ranginglist">排行榜</string>
+    <string name="community_pagertitle_discover">发现个喵</string>
+    
+    <!-- Share -->
+    <string name="share_add_anidone">哎嘿，喵喵终于变身成功辣~辣么酷炫，辣么美~分享一发？</string>
+    <string name="share_popup_title">分享%s到...</string>
+</resources>

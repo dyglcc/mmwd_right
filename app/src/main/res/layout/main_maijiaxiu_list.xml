@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lyt_publish"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/layout_anima_tion"
+                android:layout_width="fill_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content" >
+
+                <include
+                    android:id="@+id/layout_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="70dip"
+                    layout="@layout/layout_maijiaxiu_add_success"
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/layout_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dip"
+                    android:background="#edfbfc"
+                    android:gravity="center"
+                    android:visibility="visible" >
+
+                    <ImageView
+                        android:id="@+id/iv_share_image_onload"
+                        android:layout_width="58dip"
+                        android:layout_height="58dip"
+                        android:layout_marginLeft="10dip"
+                        android:src="@drawable/ic_launcher" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10dip"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingRight="10dip" >
+
+                        <LinearLayout
+                            android:id="@+id/layout_4"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="visible" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="上传失败！"
+                                android:textColor="#777777"
+                                android:textSize="16dip" />
+
+                            <Button
+                                android:id="@+id/btn_retry"
+                                android:layout_width="60dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="20dip"
+                                android:layout_marginRight="6dip"
+                                android:background="@drawable/selector_main_reds"
+                                android:text="重试"
+                                android:textColor="@color/white"
+                                android:textSize="14dip" />
+
+                            <Button
+                                android:id="@+id/ib_close_2"
+                                android:layout_width="26dip"
+                                android:layout_height="26dip"
+                                android:layout_marginLeft="20dip"
+                                android:layout_marginRight="8dip"
+                                android:background="@drawable/close_icon_maijiaxiu" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="正在上传..."
+                                android:textColor="#777777"
+                                android:textSize="16dip" />
+
+                            <ProgressBar
+                                android:id="@+id/progressBar1"
+                                style="@style/progressBarHorizontal_color"
+                                android:layout_width="fill_parent"
+                                android:layout_height="18dip"
+                                android:layout_marginTop="5dip" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <qfpay.wxshop.ui.view.MaijiaxiuListView
+                android:id="@+id/list_manage_shops"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="#00000000"
+                android:dividerHeight="0px"
+                android:drawSelectorOnTop="true"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:listSelector="#00000000"
+                android:scrollbars="vertical"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_jiaocheng"
+            android:layout_marginLeft="10dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dip"
+            android:src="@drawable/tut_icon" />
+    </RelativeLayout>
+
+</LinearLayout>

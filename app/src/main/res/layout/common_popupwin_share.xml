@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="225dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left"
+    android:paddingRight="10dp" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/actionbar_shape_backgroundw"
+        android:padding="2dp" >
+
+        <LinearLayout
+            android:id="@+id/contentList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actionbar_shape_background"
+            android:orientation="vertical"
+            android:paddingBottom="5dp" >
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/common_text_content_big"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="65dp"
+                android:gravity="center"
+                android:text="@string/share_popup_title"
+                android:textColor="@color/common_white" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/actionbar_shape_backgroundv" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="82dp"
+        android:layout_height="48dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/popup_share_icon" />
+
+</FrameLayout>

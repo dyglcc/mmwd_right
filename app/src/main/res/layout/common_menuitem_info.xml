@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/qfpay.wxshop"
+    android:layout_width="58dp"
+    android:layout_height="48dp"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
+
+    <com.makeramen.RoundedImageView
+        android:id="@+id/iv"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:scaleType="centerCrop"
+        app:border_color="@color/common_background"
+        app:border_width="2dp"
+        app:corner_radius="34dp"
+        app:mutate_background="true"
+        app:oval="false" />
+
+</LinearLayout>

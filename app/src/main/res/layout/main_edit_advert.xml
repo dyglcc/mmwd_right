@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/content_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_publish_goods" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/common_line_grey" />
+
+                <EditText
+                    android:id="@+id/et_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="left|top"
+                    android:hint="好的公告给小店印象加分哟~"
+                    android:inputType="textMultiLine"
+                    android:maxLength="60"
+                    android:minHeight="90dip"
+                    android:paddingBottom="6dip"
+                    android:paddingLeft="42dip"
+                    android:paddingRight="6dip"
+                    android:paddingTop="10dip" />
+
+                <ImageView
+                    android:layout_width="25dip"
+                    android:layout_height="25dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/write" />
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="40dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginBottom="2dip"
+                    android:text="0/60"
+                    android:textColor="@color/red"
+                    android:textSize="12dip" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/common_line_grey" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_go2shopview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="6dip"
+                android:gravity="right"
+                android:paddingRight="10dip"
+                android:text="了解店铺公告"
+                android:textColor="@color/title_bg_color" />
+
+            <!-- <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="300dip"
+                android:layout_height="348dip"
+                android:scaleType="fitXY"
+                android:layout_marginTop="20dip"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ggt" /> -->
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

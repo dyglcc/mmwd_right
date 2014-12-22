@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_background"
+        android:orientation="vertical">
+
+        <!-- 选择图片区域 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="156dp"
+            android:background="@color/common_background_grey"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/lc_icon_bg" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pageitem_bg_title"
+                        android:textColor="@color/common_text_black"
+                        android:textSize="@dimen/common_text_content_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/pageitem_bg_subtitle"
+                        android:textColor="@color/common_text_black"
+                        android:textSize="@dimen/common_text_content_small" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_bg"
+                android:layout_width="92dp"
+                android:layout_height="138dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+        <!-- 店主名 -->
+
+        <LinearLayout
+            android:id="@+id/ll_name"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/form_pageitem_height"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="9dp"
+                android:src="@drawable/selector_lc_name" />
+
+            <EditText
+                android:id="@+id/tv_name"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/pageitem_name"
+                android:maxLength="7"
+                android:singleLine="true"
+                android:textColor="@color/common_text_black"
+                android:textSize="@dimen/common_text_content_big" />
+        </LinearLayout>
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <!-- 标签1 -->
+
+        <LinearLayout
+            android:id="@+id/ll_label1"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/form_pageitem_height"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="9dp"
+                android:src="@drawable/selector_lc_label" />
+
+            <EditText
+                android:id="@+id/tv_label1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/pageitem_label1"
+                android:maxLength="4"
+                android:singleLine="true"
+                android:textColor="@color/common_text_black"
+                android:textSize="@dimen/common_text_content_big" />
+        </LinearLayout>
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <!-- 标签2 -->
+
+        <LinearLayout
+            android:id="@+id/ll_label2"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/form_pageitem_height"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_label2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="9dp"
+                android:src="@drawable/selector_lc_label" />
+
+            <EditText
+                android:id="@+id/tv_label2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/pageitem_label2"
+                android:maxLength="4"
+                android:singleLine="true"
+                android:textColor="@color/common_text_black"
+                android:textSize="@dimen/common_text_content_big" />
+        </LinearLayout>
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <!-- 告白 -->
+
+        <RelativeLayout
+            android:id="@+id/ll_notice"
+            android:layout_width="fill_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="9dp"
+                android:src="@drawable/selector_lc_notice" />
+
+            <EditText
+                android:id="@+id/tv_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@id/iv_notice"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/pageitem_notice"
+                android:maxHeight="100dp"
+                android:maxLength="50"
+                android:minHeight="50dp"
+                android:textColor="@color/common_text_black"
+                android:textSize="@dimen/common_text_content_big" />
+
+            <ImageView
+                android:id="@+id/iv_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/lc_tips" />
+        </RelativeLayout>
+
+        <View
+            style="@style/form_line_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <Button
+            android:id="@+id/btn_preview"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector_main_reds"
+            android:gravity="center"
+            android:text="保存并预览"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+</ScrollView>
