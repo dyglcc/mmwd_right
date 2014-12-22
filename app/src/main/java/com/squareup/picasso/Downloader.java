@@ -36,7 +36,7 @@ public interface Downloader {
   Response load(Uri uri, boolean localCacheOnly) throws IOException;
 
   /**
-   * Allows to perform a clean up for this {@link Downloader} including closing the disk cache and
+   * Allows to perform a clean up for this {@link com.squareup.picasso.Downloader} including closing the disk cache and
    * other resources.
    */
   void shutdown();

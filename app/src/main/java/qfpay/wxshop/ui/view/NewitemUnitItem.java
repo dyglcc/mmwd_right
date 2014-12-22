@@ -59,10 +59,10 @@ public class NewitemUnitItem extends LinearLayout {
 	}
 	
 	void processWeight(TextView title, int titleWeight, EditText content, int contentWeight) {
-		LayoutParams titleParams = (LayoutParams) title.getLayoutParams();
+		LinearLayout.LayoutParams titleParams = (LayoutParams) title.getLayoutParams();
 		titleParams.weight = titleWeight;
 		title.setLayoutParams(titleParams);
-		LayoutParams contentParams = (LayoutParams) content.getLayoutParams();
+		LinearLayout.LayoutParams contentParams = (LayoutParams) content.getLayoutParams();
 		contentParams.weight = contentWeight;
 		content.setLayoutParams(contentParams);
 	}

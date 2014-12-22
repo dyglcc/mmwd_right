@@ -174,7 +174,7 @@ public class TakePicUtils {
 		// /* 使用Intent.ACTION_GET_CONTENT这个Action */
 		// intent.setAction(Intent.ACTION_GET_CONTENT);
 		Intent i = new Intent(Intent.ACTION_PICK,
-				MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		/* 取得相片后返回本画面 */
 //		if(fragment!=null){
 //			fragment.startActivityForResult(i, TAKE_PIC_REQUEST_CODE);

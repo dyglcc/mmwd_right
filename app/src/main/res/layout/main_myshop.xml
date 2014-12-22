@@ -49,7 +49,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:scaleType="centerInside"
-                android:src="@drawable/tab_icon_dd" />
+                android:src="@drawable/tab_icon_hy" />
 
             <ImageView
                 android:id="@+id/iv_add_click"

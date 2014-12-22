@@ -149,7 +149,7 @@ public class MaijiaxiuItem extends LinearLayout {
 	}
 
 	private void setTextImageListener(TextView tv_text) {
-		tv_text.setOnTouchListener(new OnTouchListener() {
+		tv_text.setOnTouchListener(new View.OnTouchListener() {
 			@SuppressLint("ClickableViewAccessibility") public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_UP) {
 					Layout layout = ((TextView) v).getLayout();

@@ -201,7 +201,7 @@ public class Picasso {
     cancelExistingRequest(view);
   }
 
-  /** Cancel any existing requests for the specified {@link Target} instance. */
+  /** Cancel any existing requests for the specified {@link com.squareup.picasso.Target} instance. */
   public void cancelRequest(Target target) {
     cancelExistingRequest(target);
   }
@@ -570,7 +570,7 @@ public class Picasso {
   }
 
   /**
-   * The global default {@link Picasso} instance.
+   * The global default {@link com.squareup.picasso.Picasso} instance.
    * <p>
    * This instance is automatically initialized with defaults that are suitable to most
    * implementations.
@@ -584,7 +584,7 @@ public class Picasso {
    * <p>
    * If these settings do not meet the requirements of your application you can construct your own
    * with full control over the configuration by using {@link com.squareup.picasso.Picasso.Builder} to create a
-   * {@link Picasso} instance. You can either use this directly or by setting it as the global
+   * {@link com.squareup.picasso.Picasso} instance. You can either use this directly or by setting it as the global
    * instance with {@link #setSingletonInstance}.
    */
   public static Picasso with(Context context) {
@@ -612,7 +612,7 @@ public class Picasso {
     }
   }
 
-  /** Fluent API for creating {@link Picasso} instances. */
+  /** Fluent API for creating {@link com.squareup.picasso.Picasso} instances. */
   @SuppressWarnings("UnusedDeclaration") // Public API.
   public static class Builder {
     private final Context context;
@@ -626,7 +626,7 @@ public class Picasso {
     private boolean indicatorsEnabled;
     private boolean loggingEnabled;
 
-    /** Start building a new {@link Picasso} instance. */
+    /** Start building a new {@link com.squareup.picasso.Picasso} instance. */
     public Builder(Context context) {
       if (context == null) {
         throw new IllegalArgumentException("Context must not be null.");
@@ -649,7 +649,7 @@ public class Picasso {
     /**
      * Specify the executor service for loading images in the background.
      * <p>
-     * Note: Calling {@link Picasso#shutdown() shutdown()} will not shutdown supplied executors.
+     * Note: Calling {@link com.squareup.picasso.Picasso#shutdown() shutdown()} will not shutdown supplied executors.
      */
     public Builder executor(ExecutorService executorService) {
       if (executorService == null) {
@@ -743,7 +743,7 @@ public class Picasso {
       return this;
     }
 
-    /** Create the {@link Picasso} instance. */
+    /** Create the {@link com.squareup.picasso.Picasso} instance. */
     public Picasso build() {
       Context context = this.context;
 

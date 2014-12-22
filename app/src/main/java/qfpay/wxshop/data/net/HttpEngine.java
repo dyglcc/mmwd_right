@@ -194,9 +194,9 @@ public class HttpEngine {
 	 * @param url
 	 *            The destination URL, HTTP or HTTPS.
 	 * @return The URLConnection.
-	 * @throws java.io.IOException
-	 * @throws java.security.NoSuchAlgorithmException
-	 * @throws java.security.KeyManagementException
+	 * @throws IOException
+	 * @throws NoSuchAlgorithmException
+	 * @throws KeyManagementException
 	 */
 	private static HttpsURLConnection getConnection(URL url)
 			throws IOException, NoSuchAlgorithmException,

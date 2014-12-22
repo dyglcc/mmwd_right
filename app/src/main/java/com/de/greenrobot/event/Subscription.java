@@ -20,8 +20,8 @@ final class Subscription {
     final SubscriberMethod subscriberMethod;
     final int priority;
     /**
-     * Becomes false as soon as {@link com.de.greenrobot.event.EventBus#unregister(Object)} is called, which is checked by queued event delivery
-     * {@link com.de.greenrobot.event.EventBus#invokeSubscriber(com.de.greenrobot.event.PendingPost)} to prevent race conditions.
+     * Becomes false as soon as {@link EventBus#unregister(Object)} is called, which is checked by queued event delivery
+     * {@link EventBus#invokeSubscriber(PendingPost)} to prevent race conditions.
      */
     volatile boolean active;
 

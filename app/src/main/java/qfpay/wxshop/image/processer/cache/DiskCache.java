@@ -33,7 +33,7 @@ public interface DiskCache {
     File get(String safeKey);
 
     /**
-     * Write to a key in the cache. {@link qfpay.wxshop.image.processer.cache.DiskCache.Writer} is used so that the cache implementation can perform actions after
+     * Write to a key in the cache. {@link Writer} is used so that the cache implementation can perform actions after
      * the write finishes, like commit (via atomic file rename).
      *
      * @param key The key to write to.

@@ -51,7 +51,7 @@ import com.de.greenrobot.event.EventBus;
 	 * 在所有操作前设置callback
 	 */
 	public CommodityDataController setCallback(CommodityCallback callback) {
-		this.callback = new SoftReference<CommodityCallback>(callback);
+		this.callback = new SoftReference<CommodityDataController.CommodityCallback>(callback);
 		return this;
 	}
 	

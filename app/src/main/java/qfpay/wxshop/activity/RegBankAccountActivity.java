@@ -146,7 +146,7 @@ public class RegBankAccountActivity extends BaseActivity {
 			msgStr = msgStr + rateString;
 		}
 		dialog = Utils.showDialog(RegBankAccountActivity.this,
-				new OnClickListener() {
+				new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						if (dialog.isShowing()) {

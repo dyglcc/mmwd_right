@@ -31,7 +31,7 @@ import static java.util.zip.Deflater.DEFAULT_COMPRESSION;
  * this early compression may be less effective than compression performed
  * without flushing.
  *
- * <p>This is equivalent to using {@link java.util.zip.Deflater} with the sync flush option.
+ * <p>This is equivalent to using {@link Deflater} with the sync flush option.
  * This class does not offer any partial flush mechanism. For best performance,
  * only call {@link #flush} when application behavior requires it.
  */

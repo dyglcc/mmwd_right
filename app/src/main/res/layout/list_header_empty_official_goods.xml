@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageButton
+        android:id="@+id/ib_official"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dip"
+        android:layout_marginBottom="6dip"
+        android:layout_weight="1"
+        android:background="@drawable/selector_button_what_huoyuan" />
+
+    <ImageButton
+        android:id="@+id/ib_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dip"
+        android:visibility="gone"
+        android:layout_marginRight="8dip"
+        android:layout_marginTop="@dimen/hy_margin_2_eage"
+        android:layout_weight="1"
+        android:background="@drawable/selector_button_huoyuan_test" />
+
+    <ImageButton
+        android:id="@+id/ib_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dip"
+        android:layout_marginTop="@dimen/hy_margin_2_eage"
+        android:background="@null"
+        android:src="@drawable/btn_hy_filter_p"
+        android:visibility="gone" />
+
+</LinearLayout>

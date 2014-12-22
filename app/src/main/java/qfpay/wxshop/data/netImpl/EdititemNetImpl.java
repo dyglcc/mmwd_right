@@ -206,7 +206,7 @@ public class EdititemNetImpl implements ImageGroupUploadLinstener {
 		bean.good_desc = wrapper.getDescription();
 		bean.postage = wrapper.getPostAge();
 		bean.goodid = wrapper.getId();
-		ArrayList<ImgNetBean> imgs = new ArrayList<ImgNetBean>();
+		ArrayList<ImgNetBean> imgs = new ArrayList<EdititemNetImpl.ImgNetBean>();
 		for (ImageProcesserBean img : wrapper.getImgWrappers()) {
 			if (img.isDefault() || !img.hasUploaded()) {
 				continue;

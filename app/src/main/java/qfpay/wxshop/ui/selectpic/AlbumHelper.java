@@ -270,7 +270,7 @@ public class AlbumHelper {
 		Iterator<Entry<String, ImageBucket>> itr = bucketList.entrySet()
 				.iterator();
 		while (itr.hasNext()) {
-			Entry<String, ImageBucket> entry = (Entry<String, ImageBucket>) itr
+			Map.Entry<String, ImageBucket> entry = (Map.Entry<String, ImageBucket>) itr
 					.next();
 			tmpList.add(entry.getValue());
 		}

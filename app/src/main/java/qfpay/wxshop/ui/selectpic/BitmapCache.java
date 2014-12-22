@@ -145,6 +145,6 @@ public class BitmapCache {
 
 	public interface ImageCallback {
 		public void imageLoad(ImageView imageView, Bitmap bitmap,
-                              Object... params);
+				Object... params);
 	}
 }

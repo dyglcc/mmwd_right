@@ -49,7 +49,7 @@ public class XFooterView extends LinearLayout {
 
     private void initView(Context context) {
         mLayout = LayoutInflater.from(context).inflate(R.layout.vw_footer, null);
-        mLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+        mLayout.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT));
         addView(mLayout);
 
@@ -124,7 +124,7 @@ public class XFooterView extends LinearLayout {
      */
     public void setBottomMargin(int margin) {
         if (margin < 0) return;
-        LayoutParams lp = (LayoutParams) mLayout.getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mLayout.getLayoutParams();
         lp.bottomMargin = margin;
         mLayout.setLayoutParams(lp);
     }
@@ -135,7 +135,7 @@ public class XFooterView extends LinearLayout {
      * @return
      */
     public int getBottomMargin() {
-        LayoutParams lp = (LayoutParams) mLayout.getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mLayout.getLayoutParams();
         return lp.bottomMargin;
     }
 
@@ -159,7 +159,7 @@ public class XFooterView extends LinearLayout {
      * hide footer when disable pull load more
      */
     public void hide() {
-        LayoutParams lp = (LayoutParams) mLayout.getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mLayout.getLayoutParams();
         lp.height = 0;
         mLayout.setLayoutParams(lp);
     }
@@ -168,7 +168,7 @@ public class XFooterView extends LinearLayout {
      * show footer
      */
     public void show() {
-        LayoutParams lp = (LayoutParams) mLayout.getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mLayout.getLayoutParams();
         lp.height = LayoutParams.WRAP_CONTENT;
         mLayout.setLayoutParams(lp);
     }

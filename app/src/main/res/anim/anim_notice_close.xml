@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true"
+     >
+    <item
+        android:drawable="@drawable/btn_notify_click_1"
+        android:duration="120"/>
+    <item
+        android:drawable="@drawable/btn_notify_click_2"
+        android:duration="120"/>
+    <item
+        android:drawable="@drawable/btn_notify_click_3"
+        android:duration="120"/>
+    <item
+        android:drawable="@drawable/btn_notify_click_4"
+        android:duration="120"/>
+    <item
+        android:drawable="@drawable/btn_notify_click_5"
+        android:duration="120"/>
+    <item
+        android:drawable="@drawable/btn_notify_1"
+        android:duration="120"/>
+
+</animation-list>

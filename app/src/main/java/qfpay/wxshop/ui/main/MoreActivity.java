@@ -101,7 +101,7 @@ public class MoreActivity extends BaseActivity implements Callback {
 			UpdateManager mUpdateManager = new UpdateManager(this, updateUrl, updateComment);
 			mUpdateManager.checkUpdateInfo(force);
 		} else if (msg.what == SHOW_UPDATE_DIALOG_AlEADY_NEWSEST) {
-			Builder builder = new Builder(this);
+			AlertDialog.Builder builder = new Builder(this);
 			builder.setTitle(getResources().getString(R.string.check_update));
 			builder.setMessage(getResources().getString(R.string.aleady_newest));
 			builder.setNegativeButton(getString(R.string.OK),

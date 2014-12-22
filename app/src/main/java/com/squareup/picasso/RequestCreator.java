@@ -178,9 +178,9 @@ public class RequestCreator {
    * as long as this tag is paused and/or has active requests. Look out for
    * potential leaks.
    *
-   * @see Picasso#cancelTag(Object)
-   * @see Picasso#pauseTag(Object)
-   * @see Picasso#resumeTag(Object)
+   * @see com.squareup.picasso.Picasso#cancelTag(Object)
+   * @see com.squareup.picasso.Picasso#pauseTag(Object)
+   * @see com.squareup.picasso.Picasso#resumeTag(Object)
    */
   public RequestCreator tag(Object tag) {
     if (tag == null) {
@@ -318,7 +318,7 @@ public class RequestCreator {
    * Synchronously fulfill this request. Must not be called from the main thread.
    * <p>
    * <em>Note</em>: The result of this operation is not cached in memory because the underlying
-   * {@link Cache} implementation is not guaranteed to be thread-safe.
+   * {@link com.squareup.picasso.Cache} implementation is not guaranteed to be thread-safe.
    */
   public Bitmap get() throws IOException {
     long started = System.nanoTime();
@@ -339,7 +339,7 @@ public class RequestCreator {
   }
 
   /**
-   * Asynchronously fulfills the request without a {@link android.widget.ImageView} or {@link Target}. This is
+   * Asynchronously fulfills the request without a {@link android.widget.ImageView} or {@link com.squareup.picasso.Target}. This is
    * useful when you want to warm up the cache with an image.
    * <p>
    * <em>Note:</em> It is safe to invoke this method from any thread.
@@ -365,9 +365,9 @@ public class RequestCreator {
   }
 
   /**
-   * Asynchronously fulfills the request into the specified {@link Target}. In most cases, you
+   * Asynchronously fulfills the request into the specified {@link com.squareup.picasso.Target}. In most cases, you
    * should use this when you are dealing with a custom {@link android.view.View View} or view
-   * holder which should implement the {@link Target} interface.
+   * holder which should implement the {@link com.squareup.picasso.Target} interface.
    * <p>
    * Implementing on a {@link android.view.View View}:
    * <blockquote><pre>
@@ -405,9 +405,9 @@ public class RequestCreator {
    * }
    * </pre></blockquote>
    * <p>
-   * <em>Note:</em> This method keeps a weak reference to the {@link Target} instance and will be
+   * <em>Note:</em> This method keeps a weak reference to the {@link com.squareup.picasso.Target} instance and will be
    * garbage collected if you do not keep a strong reference to it. To receive callbacks when an
-   * image is loaded use {@link #into(android.widget.ImageView, Callback)}.
+   * image is loaded use {@link #into(android.widget.ImageView, com.squareup.picasso.Callback)}.
    */
   public void into(Target target) {
     long started = System.nanoTime();
@@ -523,12 +523,12 @@ public class RequestCreator {
 
   /**
    * Asynchronously fulfills the request into the specified {@link android.widget.ImageView} and invokes the
-   * target {@link Callback} if it's not {@code null}.
+   * target {@link com.squareup.picasso.Callback} if it's not {@code null}.
    * <p>
-   * <em>Note:</em> The {@link Callback} param is a strong reference and will prevent your
+   * <em>Note:</em> The {@link com.squareup.picasso.Callback} param is a strong reference and will prevent your
    * {@link android.app.Activity} or {@link android.app.Fragment} from being garbage collected. If
    * you use this method, it is <b>strongly</b> recommended you invoke an adjacent
-   * {@link Picasso#cancelRequest(android.widget.ImageView)} call to prevent temporary leaking.
+   * {@link com.squareup.picasso.Picasso#cancelRequest(android.widget.ImageView)} call to prevent temporary leaking.
    */
   public void into(ImageView target, Callback callback) {
     long started = System.nanoTime();

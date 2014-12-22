@@ -130,7 +130,7 @@ public class PutPolicy {
 	 * @param mac
 	 * @return
 	 * @throws AuthException
-	 * @throws org.json.JSONException
+	 * @throws JSONException
 	 */
 	
 	public String token(Mac mac) throws AuthException, JSONException {

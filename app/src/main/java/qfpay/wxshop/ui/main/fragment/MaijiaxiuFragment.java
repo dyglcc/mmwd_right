@@ -766,7 +766,7 @@ public class MaijiaxiuFragment extends BaseFragment implements
 
 	private Handler handler = new Handler() {
 		@Override
-		public void handleMessage(Message msg) {
+		public void handleMessage(android.os.Message msg) {
 
 			if(!attached){
 				return;

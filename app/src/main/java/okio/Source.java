@@ -26,9 +26,9 @@ import java.io.IOException;
  *
  * <p>Most applications shouldn't operate on a source directly, but rather
  * {@link BufferedSource} which is both more efficient and more convenient. Use
- * {@link okio.Okio#buffer(okio.Source)} to wrap any source with a buffer.
+ * {@link Okio#buffer(Source)} to wrap any source with a buffer.
  *
- * <p>Sources are easy to test: just use an {@link okio.Buffer} in your tests, and
+ * <p>Sources are easy to test: just use an {@link Buffer} in your tests, and
  * fill it with the data your application is to read.
  *
  * <h3>Comparison with InputStream</h3>
@@ -55,7 +55,7 @@ import java.io.IOException;
  * won't return prematurely.
  *
  * <h3>Interop with InputStream</h3>
- * Use {@link okio.Okio#source} to adapt an {@code InputStream} to a source. Use
+ * Use {@link Okio#source} to adapt an {@code InputStream} to a source. Use
  * {@link BufferedSource#inputStream} to adapt a source to an {@code
  * InputStream}.
  */

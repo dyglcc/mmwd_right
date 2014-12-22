@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    
+
     <dimen name="common_text_title">18sp</dimen>
     <dimen name="common_text_content_big">15sp</dimen>
     <dimen name="common_text_content_mid">13sp</dimen>
     <dimen name="common_text_content_small">10sp</dimen>
-    
+
     <!-- 类似于发布商品和店铺信息页面的条目高度 -->
     <dimen name="form_pageitem_height">50dp</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="title_height">48dip</dimen>
-    
     <dimen name="newitem_sec_margin">15dp</dimen>
     <dimen name="activity_padding">14dp</dimen>
     <dimen name="activity_padding_left">26dp</dimen>
@@ -19,12 +18,24 @@
     <dimen name="tag_text_size">16dp</dimen>
     <dimen name="tag_horizontalMargin">10dp</dimen>
     <dimen name="tag_verticalMargin">0dp</dimen>
-    
     <dimen name="header_height">80dp</dimen>
     <dimen name="footer_height">150dp</dimen>
     <dimen name="footer_padding">20dp</dimen>
     <dimen name="line_margin_bottom_edittext">16dip</dimen>
     <dimen name="text_size_small">14dp</dimen>
+    <dimen name="text_size_min">12dp</dimen>
     <dimen name="text_size_normal">16dp</dimen>
     <dimen name="text_size_big">18dp</dimen>
+
+    <!-- 货源tag padding -->
+
+    <dimen name="huoyuan_tag_activity_padding_left">2dp</dimen>
+    <dimen name="huoyuan_tag_padding_top">2dp</dimen>
+    <dimen name="huoyuan_between_tags">4dp</dimen>
+    <dimen name="text_size_tag">7dp</dimen>
+    <dimen name="miaobian">1dp</dimen>
+    <dimen name="hy_margin_2_eage">16dp</dimen>
+    <dimen name="hy_margin_right_eage">2dp</dimen>
+    <dimen name="hy_margin_middle">4dp</dimen>
+
 </resources>

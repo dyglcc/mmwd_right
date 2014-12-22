@@ -18,19 +18,19 @@ public interface LovelyCardNetService {
 	@FormUrlEncoded
     @POST("/qmm/shop/card/create")
     CommonJsonBean createLC(
-            @Field(value = "name") String name,
-            @Field(value = "bgimg") String bgimg,
-            @Field(value = "descr") String descr,
-            @Field(value = "tags") String tags,
-            @Field(value = "shopid") String shopid);
+    		@Field(value = "name")  String name, 
+    		@Field(value = "bgimg") String bgimg, 
+    		@Field(value = "descr") String descr, 
+    		@Field(value = "tags")  String tags,
+    		@Field(value = "shopid")String shopid);
 	
 	@FormUrlEncoded
 	@POST("/qmm/shop/card/update")
 	CommonJsonBean updateLC(
-            @Field(value = "name") String name,
-            @Field(value = "bgimg") String bgimg,
-            @Field(value = "descr") String descr,
-            @Field(value = "tags") String tags);
+			@Field(value = "name")  String name, 
+			@Field(value = "bgimg") String bgimg, 
+			@Field(value = "descr") String descr, 
+			@Field(value = "tags")  String tags);
 	
 	public static class LovelyCardDataWrapper extends CommonJsonBean implements Serializable {
 		private static final long serialVersionUID = 1L;

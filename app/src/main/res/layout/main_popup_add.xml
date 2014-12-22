@@ -47,15 +47,4 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:id="@+id/iv_egg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@id/iv_add"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="100dp"
-        android:src="@drawable/main_add_eggs_replay"
-        android:visibility="gone" />
-
 </RelativeLayout>

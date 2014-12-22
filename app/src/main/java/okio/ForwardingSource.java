@@ -17,7 +17,7 @@ package okio;
 
 import java.io.IOException;
 
-/** A {@link okio.Source} which forwards calls to another. Useful for subclassing. */
+/** A {@link Source} which forwards calls to another. Useful for subclassing. */
 public abstract class ForwardingSource implements Source {
   private final Source delegate;
 
@@ -26,7 +26,7 @@ public abstract class ForwardingSource implements Source {
     this.delegate = delegate;
   }
 
-  /** {@link okio.Source} to which this instance is delegating. */
+  /** {@link Source} to which this instance is delegating. */
   public final Source delegate() {
     return delegate;
   }

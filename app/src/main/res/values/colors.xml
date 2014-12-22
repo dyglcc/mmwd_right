@@ -36,6 +36,7 @@
     <color name="tag_default_color">#555555</color>
     <color name="text_hint_color">#91948d</color>
     <color name="text_color">#333333</color>
+    <color name="text_color_green">#61be05</color>
     
     
     <!-- tabindicator -->

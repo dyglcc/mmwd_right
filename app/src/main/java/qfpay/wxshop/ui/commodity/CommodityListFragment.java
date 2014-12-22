@@ -205,7 +205,7 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 	}
 	
 	class DataControllerAdapter extends BaseAdapter {
-		Map<Integer, CommodityWrapper> wrapperMap = new HashMap<Integer, CommodityWrapper>();
+		Map<Integer, CommodityWrapper> wrapperMap = new HashMap<Integer, CommodityListFragment.CommodityWrapper>();
 		List<CommodityWrapper> wrapperList = new ArrayList<CommodityWrapper>();
 		
 		public DataControllerAdapter() {

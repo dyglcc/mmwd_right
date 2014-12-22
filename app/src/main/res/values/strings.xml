@@ -67,7 +67,7 @@
     <string name="card_number_wrong">喵！银行卡号有误，快检查一下再输入~</string>
     <string name="wrong_security_code_2">验证码输入错啦！点击获取验证码重新获取~</string>
     <string name="input_account_name">请输入开户名</string>
-    <string name="mm_protocol">喵喵微店协议</string>
+    <string name="mm_protocol">使用协议及禁售协议</string>
     <string name="resume">重新获取</string>
     <string name="send_OK">短信已发送，请注意查收</string>
     <string name="fail_get_security_code">咦？收不到验证码吗？快找微信客服！</string>
@@ -121,12 +121,10 @@
     <string name="wxshop_name">店铺名称</string>
 
     <!-- main_erg_step1 -->
-    <string name="get_security_code">获取验证码</string>
+    <string name="get_security_code">点击获取验证码</string>
     <string name="note_security_code">短信验证码</string>
     <string name="click_ok">点击"注册账号"即同意 喵喵微店</string>
-    <string name="use_protocol"> 使用协议 </string>
-    <string name="and">和</string>
-    <string name="lock_up_agreement"> 禁售协议</string>
+    <string name="use_protocol"> 使用协议及禁售协议 </string>
 
     <!-- main_weixin -->
     <string name="mm_wx_service">喵喵微信客服</string>

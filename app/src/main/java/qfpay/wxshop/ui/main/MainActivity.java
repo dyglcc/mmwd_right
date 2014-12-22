@@ -525,7 +525,7 @@ public class MainActivity extends BaseActivity {
 				WxShopApplication.dataEngine.setShownUpdate(true);
 				break;
 			case MoreActivity.SHOW_UPDATE_DIALOG_AlEADY_NEWSEST:
-				Builder builder = new Builder(MainActivity.this);
+				AlertDialog.Builder builder = new Builder(MainActivity.this);
 				builder.setTitle(getResources()
 						.getString(R.string.check_update));
 				builder.setMessage(getResources().getString(

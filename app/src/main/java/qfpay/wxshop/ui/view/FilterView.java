@@ -311,7 +311,7 @@ public class FilterView extends ViewGroup {
 			super(arg0, arg1);
 		}
 
-		public LayoutParams(ViewGroup.LayoutParams arg0) {
+		public LayoutParams(android.view.ViewGroup.LayoutParams arg0) {
 			super(arg0);
 		}
 

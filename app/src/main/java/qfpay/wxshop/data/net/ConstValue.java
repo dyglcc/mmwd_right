@@ -175,7 +175,7 @@ public class ConstValue {
 	 */
 	public static String getSdcardPath() {
 		if (haveSdcard()) {
-			return Environment.getExternalStorageDirectory()
+			return android.os.Environment.getExternalStorageDirectory()
 					.getPath();
 		} else {
 			return null;

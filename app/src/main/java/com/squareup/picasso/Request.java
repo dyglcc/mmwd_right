@@ -185,7 +185,7 @@ public final class Request {
     return new Builder(this);
   }
 
-  /** Builder for creating {@link Request} instances. */
+  /** Builder for creating {@link com.squareup.picasso.Request} instances. */
   public static final class Builder {
     private Uri uri;
     private int resourceId;
@@ -411,7 +411,7 @@ public final class Request {
       return this;
     }
 
-    /** Create the immutable {@link Request} object. */
+    /** Create the immutable {@link com.squareup.picasso.Request} object. */
     public Request build() {
       if (centerInside && centerCrop) {
         throw new IllegalStateException("Center crop and center inside can not be used together.");

@@ -17,7 +17,7 @@ package okio;
 
 import java.io.IOException;
 
-/** A {@link okio.Sink} which forwards calls to another. Useful for subclassing. */
+/** A {@link Sink} which forwards calls to another. Useful for subclassing. */
 public abstract class ForwardingSink implements Sink {
   private final Sink delegate;
 
@@ -26,7 +26,7 @@ public abstract class ForwardingSink implements Sink {
     this.delegate = delegate;
   }
 
-  /** {@link okio.Sink} to which this instance is delegating. */
+  /** {@link Sink} to which this instance is delegating. */
   public final Sink delegate() {
     return delegate;
   }

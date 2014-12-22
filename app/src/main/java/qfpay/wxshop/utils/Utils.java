@@ -723,7 +723,7 @@ public class Utils {
 			return null;
 		}
 		if (dialog != null && dialog.isShowing()) {
-			Activity activity = (Activity) context;
+			android.app.Activity activity = (android.app.Activity) context;
 			if (activity != null && !activity.isFinishing()) {
 				// dialog.dismiss();
 			}
@@ -794,7 +794,7 @@ public class Utils {
 			return null;
 		}
 		if (alertDialog != null && alertDialog.isShowing()) {
-			Activity activity = (Activity) context;
+			android.app.Activity activity = (android.app.Activity) context;
 			if (activity != null && !activity.isFinishing()) {
 				alertDialog.dismiss();
 			}
@@ -813,7 +813,7 @@ public class Utils {
 			return null;
 		}
 		if (dialog != null && dialog.isShowing()) {
-			Activity activity = (Activity) context;
+			android.app.Activity activity = (android.app.Activity) context;
 			if (activity != null && !activity.isFinishing()) {
 				dialog.dismiss();
 			}

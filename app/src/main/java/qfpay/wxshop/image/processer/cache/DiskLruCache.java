@@ -68,8 +68,8 @@ import java.util.concurrent.TimeUnit;
  * to supply data for every value; values default to their previous
  * value.
  * </ul>
- * Every {@link #edit} call must be matched by a call to {@link qfpay.wxshop.image.processer.cache.DiskLruCache.Editor#commit}
- * or {@link qfpay.wxshop.image.processer.cache.DiskLruCache.Editor#abort}. Committing is atomic: a read observes the full set
+ * Every {@link #edit} call must be matched by a call to {@link Editor#commit}
+ * or {@link Editor#abort}. Committing is atomic: a read observes the full set
  * of values as they were before or after the commit, but never a mix of values.
  *
  * <p>Clients call {@link #get} to read a snapshot of an entry. The read will
@@ -190,7 +190,7 @@ public final class DiskLruCache implements Closeable {
    * @param directory a writable directory
    * @param valueCount the number of values per cache entry. Must be positive.
    * @param maxSize the maximum number of bytes this cache should use to store
-   * @throws java.io.IOException if reading or writing the cache directory fails
+   * @throws IOException if reading or writing the cache directory fails
    */
   public static DiskLruCache open(File directory, int appVersion, int valueCount, long maxSize)
       throws IOException {

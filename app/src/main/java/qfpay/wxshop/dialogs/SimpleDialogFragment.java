@@ -66,7 +66,7 @@ public class SimpleDialogFragment extends BaseDialogFragment {
 	 * Children can extend this to add more things to base builder.
 	 */
 	@Override
-	protected Builder build(Builder builder) {
+	protected BaseDialogFragment.Builder build(BaseDialogFragment.Builder builder) {
 		final String title = getTitle();
 		if (!TextUtils.isEmpty(title)) {
 			builder.setTitle(title);

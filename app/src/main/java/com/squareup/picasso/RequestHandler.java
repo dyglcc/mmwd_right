@@ -22,29 +22,29 @@ import android.net.NetworkInfo;
 import java.io.IOException;
 
 /**
- * {@link RequestHandler} allows you to extend Picasso to load images
+ * {@link com.squareup.picasso.RequestHandler} allows you to extend Picasso to load images
  * in ways that are not supported by default in the library.
  * <p>
  * <h2>Usage</h2>
- * <p>{@link RequestHandler} must be subclassed to be used. You will have to
- * override two methods ({@link #canHandleRequest(Request)} and
- * {@link #load(Request)}) with your custom logic to load images.</p>
+ * <p>{@link com.squareup.picasso.RequestHandler} must be subclassed to be used. You will have to
+ * override two methods ({@link #canHandleRequest(com.squareup.picasso.Request)} and
+ * {@link #load(com.squareup.picasso.Request)}) with your custom logic to load images.</p>
  *
- * <p>You should then register your {@link RequestHandler} using
- * {@link com.squareup.picasso.Picasso.Builder#addRequestHandler(RequestHandler)}</p>
+ * <p>You should then register your {@link com.squareup.picasso.RequestHandler} using
+ * {@link com.squareup.picasso.Picasso.Builder#addRequestHandler(com.squareup.picasso.RequestHandler)}</p>
  *
  * <b>NOTE:</b> This is a beta feature. The API is subject to change in a backwards
  * incompatible way at any time.
  *
- * @see com.squareup.picasso.Picasso.Builder#addRequestHandler(RequestHandler)
+ * @see com.squareup.picasso.Picasso.Builder#addRequestHandler(com.squareup.picasso.RequestHandler)
  */
 public abstract class RequestHandler {
   /**
-   * {@link com.squareup.picasso.RequestHandler.Result} represents the result of a {@link #load(Request)} call in a
-   * {@link RequestHandler}.
+   * {@link com.squareup.picasso.RequestHandler.Result} represents the result of a {@link #load(com.squareup.picasso.Request)} call in a
+   * {@link com.squareup.picasso.RequestHandler}.
    *
-   * @see RequestHandler
-   * @see #load(Request)
+   * @see com.squareup.picasso.RequestHandler
+   * @see #load(com.squareup.picasso.Request)
    */
   public static final class Result {
     private final Picasso.LoadedFrom loadedFrom;
@@ -63,7 +63,7 @@ public abstract class RequestHandler {
 
     /**
      * Returns the resulting {@link android.graphics.Bitmap} generated
-     * from a {@link #load(Request)} call.
+     * from a {@link #load(com.squareup.picasso.Request)} call.
      */
     public Bitmap getBitmap() {
       return bitmap;
@@ -71,7 +71,7 @@ public abstract class RequestHandler {
 
     /**
      * Returns the resulting {@link com.squareup.picasso.Picasso.LoadedFrom} generated
-     * from a {@link #load(Request)} call.
+     * from a {@link #load(com.squareup.picasso.Request)} call.
      */
     public Picasso.LoadedFrom getLoadedFrom() {
       return loadedFrom;
@@ -79,7 +79,7 @@ public abstract class RequestHandler {
 
     /**
      * Returns the resulting EXIF orientation generated
-     * from a {@link #load(Request)} call. This is only accessible
+     * from a {@link #load(com.squareup.picasso.Request)} call. This is only accessible
      * to built-in RequestHandlers.
      */
     int getExifOrientation() {
@@ -88,13 +88,13 @@ public abstract class RequestHandler {
   }
 
   /**
-   * Whether or not this {@link RequestHandler} can handle a request with the
-   * given {@link Request}.
+   * Whether or not this {@link com.squareup.picasso.RequestHandler} can handle a request with the
+   * given {@link com.squareup.picasso.Request}.
    */
   public abstract boolean canHandleRequest(Request data);
 
   /**
-   * Loads an image for the given {@link Request}.
+   * Loads an image for the given {@link com.squareup.picasso.Request}.
    *
    * @param data the {@link android.net.Uri} to load the image from.
    * @return A {@link com.squareup.picasso.RequestHandler.Result} instance representing the result.
@@ -115,7 +115,7 @@ public abstract class RequestHandler {
 
   /**
    * Lazily create {@link android.graphics.BitmapFactory.Options} based in given
-   * {@link Request}, only instantiating them if needed.
+   * {@link com.squareup.picasso.Request}, only instantiating them if needed.
    */
   static BitmapFactory.Options createBitmapOptions(Request data) {
     final boolean justBounds = data.hasSize();

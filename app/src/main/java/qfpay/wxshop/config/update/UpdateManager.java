@@ -93,7 +93,7 @@ public class UpdateManager {
 	}
 
 	private void showInstallDialog() {
-		Builder builder = new Builder(mContext);
+		AlertDialog.Builder builder = new Builder(mContext);
 		builder.setTitle(mContext.getResources().getString(
 				R.string.download_done));
 		builder.setMessage(mContext.getString(R.string.start_setup));
@@ -135,7 +135,7 @@ public class UpdateManager {
 	}
 
 	private void showNoticeDialog(boolean forceFlag) {
-		Builder builder = new Builder(mContext);
+		AlertDialog.Builder builder = new Builder(mContext);
 		builder.setTitle(mContext.getResources().getString(
 				R.string.update_apk_log_text));
 		builder.setMessage(updateComment);
@@ -174,7 +174,7 @@ public class UpdateManager {
 	}
 
 	private void showDownloadDialog() {
-		Builder builder = new Builder(mContext);
+		AlertDialog.Builder builder = new Builder(mContext);
 		builder.setTitle(mContext.getResources().getString(
 				R.string.apk_downloading));
 

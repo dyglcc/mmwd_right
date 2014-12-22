@@ -25,7 +25,7 @@ import android.app.Activity;
 import android.util.Log;
 
 /**
- * Executes an {@link com.de.greenrobot.event.util.AsyncExecutor.RunnableEx} using a thread pool. Thrown exceptions are propagated by posting failure events of any
+ * Executes an {@link RunnableEx} using a thread pool. Thrown exceptions are propagated by posting failure events of any
  * given type (default is {@link ThrowableFailureEvent}).
  * 
  * @author Markus
@@ -107,7 +107,7 @@ public class AsyncExecutor {
         }
     }
 
-    /** Posts an failure event if the given {@link com.de.greenrobot.event.util.AsyncExecutor.RunnableEx} throws an Exception. */
+    /** Posts an failure event if the given {@link RunnableEx} throws an Exception. */
     public void execute(final RunnableEx runnable) {
         threadPool.execute(new Runnable() {
             @Override

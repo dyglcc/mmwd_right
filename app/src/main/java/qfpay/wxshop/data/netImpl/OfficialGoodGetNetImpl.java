@@ -67,7 +67,7 @@ public class OfficialGoodGetNetImpl extends AbstractNet {
 							ConstValue.JSON_FAILED);
 					return bundle;
 				}
-				OfficialGoodsResponseWrapper.MsgsWrapper data = fromJson.getData();
+				qfpay.wxshop.data.beans.OfficialGoodsResponseWrapper.MsgsWrapper data = fromJson.getData();
 				list = new ArrayList<HashMap<String, Object>>();
 				map = new HashMap<String, Object>();
 				// 2014-04-24 14:52:31

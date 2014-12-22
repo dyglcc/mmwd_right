@@ -138,7 +138,7 @@ public class MyInComeActivity extends BaseActivity {
 	    @Override
 	    public void clickOnAndroid(String str) {
 
-	        Builder buider = new Builder(MyInComeActivity.this);
+	        AlertDialog.Builder buider = new Builder(MyInComeActivity.this);
 	        buider.setTitle("提示")
 	                .setMessage("亲~尚未添加银行卡哦")
 	                .setNegativeButton("稍后",

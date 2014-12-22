@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lyt_publish"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical" >
+
+    <qfpay.wxshop.ui.view.OffiGoodsListView
+        android:id="@+id/list_manage_official"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        android:layout_marginLeft="@dimen/hy_margin_2_eage"
+        android:layout_marginRight="@dimen/hy_margin_2_eage"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="#00000000"
+        android:dividerHeight="0px"
+        android:drawSelectorOnTop="true"
+        android:fadingEdge="none"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:listSelector="#00000000"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/layout_float"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:paddingTop="8dip" >
+
+        <ImageButton
+            android:id="@+id/ib_official"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btn_hy_whatis"
+            android:visibility="invisible" />
+
+        <ImageButton
+            android:id="@+id/ib_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:background="@null"
+            android:src="@drawable/btn_hy_test" />
+
+        <ImageButton
+            android:id="@+id/ib_search_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@null"
+            android:src="@drawable/selector_button_huoyuan_search" />
+    </LinearLayout>
+
+</RelativeLayout>

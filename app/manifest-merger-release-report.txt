@@ -1,0 +1,937 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:2:1
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
+	package
+		ADDED from AndroidManifest.xml:3:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionName
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionCode
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+supports-screens
+ADDED from AndroidManifest.xml:5:5
+	android:resizeable
+		ADDED from AndroidManifest.xml:9:9
+	android:largeScreens
+		ADDED from AndroidManifest.xml:7:9
+	android:anyDensity
+		ADDED from AndroidManifest.xml:6:9
+	android:normalScreens
+		ADDED from AndroidManifest.xml:8:9
+	android:smallScreens
+		ADDED from AndroidManifest.xml:10:9
+permission#getui.permission.GetuiService.qfpay.wxshop
+ADDED from AndroidManifest.xml:13:5
+	android:protectionLevel
+		ADDED from AndroidManifest.xml:15:9
+	android:name
+		ADDED from AndroidManifest.xml:14:9
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from AndroidManifest.xml:17:5
+	android:name
+		ADDED from AndroidManifest.xml:17:22
+uses-permission#android.permission.WAKE_LOCK
+ADDED from AndroidManifest.xml:18:5
+	android:name
+		ADDED from AndroidManifest.xml:18:22
+uses-permission#getui.permission.GetuiService.qfpay.wxshop
+ADDED from AndroidManifest.xml:19:5
+	android:name
+		ADDED from AndroidManifest.xml:19:22
+uses-permission#android.permission.INTERNET
+ADDED from AndroidManifest.xml:20:5
+	android:name
+		ADDED from AndroidManifest.xml:20:22
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from AndroidManifest.xml:21:5
+	android:name
+		ADDED from AndroidManifest.xml:21:22
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from AndroidManifest.xml:22:5
+	android:name
+		ADDED from AndroidManifest.xml:22:22
+uses-permission#android.permission.VIBRATE
+ADDED from AndroidManifest.xml:23:5
+	android:name
+		ADDED from AndroidManifest.xml:23:22
+uses-permission#android.permission.ACCESS_DOWNLOAD_MANAGER
+ADDED from AndroidManifest.xml:24:5
+	android:name
+		ADDED from AndroidManifest.xml:24:22
+uses-permission#android.permission.DOWNLOAD_WITHOUT_NOTIFICATION
+ADDED from AndroidManifest.xml:25:5
+	android:name
+		ADDED from AndroidManifest.xml:25:22
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from AndroidManifest.xml:26:5
+	android:name
+		ADDED from AndroidManifest.xml:26:22
+uses-permission#android.permission.DISABLE_KEYGUARD
+ADDED from AndroidManifest.xml:27:5
+	android:name
+		ADDED from AndroidManifest.xml:27:22
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from AndroidManifest.xml:28:5
+	android:name
+		ADDED from AndroidManifest.xml:28:22
+uses-permission#android.permission.GET_TASKS
+ADDED from AndroidManifest.xml:29:5
+	android:name
+		ADDED from AndroidManifest.xml:29:22
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from AndroidManifest.xml:30:5
+	android:name
+		ADDED from AndroidManifest.xml:30:22
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from AndroidManifest.xml:31:5
+	android:name
+		ADDED from AndroidManifest.xml:31:22
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from AndroidManifest.xml:32:5
+	android:name
+		ADDED from AndroidManifest.xml:32:22
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from AndroidManifest.xml:33:5
+	android:name
+		ADDED from AndroidManifest.xml:33:22
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from AndroidManifest.xml:34:5
+	android:name
+		ADDED from AndroidManifest.xml:34:22
+uses-permission#android.permission.MANAGE_ACCOUNTS
+ADDED from AndroidManifest.xml:35:5
+	android:name
+		ADDED from AndroidManifest.xml:35:22
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from AndroidManifest.xml:36:5
+	android:name
+		ADDED from AndroidManifest.xml:36:22
+uses-permission#com.android.launcher.permission.INSTALL_SHORTCUT
+ADDED from AndroidManifest.xml:37:5
+	android:name
+		ADDED from AndroidManifest.xml:37:22
+uses-permission#android.permission.CAMERA
+ADDED from AndroidManifest.xml:38:5
+	android:name
+		ADDED from AndroidManifest.xml:38:22
+uses-feature#android.hardware.camera
+ADDED from AndroidManifest.xml:40:5
+	android:name
+		ADDED from AndroidManifest.xml:40:19
+uses-feature#android.hardware.camera.autofocus
+ADDED from AndroidManifest.xml:41:5
+	android:name
+		ADDED from AndroidManifest.xml:41:19
+application
+ADDED from AndroidManifest.xml:43:5
+MERGED from com.actionbarsherlock:actionbarsherlock:4.4.0:4:3
+MERGED from com.android.support:support-v4:21.0.2:16:5
+	android:label
+		ADDED from AndroidManifest.xml:49:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:45:9
+	android:icon
+		ADDED from AndroidManifest.xml:47:9
+	android:theme
+		ADDED from AndroidManifest.xml:53:9
+	android:largeHeap
+		ADDED from AndroidManifest.xml:50:9
+	android:killAfterRestore
+		ADDED from AndroidManifest.xml:48:9
+	android:allowClearUserData
+		ADDED from AndroidManifest.xml:46:9
+	android:persistent
+		ADDED from AndroidManifest.xml:52:9
+	android:name
+		ADDED from AndroidManifest.xml:44:9
+	android:logo
+		ADDED from AndroidManifest.xml:51:9
+activity#qfpay.wxshop.ui.main.WelcomeActivity_
+ADDED from AndroidManifest.xml:57:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:59:13
+	android:theme
+		ADDED from AndroidManifest.xml:60:13
+	android:name
+		ADDED from AndroidManifest.xml:58:13
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:61:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:62:17
+	android:name
+		ADDED from AndroidManifest.xml:62:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:63:17
+	android:name
+		ADDED from AndroidManifest.xml:63:27
+activity#qfpay.wxshop.ui.main.MainActivity_
+ADDED from AndroidManifest.xml:67:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:76:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:73:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:69:13
+	android:theme
+		ADDED from AndroidManifest.xml:75:13
+	android:hardwareAccelerated
+		ADDED from AndroidManifest.xml:71:13
+	android:exported
+		ADDED from AndroidManifest.xml:70:13
+	android:taskAffinity
+		ADDED from AndroidManifest.xml:74:13
+	android:name
+		ADDED from AndroidManifest.xml:68:13
+	android:launchMode
+		ADDED from AndroidManifest.xml:72:13
+activity#qfpay.wxshop.ui.web.CommonWebActivity_
+ADDED from AndroidManifest.xml:78:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:82:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:80:13
+	android:exported
+		ADDED from AndroidManifest.xml:81:13
+	android:name
+		ADDED from AndroidManifest.xml:79:13
+activity#qfpay.wxshop.ui.commodity.EditItemActivity_
+ADDED from AndroidManifest.xml:84:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:87:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:86:13
+	android:theme
+		ADDED from AndroidManifest.xml:88:13
+	android:name
+		ADDED from AndroidManifest.xml:85:13
+activity#qfpay.wxshop.ui.commodity.EdititemDoneActivity_
+ADDED from AndroidManifest.xml:90:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:93:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:92:13
+	android:theme
+		ADDED from AndroidManifest.xml:94:13
+	android:name
+		ADDED from AndroidManifest.xml:91:13
+activity#qfpay.wxshop.activity.ShopHeaderPhotoPickerActivity_
+ADDED from AndroidManifest.xml:96:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:99:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:98:13
+	android:name
+		ADDED from AndroidManifest.xml:97:13
+activity#qfpay.wxshop.activity.ShopHeaderPreviewActivity_
+ADDED from AndroidManifest.xml:101:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:104:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:103:13
+	android:name
+		ADDED from AndroidManifest.xml:102:13
+activity#qfpay.wxshop.ui.main.MoreActivity_
+ADDED from AndroidManifest.xml:106:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:109:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:108:13
+	android:name
+		ADDED from AndroidManifest.xml:107:13
+activity#qfpay.wxshop.activity.menu.MyInComeActivity
+ADDED from AndroidManifest.xml:111:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:114:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:113:13
+	android:name
+		ADDED from AndroidManifest.xml:112:13
+activity#qfpay.wxshop.ui.presonalinfo.ShopInfoActivity_
+ADDED from AndroidManifest.xml:116:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:119:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:118:13
+	android:name
+		ADDED from AndroidManifest.xml:117:13
+activity#qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_
+ADDED from AndroidManifest.xml:121:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:123:13
+	android:name
+		ADDED from AndroidManifest.xml:122:13
+activity#qfpay.wxshop.ui.lovelycard.LovelyCardEditActivity_
+ADDED from AndroidManifest.xml:125:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:127:13
+	android:name
+		ADDED from AndroidManifest.xml:126:13
+activity#qfpay.wxshop.ui.lovelycard.LovelyCardCommentActivity_
+ADDED from AndroidManifest.xml:129:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:131:13
+	android:name
+		ADDED from AndroidManifest.xml:130:13
+receiver#qfpay.wxshop.getui.RestartReceiver
+ADDED from AndroidManifest.xml:134:9
+	android:name
+		ADDED from AndroidManifest.xml:134:19
+receiver#qfpay.wxshop.config.update.InstalledReceiver
+ADDED from AndroidManifest.xml:135:9
+	android:enabled
+		ADDED from AndroidManifest.xml:137:13
+	android:name
+		ADDED from AndroidManifest.xml:136:13
+intent-filter#android.intent.action.PACKAGE_REPLACED
+ADDED from AndroidManifest.xml:138:13
+action#android.intent.action.PACKAGE_REPLACED
+ADDED from AndroidManifest.xml:139:17
+	android:name
+		ADDED from AndroidManifest.xml:139:25
+data
+ADDED from AndroidManifest.xml:141:17
+	android:scheme
+		ADDED from AndroidManifest.xml:141:23
+meta-data#PUSH_APPID
+ADDED from AndroidManifest.xml:145:9
+	android:name
+		ADDED from AndroidManifest.xml:146:13
+	android:value
+		ADDED from AndroidManifest.xml:147:13
+meta-data#PUSH_APPKEY
+ADDED from AndroidManifest.xml:148:9
+	android:name
+		ADDED from AndroidManifest.xml:149:13
+	android:value
+		ADDED from AndroidManifest.xml:150:13
+meta-data#PUSH_APPSECRET
+ADDED from AndroidManifest.xml:151:9
+	android:name
+		ADDED from AndroidManifest.xml:152:13
+	android:value
+		ADDED from AndroidManifest.xml:153:13
+meta-data#PUSH_GROUPID
+ADDED from AndroidManifest.xml:154:9
+	android:name
+		ADDED from AndroidManifest.xml:155:13
+	android:value
+		ADDED from AndroidManifest.xml:156:13
+receiver#qfpay.wxshop.getui.PushReceiver
+ADDED from AndroidManifest.xml:159:9
+	android:exported
+		ADDED from AndroidManifest.xml:161:13
+	android:name
+		ADDED from AndroidManifest.xml:160:13
+intent-filter#com.igexin.sdk.action.8imafJpbTT6OWrl4CZRjA2
+ADDED from AndroidManifest.xml:162:13
+action#com.igexin.sdk.action.8imafJpbTT6OWrl4CZRjA2
+ADDED from AndroidManifest.xml:163:17
+	android:name
+		ADDED from AndroidManifest.xml:163:25
+service#qfpay.wxshop.getui.StartAlarmService
+ADDED from AndroidManifest.xml:167:9
+	android:label
+		ADDED from AndroidManifest.xml:170:13
+	android:process
+		ADDED from AndroidManifest.xml:171:13
+	android:exported
+		ADDED from AndroidManifest.xml:169:13
+	android:name
+		ADDED from AndroidManifest.xml:168:13
+service#com.igexin.sdk.PushService
+ADDED from AndroidManifest.xml:174:9
+	android:label
+		ADDED from AndroidManifest.xml:177:13
+	android:process
+		ADDED from AndroidManifest.xml:178:13
+	android:exported
+		ADDED from AndroidManifest.xml:176:13
+	android:name
+		ADDED from AndroidManifest.xml:175:13
+receiver#com.igexin.sdk.PushReceiver
+ADDED from AndroidManifest.xml:180:9
+	android:name
+		ADDED from AndroidManifest.xml:181:13
+intent-filter#android.intent.action.BOOT_COMPLETED+android.intent.action.USER_PRESENT+android.net.conn.CONNECTIVITY_CHANGE+com.igexin.sdk.action.refreshls
+ADDED from AndroidManifest.xml:182:13
+action#android.intent.action.BOOT_COMPLETED
+ADDED from AndroidManifest.xml:183:17
+	android:name
+		ADDED from AndroidManifest.xml:183:25
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from AndroidManifest.xml:184:17
+	android:name
+		ADDED from AndroidManifest.xml:184:25
+action#android.intent.action.USER_PRESENT
+ADDED from AndroidManifest.xml:185:17
+	android:name
+		ADDED from AndroidManifest.xml:185:25
+action#com.igexin.sdk.action.refreshls
+ADDED from AndroidManifest.xml:186:17
+	android:name
+		ADDED from AndroidManifest.xml:186:25
+receiver#com.igexin.sdk.PushManagerReceiver
+ADDED from AndroidManifest.xml:189:9
+	android:exported
+		ADDED from AndroidManifest.xml:191:13
+	android:name
+		ADDED from AndroidManifest.xml:190:13
+intent-filter#com.igexin.sdk.action.pushmanager
+ADDED from AndroidManifest.xml:192:13
+action#com.igexin.sdk.action.pushmanager
+ADDED from AndroidManifest.xml:193:17
+	android:name
+		ADDED from AndroidManifest.xml:193:25
+activity#com.igexin.sdk.PushActivity
+ADDED from AndroidManifest.xml:197:9
+	android:theme
+		ADDED from AndroidManifest.xml:204:13
+	android:process
+		ADDED from AndroidManifest.xml:202:13
+	android:exported
+		ADDED from AndroidManifest.xml:200:13
+	android:persistent
+		ADDED from AndroidManifest.xml:201:13
+	android:excludeFromRecents
+		ADDED from AndroidManifest.xml:199:13
+	android:taskAffinity
+		ADDED from AndroidManifest.xml:203:13
+	android:name
+		ADDED from AndroidManifest.xml:198:13
+service#com.igexin.download.DownloadService
+ADDED from AndroidManifest.xml:206:9
+	android:process
+		ADDED from AndroidManifest.xml:208:13
+	android:name
+		ADDED from AndroidManifest.xml:207:13
+receiver#com.igexin.download.DownloadReceiver
+ADDED from AndroidManifest.xml:210:9
+	android:name
+		ADDED from AndroidManifest.xml:210:19
+intent-filter#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from AndroidManifest.xml:211:13
+provider#com.igexin.download.DownloadProvider
+ADDED from AndroidManifest.xml:216:9
+	android:process
+		ADDED from AndroidManifest.xml:219:13
+	android:authorities
+		ADDED from AndroidManifest.xml:218:13
+	android:name
+		ADDED from AndroidManifest.xml:217:13
+activity#com.igexin.getuiext.activity.GetuiExtActivity
+ADDED from AndroidManifest.xml:222:9
+	android:configChanges
+		ADDED from AndroidManifest.xml:224:13
+	android:theme
+		ADDED from AndroidManifest.xml:229:13
+	android:process
+		ADDED from AndroidManifest.xml:227:13
+	android:exported
+		ADDED from AndroidManifest.xml:226:13
+	android:excludeFromRecents
+		ADDED from AndroidManifest.xml:225:13
+	android:taskAffinity
+		ADDED from AndroidManifest.xml:228:13
+	android:name
+		ADDED from AndroidManifest.xml:223:13
+receiver#com.igexin.getuiext.service.PayloadReceiver
+ADDED from AndroidManifest.xml:231:9
+	android:exported
+		ADDED from AndroidManifest.xml:233:13
+	android:name
+		ADDED from AndroidManifest.xml:232:13
+intent-filter#com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4+com.igexin.sdk.action.8imafJpbTT6OWrl4CZRjA2
+ADDED from AndroidManifest.xml:234:13
+action#com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4
+ADDED from AndroidManifest.xml:237:17
+	android:name
+		ADDED from AndroidManifest.xml:237:25
+service#com.igexin.getuiext.service.GetuiExtService
+ADDED from AndroidManifest.xml:243:9
+	android:process
+		ADDED from AndroidManifest.xml:245:13
+	android:name
+		ADDED from AndroidManifest.xml:244:13
+activity#qfpay.wxshop.activity.NewIntroductionActivity
+ADDED from AndroidManifest.xml:249:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:252:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:251:13
+	android:theme
+		ADDED from AndroidManifest.xml:253:13
+	android:name
+		ADDED from AndroidManifest.xml:250:13
+activity#com.loveplusplus.demo.image.ImagePagerActivity
+ADDED from AndroidManifest.xml:254:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:257:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:256:13
+	android:theme
+		ADDED from AndroidManifest.xml:258:13
+	android:name
+		ADDED from AndroidManifest.xml:255:13
+activity#qfpay.wxshop.activity.EditAdvertisementActivity_
+ADDED from AndroidManifest.xml:259:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:262:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:261:13
+	android:theme
+		ADDED from AndroidManifest.xml:263:13
+	android:name
+		ADDED from AndroidManifest.xml:260:13
+activity#qfpay.wxshop.activity.ShopNameEditActivity_
+ADDED from AndroidManifest.xml:264:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:267:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:266:13
+	android:theme
+		ADDED from AndroidManifest.xml:268:13
+	android:name
+		ADDED from AndroidManifest.xml:265:13
+activity#qfpay.wxshop.activity.WeixinEditActivity_
+ADDED from AndroidManifest.xml:269:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:272:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:271:13
+	android:theme
+		ADDED from AndroidManifest.xml:273:13
+	android:name
+		ADDED from AndroidManifest.xml:270:13
+activity#qfpay.wxshop.activity.CopyUrlGuideActivity_
+ADDED from AndroidManifest.xml:274:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:277:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:276:13
+	android:theme
+		ADDED from AndroidManifest.xml:278:13
+	android:name
+		ADDED from AndroidManifest.xml:275:13
+activity#qfpay.wxshop.ui.selectpic.ImageGridActivity
+ADDED from AndroidManifest.xml:279:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:282:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:281:13
+	android:theme
+		ADDED from AndroidManifest.xml:283:13
+	android:name
+		ADDED from AndroidManifest.xml:280:13
+activity#qfpay.wxshop.ui.selectpic.AlbumActivity
+ADDED from AndroidManifest.xml:284:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:287:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:286:13
+	android:theme
+		ADDED from AndroidManifest.xml:288:13
+	android:name
+		ADDED from AndroidManifest.xml:285:13
+activity#qfpay.wxshop.activity.Function1Activity
+ADDED from AndroidManifest.xml:289:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:292:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:291:13
+	android:theme
+		ADDED from AndroidManifest.xml:293:13
+	android:name
+		ADDED from AndroidManifest.xml:290:13
+activity#qfpay.wxshop.activity.FunctionNoticeActivity
+ADDED from AndroidManifest.xml:294:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:297:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:296:13
+	android:theme
+		ADDED from AndroidManifest.xml:298:13
+	android:name
+		ADDED from AndroidManifest.xml:295:13
+activity#qfpay.wxshop.activity.menu.OrderListActivity
+ADDED from AndroidManifest.xml:299:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:302:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:301:13
+	android:theme
+		ADDED from AndroidManifest.xml:303:13
+	android:name
+		ADDED from AndroidManifest.xml:300:13
+activity#qfpay.wxshop.activity.MaijiaxiuEmptyActivity_
+ADDED from AndroidManifest.xml:304:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:307:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:306:13
+	android:theme
+		ADDED from AndroidManifest.xml:308:13
+	android:name
+		ADDED from AndroidManifest.xml:305:13
+activity#qfpay.wxshop.ui.buyersshow.BuyersShowReleaseActivity_
+ADDED from AndroidManifest.xml:309:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:312:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:311:13
+	android:theme
+		ADDED from AndroidManifest.xml:313:13
+	android:name
+		ADDED from AndroidManifest.xml:310:13
+activity#qfpay.wxshop.ui.buyersshow.GoodsListForBuyersShowActivity_
+ADDED from AndroidManifest.xml:314:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:317:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:316:13
+	android:theme
+		ADDED from AndroidManifest.xml:318:13
+	android:name
+		ADDED from AndroidManifest.xml:315:13
+activity#qfpay.wxshop.activity.ManPromoActivity_
+ADDED from AndroidManifest.xml:319:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:324:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:322:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:321:13
+	android:theme
+		ADDED from AndroidManifest.xml:323:13
+	android:name
+		ADDED from AndroidManifest.xml:320:13
+activity#qfpay.wxshop.activity.ManPromoSuccessActivity_
+ADDED from AndroidManifest.xml:325:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:330:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:328:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:327:13
+	android:theme
+		ADDED from AndroidManifest.xml:329:13
+	android:name
+		ADDED from AndroidManifest.xml:326:13
+activity#qfpay.wxshop.activity.share.ShareActivity
+ADDED from AndroidManifest.xml:331:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:335:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:334:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:333:13
+	android:theme
+		ADDED from AndroidManifest.xml:336:13
+	android:name
+		ADDED from AndroidManifest.xml:332:13
+activity#qfpay.wxshop.activity.GeneralWebViewActivity
+ADDED from AndroidManifest.xml:337:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:340:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:339:13
+	android:theme
+		ADDED from AndroidManifest.xml:341:13
+	android:name
+		ADDED from AndroidManifest.xml:338:13
+activity#qfpay.wxshop.activity.ChangePwdActivity
+ADDED from AndroidManifest.xml:342:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:345:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:344:13
+	android:theme
+		ADDED from AndroidManifest.xml:346:13
+	android:name
+		ADDED from AndroidManifest.xml:343:13
+activity#qfpay.wxshop.activity.ChangeBankAccoutActivity
+ADDED from AndroidManifest.xml:347:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:350:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:349:13
+	android:theme
+		ADDED from AndroidManifest.xml:351:13
+	android:name
+		ADDED from AndroidManifest.xml:348:13
+activity#qfpay.wxshop.activity.ChangeBankCardInfoActivity
+ADDED from AndroidManifest.xml:352:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:355:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:354:13
+	android:theme
+		ADDED from AndroidManifest.xml:356:13
+	android:name
+		ADDED from AndroidManifest.xml:353:13
+activity#qfpay.wxshop.activity.ManagePreViewActivity
+ADDED from AndroidManifest.xml:357:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:360:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:359:13
+	android:theme
+		ADDED from AndroidManifest.xml:361:13
+	android:name
+		ADDED from AndroidManifest.xml:358:13
+activity#qfpay.wxshop.activity.InputShopNameActivity
+ADDED from AndroidManifest.xml:362:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:367:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:365:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:364:13
+	android:theme
+		ADDED from AndroidManifest.xml:366:13
+	android:name
+		ADDED from AndroidManifest.xml:363:13
+activity#qfpay.wxshop.activity.LoginActivity
+ADDED from AndroidManifest.xml:368:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:371:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:370:13
+	android:theme
+		ADDED from AndroidManifest.xml:372:13
+	android:name
+		ADDED from AndroidManifest.xml:369:13
+activity#qfpay.wxshop.activity.LoginPreviewActivity
+ADDED from AndroidManifest.xml:373:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:376:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:375:13
+	android:name
+		ADDED from AndroidManifest.xml:374:13
+activity#qfpay.wxshop.activity.RegBankAccountActivity_
+ADDED from AndroidManifest.xml:377:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:382:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:380:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:379:13
+	android:theme
+		ADDED from AndroidManifest.xml:381:13
+	android:name
+		ADDED from AndroidManifest.xml:378:13
+activity#qfpay.wxshop.activity.BankPickerActivity_
+ADDED from AndroidManifest.xml:383:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:388:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:386:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:385:13
+	android:theme
+		ADDED from AndroidManifest.xml:387:13
+	android:name
+		ADDED from AndroidManifest.xml:384:13
+activity#qfpay.wxshop.activity.RegStep1Activity_
+ADDED from AndroidManifest.xml:389:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:393:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:392:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:391:13
+	android:name
+		ADDED from AndroidManifest.xml:390:13
+activity#qfpay.wxshop.activity.RegCompleteActivity
+ADDED from AndroidManifest.xml:394:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:397:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:396:13
+	android:name
+		ADDED from AndroidManifest.xml:395:13
+activity#qfpay.wxshop.activity.ShowBankInfoActivity
+ADDED from AndroidManifest.xml:398:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:401:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:400:13
+	android:name
+		ADDED from AndroidManifest.xml:399:13
+activity#qfpay.wxshop.activity.menu.WeiXinCollectMoney
+ADDED from AndroidManifest.xml:402:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:407:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:405:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:404:13
+	android:theme
+		ADDED from AndroidManifest.xml:406:13
+	android:name
+		ADDED from AndroidManifest.xml:403:13
+activity#qfpay.wxshop.activity.CollectMoneyCompleteActivity_
+ADDED from AndroidManifest.xml:408:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:411:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:410:13
+	android:name
+		ADDED from AndroidManifest.xml:409:13
+activity#qfpay.wxshop.ui.presonalinfo.ShopInfoActivity
+ADDED from AndroidManifest.xml:412:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:417:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:415:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:414:13
+	android:theme
+		ADDED from AndroidManifest.xml:416:13
+	android:name
+		ADDED from AndroidManifest.xml:413:13
+activity#qfpay.wxshop.activity.SelectPicActivity_
+ADDED from AndroidManifest.xml:418:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:421:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:420:13
+	android:theme
+		ADDED from AndroidManifest.xml:422:13
+	android:name
+		ADDED from AndroidManifest.xml:419:13
+activity#qfpay.wxshop.activity.OtherShopViewActivity
+ADDED from AndroidManifest.xml:423:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:426:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:425:13
+	android:theme
+		ADDED from AndroidManifest.xml:427:13
+	android:name
+		ADDED from AndroidManifest.xml:424:13
+activity#qfpay.wxshop.activity.SSNPublishActivity_
+ADDED from AndroidManifest.xml:428:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:431:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:432:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:430:13
+	android:name
+		ADDED from AndroidManifest.xml:429:13
+activity#qfpay.wxshop.activity.SSNEditActivity_
+ADDED from AndroidManifest.xml:433:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:436:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:437:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:435:13
+	android:name
+		ADDED from AndroidManifest.xml:434:13
+activity#qfpay.wxshop.activity.LabelActivity_
+ADDED from AndroidManifest.xml:438:9
+	android:label
+		ADDED from AndroidManifest.xml:441:13
+	android:theme
+		ADDED from AndroidManifest.xml:442:13
+	android:hardwareAccelerated
+		ADDED from AndroidManifest.xml:440:13
+	android:name
+		ADDED from AndroidManifest.xml:439:13
+activity#qfpay.wxshop.activity.WeixinQmmActivity
+ADDED from AndroidManifest.xml:443:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:446:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:445:13
+	android:theme
+		ADDED from AndroidManifest.xml:447:13
+	android:name
+		ADDED from AndroidManifest.xml:444:13
+meta-data#UMENG_APPKEY
+ADDED from AndroidManifest.xml:449:9
+	android:name
+		ADDED from AndroidManifest.xml:450:13
+	android:value
+		ADDED from AndroidManifest.xml:451:13
+meta-data#UMENG_CHANNEL
+ADDED from AndroidManifest.xml:452:9
+	android:name
+		ADDED from AndroidManifest.xml:453:13
+	android:value
+		ADDED from AndroidManifest.xml:454:13
+meta-data#app_name
+ADDED from AndroidManifest.xml:455:9
+	android:name
+		ADDED from AndroidManifest.xml:456:13
+	android:value
+		ADDED from AndroidManifest.xml:457:13
+activity#cn.sharesdk.framework.ShareSDKUIShell
+ADDED from AndroidManifest.xml:459:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:464:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:462:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:461:13
+	android:theme
+		ADDED from AndroidManifest.xml:463:13
+	android:name
+		ADDED from AndroidManifest.xml:460:13
+activity#qfpay.wxshop.share.WXEntryActivity
+ADDED from AndroidManifest.xml:465:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:469:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:467:13
+	android:theme
+		ADDED from AndroidManifest.xml:470:13
+	android:exported
+		ADDED from AndroidManifest.xml:468:13
+	android:name
+		ADDED from AndroidManifest.xml:466:13
+receiver#qfpay.wxshop.getui.LaunchReceiver
+ADDED from AndroidManifest.xml:472:9
+	android:exported
+		ADDED from AndroidManifest.xml:475:13
+	android:enabled
+		ADDED from AndroidManifest.xml:474:13
+	android:name
+		ADDED from AndroidManifest.xml:473:13
+intent-filter#android.intent.action.BOOT_COMPLETED+android.intent.category.HOME
+ADDED from AndroidManifest.xml:476:13
+category#android.intent.category.HOME
+ADDED from AndroidManifest.xml:479:17
+	android:name
+		ADDED from AndroidManifest.xml:479:27
+receiver#qfpay.wxshop.getui.AlarmReceiver
+ADDED from AndroidManifest.xml:482:9
+	android:exported
+		ADDED from AndroidManifest.xml:485:13
+	android:enabled
+		ADDED from AndroidManifest.xml:484:13
+	android:name
+		ADDED from AndroidManifest.xml:483:13
+meta-data#com.amap.api.v2.apikey
+ADDED from AndroidManifest.xml:487:9
+	android:name
+		ADDED from AndroidManifest.xml:488:13
+	android:value
+		ADDED from AndroidManifest.xml:489:13
+uses-sdk
+INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
+MERGED from com.actionbarsherlock:actionbarsherlock:4.4.0:3:3
+MERGED from com.android.support:support-v4:21.0.2:15:5
+	android:targetSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:minSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0

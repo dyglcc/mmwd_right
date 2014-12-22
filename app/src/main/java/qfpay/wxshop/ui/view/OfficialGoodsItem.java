@@ -101,7 +101,7 @@ public class OfficialGoodsItem extends LinearLayout {
 
 	private void setExtraImage(String imageUrl,int itemW) {
 		
-		FrameLayout.LayoutParams para = (FrameLayout.LayoutParams) iv_official.getLayoutParams();
+		FrameLayout.LayoutParams para = (android.widget.FrameLayout.LayoutParams) iv_official.getLayoutParams();
 		para.height = itemW;
 		para.width = itemW;
 		

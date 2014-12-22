@@ -54,7 +54,7 @@ public class XHeaderView extends LinearLayout {
 
     private void initView(Context context) {
         // Initial set header view height 0
-        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, 0);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0);
         mContainer = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.vw_header, null);
         addView(mContainer, lp);
         setGravity(Gravity.BOTTOM);
@@ -130,7 +130,7 @@ public class XHeaderView extends LinearLayout {
      */
     public void setVisibleHeight(int height) {
         if (height < 0) height = 0;
-        LayoutParams lp = (LayoutParams) mContainer.getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mContainer.getLayoutParams();
         lp.height = height;
         mContainer.setLayoutParams(lp);
     }

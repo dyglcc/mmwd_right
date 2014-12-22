@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 /**
- * Factory to allow injecting a more complex exception mapping; typically you would subclass one of {@link com.de.greenrobot.event.util.ErrorDialogFragmentFactory.Honeycomb} or
- * {@link com.de.greenrobot.event.util.ErrorDialogFragmentFactory.Support}.
+ * Factory to allow injecting a more complex exception mapping; typically you would subclass one of {@link Honeycomb} or
+ * {@link Support}.
  */
 public abstract class ErrorDialogFragmentFactory<T> {
     protected final ErrorDialogConfig config;

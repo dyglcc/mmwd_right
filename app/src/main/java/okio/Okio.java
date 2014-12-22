@@ -112,7 +112,7 @@ public final class Okio {
 
   /**
    * Returns a sink that writes to {@code socket}. Prefer this over {@link
-   * #sink(java.io.OutputStream)} because this method honors timeouts. When the socket
+   * #sink(OutputStream)} because this method honors timeouts. When the socket
    * write times out, the socket is asynchronously closed by a watchdog thread.
    */
   public static Sink sink(final Socket socket) throws IOException {
@@ -178,7 +178,7 @@ public final class Okio {
 
   /**
    * Returns a source that reads from {@code socket}. Prefer this over {@link
-   * #source(java.io.InputStream)} because this method honors timeouts. When the socket
+   * #source(InputStream)} because this method honors timeouts. When the socket
    * read times out, the socket is asynchronously closed by a watchdog thread.
    */
   public static Source source(final Socket socket) throws IOException {

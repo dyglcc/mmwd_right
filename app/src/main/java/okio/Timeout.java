@@ -136,7 +136,7 @@ public class Timeout {
   }
 
   /**
-   * Throws an {@link java.io.IOException} if the deadline has been reached or if the
+   * Throws an {@link IOException} if the deadline has been reached or if the
    * current thread has been interrupted. This method doesn't detect timeouts;
    * that should be implemented to asynchronously abort an in-progress
    * operation.

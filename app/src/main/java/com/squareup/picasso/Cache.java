@@ -20,9 +20,9 @@ import android.graphics.Bitmap;
 /**
  * A memory cache for storing the most recently used images.
  * <p>
- * <em>Note:</em> The {@link Cache} is accessed by multiple threads. You must ensure
- * your {@link Cache} implementation is thread safe when {@link Cache#get(String)} or {@link
- * Cache#set(String, android.graphics.Bitmap)} is called.
+ * <em>Note:</em> The {@link com.squareup.picasso.Cache} is accessed by multiple threads. You must ensure
+ * your {@link com.squareup.picasso.Cache} implementation is thread safe when {@link com.squareup.picasso.Cache#get(String)} or {@link
+ * com.squareup.picasso.Cache#set(String, android.graphics.Bitmap)} is called.
  */
 public interface Cache {
   /** Retrieve an image for the specified {@code key} or {@code null}. */

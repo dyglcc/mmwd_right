@@ -26,7 +26,7 @@ import java.io.IOException;
  *
  * <p>Most application code shouldn't operate on a sink directly, but rather
  * {@link BufferedSink} which is both more efficient and more convenient. Use
- * {@link okio.Okio#buffer(okio.Sink)} to wrap any sink with a buffer.
+ * {@link Okio#buffer(Sink)} to wrap any sink with a buffer.
  *
  * <p>Sinks are easy to test: just use an {@link Buffer} in your tests, and
  * read from it to confirm it received the data that was expected.
@@ -44,7 +44,7 @@ import java.io.IOException;
  * implement efficiently.
  *
  * <h3>Interop with OutputStream</h3>
- * Use {@link okio.Okio#sink} to adapt an {@code OutputStream} to a sink. Use {@link
+ * Use {@link Okio#sink} to adapt an {@code OutputStream} to a sink. Use {@link
  * BufferedSink#outputStream} to adapt a sink to an {@code OutputStream}.
  */
 public interface Sink extends Closeable {

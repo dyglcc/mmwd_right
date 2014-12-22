@@ -16,12 +16,10 @@ limitations under the License.
 -->
 <resources>
 
-    
     <string-array name="reg_id_popmenu">
         <item>拍照</item>
         <item>选择图片</item>
     </string-array>
-    
     <string-array name="share_friends">
         <item>微信朋友圈</item>
         <item>微信好友</item>
@@ -43,6 +41,15 @@ limitations under the License.
         <item>向通讯录好友收款</item>
     </string-array>
     
- 
-    
+    <string-array name="official_category">
+        <item>全部</item>
+        <item>服装</item>
+        <item>鞋包</item>
+        <item>珠宝配饰</item>
+        <item>护肤彩妆</item>
+        <item>母婴</item>
+        <item>美食特产</item>
+        <item>家居日用</item>
+    </string-array>
+
 </resources>

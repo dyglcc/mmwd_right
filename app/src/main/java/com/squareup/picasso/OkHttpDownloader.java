@@ -26,7 +26,7 @@ import java.net.URL;
 
 import static com.squareup.picasso.Utils.parseResponseSourceHeader;
 
-/** A {@link Downloader} which uses OkHttp to download images. */
+/** A {@link com.squareup.picasso.Downloader} which uses OkHttp to download images. */
 public class OkHttpDownloader implements Downloader {
   static final String RESPONSE_SOURCE_ANDROID = "X-Android-Response-Source";
   static final String RESPONSE_SOURCE_OKHTTP = "OkHttp-Response-Source";

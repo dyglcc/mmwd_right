@@ -76,7 +76,7 @@ public class NewIntroductionActivity extends Activity {
 				.setComponent(comp));
 
 		// 快捷方式的图标
-		ShortcutIconResource iconRes = ShortcutIconResource.fromContext(
+		ShortcutIconResource iconRes = Intent.ShortcutIconResource.fromContext(
 				this, R.drawable.icon);
 		shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
 

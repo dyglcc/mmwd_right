@@ -14,8 +14,8 @@ import retrofit.http.Query;
 
 public interface CommodityService {
 	@GET("/qmm/wd/app/item_manage")
-	CommodityListDataWrapper getCommodityList(@Query("page") Integer page, @Query("length") Integer length,
-                                              @Query("fixnum") Integer fixnum, @Query("format") String format);
+	CommodityListDataWrapper getCommodityList(@Query("page") Integer page, @Query("length") Integer length, 
+			@Query("fixnum") Integer fixnum, @Query("format") String format);
 	
 	@FormUrlEncoded@POST("/qmm/wd/app/deleteitem")
 	CommonJsonBean deleteCommodity(@Field("goodid") Integer id);

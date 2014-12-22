@@ -25,7 +25,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="6dip"
         android:gravity="center"
-        android:text="店铺信息"
+        android:text="完善喵店信息"
         android:textSize="20dip"
         android:textColor="@android:color/white" />
 
@@ -35,7 +35,7 @@
         android:layout_height="@dimen/title_height"
         android:layout_alignParentRight="true"
         android:gravity="center"
-        android:text="@string/next"
+        android:text="完成"
         android:background="@drawable/selector_button_click"
         android:textColor="@color/selector_color_title_press"
         android:textSize="18dip" />

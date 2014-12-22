@@ -102,7 +102,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="66dip"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:src="@drawable/wd91sf_077" />
 
 </RelativeLayout>

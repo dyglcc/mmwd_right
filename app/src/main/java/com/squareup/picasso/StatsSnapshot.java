@@ -21,7 +21,7 @@ import java.io.StringWriter;
 
 import static com.squareup.picasso.Picasso.TAG;
 
-/** Represents all stats for a {@link Picasso} instance at a single point in time. */
+/** Represents all stats for a {@link com.squareup.picasso.Picasso} instance at a single point in time. */
 public class StatsSnapshot {
   public final int maxSize;
   public final int size;
@@ -59,14 +59,14 @@ public class StatsSnapshot {
     this.timeStamp = timeStamp;
   }
 
-  /** Prints out this {@link StatsSnapshot} into log. */
+  /** Prints out this {@link com.squareup.picasso.StatsSnapshot} into log. */
   @SuppressWarnings("UnusedDeclaration") public void dump() {
     StringWriter logWriter = new StringWriter();
     dump(new PrintWriter(logWriter));
     Log.i(TAG, logWriter.toString());
   }
 
-  /** Prints out this {@link StatsSnapshot} with the the provided {@link java.io.PrintWriter}. */
+  /** Prints out this {@link com.squareup.picasso.StatsSnapshot} with the the provided {@link java.io.PrintWriter}. */
   public void dump(PrintWriter writer) {
     writer.println("===============BEGIN PICASSO STATS ===============");
     writer.println("Memory Cache Stats");

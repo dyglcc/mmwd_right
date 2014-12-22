@@ -18,9 +18,9 @@ import android.util.Log;
  * <br/>
  * How to use:
  * <ol>
- * <li>Set the {@link #factory} to configure dialogs for your app, typically in {@link android.app.Application#onCreate()}</li>
- * <li>Use one of {@link #attachTo(android.app.Activity)}, {@link #attachTo(android.app.Activity, boolean)} or
- * {@link #attachTo(android.app.Activity, boolean, android.os.Bundle)} in your Activity, typically in onCreate.</li>
+ * <li>Set the {@link #factory} to configure dialogs for your app, typically in {@link Application#onCreate()}</li>
+ * <li>Use one of {@link #attachTo(Activity)}, {@link #attachTo(Activity, boolean)} or
+ * {@link #attachTo(Activity, boolean, Bundle)} in your Activity, typically in onCreate.</li>
  * </ol>
  * 
  * For more complex mappings, you can supply your own {@link ErrorDialogFragmentFactory}.

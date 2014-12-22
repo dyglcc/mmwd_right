@@ -36,12 +36,9 @@
 -dontwarn com.de.greenrobot.event.**
 
 -keep class retrofit.** { *;}
--libraryjars libs/retrofit-1.8.0.jar
 -dontwarn retrofit.**
 
 -keep class com.squareup.okhttp.** { *;}
--libraryjars libs/okhttp-2.0.0.jar
--libraryjars libs/okhttp-urlconnection-2.0.0.jar
 -dontwarn com.squareup.okhttp.**
 
 -keep class com.squareup.picasso.** { *;}
@@ -53,41 +50,28 @@
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
 -keep class org.androidannotations.** { *;}
--libraryjars libs/androidannotations-api-3.2.jar
 -dontwarn org.androidannotations.**
 
 -keep class com.google.gson.** { *;}
--libraryjars libs/gson-2.3.1.jar
 -dontwarn com.google.gson.**
 
 -keep class android.androidquery.** { *;}
--libraryjars libs/android-query.0.25.10.jar
 -dontwarn android.androidquery.**
 
 -keep class org.apache.http.entity.mine.** { *;}
--libraryjars libs/httpmime-4.1.3.jar
 -dontwarn org.apache.http.entity.mine.**
 
 -keep class m.framework.** { *;}
--libraryjars libs/mframework.jar
 -dontwarn m.framework.**
 
 -dontwarn com.umeng.**
 -keepattributes *Annotation*
--libraryjars libs/umeng-analytics-v5.2.4.jar
 -keep class com.umeng*.** {*; }
 
 -dontwarn com.igexin.**
--libraryjars libs/GetuiExt-2.0.3.jar
--libraryjars libs/GetuiSdk2.3.0.0.jar
 -keep class com.igexin.** { *; }
 
 -keep class cn.sharesdk.** { *;}
--libraryjars libs/ShareSDK-Core-2.3.12.jar
--libraryjars libs/ShareSDK-QQ-2.3.12.jar
--libraryjars libs/ShareSDK-QZone-2.3.12.jar
--libraryjars libs/ShareSDK-SinaWeibo-2.3.12.jar
--libraryjars libs/ShareSDK-TencentWeibo-2.3.12.jar
 -dontwarn cn.sharesdk.**
 
 -keep class com.j256.**

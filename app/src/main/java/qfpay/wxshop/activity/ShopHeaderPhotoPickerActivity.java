@@ -108,7 +108,7 @@ public class ShopHeaderPhotoPickerActivity extends BaseActivity {
 	}
 	
 	void pickPhoto() {
-		Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+		Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		startActivityForResult(intent, REQUEST_PICK_PHOTO);
 	}
 	

@@ -32,7 +32,7 @@ import static java.net.Proxy.Type.HTTP;
 import static org.apache.http.HttpVersion.HTTP_1_1;
 
 /**
- * Implements Apache's {@link org.apache.http.client.HttpClient} API using {@link OkHttpClient}.
+ * Implements Apache's {@link HttpClient} API using {@link OkHttpClient}.
  * <p>
  * <strong>Warning:</strong> Many core features of Apache HTTP client are not implemented by this
  * API. This includes the keep-alive strategy, cookie store, credentials provider, route planner

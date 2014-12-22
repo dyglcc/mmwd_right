@@ -25,7 +25,7 @@ public class BitmapUtil {
 	 */
 	public static Bitmap ReadBitmapById(Context context, int resId) {
 		BitmapFactory.Options opt = new BitmapFactory.Options();
-		opt.inPreferredConfig = Config.RGB_565;
+		opt.inPreferredConfig = Bitmap.Config.RGB_565;
 		opt.inPurgeable = true;
 		opt.inInputShareable = true;
 		InputStream is = context.getResources().openRawResource(resId);
@@ -189,7 +189,7 @@ public class BitmapUtil {
             j = bmp.getHeight();
         }
         
-        Bitmap localBitmap = Bitmap.createBitmap(i, j, Config.RGB_565);
+        Bitmap localBitmap = Bitmap.createBitmap(i, j, Bitmap.Config.RGB_565);
         Canvas localCanvas = new Canvas(localBitmap);
         
         while (true) {

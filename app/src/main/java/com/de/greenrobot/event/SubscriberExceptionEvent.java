@@ -21,7 +21,7 @@ package com.de.greenrobot.event;
  * @author Markus
  */
 public final class SubscriberExceptionEvent {
-    /** The {@link com.de.greenrobot.event.EventBus} instance to with the original event was posted to. */
+    /** The {@link EventBus} instance to with the original event was posted to. */
     public final EventBus eventBus;
 
     /** The Throwable thrown by a subscriber. */

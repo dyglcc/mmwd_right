@@ -115,7 +115,7 @@ public class AddedPopupView extends RelativeLayout {
 	}
 	
 	private void changeMenuHeight(float height) {
-		LayoutParams lp = (LayoutParams) ll_content.getLayoutParams();
+		android.widget.RelativeLayout.LayoutParams lp = (android.widget.RelativeLayout.LayoutParams) ll_content.getLayoutParams();
 		lp.height = (int) height;
 		ll_content.requestLayout();
 	}

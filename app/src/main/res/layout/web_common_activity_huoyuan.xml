@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        layout="@layout/common_webview_title_huoyuan" />
+
+    <fragment
+        android:layout_below="@+id/title"
+        android:id="@+id/webFragment"
+        android:name="qfpay.wxshop.ui.web.huoyuan.CommonWebFragmentHuyuan_"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</RelativeLayout>

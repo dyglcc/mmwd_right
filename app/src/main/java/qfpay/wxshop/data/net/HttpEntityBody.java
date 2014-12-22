@@ -6,7 +6,7 @@ import java.io.IOException;
 import okio.BufferedSink;
 import org.apache.http.HttpEntity;
 
-/** Adapts an {@link org.apache.http.HttpEntity} to OkHttp's {@link RequestBody}. */
+/** Adapts an {@link HttpEntity} to OkHttp's {@link RequestBody}. */
 final class HttpEntityBody extends RequestBody {
   private static final MediaType DEFAULT_MEDIA_TYPE = MediaType.parse("application/octet-stream");
 

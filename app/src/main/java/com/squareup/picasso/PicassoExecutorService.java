@@ -26,7 +26,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The default {@link java.util.concurrent.ExecutorService} used for new {@link Picasso} instances.
+ * The default {@link java.util.concurrent.ExecutorService} used for new {@link com.squareup.picasso.Picasso} instances.
  * <p>
  * Exists as a custom type so that we can differentiate the use of defaults versus a user-supplied
  * instance.

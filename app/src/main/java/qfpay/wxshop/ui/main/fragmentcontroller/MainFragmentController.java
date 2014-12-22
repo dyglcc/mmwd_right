@@ -9,7 +9,7 @@ import qfpay.wxshop.utils.QFCommonUtils;
 
 
 public class MainFragmentController {
-	private static HashMap<WrapperType, MainFragmentController> map = new HashMap<WrapperType, MainFragmentController>();
+	private static HashMap<WrapperType, MainFragmentController> map = new HashMap<MainFragmentController.WrapperType, MainFragmentController>();
 	
 	private FragmentWrapper wrapper;
 	
