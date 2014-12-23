@@ -26,6 +26,12 @@ public class PreviewGuideView extends RelativeLayout {
 	private static PopupWindowCompat win = null;
 	
 	@SuppressWarnings("deprecation") public static void showAddGuide(MainActivity activity, View view) {
+        if (activity.isFinishing()) {
+            return;
+        }
+        if (win != null && win.isShowing()) {
+            return;
+        }
 		win = new PopupWindowCompat(activity);
 		win.setHeight(LayoutParams.FILL_PARENT);
 		win.setWidth(LayoutParams.FILL_PARENT);

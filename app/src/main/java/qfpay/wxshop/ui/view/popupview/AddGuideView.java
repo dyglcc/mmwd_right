@@ -27,6 +27,9 @@ public class AddGuideView extends RelativeLayout {
 		if (activity.isFinishing()) {
 			return;
 		}
+        if (win != null && win.isShowing()) {
+            return;
+        }
 		win = new PopupWindowCompat(activity);
 		win.setHeight(LayoutParams.FILL_PARENT);
 		win.setWidth(LayoutParams.FILL_PARENT);
