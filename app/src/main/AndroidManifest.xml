@@ -92,11 +92,6 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
             android:screenOrientation="portrait" />
-        <!-- 老用户提示动画 -->
-        <activity
-            android:name="qfpay.wxshop.ui.main.RegularUsersGuideActivity_"
-            android:screenOrientation="portrait"
-            android:theme="@style/Translucent.NoTitleBar.NoAni" />
         <!-- 上传商品以及编辑商品 -->
         <activity
             android:name="qfpay.wxshop.ui.commodity.EditItemActivity_"

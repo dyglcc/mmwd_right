@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.android.tools.build:gradle:1.0.+'
         // The Annotations Complier
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
     }
@@ -16,43 +16,6 @@ repositories {
 
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-
-android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.1"
-
-    defaultConfig {
-        applicationId "qfpay.wxshop"
-        minSdkVersion 14
-        targetSdkVersion 21
-        versionCode 93
-        versionName "3.7.0"
-    }
-
-    lintOptions{
-        checkReleaseBuilds false
-        abortOnError false
-    }
-
-    packagingOptions {
-        exclude 'META-INF/LICENSE.txt'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-// Setup the Annotations Complier
-apt {
-    arguments {
-        androidManifestFile variant.outputs[0].processResources.manifestFile
-        resourcePackageName 'qfpay.wxshop'
-    }
-}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -82,4 +45,91 @@ dependencies {
     // AndroidViewAni
     compile 'com.daimajia.easing:library:1.0.0@aar'
     compile 'com.daimajia.androidanimations:library:1.1.3@aar'
+}
+
+// Setup the Annotations Complier
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName 'qfpay.wxshop'
+    }
+}
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.1"
+    // The Application Setting
+    defaultConfig {
+        applicationId "qfpay.wxshop"
+        minSdkVersion 14
+        targetSdkVersion 21
+        versionCode 93
+        versionName "3.7.0"
+    }
+    // The Signing Setting
+    signingConfigs {
+        release {
+            storeFile file("key")
+            storePassword "123456"
+            keyAlias "key"
+            keyPassword "123456"
+        }
+        debug {
+            storeFile file("key")
+            storePassword "123456"
+            keyAlias "key"
+            keyPassword "123456"
+        }
+    }
+    // The build types, can define multi-type
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release // use the signing setting
+        }
+    }
+    // The source sets, can define multi-set
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+        instrumentTest.setRoot('tests')
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    lintOptions{
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+// use the flavors's name generate apk file
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        output.processManifest.doLast {
+            copy {
+                from("${buildDir}/manifests") {
+                    include "${variant.dirName}/AndroidManifest.xml"
+                }
+                into("${buildDir}/manifests/$variant.name")
+
+                filter {
+                    String linechannel -> linechannel.replaceAll("UMENG_CHANNEL", "${variant.productFlavors[0].name}")
+                }
+                variant.processResources.manifestFile = file("${buildDir}/manifests/${variant.name}/${variant.dirName}/AndroidManifest.xml")
+            }
+        }
+    }
+    
 }
