@@ -89,7 +89,7 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 		webView.setDownloadListener(new MyWebViewDownLoadListener());
 		webView.setWebChromeClient(new MyWebChromeClient());
 		header.put("Qfuid", WxShopApplication.dataEngine.getUserId());
-		Utils.setCookiesHUOYUAN(url, getActivity());
+		Utils.setCookies(url, getActivity());
 		if (url != null && !"".equals(url)) {
 			webView.loadUrl(url, header);
 		}
@@ -146,7 +146,7 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 		this.platFroms = Arrays.asList(platForms);
 		//
 		if (getActivity() != null) {
-			Utils.setCookiesHUOYUAN(url, getActivity());
+			Utils.setCookies(url, getActivity());
 		}
 
 		if (webView != null) {
@@ -220,7 +220,7 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 			}
 
 			
-			Utils.setCookiesHUOYUAN(url, getActivity());
+			Utils.setCookies(url, getActivity());
 			return true;
 		}
 

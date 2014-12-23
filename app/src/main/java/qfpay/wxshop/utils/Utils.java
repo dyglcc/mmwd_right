@@ -919,44 +919,44 @@ public class Utils {
 		CookieManager cookieManager = CookieManager.getInstance();
 		cookieManager.setAcceptCookie(true);
 		String cookieString = "sessionid=" + WxShopApplication.dataEngine.getcid();
-		cookieManager.removeSessionCookie();//移除
+		// cookieManager.removeSessionCookie();//移除
 		String pre = url.replace("http://", "");
 		String domain = pre.substring(0, pre.indexOf("/"));
 		cookieManager.setCookie(domain, cookieString);
 		CookieSyncManager.getInstance().sync();
 	}
-	public static void setCookiesOrderList(String url, Context context) {
-		if(url== null || url.equals("")){
-			return;
-		}
-		if (context == null) {
-			return;
-		}
-		CookieSyncManager.createInstance(context);
-		CookieManager cookieManager = CookieManager.getInstance();
-		cookieManager.setAcceptCookie(true);
-		String cookieString = "sessionid="
-				+ WxShopApplication.dataEngine.getcid();
-		// cookieManager.removeSessionCookie();//移除 
-		cookieManager.removeSessionCookie();//移除 
-		cookieManager.setCookie("wx.qfpay.com", cookieString);
-		CookieSyncManager.getInstance().sync();
-	}
-	public static void setCookiesHUOYUAN(String url, Context context) {
-		if (context == null) {
-			return;
-		}
-		CookieSyncManager.createInstance(context);
-		CookieManager cookieManager = CookieManager.getInstance();
-		cookieManager.setAcceptCookie(true);
-		String cookieString = "sessionid="
-				+ WxShopApplication.dataEngine.getcid() + ";qf_uid="
-				+ WxShopApplication.dataEngine.getUserId();
-		// cookieManager.removeSessionCookie();//移除 
-		cookieManager.removeSessionCookie();//移除 
-		cookieManager.setCookie(url, cookieString);
-		CookieSyncManager.getInstance().sync();
-	}
+	// public static void setCookiesOrderList(String url, Context context) {
+	// 	if(url== null || url.equals("")){
+	// 		return;
+	// 	}
+	// 	if (context == null) {
+	// 		return;
+	// 	}
+	// 	CookieSyncManager.createInstance(context);
+	// 	CookieManager cookieManager = CookieManager.getInstance();
+	// 	cookieManager.setAcceptCookie(true);
+	// 	String cookieString = "sessionid="
+	// 			+ WxShopApplication.dataEngine.getcid();
+	// 	// cookieManager.removeSessionCookie();//移除 
+	// 	cookieManager.removeSessionCookie();//移除 
+	// 	cookieManager.setCookie("wx.qfpay.com", cookieString);
+	// 	CookieSyncManager.getInstance().sync();
+	// }
+	// public static void setCookiesHUOYUAN(String url, Context context) {
+	// 	if (context == null) {
+	// 		return;
+	// 	}
+	// 	CookieSyncManager.createInstance(context);
+	// 	CookieManager cookieManager = CookieManager.getInstance();
+	// 	cookieManager.setAcceptCookie(true);
+	// 	String cookieString = "sessionid="
+	// 			+ WxShopApplication.dataEngine.getcid() + ";qf_uid="
+	// 			+ WxShopApplication.dataEngine.getUserId();
+	// 	// cookieManager.removeSessionCookie();//移除 
+	// 	cookieManager.removeSessionCookie();//移除 
+	// 	cookieManager.setCookie(url, cookieString);
+	// 	CookieSyncManager.getInstance().sync();
+	// }
 
 	public static String getChannel(Context context) {
 		if (context == null) {

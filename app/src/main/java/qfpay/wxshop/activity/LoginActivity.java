@@ -1,5 +1,14 @@
 package qfpay.wxshop.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import de.greenrobot.event.EventBus;
+
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.config.WDConfig;
@@ -9,18 +18,10 @@ import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.LoginImpl;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.main.*;
+import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.view.MyWatcher;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Utils;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import com.de.greenrobot.event.EventBus;
 
 public class LoginActivity extends BaseActivity {
 

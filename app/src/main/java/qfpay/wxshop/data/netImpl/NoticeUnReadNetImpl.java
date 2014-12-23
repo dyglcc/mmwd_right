@@ -28,7 +28,7 @@ public class NoticeUnReadNetImpl extends AbstractNet {
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		try {
 
-			map.put("app", "MMWD");
+			map.put("app", "mmwd");
 			map.put("uid", WxShopApplication.dataEngine.getUserId());
 			map.put("platform", "android");
 			map.put("os_ver", qfpay.wxshop.utils.Utils.getOSVerison(activity));

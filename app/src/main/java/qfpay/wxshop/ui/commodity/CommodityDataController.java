@@ -1,15 +1,16 @@
 package qfpay.wxshop.ui.commodity;
 
-import java.lang.ref.SoftReference;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.EBean.Scope;
 
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
 import qfpay.wxshop.data.beans.CommodityModel;
 import qfpay.wxshop.data.beans.GoodWrapper;
 import qfpay.wxshop.data.beans.SalesPromotionModel;
@@ -20,8 +21,6 @@ import qfpay.wxshop.data.net.RetrofitWrapper.CommonJsonBean;
 import qfpay.wxshop.data.netImpl.CommodityService;
 import qfpay.wxshop.data.netImpl.CommodityService.CommodityListDataWrapper;
 import qfpay.wxshop.ui.main.fragment.ShopFragmentsWrapper;
-
-import com.de.greenrobot.event.EventBus;
 
 @EBean(scope = Scope.Singleton) public class CommodityDataController {
 	public static final int FIRST_PAGENUM = 1;

@@ -45,6 +45,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:paddingLeft="10dip"
+                    android:paddingRight="0dip"
                     android:text="@string/wxshop_show"
                     android:textColor="@color/selector_color_title_press"
                     android:textSize="20dip" />

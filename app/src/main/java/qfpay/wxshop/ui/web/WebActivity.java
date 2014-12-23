@@ -83,7 +83,7 @@ public class WebActivity extends BaseActivity {
 		@Override
 		protected void onPreExecute() {
 
-			qfpay.wxshop.utils.Utils.setCookiesOrderList(url, WebActivity.this);
+			qfpay.wxshop.utils.Utils.setCookies(url, WebActivity.this);
 			super.onPreExecute();
 		}
 

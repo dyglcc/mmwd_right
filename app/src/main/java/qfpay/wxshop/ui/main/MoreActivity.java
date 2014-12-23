@@ -1,23 +1,5 @@
 package qfpay.wxshop.ui.main;
 
-import java.util.Arrays;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
-
-import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.activity.LoginActivity;
-import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.config.update.UpdateManager;
-import qfpay.wxshop.data.event.LogoutEvent;
-import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
-import qfpay.wxshop.utils.QFCommonUtils;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
@@ -29,7 +11,26 @@ import android.os.Message;
 import android.widget.TextView;
 
 import com.actionbarsherlock.view.MenuItem;
-import com.de.greenrobot.event.EventBus;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import java.util.Arrays;
+
+import de.greenrobot.event.EventBus;
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.activity.LoginActivity;
+import qfpay.wxshop.config.WDConfig;
+import qfpay.wxshop.config.update.UpdateManager;
+import qfpay.wxshop.data.event.LogoutEvent;
+import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.share.SharedPlatfrom;
+import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.utils.QFCommonUtils;
 
 @EActivity(R.layout.more_layout)
 public class MoreActivity extends BaseActivity implements Callback {

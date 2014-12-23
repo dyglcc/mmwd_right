@@ -1,22 +1,21 @@
 package qfpay.wxshop.activity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.widget.Button;
+import android.widget.TextView;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import de.greenrobot.event.EventBus;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.event.AddBuyersShowEvent;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.BaseActivity;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.de.greenrobot.event.EventBus;
 
 @EActivity(R.layout.main_maijiaxiu_empty)
 public class MaijiaxiuEmptyActivity extends BaseActivity {
