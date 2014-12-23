@@ -38,6 +38,7 @@ import android.util.DisplayMetrics;
 import com.amap.mapapi.location.LocationManagerProxy;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener;
 
@@ -77,6 +78,7 @@ public class WxShopApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+        AnalyticsConfig.setChannel(BuildConfig.CHANNEL);
 		BackgroundExecutor.setExecutor(Executors.newScheduledThreadPool(8));
 		if(!T.isTesting){
 			ACRA.init(this);

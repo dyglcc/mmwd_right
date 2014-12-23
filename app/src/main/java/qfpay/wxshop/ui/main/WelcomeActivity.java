@@ -18,6 +18,8 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.WindowFeature;
+
+import qfpay.wxshop.BuildConfig;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.InputShopNameActivity;
@@ -101,18 +103,7 @@ public class WelcomeActivity extends BaseActivity {
 	}
 
 	void initImg() {
-		// 根据友盟的渠道参数来判断是否需要加载首发的图标
-		String channelName = "";
-		try {
-			channelName = getPackageManager().
-					getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).
-					metaData.
-					getString("UMENG_CHANNEL");
-		} catch (PackageManager.NameNotFoundException e) {
-			e.printStackTrace();
-		}
-		boolean isFirstRelease = channelName.contains(FIRST_RELEASE);
-		if (isFirstRelease) {
+		if (BuildConfig.isFirstLaunch) {
 			iv_firstlaunch.setVisibility(View.VISIBLE);
 		} else {
 			iv_firstlaunch.setVisibility(View.INVISIBLE);
