@@ -1,4 +1,5 @@
--optimizationpasses 5
+# 迭代优化次数
+-optimizationpasses 99
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
 -dontpreverify
@@ -58,21 +59,20 @@
 -keep class android.androidquery.** { *;}
 -dontwarn android.androidquery.**
 
--keep class org.apache.http.entity.mine.** { *;}
--dontwarn org.apache.http.entity.mine.**
+-keep class org.apache.http.** { *;}
+-dontwarn org.apache.http.**
 
 -keep class m.framework.** { *;}
 -dontwarn m.framework.**
 
 -dontwarn com.umeng.**
 -keepattributes *Annotation*
--keep class com.umeng*.** {*; }
+-keep class com.umeng.** {*; }
 
 -dontwarn com.igexin.**
 -keep class com.igexin.** { *; }
 
--keep class cn.sharesdk.** { *;}
--dontwarn cn.sharesdk.**
+-keep public class com.umeng.fb.ui.ThreadView { }
 
 -keep class com.j256.**
 -keepclassmembers class com.j256.** {*;}
@@ -91,6 +91,7 @@
 -keep public class qfpay.wxshop.R$*{
     public static final int *;
 }
+
 -keepclassmembers class * {
    public <init>(org.json.JSONObject);
 }
