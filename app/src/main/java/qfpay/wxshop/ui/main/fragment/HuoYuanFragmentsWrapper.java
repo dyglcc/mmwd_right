@@ -4,8 +4,11 @@ import java.lang.ref.SoftReference;
 
 import android.content.Context;
 
+import qfpay.wxshop.config.WDConfig;
+import qfpay.wxshop.ui.web.CommonWebFragment_;
+
 public enum HuoYuanFragmentsWrapper {
-	OFFICIAL("click_official"),  MINE("click_mine");
+	OFFICIAL("click_official"),  FANS("click_fans"),  MINE("click_mine");
 
 	String umenEventName = "";
 	SoftReference<BaseFragment> fragmentRef;
@@ -14,16 +17,6 @@ public enum HuoYuanFragmentsWrapper {
 	HuoYuanFragmentsWrapper(String umenEventName) {
 		this.umenEventName = umenEventName;
 	}
-
-	// public static String getUmenEventName(int position) {
-	// switch (position) {
-	// case 0:
-	// return SSN.umenEventName;
-	// case 1:
-	// return MJX.umenEventName;
-	// }
-	// return "";
-	// }
 
 	public BaseFragment getFragment(Context context) {
 		if (fragmentRef == null || fragmentRef.get() == null) {
@@ -36,10 +29,10 @@ public enum HuoYuanFragmentsWrapper {
 		switch (position) {
 		case 0:
 			return OFFICIAL.getFragment(context);
-//		case 1:
-//			return FANS.getFragment(context);
-		case 1:
+		case 2:
 			return MINE.getFragment(context);
+		case 1:
+			return FANS.getFragment(context);
 		}
 		return null;
 	}
@@ -53,13 +46,13 @@ public enum HuoYuanFragmentsWrapper {
 		case 0:
 			OFFICIAL.onFragmentSelect();
 			break;
-//		case 1:
-//			FANS.onFragmentSelect();
-//			break;
+		case 2:
+            MINE.onFragmentSelect();
+            break;
 		case 1:
-			MINE.onFragmentSelect();
+			FANS.onFragmentSelect();
 			break;
-		}
+        }
 	}
 
 	public void onFragmentSelect() {
@@ -77,10 +70,10 @@ public enum HuoYuanFragmentsWrapper {
 			fragmentRef = new SoftReference<BaseFragment>(
 					new OfficalListFragment_());
 			break;
-//		case FANS:
-//			fragmentRef = new SoftReference<BaseFragment>(
-//					new FansGoodsFragment_());
-//			break;
+		case FANS:
+                fragmentRef = new SoftReference<BaseFragment>(
+                        new CommonWebFragment_().init(WDConfig.getInstance().getPaihangbang(), true));
+                break;
 		case MINE:
 			fragmentRef = new SoftReference<BaseFragment>(
 					new MineBuysListFragment_());
@@ -88,36 +81,16 @@ public enum HuoYuanFragmentsWrapper {
 		}
 	}
 
-	public static void clear() {
-		if (OFFICIAL.fragmentRef != null) {
-			OFFICIAL.fragmentRef.clear();
-		}
-//		if (FANS.fragmentRef != null) {
-//			FANS.fragmentRef.clear();
-//		}
-		if (MINE.fragmentRef != null) {
-			MINE.fragmentRef.clear();
+        public static void clear() {
+            if (OFFICIAL.fragmentRef != null) {
+                OFFICIAL.fragmentRef.clear();
+            }
+            if (FANS.fragmentRef != null) {
+                FANS.fragmentRef.clear();
+            }
+            if (MINE.fragmentRef != null) {
+                MINE.fragmentRef.clear();
 		}
 	}
 
-	public static void onDestory() {
-		if (OFFICIAL.fragmentRef != null) {
-			BaseFragment fragment = OFFICIAL.fragmentRef.get();
-			if (fragment != null) {
-				fragment = null;
-			}
-		}
-//		if (FANS.fragmentRef != null) {
-//			BaseFragment fragment = FANS.fragmentRef.get();
-//			if (fragment != null) {
-//				fragment = null;
-//			}
-//		}
-		if (MINE.fragmentRef != null) {
-			BaseFragment fragment = MINE.fragmentRef.get();
-			if (fragment != null) {
-				fragment = null;
-			}
-		}
-	}
 }

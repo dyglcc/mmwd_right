@@ -59,5 +59,24 @@
             android:background="@null"
             android:src="@drawable/selector_button_huoyuan_search" />
     </LinearLayout>
-
+    <ImageView
+        android:id="@+id/iv_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/commodity_list_refresh"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/iv_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="6dip"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/selector_huoyuan_services"
+        android:visibility="visible" />
 </RelativeLayout>

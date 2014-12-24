@@ -66,7 +66,7 @@ public class OfficialGoodsItem extends LinearLayout {
 //		tp1.setStyle(Style.STROKE);
 		TextPaint tp2 = tv_goods_name.getPaint();
 		tp2.setStyle(Style.FILL);
-		lowPrice.setText("￥" + gb.getWholesale_price());
+		lowPrice.setText(gb.getWholesale_price());
 
 		guidePrice.setText("指导价" + getPrice(gb.getPrice())+"元");
 

@@ -503,7 +503,9 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="home" />
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="52d3ab5756240ba34e1c2b26" >

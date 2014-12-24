@@ -78,7 +78,7 @@ public class WxShopApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-        AnalyticsConfig.setChannel(BuildConfig.CHANNEL);
+//        AnalyticsConfig.setChannel(BuildConfig.CHANNEL);
 		BackgroundExecutor.setExecutor(Executors.newScheduledThreadPool(8));
 		if(!T.isTesting){
 			ACRA.init(this);
