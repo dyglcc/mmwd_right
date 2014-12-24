@@ -72,7 +72,7 @@ public enum HuoYuanFragmentsWrapper {
 			break;
 		case FANS:
                 fragmentRef = new SoftReference<BaseFragment>(
-                        new CommonWebFragment_().init(WDConfig.getInstance().getPaihangbang(), true));
+                        new CommonWebFragment_().init(WDConfig.getInstance().getFansLoadUrl(context), true));
                 break;
 		case MINE:
 			fragmentRef = new SoftReference<BaseFragment>(

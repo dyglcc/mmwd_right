@@ -22,9 +22,9 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="10dip"
             android:gravity="center_vertical"
-            android:maxLines="2"
+            android:maxLines="5"
+            android:paddingRight="10dp"
             android:paddingLeft="6dip"
-            android:text="通知内容——标题"
             android:textSize="@dimen/text_size_normal" />
 
         <ImageView

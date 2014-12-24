@@ -79,7 +79,7 @@ public class NoticeListNetImpl extends AbstractNet {
 				}
 				List<NoticeItemBean> notification = fromJson.getData()
 						.getNotifications();
-				getClickAbleData(notification);
+//				getClickAbleData(notification);
 				list = new ArrayList<HashMap<String, Object>>();
 				map = new HashMap<String, Object>();
 				map.put("orderList", notification);

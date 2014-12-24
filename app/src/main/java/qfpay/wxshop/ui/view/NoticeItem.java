@@ -50,7 +50,7 @@ public class NoticeItem extends LinearLayout {
 			return;
 		}
 		
-		tv_content.setText(gb.getTitle());
+		tv_content.setText(gb.getContent());
 		if(gb.getClickable()!=null && gb.getClickable().equals("1")){
 			tv_detail.setVisibility(View.VISIBLE);
 		}else{

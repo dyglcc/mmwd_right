@@ -29,23 +29,23 @@ public class WDConfig {
 		case 2:
 			this.PIC_SERVER = "http://172.100.102.153:8181/";
 			// huoyuan url
-			WD_URL_HUO_YUAN = url.replaceAll("qmm.la", "mmwd.me");
+//			WD_URL_HUO_YUAN = url.replaceAll("qmm.la", "mmwd.me");
 			break;
 		case 1:
 			PIC_SERVER = "http://o2.qfpay.com/";
-			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		case -1:
 			PIC_SERVER = "http://o2.qfpay.com/";
-			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		case 0:
 			PIC_SERVER = "http://o2.qfpay.com/";
-			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		default:
 			PIC_SERVER = "http://o2.qfpay.com/";
-			WD_URL_HUO_YUAN = "http://mmwd.me/";
+//			WD_URL_HUO_YUAN = "http://mmwd.me/";
 			break;
 		}
 		this.WD_URL = url;
@@ -77,11 +77,7 @@ public class WDConfig {
 	public String WD_URL = "http://wx.qfpay.com/";
 	public int mPushServer;
 
-	public String WD_URL_HUO_YUAN = "http://mmwd.me/";
-	
-//	public void huoYuanWDURL(){
-//		return WD_URL+"mmwd.me/"
-//	}
+//	public String WD_URL_HUO_YUAN = "http://mmwd.me/";
 
 	public String getShopUrl() {
 		return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/";
@@ -117,6 +113,15 @@ public class WDConfig {
 	public String getStatURL(Context context) {
 
 		return WD_URL + "qmm/wd/app/shop_statistics?" + "appVersion="
+				+ Utils.getAppVersionString(context) + "&osversion="
+				+ Utils.getOSVerison(context);
+	}
+	/**
+	 * 粉丝货源
+	 * */
+	public String getFansLoadUrl(Context context) {
+
+		return "http://"+WxShopApplication.app.getDomainMMWDUrl() + "/h5/b-fshy.html?" + "appVersion="
 				+ Utils.getAppVersionString(context) + "&osversion="
 				+ Utils.getOSVerison(context);
 	}

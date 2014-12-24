@@ -10,6 +10,7 @@ import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.MyHuoyuanItemBean;
 import qfpay.wxshop.data.handler.MainHandler;
@@ -203,8 +204,7 @@ public class MineBuyItem extends LinearLayout {
 						&& !gb.getGoodid().equals("")) {
 					CommonWebActivityHuoyuan_
 							.intent(context)
-							.url(WDConfig.getInstance().WD_URL_HUO_YUAN
-									+ "h5/b-item.html?itemid=" + gb.getGoodid())
+							.url("http://"+ WxShopApplication.app.getDomainMMWDUrl()+"/h5/b-item.html?itemid=" + gb.getGoodid())
 							.title("商品详情")
 							.startForResult(
 									MaijiaxiuFragment.ACTION_HUOYUAN_ADD);
@@ -244,7 +244,7 @@ public class MineBuyItem extends LinearLayout {
 	}
 
 	private String getDetailUrl(MyHuoyuanItemBean gb2) {
-		return WDConfig.getInstance().WD_URL_HUO_YUAN + "my/order_detail/"
+		return "http://"+WxShopApplication.app.getDomainMMWDUrl() + "/my/order_detail/"
 				+ gb2.getId();
 	}
 
