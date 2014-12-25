@@ -80,9 +80,9 @@ public class WxShopApplication extends Application {
 		super.onCreate();
 //        AnalyticsConfig.setChannel(BuildConfig.CHANNEL);
 		BackgroundExecutor.setExecutor(Executors.newScheduledThreadPool(8));
-		if(!T.isTesting){
-			ACRA.init(this);
-		}
+//		if(!T.isTesting){
+//			ACRA.init(this);
+//		}
 		api = WXAPIFactory.createWXAPI(this, ConstValue.APP_ID, true);
 		api.registerApp(ConstValue.APP_ID);
 

@@ -58,7 +58,7 @@ public class ShareActivity extends BaseActivity implements
 	AQuery aq;
 	private String gaSrcfrom;
 	
-	private String reg1 = "http://mmwd.shop/\\d+";
+	private String reg1 = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/shop/\\d+";
 	private String reg2 = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/\\d+";
 	private String reg3 = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/h5/show.html[?]shopid=\\d+";
 	Pattern pattern1 = Pattern.compile(reg1);
@@ -93,6 +93,7 @@ public class ShareActivity extends BaseActivity implements
 			ShareSDK.initSDK(this);
 			initShare = true;
 		}
+        ShareSDK.removeCookieOnAuthorize(true);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setCustomView(R.layout.common_menuitem_shareactivity);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -507,7 +508,7 @@ public class ShareActivity extends BaseActivity implements
 		} else if (plat.getName().equals(TencentWeibo.NAME)) {
 			isTencentSharing = false;
 		}
-		
+
 	}
 
 	public void onError(Platform plat, int action, Throwable t) {
@@ -534,16 +535,16 @@ public class ShareActivity extends BaseActivity implements
 	}
 
 	private void checkAuth() {
-		if (!weibo.isValid()) {
-			iv_sina.setChecked(false);
-		}
-		if (!tecentWeibo.isValid()) {
-			iv_tencent.setChecked(false);
-		}
-		if (!qzone.isValid()) {
-			iv_qzone.setChecked(false);
-		}
-	}
+        if (!weibo.isValid()) {
+            iv_sina.setChecked(false);
+        }
+        if (!tecentWeibo.isValid()) {
+            iv_tencent.setChecked(false);
+        }
+        if (!qzone.isValid()) {
+            iv_qzone.setChecked(false);
+        }
+    }
 
 	// sp.site = "http://www.mmweidian.com";
 }
