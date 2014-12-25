@@ -13,7 +13,7 @@ import android.app.Activity;
 public class ShareUtils {
 
 	// 发送给朋友
-	public static void friendGoodItem(GoodsBean gb, Activity context) {
+	public static void friendGoodItem(GoodsBean gb, Activity context, String ga_st_extra) {
 		if(!WxShopApplication.api.isWXAppInstalled()){
 			Toaster.s(context, context.getString(R.string.tip_needinstallkehuduan));
 			return;
@@ -32,13 +32,13 @@ public class ShareUtils {
 		}
 		wdb.description = desc;
 		wdb.scope = ConstValue.friend_share;
-		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + gb.getGoodsId();
+		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium="+ga_st_extra +"&ga_source=entrance";
 		wdb.imgUrl = gb.getImageUrl();
 		
 		UtilsWeixinShare.shareWeb(wdb,ConstValue.android_mmwdapp_manageshare_wcfriend, context);
 	}
 
-	public static ShareBean getShareBean(GoodsBean gb, Activity context) {
+	public static ShareBean getShareBean(GoodsBean gb, Activity context, String ga_st_extra) {
 		ShareBean sb = new ShareBean();
 		if (gb == null || gb.getImageUrl() == null
 				|| gb.getImageUrl().equals("")) {
@@ -54,7 +54,7 @@ public class ShareUtils {
 		// if (jsonObject.has("MsgImg")) {
 		// shareBean.imgUrl = jsonObject.getString("MsgImg");
 		// }
-		sb.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + gb.getGoodsId();
+		sb.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium="+ga_st_extra +"&ga_source=entrance";
 
 		// if (jsonObject.has("link")) {
 		// shareBean.link = jsonObject.getString("link");
@@ -70,7 +70,7 @@ public class ShareUtils {
 				descString = descString.substring(0,98)+"...";
 			}
 			sb.title = "亲,我的店铺又有新宝贝了哦! " + gb.getGoodName() + " 仅需" + gb.getPriceStr()
-					+ "元,点击宝贝链接" + "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + gb.getGoodsId() + " 直接下单购买哦";
+					+ "元,点击宝贝链接" + "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + " 直接下单购买哦";
 			
 //			sb.title = "【新品推荐】" + gb.getGoodName() + "仅需" + gb.getPriceStr()
 //					+ "元，欢迎进店选购下单哟！";
@@ -93,14 +93,14 @@ public class ShareUtils {
 	}
 
 	// 发送朋友圈
-	public static void momentsGoodItem(GoodsBean gb,Activity context) {
+	public static void momentsGoodItem(GoodsBean gb,Activity context, String ga_st_extra) {
 		if(!WxShopApplication.api.isWXAppInstalled()){
 			Toaster.s(context, context.getString(R.string.tip_needinstallkehuduan));
 			return;
 		}
 		WeiXinDataBean wdb = new WeiXinDataBean();
 		MobAgentTools.OnEventMobOnDiffUser(context, "weixin_share_moment_begin");
-		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + gb.getGoodsId();
+		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium="+ga_st_extra +"&ga_source=entrance";
 		wdb.imgUrl = gb.getImageUrl();
 		String desc = gb.getGoodDesc();
 		if (desc.length() > 100) {

@@ -1,4 +1,3 @@
-# 迭代优化次数
 -optimizationpasses 99
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
@@ -35,6 +34,9 @@
 
 -keep class com.de.greenrobot.event.** { *;}
 -dontwarn com.de.greenrobot.event.**
+
+-keep class cn.sharesdk.** { *;}
+-dontwarn cn.sharesdk.**
 
 -keep class retrofit.** { *;}
 -dontwarn retrofit.**
