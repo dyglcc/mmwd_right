@@ -89,6 +89,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release // use the signing setting
         }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release // use the signing setting
+        }
     }
     // The source sets, can define multi-setinz
     sourceSets {

@@ -336,7 +336,7 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 	private void friendGoodItem(CommodityModel model) {
 		MobAgentTools.OnEventMobOnDiffUser(getActivity(), "weixin_share_friend_begin");
 		WeiXinDataBean wdb = new WeiXinDataBean();
-		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + model.getID();
+		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + model.getID();
 		wdb.imgUrl = QFCommonUtils.generateQiniuUrl(model.getImgUrl(), ImageSizeForUrl.MIN);
 		String desc = model.getDescript();
 		if (desc.length() > 100) {
@@ -355,7 +355,7 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 	protected ShareBean getShareBean(String str, CommodityModel model) {
 		ShareBean shareBean = new ShareBean();
 		shareBean.imgUrl = Utils.getThumblePic(model.getImgUrl(), ConstValue.shareBigPic);
-		shareBean.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + model.getID();
+		shareBean.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + model.getID();
 		
 		SalesPromotionModel promotionModel = model.getSalesPromotion();
 		if (promotionModel != null && promotionModel.getPromotionID() != 0) {
