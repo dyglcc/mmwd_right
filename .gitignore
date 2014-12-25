@@ -2,5 +2,10 @@
 .idea/
 app/build/
 build/
-
+local.properties
+app/app.iml
+gradle.properties
+gradlew
+gradlew.bat
+setting.gradle
 /.DS_Store

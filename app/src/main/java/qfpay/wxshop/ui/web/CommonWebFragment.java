@@ -148,9 +148,6 @@ public class CommonWebFragment extends BaseFragment {
 			}
 			header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
 			Utils.setCookies(url, getActivity());
-			if (url != null && !"".equals(url)) {
-				webView.loadUrl(url,header);
-			}
 			return true;
 		}
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
