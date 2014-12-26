@@ -32,10 +32,10 @@ public class ShareUtils {
 		}
 		wdb.description = desc;
 		wdb.scope = ConstValue.friend_share;
-		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium="+ga_st_extra +"&ga_source=entrance";
+		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId();
 		wdb.imgUrl = gb.getImageUrl();
 		
-		UtilsWeixinShare.shareWeb(wdb,ConstValue.android_mmwdapp_manageshare_wcfriend, context);
+		UtilsWeixinShare.shareWeb(wdb, ga_st_extra, context);
 	}
 
 	public static ShareBean getShareBean(GoodsBean gb, Activity context, String ga_st_extra) {
@@ -100,7 +100,7 @@ public class ShareUtils {
 		}
 		WeiXinDataBean wdb = new WeiXinDataBean();
 		MobAgentTools.OnEventMobOnDiffUser(context, "weixin_share_moment_begin");
-		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium="+ga_st_extra +"&ga_source=entrance";
+		wdb.url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId();
 		wdb.imgUrl = gb.getImageUrl();
 		String desc = gb.getGoodDesc();
 		if (desc.length() > 100) {
@@ -117,7 +117,7 @@ public class ShareUtils {
 					+ "元，欢迎进店选购下单哟！";
 		}
 		wdb.scope = ConstValue.circle_share;
-		UtilsWeixinShare.shareWeb(wdb,ConstValue.android_mmwdapp_manageshare_wctimeline, context);
+		UtilsWeixinShare.shareWeb(wdb, ga_st_extra, context);
 
 	}
 
