@@ -23,7 +23,10 @@ import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.view.animation.Animation;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.actionbarsherlock.view.Menu;
@@ -42,7 +45,7 @@ public class CommonWebActivity extends BaseActivity implements OnShareLinstener 
 	@Extra List<SharedPlatfrom> platFroms;
 	@Extra String shareTitle = "", shareName = "", shareDescript = "";
 	@Extra String pointName = "";
-	
+
 	@AfterViews void init() {
 		getSupportActionBar().setTitle(title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -136,4 +139,5 @@ public class CommonWebActivity extends BaseActivity implements OnShareLinstener 
 			MobAgentTools.OnEventMobOnDiffUser(this, "Click_faixiangemiao_fenxiang");
 		}
 	}
+
 }
