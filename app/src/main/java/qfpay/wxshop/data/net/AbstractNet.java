@@ -11,6 +11,8 @@ import qfpay.wxshop.activity.LoginActivity;
 import qfpay.wxshop.ui.view.CustomProgressDialog;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
+
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -41,16 +43,6 @@ public abstract class AbstractNet {
 
 	// protected Context context;
 
-	/**
-	 * 网络请求
-	 * 
-	 * @param parameter
-	 *            传入的参数
-	 * @param handler
-	 *            回调
-	 * @param requestId
-	 *            请求ID
-	 */
 	public void setNoNeedShowDialog() {
 		this.needShowDialog = false;
 	}
@@ -91,6 +83,9 @@ public abstract class AbstractNet {
 
 	private void showDoalog() {
 		// services undo
+        if(activity == null){
+            return;
+        }
 		if (activity instanceof Service) {
 			return;
 		}
@@ -98,6 +93,10 @@ public abstract class AbstractNet {
 		if (!needShowDialog) {
 			return;
 		}
+
+        if(((Activity)activity).isFinishing()){
+            return;
+        }
 		progressDialog = CustomProgressDialog.createDialog4BBS(activity);
 		progressDialog.setMessage(dialogMessage);
 		progressDialog.show();
