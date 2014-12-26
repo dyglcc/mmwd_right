@@ -8,6 +8,7 @@ import java.util.Map;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.DrawableRes;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
@@ -19,6 +20,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
 import android.webkit.DownloadListener;
@@ -32,9 +35,10 @@ import android.widget.LinearLayout;
 
 @EFragment(R.layout.web_common_fragment)
 public class CommonWebFragment extends BaseFragment {
-	@ViewById WebView             webView;
-	@ViewById LinearLayout        ll_fail;
-	@ViewById ImageView           iv_loading;
+	@ViewById    WebView             webView;
+	@ViewById    LinearLayout        ll_fail;
+	@ViewById    ImageView           iv_loading;
+    @DrawableRes Drawable            commodity_list_refresh;
 	
 	private String                url                   = "";
 	private boolean               isNeedLoadNewActivity = false;
@@ -48,6 +52,10 @@ public class CommonWebFragment extends BaseFragment {
 		if (webView == null) {
 			return;
 		}
+
+        iv_loading.setImageDrawable(commodity_list_refresh);
+        ((AnimationDrawable) (commodity_list_refresh)).start();
+
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setDefaultTextEncodingName("utf-8");
 		webView.getSettings().setBuiltInZoomControls(false);
@@ -119,7 +127,9 @@ public class CommonWebFragment extends BaseFragment {
 			webView.setVisibility(View.INVISIBLE);
 			ll_fail.setVisibility(View.GONE);
 			iv_loading.setVisibility(View.VISIBLE);
-		}
+            iv_loading.setImageDrawable(commodity_list_refresh);
+            ((AnimationDrawable) (commodity_list_refresh)).start();
+        }
 	}
 	
 	enum PageState {
