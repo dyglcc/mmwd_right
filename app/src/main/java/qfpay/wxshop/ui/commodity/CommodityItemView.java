@@ -200,7 +200,10 @@ public class CommodityItemView extends LinearLayout {
 					@Override public void onClick(View v) {
 						Intent intent = new Intent(getContext(), ManagePreViewActivity.class);
 						intent.putExtra(ConstValue.TITLE, "店铺预览");
-						intent.putExtra(ConstValue.URL, WDConfig.getInstance().getShopUrl() + WxShopApplication.dataEngine.getShopId());
+						intent.putExtra(ConstValue.URL,
+                                WDConfig.getInstance().getShopUrl()
+                                + WxShopApplication.dataEngine.getShopId()
+                                + "?ga_medium=android_mmwdapp_stickpreview_&ga_source=entrance");
 						getContext().startActivity(intent);
 					}
 				});
@@ -211,7 +214,7 @@ public class CommodityItemView extends LinearLayout {
 		MobAgentTools.OnEventMobOnDiffUser(getContext(), "management_goodspreview");
 		Intent intent = new Intent(getContext(), ManagePreViewActivity.class);
 		intent.putExtra(ConstValue.TITLE, "商品预览");
-		intent.putExtra(ConstValue.URL, "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item_detail/" + data.model.getID() + "?from=app_preview");
+		intent.putExtra(ConstValue.URL, "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item_detail/" + data.model.getID() + "?ga_medium=android_mmwdapp_managepreview_&ga_source=entrance&from=app_preview");
 		getContext().startActivity(intent);
 	}
 	
