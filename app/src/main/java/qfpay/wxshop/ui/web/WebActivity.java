@@ -1,27 +1,17 @@
 package qfpay.wxshop.ui.web;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.ViewById;
-
-import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.main.fragment.OrderFragment_;
-
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.webkit.CookieManager;
+import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -30,6 +20,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ViewById;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.ui.main.fragment.OrderFragment_;
+import qfpay.wxshop.utils.Utils;
 
 @EActivity(R.layout.web_activity)
 public class WebActivity extends BaseActivity {
@@ -65,6 +70,28 @@ public class WebActivity extends BaseActivity {
 		webSettings.setDomStorageEnabled(true);
 		webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 		header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message,
+                                     final JsResult result) {
+                AlertDialog.Builder b2 = new AlertDialog.Builder(WebActivity.this)
+                        .setTitle(getString(R.string.hint))
+                        .setMessage(message)
+                        .setPositiveButton("ok",
+                                new AlertDialog.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        result.confirm();
+                                    }
+                                });
+
+                b2.setCancelable(false);
+                b2.create();
+                b2.show();
+                return true;
+            }
+        });
 		new WebViewTask().execute();
 	}
 
@@ -114,7 +141,7 @@ public class WebActivity extends BaseActivity {
 				}
 
 				public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//					qfpay.wxshop.utils.Utils.setCookiesOrderList(url, WebActivity.this);
+                    Utils.setCookies(url, WebActivity.this);
 					webView.loadUrl(url,header);
 					return true;
 				}

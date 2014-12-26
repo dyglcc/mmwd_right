@@ -1,5 +1,15 @@
 package qfpay.wxshop.activity.share;
 
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,31 +27,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.androidquery.AQuery;
-
-import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 
-import m.framework.utils.UIHandler;
-import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.utils.MobAgentTools;
-import qfpay.wxshop.utils.Toaster;
-import qfpay.wxshop.utils.Utils;
+import com.actionbarsherlock.app.ActionBar;
+import com.androidquery.AQuery;
 
 public class ShareActivity extends BaseActivity implements
-        PlatformActionListener, Callback {
+		PlatformActionListener, Callback {
 	private boolean initShare;
 
 	private Button btn_back;
@@ -59,8 +57,8 @@ public class ShareActivity extends BaseActivity implements
 	private Platform tecentWeibo;
 	AQuery aq;
 	private String gaSrcfrom;
-	
-	private String reg1 = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/shop/\\d+";
+
+    private String reg1 = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/shop/\\d+";
 	private String reg2 = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/\\d+";
 	private String reg3 = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/h5/show.html[?]shopid=\\d+";
 	Pattern pattern1 = Pattern.compile(reg1);
@@ -95,7 +93,6 @@ public class ShareActivity extends BaseActivity implements
 			ShareSDK.initSDK(this);
 			initShare = true;
 		}
-        ShareSDK.removeCookieOnAuthorize(true);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setCustomView(R.layout.common_menuitem_shareactivity);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -140,10 +137,6 @@ public class ShareActivity extends BaseActivity implements
 			public void onCheckedChanged(CompoundButton view, boolean checked) {
 				if (checked) {
 					// 如果微博未绑定
-                    if(weibo==null){
-                        iv_sina.setChecked(false);
-                        return;
-                    }
 					if (!weibo.isValid()) {
 						Toaster.l(ShareActivity.this, "开始授权");
 						weibo.setPlatformActionListener(authorListener);
@@ -514,7 +507,7 @@ public class ShareActivity extends BaseActivity implements
 		} else if (plat.getName().equals(TencentWeibo.NAME)) {
 			isTencentSharing = false;
 		}
-
+		
 	}
 
 	public void onError(Platform plat, int action, Throwable t) {
@@ -523,7 +516,7 @@ public class ShareActivity extends BaseActivity implements
 		msg.arg1 = 2;
 		msg.arg2 = action;
 		msg.obj = t;
-        UIHandler.sendMessage(msg, this);
+		UIHandler.sendMessage(msg, this);
 		if (plat.getName().equals(SinaWeibo.NAME)) {
 			MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
 					"sina_share_faill_sharesdk");
@@ -541,14 +534,16 @@ public class ShareActivity extends BaseActivity implements
 	}
 
 	private void checkAuth() {
-        if (!weibo.isValid()) {
-            iv_sina.setChecked(false);
-        }
-        if (!tecentWeibo.isValid()) {
-            iv_tencent.setChecked(false);
-        }
-        if (!qzone.isValid()) {
-            iv_qzone.setChecked(false);
-        }
-    }
+		if (!weibo.isValid()) {
+			iv_sina.setChecked(false);
+		}
+		if (!tecentWeibo.isValid()) {
+			iv_tencent.setChecked(false);
+		}
+		if (!qzone.isValid()) {
+			iv_qzone.setChecked(false);
+		}
+	}
+
+	// sp.site = "http://www.mmweidian.com";
 }
