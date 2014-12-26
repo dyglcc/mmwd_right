@@ -1,6 +1,5 @@
 package qfpay.wxshop.data.net;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
 
