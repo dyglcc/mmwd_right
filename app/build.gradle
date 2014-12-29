@@ -46,12 +46,6 @@ dependencies {
     // AndroidViewAni
     compile 'com.daimajia.easing:library:1.0.0@aar'
     compile 'com.daimajia.androidanimations:library:1.1.3@aar'
-    compile files('libs/umeng-analytics-v5.2.4.jar')
-    compile files('libs/ShareSDK-Core-2.3.12.jar')
-    compile files('libs/ShareSDK-QQ-2.3.12.jar')
-    compile files('libs/ShareSDK-QZone-2.3.12.jar')
-    compile files('libs/ShareSDK-SinaWeibo-2.3.12.jar')
-    compile files('libs/ShareSDK-TencentWeibo-2.3.12.jar')
 }
 
 // Setup the Annotations Complier
@@ -115,8 +109,124 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
     productFlavors {
+        jiuyaozhushou {
+            buildConfigField "String", "CHANNEL", "\"91zhushou\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        sanliulingsc {
+            buildConfigField "String", "CHANNEL", "\"360sc\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        anzhi {
+            buildConfigField "String", "CHANNEL", "\"anzhi\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        anzhuosc {
+            buildConfigField "String", "CHANNEL", "\"anzhuosc\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        eoe {
+            buildConfigField "String", "CHANNEL", "\"eoe\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        googleplay {
+            buildConfigField "String", "CHANNEL", "\"googleplay\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
         home {
             buildConfigField "String", "CHANNEL", "\"home\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        huawei {
+            buildConfigField "String", "CHANNEL", "\"huawei\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        jifeng {
+            buildConfigField "String", "CHANNEL", "\"jifeng\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        jinshan {
+            buildConfigField "String", "CHANNEL", "\"jinshan\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        lamabang {
+            buildConfigField "String", "CHANNEL", "\"lamabang\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        lenovo {
+            buildConfigField "String", "CHANNEL", "\"lenovo\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        nduo {
+            buildConfigField "String", "CHANNEL", "\"nduo\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        oppo {
+            buildConfigField "String", "CHANNEL", "\"oppo\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        taobao {
+            buildConfigField "String", "CHANNEL", "\"taobao\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        wandoujia {
+            buildConfigField "String", "CHANNEL", "\"wandoujia\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        wandoujiatg {
+            buildConfigField "String", "CHANNEL", "\"wandoujiatg\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        webLinks {
+            buildConfigField "String", "CHANNEL", "\"webLinks\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        weixin {
+            buildConfigField "String", "CHANNEL", "\"weixin\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        xiaoaishouji {
+            buildConfigField "String", "CHANNEL", "\"xiaoaishouji\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        xiaomi {
+            buildConfigField "String", "CHANNEL", "\"xiaomi\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        xiumeijia {
+            buildConfigField "String", "CHANNEL", "\"xiumeijia\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        yingyongbao {
+            buildConfigField "String", "CHANNEL", "\"yingyongbao\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        yingyongbaotg {
+            buildConfigField "String", "CHANNEL", "\"yingyongbaotg\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        yingyonghui {
+            buildConfigField "String", "CHANNEL", "\"yingyonghui\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        sanxing {
+            buildConfigField "String", "CHANNEL", "\"sanxing\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        meizu {
+            buildConfigField "String", "CHANNEL", "\"meizu\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        mumayi {
+            buildConfigField "String", "CHANNEL", "\"mumayi\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        sougou {
+            buildConfigField "String", "CHANNEL", "\"sougou\""
+            buildConfigField "boolean", "isFirstLaunch", "false"
+        }
+        jinli {
+            buildConfigField "String", "CHANNEL", "\"jinli\""
             buildConfigField "boolean", "isFirstLaunch", "false"
         }
     }
