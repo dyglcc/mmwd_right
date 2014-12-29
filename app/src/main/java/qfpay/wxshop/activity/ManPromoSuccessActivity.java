@@ -89,7 +89,7 @@ public class ManPromoSuccessActivity extends BaseActivity {
 	void btn_preview() {
 		Intent intent = new Intent(this, ManagePreViewActivity.class);
 		intent.putExtra(ConstValue.TITLE, "商品预览");
-		String url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_seckill_&ga_source=entrance";
+		String url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_seckill_&ga_source=entrance";
 		intent.putExtra(ConstValue.URL, url);
 		startActivity(intent);
 	}
@@ -125,10 +125,9 @@ public class ManPromoSuccessActivity extends BaseActivity {
 		MobAgentTools.OnEventMobOnDiffUser(this,
 				"seckill_sharegoods_onekey_manage");
 
-		WxShopApplication.shareBean = ShareUtils.getShareBean(gb,
-				ManPromoSuccessActivity.this, "android_mmwdapp_seckill_");
+		WxShopApplication.shareBean = ShareUtils.getShareBean(gb, ManPromoSuccessActivity.this);
 		Intent intent = new Intent(ManPromoSuccessActivity.this, ShareActivity.class);
-		intent.putExtra(ConstValue.gaSrcfrom, ConstValue.android_mmwdapp_postpreview_);
+		intent.putExtra(ConstValue.gaSrcfrom, "android_mmwdapp_seckill_");
 		intent.putExtra("share_content_type", ShareActivity.SHARE_CONTENT_MANPRO_SUCCESS);
 		startActivity(intent);
 	}

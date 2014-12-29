@@ -152,7 +152,7 @@ public class EdititemDoneActivity extends BaseActivity {
 	@Click(R.id.ll_share_onekey)
 	void shareOneKey() {
 		MobAgentTools.OnEventMobOnDiffUser(this, "One_keyword_publish");
-		WxShopApplication.shareBean = ShareUtils.getShareBean(getGoodsBean(wrapper), this, "android_mmwdapp_postshare_");
+		WxShopApplication.shareBean = ShareUtils.getShareBean(getGoodsBean(wrapper), this);
 		Intent intent = new Intent(EdititemDoneActivity.this, ShareActivity.class);
 		intent.putExtra(ConstValue.gaSrcfrom, "android_mmwdapp_postshare_");
 		intent.putExtra("share_content_type", ShareActivity.SHARE_CONTENT_GOOD_ITEM);
