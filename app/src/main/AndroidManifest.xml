@@ -504,7 +504,7 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.HuoyuanQmmActivity"
+            android:name="qfpay.wxshop.activity.HuoyuanQmmActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
