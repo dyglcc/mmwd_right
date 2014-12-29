@@ -23,6 +23,7 @@ import qfpay.wxshop.ui.commodity.CommodityDataController;
 import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;
@@ -167,7 +168,7 @@ public class ShopFragment extends BaseFragment implements OnShareLinstener {
 			sb.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/shop/"
 					+ WxShopApplication.dataEngine.getShopId()+ " ";
 		} else {
-			sb.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + model.getID();
+			sb.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + model.getID();
 		}
 		if (str.equals("shop")) {
 			sb.title = WxShopApplication.dataEngine.getShopName()
@@ -186,7 +187,7 @@ public class ShopFragment extends BaseFragment implements OnShareLinstener {
 				// 【店铺名字】又有新货上架啦，请大家多多支持，进来捧个场，点个赞哟！店铺链接：
 				sb.title = "亲,我的店铺又有新宝贝了哦! " + model.getName() + " 仅需"
 						+ model.getPrice() + "元,点击宝贝链接 "
-						+ "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + model.getID()
+						+ "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + model.getID()
 						+ " 直接下单购买哦";
 				sb.from = "manageshop";
 			}
