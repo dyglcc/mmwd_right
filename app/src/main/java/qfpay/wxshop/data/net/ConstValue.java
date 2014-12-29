@@ -205,7 +205,8 @@ public class ConstValue {
 	public static final String monthTrade = "monthTrade";
 	public static final String tariff = "tariff";
 	public static final String devicePrice = "devicePrice";
-	public static final String umentparaReg = "umentparaReg";
+	public static final String umentparaResg = "umentparaReg";
+	public static final String HuoYuan_kefu_display = "HuoYuan_kefu_display";
 	public static final String SUISUINIAN_ACTIVITY = "SSN_ACTIVITY";
 	public static final String fengefu = " ";
 

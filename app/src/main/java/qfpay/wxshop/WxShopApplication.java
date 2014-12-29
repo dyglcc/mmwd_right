@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.concurrent.Executors;
 
-import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EApplication;
 import org.androidannotations.api.BackgroundExecutor;
 import org.json.JSONException;
@@ -21,8 +21,6 @@ import qfpay.wxshop.listener.MaijiaxiuUploadListener;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.MoreActivity;
-import qfpay.wxshop.ui.selectpic.AlbumActivity;
-import qfpay.wxshop.ui.selectpic.ImageGridActivity;
 import qfpay.wxshop.ui.selectpic.ImageItem;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
@@ -33,12 +31,10 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.DisplayMetrics;
 
 import com.amap.mapapi.location.LocationManagerProxy;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener;
 
@@ -46,15 +42,8 @@ import com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener;
 @ReportsCrashes(mailTo = "lifangzhe@qfpay.com", mode = ReportingInteractionMode.SILENT, formKey = "")
 public class WxShopApplication extends Application {
 	public static IWXAPI api;
-	public static final int DEFAULT_THREADPOLL_SIZE = 15;
 	public static  boolean IS_NEED_REFRESH_MINE_HUOYUAN = false;
 
-	public static int notifyId;
-	public static String accessToken;
-	public static String channelId;
-	public static String baiduUserId;
-
-	public static String testUrl = null;
 	public static DataEngine dataEngine;
 	public byte[] aeskey;
 
@@ -91,6 +80,7 @@ public class WxShopApplication extends Application {
 		MobclickAgent.updateOnlineConfig(this);
 		initDataEngin();
 		getUmenDomain();
+        getDisplayHuoyuanKefuButton();
 		getSSNactivityPara();
 		MobclickAgent
 				.setOnlineConfigureListener(new UmengOnlineConfigureListener() {
@@ -149,6 +139,7 @@ public class WxShopApplication extends Application {
 	public static WxShopApplication app = null;
 	public static String UPDATE_APK_URL = null;
 	public String DOMAIN_MMWD_URL = null;
+	public String HUOYUAN_KEFU_DISPLAY = "yes";
 	public static String locationString;
 	public static boolean MAIN_IS_RUNNING;
 
@@ -176,16 +167,6 @@ public class WxShopApplication extends Application {
 		actList.add(baseActivity);
 	}
 
-	public void closeChoosePicActivity() {
-		for (int i = 0; i < actList.size(); i++) {
-			Activity act = actList.get(i);
-			if (act.getClass().getName().equals(AlbumActivity.class.getName())
-					|| act.getClass().getName()
-							.equals(ImageGridActivity.class.getName())) {
-				act.finish();
-			}
-		}
-	}
 
 	public void checkUpdate(final Context context, final Handler handler) {
 		if (context != null) {
@@ -280,7 +261,19 @@ public class WxShopApplication extends Application {
 		}
 
 	}
+	public void getDisplayHuoyuanKefuButton() {
+		if (Utils.isCanConnectionNetWork(this)) {
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+                        HUOYUAN_KEFU_DISPLAY = MobclickAgent.getConfigParams(
+								getApplicationContext(), ConstValue.HuoYuan_kefu_display);
+				}
+			}).start();
+		}
 
+	}
+    @Background(delay = 1000)
 	public void getSSNactivityPara() {
 		if (Utils.isCanConnectionNetWork(this)) {
 			new Thread(new Runnable() {
@@ -332,14 +325,4 @@ public class WxShopApplication extends Application {
 
 	}
 
-	public boolean checkDupMainactivity(String checkName) {
-		for (int i = 0; i < actList.size(); i++) {
-			Activity act = actList.get(i);
-			if (act.getClass().getName().equals(MainActivity_.class.getName())) {
-				return true;
-			}
-		}
-		return false;
-	}
-	// test
 }
