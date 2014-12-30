@@ -67,15 +67,15 @@ public class BusinessCommunityFragment extends BaseFragment {
 			CommonWebFragment fragment = new CommonWebFragment_();
 			switch (position) {
 			case 0:
-				fragment.init(WDConfig.FAXIANGEMIAO, true, getString(R.string.share_faxiangemiao_title), ConstValue.SHARE_NAME_FINDMIAO, 
+				fragment.init(WDConfig.FAXIANGEMIAO, true, getString(R.string.share_faxiangemiao_title), ConstValue.SHARE_NAME_FINDMIAO, "",
 						SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS);
 				break;
 			case 1:
-				fragment.init(WDConfig.getInstance().getPaihangbang(), true);
+				fragment.init(WDConfig.getInstance().getPaihangbang(), true,"");
 				T.d("paihangbang + " + WDConfig.getInstance().getPaihangbang());
 				break;
 			case 2:
-				fragment.init(WDConfig.getInstance().getCommoditySource(), true);
+				fragment.init(WDConfig.getInstance().getCommoditySource(), true,"");
 				T.d("paihangbang + " + WDConfig.getInstance().getCommoditySource());
 				break;
 			}

@@ -49,7 +49,7 @@ public class CommonWebActivity extends BaseActivity implements OnShareLinstener 
 	@AfterViews void init() {
 		getSupportActionBar().setTitle(title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		webFragment.init(url, false);
+		webFragment.init(url, false,title);
 	}
 	
 	@Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,19 +71,26 @@ public class CommonWebActivity extends BaseActivity implements OnShareLinstener 
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	@Override public void onBackPressed() {
-		webFragment.goBack();
-		exePush();
-		super.onBackPressed();
-	}
-	
+
+
+    @Override
+    public void onBackPressed() {
+        if(webView != null){
+            if(webView.canGoBack()){
+                webView.goBack();
+            }else{
+                exePush();
+            }
+        }
+    }
+
 	private void exePush(){
 		if(push!=null && !push.equals("")){
 			Intent intent = new Intent (this,MainActivity_.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 			startActivity(intent);
 		}
+        finish();
 	}
 
 	@Override

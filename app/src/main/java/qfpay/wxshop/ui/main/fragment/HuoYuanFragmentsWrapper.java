@@ -74,7 +74,7 @@ public enum HuoYuanFragmentsWrapper {
             case FANS:
                 MobAgentTools.OnEventMobOnDiffUser(context, "click_Supply_of_goods_Fans_of_supply");
                 fragmentRef = new SoftReference<BaseFragment>(
-                        new CommonWebFragment_().init(WDConfig.getInstance().getFansLoadUrl(context), true));
+                        new CommonWebFragment_().init(WDConfig.getInstance().getFansLoadUrl(context), true,"粉丝货源"));
                 break;
             case MINE:
                 fragmentRef = new SoftReference<BaseFragment>(
