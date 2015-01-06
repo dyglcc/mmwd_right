@@ -66,6 +66,7 @@ android {
         targetSdkVersion 19
         versionCode 94
         versionName "3.8.0"
+        manifestPlaceholders = [channelName: "home", isFirstLauncher: "false"]
     }
     // The Signing Setting
     signingConfigs {
@@ -90,7 +91,7 @@ android {
             signingConfig signingConfigs.release // use the signing setting
         }
         debug {
-            minifyEnabled false
+            minifyEnabled true
             signingConfig signingConfigs.release // use the signing setting
         }
     }
@@ -110,124 +111,88 @@ android {
     }
     productFlavors {
         jiuyaozhushou {
-            buildConfigField "String", "CHANNEL", "\"91zhushou\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "91zhushou", isFirstLauncher: "false"]
         }
         sanliulingsc {
-            buildConfigField "String", "CHANNEL", "\"360sc\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "360sc", isFirstLauncher: "false"]
         }
         anzhi {
-            buildConfigField "String", "CHANNEL", "\"anzhi\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "anzhi", isFirstLauncher: "false"]
         }
         anzhuosc {
-            buildConfigField "String", "CHANNEL", "\"anzhuosc\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "anzhuosc", isFirstLauncher: "false"]
         }
         eoe {
-            buildConfigField "String", "CHANNEL", "\"eoe\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "eoe", isFirstLauncher: "false"]
         }
         googleplay {
-            buildConfigField "String", "CHANNEL", "\"googleplay\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
-        }
-        home {
-            buildConfigField "String", "CHANNEL", "\"home\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "googleplay", isFirstLauncher: "false"]
         }
         huawei {
-            buildConfigField "String", "CHANNEL", "\"huawei\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "huawei", isFirstLauncher: "false"]
         }
         jifeng {
-            buildConfigField "String", "CHANNEL", "\"jifeng\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "jifeng", isFirstLauncher: "false"]
         }
         jinshan {
-            buildConfigField "String", "CHANNEL", "\"jinshan\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "jinshan", isFirstLauncher: "false"]
         }
         lamabang {
-            buildConfigField "String", "CHANNEL", "\"lamabang\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "lamabang", isFirstLauncher: "false"]
         }
         lenovo {
-            buildConfigField "String", "CHANNEL", "\"lenovo\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "lenovo", isFirstLauncher: "false"]
         }
         nduo {
-            buildConfigField "String", "CHANNEL", "\"nduo\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "nduo", isFirstLauncher: "false"]
         }
         oppo {
-            buildConfigField "String", "CHANNEL", "\"oppo\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "oppo", isFirstLauncher: "false"]
         }
         taobao {
-            buildConfigField "String", "CHANNEL", "\"taobao\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "taobao", isFirstLauncher: "false"]
         }
         wandoujia {
-            buildConfigField "String", "CHANNEL", "\"wandoujia\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
-        }
-        wandoujiatg {
-            buildConfigField "String", "CHANNEL", "\"wandoujiatg\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "wandoujia", isFirstLauncher: "false"]
         }
         webLinks {
-            buildConfigField "String", "CHANNEL", "\"webLinks\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "webLinks", isFirstLauncher: "false"]
         }
         weixin {
-            buildConfigField "String", "CHANNEL", "\"weixin\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "weixin", isFirstLauncher: "false"]
         }
         xiaoaishouji {
-            buildConfigField "String", "CHANNEL", "\"xiaoaishouji\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "xiaoaishouji", isFirstLauncher: "false"]
         }
         xiaomi {
-            buildConfigField "String", "CHANNEL", "\"xiaomi\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "xiaomi", isFirstLauncher: "false"]
         }
         xiumeijia {
-            buildConfigField "String", "CHANNEL", "\"xiumeijia\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "xiumeijia", isFirstLauncher: "false"]
         }
         yingyongbao {
-            buildConfigField "String", "CHANNEL", "\"yingyongbao\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "yingyongbao", isFirstLauncher: "false"]
         }
         yingyongbaotg {
-            buildConfigField "String", "CHANNEL", "\"yingyongbaotg\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "yingyongbaotg", isFirstLauncher: "false"]
         }
         yingyonghui {
-            buildConfigField "String", "CHANNEL", "\"yingyonghui\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "yingyonghui", isFirstLauncher: "false"]
         }
         sanxing {
-            buildConfigField "String", "CHANNEL", "\"sanxing\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "sanxing", isFirstLauncher: "false"]
         }
         meizu {
-            buildConfigField "String", "CHANNEL", "\"meizu\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "meizu", isFirstLauncher: "false"]
         }
         mumayi {
-            buildConfigField "String", "CHANNEL", "\"mumayi\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "mumayi", isFirstLauncher: "false"]
         }
         sougou {
-            buildConfigField "String", "CHANNEL", "\"sougou\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "sougou", isFirstLauncher: "false"]
         }
         jinli {
-            buildConfigField "String", "CHANNEL", "\"jinli\""
-            buildConfigField "boolean", "isFirstLaunch", "false"
+            manifestPlaceholders = [channelName: "jinli", isFirstLauncher: "false"]
         }
     }
 }

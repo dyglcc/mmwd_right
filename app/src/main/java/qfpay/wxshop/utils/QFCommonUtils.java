@@ -17,8 +17,11 @@ import qfpay.wxshop.dialogs.SimpleDialogFragment;
 import qfpay.wxshop.getui.ImageUtils.ImageSizeForUrl;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
@@ -236,4 +239,14 @@ public class QFCommonUtils {
 			}
 		}).start();
 	}
+
+    public static boolean isFirstLaunch(Context context) {
+        try {
+            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            Bundle bundle = ai.metaData;
+            return bundle.getBoolean("FIRST_LAUNCHER");
+        } catch (NameNotFoundException e) {
+            return false;
+        }
+    }
 }

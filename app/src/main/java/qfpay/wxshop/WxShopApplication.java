@@ -67,13 +67,12 @@ public class WxShopApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-//        AnalyticsConfig.setChannel(BuildConfig.CHANNEL);
 		BackgroundExecutor.setExecutor(Executors.newScheduledThreadPool(8));
 //		if(!T.isTesting){
 //			ACRA.init(this);
 //		}
 		api = WXAPIFactory.createWXAPI(this, ConstValue.APP_ID, true);
-		api.registerApp(ConstValue.APP_ID);
+        api.registerApp(ConstValue.APP_ID);
 
 		actList = new ArrayList<Activity>();
 		dataEngine = new DataEngine(this.getApplicationContext());
