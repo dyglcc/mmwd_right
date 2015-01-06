@@ -97,7 +97,7 @@ public enum ShopFragmentsWrapper {
 					new CommonWebFragment_().init(WDConfig.getInstance()
 							.getPreviewShopAddress()
 							+ WxShopApplication.dataEngine.getShopId()
-                            + "?ga_medium=android_mmwdapp_shoppreview_&ga_source=entrance", true));
+                            + "?ga_medium=android_mmwdapp_shoppreview_&ga_source=entrance", true,""));
 			break;
 		case STATISTICS:
 			fragmentRef = new SoftReference<BaseFragment>(

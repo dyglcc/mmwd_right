@@ -5,7 +5,7 @@ import android.util.Log;
 public class T {
 	static String AppName = "wd";
 
-	public static Boolean isTesting = true;
+	public static Boolean isTesting = false;
 
 	public static void i(String string) {
 		if (isTesting) {
