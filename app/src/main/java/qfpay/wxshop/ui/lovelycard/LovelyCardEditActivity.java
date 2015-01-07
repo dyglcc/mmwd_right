@@ -241,10 +241,11 @@ public class LovelyCardEditActivity extends BaseActivity implements ISimpleDialo
 			}
 			if (result.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)) {
 				CommonWebActivity_.intent(this)
-						.url(getLovelyCardUrl())
+						.url(getLovelyCardUrl("android_mmwdapp_namecardpreview_"))
 						.shareTitle(String.format(SHARE_TITLE, name))
 						.shareName("萌片页")
 						.shareDescript(SHARE_CONTENT)
+                        .shareIconUrl(bgimg)
 						.platFroms(Arrays.asList(SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS, SharedPlatfrom.COPY))
 						.start();
 				if (hasEdited) toast("保存成功辣!");
@@ -266,7 +267,7 @@ public class LovelyCardEditActivity extends BaseActivity implements ISimpleDialo
 	 */
 	@Override
 	public void onPositiveButtonClicked(int requestCode) {
-		
+
 	}
 
 	/**
@@ -304,9 +305,9 @@ public class LovelyCardEditActivity extends BaseActivity implements ISimpleDialo
 		Toaster.s(this, content);
 	}
 
-	public static String getLovelyCardUrl() {
-		return String.format("http://" + WxShopApplication.app.getDomainMMWDUrl()  + "/h5/profile.html?shopid=%s&qfuid=%s",
-				WxShopApplication.dataEngine.getShopId(), WxShopApplication.dataEngine.getUserId());
+	public static String getLovelyCardUrl(String medium) {
+		return String.format("http://" + WxShopApplication.app.getDomainMMWDUrl()  + "/h5/profile.html?shopid=%s&qfuid=%s&ga_medium=%s&ga_source=entrance",
+				WxShopApplication.dataEngine.getShopId(), WxShopApplication.dataEngine.getUserId(), medium);
 	}
 	
 	enum LCState {
