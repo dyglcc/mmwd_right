@@ -16,8 +16,21 @@ import android.widget.TextView;
 import com.actionbarsherlock.view.MenuItem;
 import com.squareup.picasso.Picasso;
 
-import org.androidannotations.annotations.*;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.BeforeTextChange;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.FocusChange;
+import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
@@ -39,10 +52,6 @@ import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 @EActivity(R.layout.lovelycard_edit)
 public class LovelyCardEditActivity extends BaseActivity implements ISimpleDialogListener {

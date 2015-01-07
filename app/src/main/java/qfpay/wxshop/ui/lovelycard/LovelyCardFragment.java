@@ -1,11 +1,20 @@
 package qfpay.wxshop.ui.lovelycard;
 
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+
+import java.io.IOException;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.net.ConstValue;
@@ -15,15 +24,13 @@ import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.main.fragment.PopularizingFragment;
 import qfpay.wxshop.ui.view.BadgeView;
-import qfpay.wxshop.utils.*;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
+import qfpay.wxshop.utils.BitmapUtil;
+import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.QFCommonUtils;
+import qfpay.wxshop.utils.QMMAlert;
+import qfpay.wxshop.utils.T;
+import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;
 
 @EFragment(R.layout.lovelycard_main)
 public class LovelyCardFragment extends BaseFragment {

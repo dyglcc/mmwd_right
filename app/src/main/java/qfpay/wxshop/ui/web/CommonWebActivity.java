@@ -1,7 +1,12 @@
 package qfpay.wxshop.ui.web;
 
-import java.io.IOException;
-import java.util.List;
+import android.content.Intent;
+import android.webkit.WebView;
+import android.widget.LinearLayout;
+
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -10,10 +15,12 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.FragmentById;
 import org.androidannotations.annotations.ViewById;
 
+import java.io.IOException;
+import java.util.List;
+
 import hugo.weaving.DebugLog;
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.getui.ImageUtils.ImageSizeForUrl;
 import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
@@ -27,16 +34,6 @@ import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
-import android.view.animation.Animation;
-import android.webkit.WebView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.squareup.picasso.Picasso;
 
 @EActivity(R.layout.web_common_activity)
 public class CommonWebActivity extends BaseActivity implements OnShareLinstener {
