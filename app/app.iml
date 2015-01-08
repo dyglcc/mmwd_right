@@ -8,21 +8,12 @@
     </facet>
     <facet type="android" name="Android">
       <configuration>
-<<<<<<< HEAD
-        <option name="SELECTED_BUILD_VARIANT" value="sanliulingscDebug" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleSanliulingscDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileSanliulingscDebugSources" />
-        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleSanliulingscDebugTest" />
-        <option name="SOURCE_GEN_TASK_NAME" value="generateSanliulingscDebugSources" />
-        <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateSanliulingscDebugTestSources" />
-=======
         <option name="SELECTED_BUILD_VARIANT" value="anzhiDebug" />
         <option name="ASSEMBLE_TASK_NAME" value="assembleAnzhiDebug" />
         <option name="COMPILE_JAVA_TASK_NAME" value="compileAnzhiDebugSources" />
         <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleAnzhiDebugTest" />
         <option name="SOURCE_GEN_TASK_NAME" value="generateAnzhiDebugSources" />
         <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateAnzhiDebugTestSources" />
->>>>>>> 403713087a4fb2c1df72f94062a70d0e24c8e7e0
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
@@ -32,45 +23,6 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-<<<<<<< HEAD
-    <output url="file://$MODULE_DIR$/build/intermediates/classes/sanliulingsc/debug" />
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/sanliulingsc/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/sanliulingsc/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/sanliulingsc/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/sanliulingsc/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/apt/sanliulingsc/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/sanliulingsc/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/sanliulingsc/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingscDebug/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingscDebug/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingscDebug/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingscDebug/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingscDebug/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingscDebug/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingscDebug/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/test/sanliulingsc/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/test/sanliulingsc/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/test/sanliulingsc/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/test/sanliulingsc/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/test/sanliulingsc/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/test/sanliulingsc/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingsc/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingsc/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingsc/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingsc/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingsc/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingsc/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/sanliulingsc/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestSanliulingsc/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestSanliulingsc/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestSanliulingsc/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestSanliulingsc/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestSanliulingsc/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestSanliulingsc/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestSanliulingsc/rs" isTestSource="true" />
-=======
     <output url="file://$MODULE_DIR$/build/intermediates/classes/anzhi/debug" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -108,7 +60,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/rs" isTestSource="true" />
->>>>>>> 403713087a4fb2c1df72f94062a70d0e24c8e7e0
       <sourceFolder url="file://$MODULE_DIR$/build-types/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build-types/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build-types/debug/assets" type="java-resource" />

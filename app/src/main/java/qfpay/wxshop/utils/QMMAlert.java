@@ -475,6 +475,7 @@ class RadioAdapter extends BaseAdapter {
                     R.layout.alert_dialog_radio_list_layout, null);
             holder.text = (TextView) convertView.findViewById(R.id.tv_text);
             holder.iv = (ImageView) convertView.findViewById(R.id.iv_radio);
+            holder.line = convertView.findViewById(R.id.line);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolderRadio) convertView.getTag();
@@ -488,6 +489,11 @@ class RadioAdapter extends BaseAdapter {
         } else {
             holder.iv.setImageDrawable(null);
         }
+        if(position == items.length-1){
+            holder.line.setVisibility(View.GONE);
+        }else{
+            holder.line.setVisibility(View.VISIBLE);
+        }
         holder.text.setText(textString);
         return convertView;
     }
@@ -495,6 +501,7 @@ class RadioAdapter extends BaseAdapter {
     final class ViewHolderRadio {
         TextView text;
         ImageView iv;
+        View line;
         boolean selected;
     }
 
