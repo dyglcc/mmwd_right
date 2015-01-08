@@ -10,6 +10,7 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.EBean.Scope;
 import org.androidannotations.annotations.RootContext;
+import org.androidannotations.annotations.UiThread;
 
 import qfpay.wxshop.data.beans.BuyerResponseWrapper.BuyerShowBean;
 import qfpay.wxshop.data.beans.BuyerResponseWrapper.ImageBean;
@@ -21,7 +22,7 @@ import qfpay.wxshop.image.ImageProcesserBean;
 import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.listener.MaijiaxiuUploadListener;
 import qfpay.wxshop.utils.T;
-import retrofit.RestAdapter.LogLevel;
+import qfpay.wxshop.utils.Toaster;
 import android.content.Context;
 
 import com.google.gson.Gson;
@@ -133,6 +134,7 @@ public class BuyersShowReleaseNetProcesser implements ImageGroupUploadLinstener 
 			if (!bean.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)) {
 				if (maijiaxiuUploadLinstener != null) {
 					maijiaxiuUploadLinstener.onUploadFaild();
+                    toast(bean.getResperr());
 				}
 				return;
 			}
@@ -183,4 +185,8 @@ public class BuyersShowReleaseNetProcesser implements ImageGroupUploadLinstener 
 		}
 		return imgs;
 	}
+
+    @UiThread void toast(String string) {
+        Toaster.s(context, string);
+    }
 }

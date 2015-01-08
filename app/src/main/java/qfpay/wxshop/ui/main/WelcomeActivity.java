@@ -1,7 +1,6 @@
 package qfpay.wxshop.ui.main;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
@@ -9,17 +8,18 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import cn.sharesdk.framework.ShareSDK;
+
 import com.google.gson.Gson;
 import com.igexin.sdk.PushManager;
 import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.WindowFeature;
 
-import qfpay.wxshop.BuildConfig;
+import cn.sharesdk.framework.ShareSDK;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.InputShopNameActivity;
@@ -29,11 +29,11 @@ import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.SplashParams;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 
 @EActivity(R.layout.welcome_layout) @WindowFeature({ Window.FEATURE_NO_TITLE, WindowManager.LayoutParams.FLAG_FULLSCREEN })
 public class WelcomeActivity extends BaseActivity {
-	private static final String FIRST_RELEASE = "firstrelease";
 	private static final int DEFAULT_SHOW_TIME = 5000;
 
 	@ViewById ImageView iv_net, iv_firstlaunch;
@@ -103,7 +103,7 @@ public class WelcomeActivity extends BaseActivity {
 	}
 
 	void initImg() {
-		if (BuildConfig.isFirstLaunch) {
+		if (QFCommonUtils.isFirstLaunch(this)) {
 			iv_firstlaunch.setVisibility(View.VISIBLE);
 		} else {
 			iv_firstlaunch.setVisibility(View.INVISIBLE);
