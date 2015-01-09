@@ -1,6 +1,7 @@
 package qfpay.wxshop.activity;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
@@ -13,6 +14,7 @@ import qfpay.wxshop.data.beans.GoodMSBean;
 import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.ui.commodity.CommodityDataController;
 import qfpay.wxshop.ui.commodity.EdititemDoneActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.ShareUtils;
@@ -53,6 +55,8 @@ public class ManPromoSuccessActivity extends BaseActivity {
 	int pos;
 	@Extra
 	String from;
+    @Bean
+    CommodityDataController commodityController;
 
 	@AfterViews
 	void init() {
@@ -76,6 +80,8 @@ public class ManPromoSuccessActivity extends BaseActivity {
 		line_down.setVisibility(View.INVISIBLE);
 		line_up.setVisibility(View.INVISIBLE);
 		layout_show_label.setVisibility(View.GONE);
+
+        commodityController.reloadCurrentData();
 	}
 
 	@Click

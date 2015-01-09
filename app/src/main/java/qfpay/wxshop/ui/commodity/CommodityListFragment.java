@@ -33,7 +33,6 @@ import qfpay.wxshop.ui.view.XListView.IXListViewListener;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.QMMAlert;
-import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 import android.content.Intent;

@@ -100,7 +100,6 @@ public class PreviewGuideView extends RelativeLayout {
 	
 	@Click void iv_preview() {
 		statePref.guidePointer().put(MainActivity.GUIDE_SHARE);
-		statePref.isShowGuide().put(true);
 		activity.onPreviewGuide();
 		if (win != null && win.isShowing()) {
 			win.dismiss();
