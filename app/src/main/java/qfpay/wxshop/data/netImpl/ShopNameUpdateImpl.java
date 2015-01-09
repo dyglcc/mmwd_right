@@ -62,7 +62,7 @@ public class ShopNameUpdateImpl extends AbstractNet {
 
 				} else if (fromJson.getRespcd().startsWith("21")) {
 					bundle.putString(ConstValue.ERROR_MSG,
-							fromJson.getRespmsg());
+							fromJson.getResperr());
 
 				} else {
 					bundle.putInt(ConstValue.JSON_RETURN,

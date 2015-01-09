@@ -66,8 +66,8 @@ android {
         applicationId "qfpay.wxshop"
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 94
-        versionName "3.8.1"
+        versionCode 95
+        versionName "3.8.5"
         manifestPlaceholders = [channelName: "home", isFirstLauncher: "false"]
     }
     // The Signing Setting

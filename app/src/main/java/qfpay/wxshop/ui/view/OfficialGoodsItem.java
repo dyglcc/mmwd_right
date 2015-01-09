@@ -1,5 +1,6 @@
 package qfpay.wxshop.ui.view;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.androidannotations.annotations.ViewById;
 import qfpay.wxshop.R;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.OfficialGoodItemBean;
+import qfpay.wxshop.ui.main.fragment.OfficalListFragment;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -34,8 +37,10 @@ public class OfficialGoodsItem extends LinearLayout {
 	@ViewById
 	TextView lowPrice, guidePrice;
 	OfficialGoodItemBean gb;
-	@ViewById
-	TagViews layout_tags;
+    @ViewById
+    RelativeLayout layout_profit,layout_guide;
+//	@ViewById
+//	TagViews layout_tags;
 	@ViewById
 	ImageView iv_official,iv_recommend;
 	View line1, layout_img, layout_read_info;
@@ -45,6 +50,12 @@ public class OfficialGoodsItem extends LinearLayout {
 	private int width, height;
 	private Handler handler;
 	private Context context;
+
+
+    @ViewById
+    TextView lowPrice_0,tv_profit;
+
+
 
 	public OfficialGoodsItem(Context context) {
 		super(context);
@@ -58,17 +69,25 @@ public class OfficialGoodsItem extends LinearLayout {
 		}
 
 		tv_goods_name.setText(gb.getTitle());
-//		tv_goods_name_stock.setText(gb.getTitle());
-//
-//		TextPaint tp1 = tv_goods_name_stock.getPaint();
-//		tp1.setStrokeWidth(getResources()
-//				.getDimension(R.dimen.miaobian));
-//		tp1.setStyle(Style.STROKE);
 		TextPaint tp2 = tv_goods_name.getPaint();
 		tp2.setStyle(Style.FILL);
 		lowPrice.setText(gb.getWholesale_price());
+        lowPrice_0.setText(gb.getWholesale_price());
 
-		guidePrice.setText("指导价" + getPrice(gb.getPrice())+"元");
+        if(OfficalListFragment.pos_order == OfficalListFragment.PROFIT){
+            layout_profit.setVisibility(View.GONE);
+            layout_guide.setVisibility(View.VISIBLE);
+        }else{
+            float guide = Float.parseFloat(gb.getPrice());
+            float price = Float.parseFloat(gb.getWholesale_price());
+            BigDecimal decimal = new BigDecimal((guide - price)+"");
+
+            tv_profit.setText(getPrice(decimal.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
+            layout_profit.setVisibility(View.VISIBLE);
+            layout_guide.setVisibility(View.GONE);
+        }
+
+		guidePrice.setText("指导价￥" + getPrice(gb.getPrice()));
 
 		setclickListener(gb, pos);
 
@@ -76,28 +95,33 @@ public class OfficialGoodsItem extends LinearLayout {
 		
 //		showRecommend(gb.is);
 
-		// settags
-		setTags(gb);
+//		setTags(gb);
 
 	}
 
 	private String getPrice(String price) {
 		String priceR = price;
+		if(priceR.endsWith(".00")){
+			priceR = priceR.substring(0,priceR.indexOf(".00"));
+		}
 		if(priceR.endsWith(".0")){
 			priceR = priceR.substring(0,priceR.indexOf(".0"));
 		}
+        if(priceR.indexOf(".")!=-1 && priceR.endsWith("0")){
+            priceR = price.substring(0,price.length()-1);
+        }
 		return priceR;
 	}
 
-	private void setTags(OfficialGoodItemBean gb2) {
-		String[] tags = gb2.getTags();
-		List<Tag> tag = new ArrayList<Tag>();
-		for (int i = 0; i < tags.length; i++) {
-			Tag t = new Tag(tags[i], false);
-			tag.add(t);
-		}
-		layout_tags.setData(tag);
-	}
+//	private void setTags(OfficialGoodItemBean gb2) {
+//		String[] tags = gb2.getTags();
+//		List<Tag> tag = new ArrayList<Tag>();
+//		for (int i = 0; i < tags.length; i++) {
+//			Tag t = new Tag(tags[i], false);
+//			tag.add(t);
+//		}
+//		layout_tags.setData(tag);
+//	}
 
 	private void setExtraImage(String imageUrl,int itemW) {
 		
