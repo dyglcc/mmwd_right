@@ -26,6 +26,7 @@ import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.commodity.CommodityDataController.CommodityCallback;
 import qfpay.wxshop.ui.commodity.CommodityDataController.Operation;
+import qfpay.wxshop.ui.main.MainTab;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.ui.view.XListView.IXListViewListener;
@@ -100,7 +101,7 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 		case REFRESH:
 			if (dataController.getCurrentList().isEmpty()) {
 				setListState(ListState.NULL);
-			} else if (dataController.getCurrentList().size() <= 3) {
+			} else if (dataController.getCurrentList().size() <= 3 && MainTab.HUOYUAN.getFragment() == null) {
                 setListState(ListState.NOT_ENOUGH);
             } else {
 				setListState(ListState.NORMAL);
