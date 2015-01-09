@@ -89,8 +89,8 @@
     <string name="open_file_wrong">打开文件错误，文件有问题！</string>
     <string name="pic_no_exist">该照片在原始路径已经不存在，请核实！</string>
     <string name="file_size">文件大小：</string>
-    <string name="bad_net">喵~网络不给力哦</string>
-    <string name="access_refused">访问拒绝</string>
+    <string name="bad_net">o(╯□╰)o，你的网络不给力诶~</string>
+    <string name="access_refused">o(╯□╰)o，你的网络不给力诶~</string>
 
     <!-- main_login_preview -->
     <string name="wxshop_show">漂亮小店展示</string>
@@ -164,9 +164,9 @@
     <string name="check_update">检查更新</string>
     <string name="aleady_newest">已经是最新版本</string>
     <string name="error404">访问地址错误，请联系喵喵</string>
-    <string name="error500">加载失败</string>
-    <string name="timeout">访问超时</string>
-    <string name="errorNoNet">没有联网</string>
+    <string name="error500">额...好像哪里不对~联系微信客服试试？</string>
+    <string name="timeout">咦...貌似出错了呢~联系微信客服试试呗~</string>
+    <string name="errorNoNet">咦...貌似没有联网~</string>
     <string name="exchange">货源交流</string>
     <string name="needInputBranchName">请输入支行</string>
     <string name="bankcard_reg_success">提交成功</string>
