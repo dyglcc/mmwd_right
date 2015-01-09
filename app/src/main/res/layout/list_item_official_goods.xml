@@ -144,7 +144,7 @@
                     android:layout_height="22dp"
                     android:gravity="bottom"
                     android:layout_alignParentBottom="true"
-                    android:text="进件￥"
+                    android:text="进价￥"
                     android:textColor="#e91e63"
                     android:textSize="12dip" />
 

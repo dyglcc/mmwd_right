@@ -54,7 +54,7 @@ public class AvatorUpdateImpl extends AbstractNet {
 
 				} else if (cjs.getRespcd().startsWith("21")) {
 					bundle.putString(ConstValue.ERROR_MSG,
-							cjs.getRespmsg());
+							cjs.getResperr());
 
 				} else {
 					bundle.putInt(ConstValue.JSON_RETURN,
