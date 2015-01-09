@@ -100,7 +100,9 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 		case REFRESH:
 			if (dataController.getCurrentList().isEmpty()) {
 				setListState(ListState.NULL);
-			} else {
+			} else if (dataController.getCurrentList().size() <= 3) {
+                setListState(ListState.NOT_ENOUGH);
+            } else {
 				setListState(ListState.NORMAL);
 			}
 			break;
@@ -176,6 +178,12 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 			fl_indictor.setVisibility(View.VISIBLE);
 			iv_indictor.setImageResource(R.drawable.commodity_list_nodata);
 		}
+
+        if (state == ListState.NOT_ENOUGH) {
+            listView.setVisibility(View.VISIBLE);
+            fl_indictor.setVisibility(View.VISIBLE);
+            iv_indictor.setImageResource(R.drawable.commodity_list_notenoughdata);
+        }
 		
 		if (state == ListState.LOADING) {
 			listView.setVisibility(View.INVISIBLE);
@@ -201,7 +209,7 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 	 * 表示列表的状态
 	 */
 	public enum ListState {
-		NULL, LOADING, NORMAL, ERROR
+		NULL, NOT_ENOUGH, LOADING, NORMAL, ERROR
 	}
 	
 	class DataControllerAdapter extends BaseAdapter {
