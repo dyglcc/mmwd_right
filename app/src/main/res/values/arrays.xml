@@ -44,11 +44,11 @@ limitations under the License.
     <string-array name="official_category">
         <item>全部商品</item>
         <item>女装</item>
-        <item>鞋包</item>
-        <item>配饰</item>
+        <item>美食</item>
         <item>护肤</item>
         <item>彩妆</item>
-        <item>美食</item>
+        <item>配饰</item>
+        <item>鞋包</item>
         <item>家居日用</item>
         <item>男装</item>
         <!--<item>母婴</item>-->
