@@ -8,12 +8,12 @@
     </facet>
     <facet type="android" name="Android">
       <configuration>
-        <option name="SELECTED_BUILD_VARIANT" value="anzhiDebug" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleAnzhiDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileAnzhiDebugSources" />
-        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleAnzhiDebugTest" />
-        <option name="SOURCE_GEN_TASK_NAME" value="generateAnzhiDebugSources" />
-        <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateAnzhiDebugTestSources" />
+        <option name="SELECTED_BUILD_VARIANT" value="jiuyaozhushouDebug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleJiuyaozhushouDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileJiuyaozhushouDebugSources" />
+        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleJiuyaozhushouDebugTest" />
+        <option name="SOURCE_GEN_TASK_NAME" value="generateJiuyaozhushouDebugSources" />
+        <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateJiuyaozhushouDebugTestSources" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
@@ -23,43 +23,43 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/build/intermediates/classes/anzhi/debug" />
+    <output url="file://$MODULE_DIR$/build/intermediates/classes/jiuyaozhushou/debug" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/anzhi/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/anzhi/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/anzhi/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/anzhi/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/apt/anzhi/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/anzhi/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/anzhi/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhiDebug/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhiDebug/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhiDebug/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhiDebug/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhiDebug/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhiDebug/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhiDebug/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/test/anzhi/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/test/anzhi/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/test/anzhi/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/test/anzhi/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/test/anzhi/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/test/anzhi/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhi/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhi/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhi/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhi/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhi/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhi/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/anzhi/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestAnzhi/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/jiuyaozhushou/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/jiuyaozhushou/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/jiuyaozhushou/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/jiuyaozhushou/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/apt/jiuyaozhushou/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/jiuyaozhushou/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/jiuyaozhushou/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushouDebug/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushouDebug/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushouDebug/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushouDebug/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushouDebug/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushouDebug/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushouDebug/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/test/jiuyaozhushou/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/test/jiuyaozhushou/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/test/jiuyaozhushou/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/test/jiuyaozhushou/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/test/jiuyaozhushou/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/test/jiuyaozhushou/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushou/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushou/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushou/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushou/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushou/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushou/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jiuyaozhushou/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJiuyaozhushou/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJiuyaozhushou/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJiuyaozhushou/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJiuyaozhushou/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJiuyaozhushou/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJiuyaozhushou/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJiuyaozhushou/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/build-types/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build-types/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build-types/debug/assets" type="java-resource" />
