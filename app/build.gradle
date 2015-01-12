@@ -112,6 +112,9 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
     productFlavors {
+        home {
+            manifestPlaceholders = [channelName: "home", isFirstLauncher: "false"]
+        }
         jiuyaozhushou {
             manifestPlaceholders = [channelName: "91zhushou", isFirstLauncher: "false"]
         }
