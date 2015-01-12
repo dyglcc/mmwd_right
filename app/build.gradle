@@ -199,6 +199,9 @@ android {
         jinli {
             manifestPlaceholders = [channelName: "jinli", isFirstLauncher: "false"]
         }
+        xiaoenai {
+            manifestPlaceholders = [channelName: "xiaoenai", isFirstLauncher: "false"]
+        }
     }
 }
 
