@@ -39,6 +39,7 @@ import cn.sharesdk.tencent.weibo.TencentWeibo;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.androidquery.AQuery;
+import com.tencent.tauth.Tencent;
 
 public class ShareActivity extends BaseActivity implements
         PlatformActionListener, Callback {
@@ -84,6 +85,9 @@ public class ShareActivity extends BaseActivity implements
     private boolean isSinaSharing;
     private boolean isTencentSharing;
 
+
+    // Tencent
+    Tencent mTencent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +95,9 @@ public class ShareActivity extends BaseActivity implements
         Intent intent = getIntent();
         gaSrcfrom = intent.getStringExtra("gaSrcfrom");
         content_type = intent.getIntExtra("share_content_type", 0);
+
+        // qq 互联 初始化设置
+        mTencent = Tencent.createInstance(APP_ID, this.getApplicationContext());
         aq = new AQuery(this);
         // 初始化ShareSDK
         if (!initShare) {
