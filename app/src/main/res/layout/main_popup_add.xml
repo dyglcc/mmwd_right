@@ -9,35 +9,108 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical" >
+        android:weightSum="4.4"
+        android:orientation="horizontal" >
 
         <View
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="4" />
-        <ImageView
-            android:id="@+id/iv_addcommodity"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginBottom="25dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/main_tab_add_commodity" />
-
-        <ImageView
-            android:id="@+id/iv_addbuyersshow"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:weightSum="4"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                />
+            <ImageView
+                android:id="@+id/iv_addbuyersshow"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/main_icon_add_show" />
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginBottom="25dp"
-            android:src="@drawable/main_tab_add_buyersshow" />
-        <ImageView
-            android:id="@+id/iv_addsuisuinian"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:weightSum="4"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                />
+            <ImageView
+                android:id="@+id/iv_addcommodity"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/main_tab_add_commodity" />
+            </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginBottom="90dp"
-            android:src="@drawable/main_tab_add_ssn" />
+            android:weightSum="4"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                />
+            <ImageView
+                android:id="@+id/iv_addnote"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/main_tab_add_note" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="4"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                />
+            <ImageView
+                android:id="@+id/iv_addsuisuinian"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/main_icon_add_article" />
+        </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            />
     </LinearLayout>
 
     <ImageView

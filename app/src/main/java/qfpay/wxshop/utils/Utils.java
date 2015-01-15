@@ -52,6 +52,8 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StatFs;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.telephony.TelephonyManager;
@@ -1195,4 +1197,11 @@ public class Utils {
 		return (type == null) ? String.valueOf(System.currentTimeMillis())
 				: type + System.currentTimeMillis();
 	}
+
+    public static long getFreeSizeOfSDCard(){
+        long SDFreeSize;//存储卡剩余空间大小 kb
+        StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getPath());
+        SDFreeSize = statFs.getAvailableBlocks()*statFs.getBlockSize()/1024;
+        return SDFreeSize;
+    }
 }

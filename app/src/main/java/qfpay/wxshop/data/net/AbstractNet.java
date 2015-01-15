@@ -174,7 +174,6 @@ public abstract class AbstractNet {
 			}
 			if (data != null) {
 				int response = data.getInt(ConstValue.NET_RETURN);
-
 				if (response == ConstValue.NET_RETURN_SUCCESS) {
 					// 如果是json数据，要经过json解析
 					String returnData = data
@@ -253,7 +252,6 @@ public abstract class AbstractNet {
 			par.remove(ConstValue.REQUEST_URL);
 			par.remove(ConstValue.NET_RETURN);
 			par.remove(ConstValue.HTTP_METHOD);
-
 			if (ConstValue.HTTP_POST.equals(method)) {
 				response = http.postRequest(requestUrl, par);
 			} else if (ConstValue.HTTP_GET.equals(method)) {

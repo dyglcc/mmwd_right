@@ -43,9 +43,9 @@ public class RetrofitWrapper {
 		RestAdapter ra = new RestAdapter.Builder()
 			.setEndpoint(endPoiont)
 			.setLogLevel(logLevel)
-			.setRequestInterceptor(new RetrofitRequestInterceptor())
 			.setErrorHandler(new RetrofitErrorHandler())
-			.build();
+                .setRequestInterceptor(new RetrofitRequestInterceptor())
+                .build();
 		return ra.create(clazz);
 	}
 

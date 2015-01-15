@@ -83,6 +83,10 @@ public class WDConfig {
 		return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/";
 	}
 
+    /**
+     * 社交API地址
+     */
+    public String SOCIAL_URL = "http://bf.mmwd.me/";
 	// String WD_URL = "http://1.wx.qfpay.com/";// test
 
 	public String getRequestInfo(String get) {
@@ -480,4 +484,8 @@ public class WDConfig {
 		// TODO Auto-generated method stub
 		return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/";
 	}
+
+    public String getMyDynamicNotesListUrl(){
+        return SOCIAL_URL + "my_forum";
+    }
 }

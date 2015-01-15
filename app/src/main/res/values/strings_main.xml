@@ -39,8 +39,14 @@
     
     <!-- BusinessCommunityFragment -->
     <string name="community_pagertitle_commoditysource">货源交流</string>
-    <string name="community_pagertitle_ranginglist">排行榜</string>
+    <string name="community_pagertitle_ranginglist"> 排行榜 </string>
     <string name="community_pagertitle_discover">发现个喵</string>
+    <string name="community_pagertitle_mydynamic"> 动态 </string>
+    <string name="community_pagertitle_discovery"> 发现 </string>
+    <string name="community_pagertitle_mytopic"> 我的 </string>
+    
+    
+    
     
     <!-- Share -->
     <string name="share_add_anidone">哎嘿，喵喵终于变身成功辣~辣么酷炫，辣么美~分享一发？</string>

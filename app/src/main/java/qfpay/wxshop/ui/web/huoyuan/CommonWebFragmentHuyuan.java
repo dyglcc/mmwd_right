@@ -16,7 +16,6 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
-import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

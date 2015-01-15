@@ -143,4 +143,7 @@ public class AddedPopupView extends RelativeLayout {
 		activity.onAddSsuinian();
 		MobAgentTools.OnEventMobOnDiffUser(getContext(), "Click_HybridText_Create");
 	}
+    @Click void iv_addnote(){
+        activity.onAddNote();
+    }
 }

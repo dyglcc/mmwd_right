@@ -1,21 +1,20 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- 公共 -->
     <string name="dialog_btn_positive">确定</string>
     <string name="dialog_btn_negative">取消</string>
-
     <string name="actionbar_button_complete">完成</string>
-    
     <string name="share_faxiangemiao_title">这么牛逼的文，不推荐给你简直对不起咱俩的情谊！</string>
-    
+
     <!-- 下拉刷新 -->
     <string name="header_hint_refresh_normal">下拉刷新</string>
     <string name="header_hint_refresh_ready">松手刷新</string>
-    <string name="header_hint_refresh_loading">刷新&#8230;</string>
+    <string name="header_hint_refresh_loading">刷新…</string>
     <string name="header_hint_refresh_time">Time：</string>
     <string name="footer_hint_load_normal">上拉加载更多</string>
     <string name="footer_hint_load_ready">松开开始加载</string>
-    
+
     <!-- 分享 -->
     <string name="actionbar_share_wxfirend">微信好友</string>
     <string name="actionbar_share_wxmoments">朋友圈</string>
@@ -23,11 +22,11 @@
     <string name="actionbar_share_copy">复制链接</string>
     <string name="share_item_copy">复制成功</string>
     <string name="share_loading_waiting">请稍等,正在努力分享呀!</string>
-    
+
     <!-- 头图选择页面 -->
     <string name="shopheader_pagetitle">更换店铺背景图</string>
     <string name="shopheader_preview_pagetitle">预览店铺背景图</string>
-    
+
     <!-- 更多页面 -->
     <string name="more_title">更多</string>
     <string name="more_item_about">关于喵喵</string>
@@ -35,14 +34,10 @@
     <string name="more_item_logout">退出登录</string>
     <string name="more_img_version">版本号 : %s</string>
     <string name="more_img_checkupdate">检查更新</string>
-    
+
     <!-- 自定义相册页面 -->
     <string name="gallery_toast_cantselect">最多只能选择%d张图片哦</string>
     <string name="gallery_title_btn">完成 %s</string>
-    
-    
-    
-    
     <string name="app_name">喵喵微店</string>
     <string name="version">当前版本：</string>
     <string name="filepathException">找不到文件路径</string>
@@ -190,25 +185,27 @@
     <string name="changeBankAccout">修改收款账号</string>
     <string name="addbankcard">添加银行卡</string>
     <string name="mycardinfo">收款银行卡</string>
-    
     <string name="plaeas_select">选择</string>
     <string name="share2">分享到</string>
     <string name="launch_share">启动分享..</string>
     <string name="haveNoData">木有了...</string>
     <string name="viewpager_indicator">%1$d/%2$d</string>
-    
     <string name="errcode_success">分享成功</string>
-	<string name="errcode_cancel">取消分享</string>
-	<string name="errcode_deny">分享被拒绝</string>
-	<string name="errcode_unknown">分享返回</string>
-	<string name="tip_needinstallkehuduan">亲，先安装微信客户端</string>
-	<string name="qqshareFail">TAT空间分享失败了！\n安装了QQ轻聊版本？求换普通版本嗷~</string>
-	
-	<!--  -->
-	<string name="suisuinian_content">正文写这里~</string>
-	<string name="show_more">显示更多</string>
-	<string name="ssn_publish_title">标题赞赞哒，才会有人看唷~</string>
-	<string name="ssn_publish_goodlink">把想宣传的商品加进来呗~</string>
-	<string name="ssn_have_look">TAT,写不粗来？先瞅瞅别人的吧</string>
+    <string name="errcode_cancel">取消分享</string>
+    <string name="errcode_deny">分享被拒绝</string>
+    <string name="errcode_unknown">分享返回</string>
+    <string name="tip_needinstallkehuduan">亲，先安装微信客户端</string>
+    <string name="qqshareFail">TAT空间分享失败了！\n安装了QQ轻聊版本？求换普通版本嗷~</string>
+
+    <!--  -->
+    <string name="suisuinian_content">正文写这里~</string>
+    <string name="show_more">显示更多</string>
+    <string name="ssn_publish_title">标题赞赞哒，才会有人看唷~</string>
+    <string name="ssn_publish_goodlink">把想宣传的商品加进来呗~</string>
+    <string name="ssn_have_look">TAT,写不粗来？先瞅瞅别人的吧</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_my_dynamic_one_note_detail">MyDynamicOneNoteDetail</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

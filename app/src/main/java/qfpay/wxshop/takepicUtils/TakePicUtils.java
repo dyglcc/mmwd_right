@@ -8,6 +8,7 @@ import java.io.IOException;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.ui.BusinessCommunity.PublishNoteActivity;
 import qfpay.wxshop.ui.selectpic.AlbumActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QMMAlert;
@@ -112,6 +113,10 @@ public class TakePicUtils {
 
 						case MMAlertSelect1:
 							// 点击拍照
+                            if(context instanceof PublishNoteActivity){
+                                System.out.println("发帖点击拍照");
+                                MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_topic_photo");
+                            }
 							MobAgentTools.OnEventMobOnDiffUser(context, "click_camera");
 							paizhao();
 							currentMode = TAKE_PICTURE;
@@ -134,6 +139,10 @@ public class TakePicUtils {
 								break;
 							}
 							// 点击从照片库选择
+                            if(context instanceof PublishNoteActivity){
+                                System.out.println("发帖点击从照片库选择");
+                                MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_topic_album ");
+                            }
 							currentMode = SELECT_PIC;
 							getMediaDatabase();
 							break;

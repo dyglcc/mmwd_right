@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lyt_publish"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_background_grey"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_bg_color"
+        android:orientation="horizontal"
+        android:id="@+id/tool_bar"
+        >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="48dip"
+            android:layout_height="48dip"
+            android:background="@drawable/selector_ssn_btn_close" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dip"
+            android:textColor="@color/white"
+            android:text="小组名称"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_centerVertical="true" />
+
+        <ImageButton
+            android:id="@+id/publish_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mydynamic_publish_bg"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/common_background_grey"
+            >
+            <EditText
+                android:id="@+id/note_content"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/white"
+                android:layout_margin="10dp"
+                android:gravity="start"
+                android:textSize="@dimen/common_text_content_mid"
+                android:padding="10dp"
+                android:hint="快来吐槽一下吧~~"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_note_pic_ll"
+                android:orientation="horizontal"
+                android:layout_below="@id/note_content"
+                android:layout_alignLeft="@id/note_content"
+                android:gravity="center_vertical"
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/note_iamge"
+                    android:background="@drawable/business_community_add_pic"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="添加图片"
+                    android:textSize="@dimen/common_text_content_mid"
+                    android:id="@+id/add_pic_tv"
+                    android:textColor="#91948d"
+                    android:layout_marginLeft="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tip_ll"
+                android:layout_below="@id/add_note_pic_ll"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+                    android:singleLine="true"
+                    android:textColor="#d2d2d2"
+                    android:ellipsize="none"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    >
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/business_community_tip"
+                        />
+                    <TextView
+                        android:id="@+id/tip_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="喵商圈规则"
+                        android:textSize="@dimen/common_text_content_big"
+                        android:textColor="#91948d"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/tip_content_ll"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+        </ScrollView>
+    <FrameLayout
+        android:id="@+id/fl_indictor"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/iv_indictor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/commodity_list_nodata" />
+    </FrameLayout>
+</RelativeLayout>

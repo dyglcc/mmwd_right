@@ -276,6 +276,7 @@ public class ConstValue {
 	public static final String ONLINE_BANK_INFO_CHANGE = "change_bankinfo";
 	public static final String ONLINE_UPLOAD_PIC = "upload_pic_para";
 	public static final String ONLINE_SPLASH_IMG = "splash_image_para";
+    public static final String ONLINE_NOTE_TIP = "fatieguize";
 
 	public static final String FIRST_TIME_LOAD_BASE_RECORD = "load_first_time_record";
 	public static final int FIRST_TIME_LOAD_BASE_Record_count = 500;

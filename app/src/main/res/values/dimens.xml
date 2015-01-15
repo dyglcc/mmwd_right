@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <dimen name="common_text_title">18sp</dimen>
@@ -37,5 +37,7 @@
     <dimen name="hy_margin_2_eage">16dp</dimen>
     <dimen name="hy_margin_right_eage">2dp</dimen>
     <dimen name="hy_margin_middle">4dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 </resources>

@@ -3,15 +3,19 @@ package qfpay.wxshop.data.net;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 
+import com.google.gson.Gson;
+
 public class DataEngine extends Activity {
 
 	public SharedPreferences data;
+    BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper businessCommmunityMyNotificationData;
 
 	public DataEngine(Context context) {
 		data = context.getSharedPreferences("Data", 0);
@@ -472,4 +476,36 @@ public class DataEngine extends Activity {
 		data.edit().putInt("timesInMainActivity", times).commit();
 	}
 
+    /**
+     * 存储商户圈关于我的消息
+     * @param businessCommmunityMyNotificationDataWrapper
+     */
+    public void setBusinessCommunityAboutMyNotification(BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper businessCommmunityMyNotificationDataWrapper){
+        if(businessCommmunityMyNotificationDataWrapper==null){
+            data.edit().putString("notification","").commit();
+        }else{
+            Gson gson = new Gson();
+            data.edit().putString("notification",gson.toJson(businessCommmunityMyNotificationDataWrapper)).commit();
+        }
+    }
+
+    public BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper getBusinessCommunityAboutMyNotification(){
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper businessCommmunityMyNotificationDataWrapper;
+        String string = getData("notification","");
+        if(!string.equals("")){
+            Gson gson = new Gson();
+            businessCommmunityMyNotificationDataWrapper = gson.fromJson(string, BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper.class);
+            return businessCommmunityMyNotificationDataWrapper;
+        }else{
+            return  null;
+        }
+    }
+
+    public BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper getBusinessCommmunityMyNotificationData() {
+        return businessCommmunityMyNotificationData;
+    }
+
+    public void setBusinessCommmunityMyNotificationData(BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper businessCommmunityMyNotificationData) {
+        this.businessCommmunityMyNotificationData = businessCommmunityMyNotificationData;
+    }
 }
