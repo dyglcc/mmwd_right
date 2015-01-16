@@ -384,7 +384,7 @@ public class Utils {
 				e.printStackTrace();
 			}
 		} else if (idString.length() == 18) {
-			return IdNumberUtil.getInfoe(idString);
+            return IdNumberUtil.getInfoe(idString);
 		} else if (idString.length() != 15 && idString.length() != 18) {
 			return false;
 		}

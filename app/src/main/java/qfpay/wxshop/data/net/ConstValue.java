@@ -254,6 +254,7 @@ public class ConstValue {
 	public static final String TEMPNAME_FILE_NAME = "qmm";
 
 	public static final String QQ_APP_ID = "100515599";
+	public static final String QQ_ZONE_ID = "101004970";
 
 	// 替换
 	public static final String APP_WEIBO_KEY = "1071841130";

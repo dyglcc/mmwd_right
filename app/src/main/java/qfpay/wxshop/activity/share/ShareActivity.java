@@ -1,16 +1,5 @@
 package qfpay.wxshop.activity.share;
 
-import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.utils.MobAgentTools;
-import qfpay.wxshop.utils.Toaster;
-import qfpay.wxshop.utils.Utils;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +18,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.androidquery.AQuery;
+import com.tencent.connect.share.QzoneShare;
+import com.tencent.tauth.Tencent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -36,10 +35,13 @@ import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.androidquery.AQuery;
-import com.tencent.tauth.Tencent;
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;
 
 public class ShareActivity extends BaseActivity implements
         PlatformActionListener, Callback {
@@ -88,6 +90,7 @@ public class ShareActivity extends BaseActivity implements
 
     // Tencent
     Tencent mTencent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +100,7 @@ public class ShareActivity extends BaseActivity implements
         content_type = intent.getIntExtra("share_content_type", 0);
 
         // qq 互联 初始化设置
-        mTencent = Tencent.createInstance(APP_ID, this.getApplicationContext());
+        mTencent = Tencent.createInstance(ConstValue.QQ_ZONE_ID, this.getApplicationContext());
         aq = new AQuery(this);
         // 初始化ShareSDK
         if (!initShare) {
@@ -167,11 +170,11 @@ public class ShareActivity extends BaseActivity implements
                 if (isChecked) {
 
                     // 如果未绑定绑定
-                    if (!qzone.isValid()) {
-                        Toaster.l(ShareActivity.this, "开始授权");
-                        qzone.setPlatformActionListener(authorListener);
-                        qzone.authorize();
-                    }
+//                    if (!qzone.isValid()) {
+//                        Toaster.l(ShareActivity.this, "开始授权");
+//                        qzone.setPlatformActionListener(authorListener);
+//                        qzone.authorize();
+//                    }
                 }
             }
         });
@@ -302,6 +305,7 @@ public class ShareActivity extends BaseActivity implements
                     }
 
                 }
+
                 if (iv_qzone.isChecked()) {
                     if (isQQZongeSharing) {
                         Toaster.l(ShareActivity.this, "QQ空间正在分享中，稍等一下吧");
@@ -310,10 +314,10 @@ public class ShareActivity extends BaseActivity implements
                         if (shareQQzoneTimes >= 3 && !shareQQzoneSuccess) {
                             Toaster.l(ShareActivity.this, getString(R.string.qqshareFail));
                         }
-                        QZone.ShareParams sp = new QZone.ShareParams();
-                        sp.title = WxShopApplication.shareBean.qqTitle;
+//                        QZone.ShareParams sp = new QZone.ShareParams();
+//                        sp.title = WxShopApplication.shareBean.qqTitle;
                         String shareUrl = getGaUrl(WxShopApplication.shareBean.qqTitle_url, "qzone");
-                        sp.titleUrl = shareUrl.replace(" ", ""); // 标题的超链接
+//                        sp.titleUrl = shareUrl.replace(" ", ""); // 标题的超链接
                         // sp.text = WxShopApplication.shareBean.title
                         // + WxShopApplication.shareBean.link;
                         String contextStr = tv_content.getText().toString();
@@ -326,15 +330,24 @@ public class ShareActivity extends BaseActivity implements
                         contextStr = contextStr.replaceAll(reg2, "");
                         contextStr = contextStr.replaceAll(reg3, "");
                         contextStr = contextStr.replaceAll("店铺链接：", "");
-                        sp.text = contextStr;
-                        sp.imageUrl = WxShopApplication.shareBean.qq_imageUrl;
-//						sp.comment = "我对此分享内容的评论";
-                        sp.site = "发布分享的网站名称";
-                        // 去掉空格
-                        sp.siteUrl = shareUrl.replace(" ", "");
-                        qzone.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
+//                        sp.text = contextStr;
+//                        sp.imageUrl = WxShopApplication.shareBean.qq_imageUrl;
+////						sp.comment = "我对此分享内容的评论";
+//                        sp.site = "发布分享的网站名称";
+//                        // 去掉空格
+//                        sp.siteUrl = shareUrl.replace(" ", "");
+//                        qzone.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
                         // 执行图文分享
-                        qzone.share(sp);
+//                        qzone.share(sp);
+                        Bundle params = new Bundle();
+                        ArrayList<String> list = new ArrayList<String>();
+                        list.add(WxShopApplication.shareBean.qq_imageUrl);
+                        params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+                        params.putString(QzoneShare.SHARE_TO_QQ_TITLE, WxShopApplication.shareBean.qqTitle);//必填
+                        params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, contextStr);//选填
+                        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, shareUrl.replace(" ", ""));//必填
+                        params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, list);
+                        mTencent.shareToQzone(ShareActivity.this, params, new BaseUIListener(ShareActivity.this));
                         isQQZongeSharing = true;
                     }
 
@@ -571,4 +584,10 @@ public class ShareActivity extends BaseActivity implements
     }
 
     // sp.site = "http://www.mmweidian.com";
+
+    private void shareToQzone() {
+
+        //分享类型
+
+    }
 }
