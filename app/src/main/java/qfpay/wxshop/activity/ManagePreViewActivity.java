@@ -1,9 +1,12 @@
 package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
+import qfpay.wxshop.share.OnShareLinstener;
+import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.BaseActivity;
 
 import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.ui.common.actionbar.SharePopupView;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 
@@ -27,14 +30,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
 
-public class ManagePreViewActivity extends BaseActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+@EActivity(R.layout.main_preview_webview)
+public class ManagePreViewActivity extends BaseActivity implements OnShareLinstener {
     private View failView;
     WebView webView = null;
     private TextView tvTitle;
-    private ImageView ivProgress;
+    @ViewById
+    ImageView iv_share;
+
+    @ViewById
+    View layout_progress_load;
 
     @ViewById
     LinearLayout ll_fail;
@@ -43,27 +56,48 @@ public class ManagePreViewActivity extends BaseActivity {
     @ViewById
     ImageView iv_loading;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_preview_webview);
+
+    @AfterViews
+    void init() {
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        String title = getIntent().getStringExtra(ConstValue.TITLE);
+        tvTitle.setText(title == null ? getResources().getString(R.string.title) : title);
+        layout_progress_load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                List<SharedPlatfrom> platfroms = new ArrayList<SharedPlatfrom>();
+                platfroms.add(SharedPlatfrom.WXFRIEND);
+                platfroms.add(SharedPlatfrom.WXMOMENTS);
+                platfroms.add(SharedPlatfrom.ONEKEY);
+                platfroms.add(SharedPlatfrom.COPY);
+                SharePopupView.showSharePopupwin(view, ManagePreViewActivity.this, platfroms);
+
+            }
+        });
+    }
+
+
+    void init(String url) {
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
         String title = getIntent().getStringExtra(ConstValue.TITLE);
         tvTitle.setText(title == null ? getResources().getString(R.string.title) : title);
 
-        boolean isLoadFirst = getIntent().getBooleanExtra("isLoadFirst", true);
-        if (isLoadFirst) {
-            String url = getIntent().getStringExtra(ConstValue.URL);
-            if (url == null || url.equals("")) {
-                Toaster.l(ManagePreViewActivity.this, getString(R.string.wrong_address));
-                return;
-            }
-            init(url);
-        }
-    }
+        layout_progress_load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-    void init(String url) {
+                List<SharedPlatfrom> platfroms = new ArrayList<SharedPlatfrom>();
+                platfroms.add(SharedPlatfrom.WXFRIEND);
+                platfroms.add(SharedPlatfrom.WXMOMENTS);
+                platfroms.add(SharedPlatfrom.ONEKEY);
+                platfroms.add(SharedPlatfrom.COPY);
+                SharePopupView.showSharePopupwin(view, ManagePreViewActivity.this, platfroms);
+
+            }
+        });
+
         findViewById(R.id.btn_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,6 +197,31 @@ public class ManagePreViewActivity extends BaseActivity {
         });
         Utils.setCookies(url, ManagePreViewActivity.this);
         webView.loadUrl(url);
+    }
+
+    @Override
+    public void onShare(SharedPlatfrom which) {
+
+        switch (which) {
+            case ONEKEY:
+
+
+                break;
+            case WXFRIEND:
+                break;
+            case WXMOMENTS:
+                break;
+            case COPY:
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    @Override
+    public String getShareFromName() {
+        return "商品";
     }
 
     private class MyWebViewDownLoadListener implements DownloadListener {
