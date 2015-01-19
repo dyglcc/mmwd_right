@@ -6,7 +6,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.FragmentById;
-import org.androidannotations.annotations.NoTitle;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -26,10 +25,12 @@ import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -63,12 +64,15 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 	@Extra
 	String shareTitle = "", shareName = "";
 
+    private ImageView iv_loading;
+
 	@AfterViews
 	void init() {
 		webFragment.init(url, false);
 		ActionBar bar = getSupportActionBar();
 		bar.hide();
 		setCustomView();
+        iv_loading = webFragment.iv_loading;
 	}
 	@UiThread
 	public void setVisiable(){
@@ -204,4 +208,14 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 		super.onDestroy();
 	}
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if(hasFocus){
+            if(iv_loading!=null){
+                AnimationDrawable  animationDrawable = (AnimationDrawable) iv_loading.getDrawable();
+                animationDrawable.start();
+            }
+        }
+        super.onWindowFocusChanged(hasFocus);
+    }
 }

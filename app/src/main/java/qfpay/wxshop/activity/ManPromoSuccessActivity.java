@@ -1,6 +1,7 @@
 package qfpay.wxshop.activity;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
@@ -13,6 +14,7 @@ import qfpay.wxshop.data.beans.GoodMSBean;
 import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.ui.commodity.CommodityDataController;
 import qfpay.wxshop.ui.commodity.EdititemDoneActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.ShareUtils;
@@ -53,6 +55,8 @@ public class ManPromoSuccessActivity extends BaseActivity {
 	int pos;
 	@Extra
 	String from;
+    @Bean
+    CommodityDataController commodityController;
 
 	@AfterViews
 	void init() {
@@ -76,6 +80,8 @@ public class ManPromoSuccessActivity extends BaseActivity {
 		line_down.setVisibility(View.INVISIBLE);
 		line_up.setVisibility(View.INVISIBLE);
 		layout_show_label.setVisibility(View.GONE);
+
+        commodityController.reloadCurrentData();
 	}
 
 	@Click
@@ -89,7 +95,7 @@ public class ManPromoSuccessActivity extends BaseActivity {
 	void btn_preview() {
 		Intent intent = new Intent(this, ManagePreViewActivity.class);
 		intent.putExtra(ConstValue.TITLE, "商品预览");
-		String url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_seckill_&ga_source=entrance";
+		String url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_seckill_&ga_source=entrance";
 		intent.putExtra(ConstValue.URL, url);
 		startActivity(intent);
 	}
@@ -125,10 +131,9 @@ public class ManPromoSuccessActivity extends BaseActivity {
 		MobAgentTools.OnEventMobOnDiffUser(this,
 				"seckill_sharegoods_onekey_manage");
 
-		WxShopApplication.shareBean = ShareUtils.getShareBean(gb,
-				ManPromoSuccessActivity.this, "android_mmwdapp_seckill_");
+		WxShopApplication.shareBean = ShareUtils.getShareBean(gb, ManPromoSuccessActivity.this);
 		Intent intent = new Intent(ManPromoSuccessActivity.this, ShareActivity.class);
-		intent.putExtra(ConstValue.gaSrcfrom, ConstValue.android_mmwdapp_postpreview_);
+		intent.putExtra(ConstValue.gaSrcfrom, "android_mmwdapp_seckill_");
 		intent.putExtra("share_content_type", ShareActivity.SHARE_CONTENT_MANPRO_SUCCESS);
 		startActivity(intent);
 	}

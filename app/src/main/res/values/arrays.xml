@@ -42,14 +42,27 @@ limitations under the License.
     </string-array>
     
     <string-array name="official_category">
-        <item>全部</item>
-        <item>服装</item>
+        <item>全部商品</item>
+        <item>女装</item>
+        <item>美食</item>
+        <item>护肤</item>
+        <item>彩妆</item>
+        <item>配饰</item>
         <item>鞋包</item>
-        <item>珠宝配饰</item>
-        <item>护肤彩妆</item>
-        <item>母婴</item>
-        <item>美食特产</item>
         <item>家居日用</item>
+        <item>男装</item>
+        <!--<item>母婴</item>-->
+        <!--<item>男鞋</item>-->
+        <!--<item>运动户外</item>-->
+        <!--<item>3C数码</item>-->
+        <!--<item>创意礼品</item>-->
+        <!--<item>图书音像</item>-->
+        <!--<item>虚拟商品</item>-->
+        <!--<item>其他</item>-->
+    </string-array>
+    <string-array name="official_order">
+        <item>显示指导价</item>
+        <item>显示利润</item>
     </string-array>
 
 </resources>

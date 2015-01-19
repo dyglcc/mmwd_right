@@ -38,7 +38,7 @@ public class ShareUtils {
 		UtilsWeixinShare.shareWeb(wdb, ga_st_extra, context);
 	}
 
-	public static ShareBean getShareBean(GoodsBean gb, Activity context, String ga_st_extra) {
+	public static ShareBean getShareBean(GoodsBean gb, Activity context) {
 		ShareBean sb = new ShareBean();
 		if (gb == null || gb.getImageUrl() == null
 				|| gb.getImageUrl().equals("")) {
@@ -54,7 +54,7 @@ public class ShareUtils {
 		// if (jsonObject.has("MsgImg")) {
 		// shareBean.imgUrl = jsonObject.getString("MsgImg");
 		// }
-		sb.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium="+ga_st_extra +"&ga_source=entrance";
+		sb.link = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId();
 
 		// if (jsonObject.has("link")) {
 		// shareBean.link = jsonObject.getString("link");

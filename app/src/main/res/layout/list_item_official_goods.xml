@@ -5,14 +5,13 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dip"
     android:gravity="center_vertical"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/layout_imag"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dip"
-        android:background="@drawable/selector_bg_item_huoyuan_top" >
+        android:layout_marginTop="2dip">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -30,109 +29,165 @@
             app:mutate_background="true"
             app:oval="false" />
 
-        <RelativeLayout
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_goods_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_imag"
+        android:background="@drawable/bg_hy_title_text_back">
+
+        <!-- <TextView
+            android:id="@+id/tv_goods_name_stock"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@drawable/bg_hy_title_text_back" >
+            android:layout_marginTop="10dip"
+            android:alpha="0.75"
+            android:gravity="left|center_vertical"
+            android:maxLines="4"
+            android:paddingLeft="6dip"
+            android:text="商品名称"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" /> -->
 
-            <!-- <TextView
-                android:id="@+id/tv_goods_name_stock"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:alpha="0.75"
-                android:gravity="left|center_vertical"
-                android:maxLines="4"
-                android:paddingLeft="6dip"
-                android:text="商品名称"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_small" /> -->
-
-            <TextView
-                android:id="@+id/tv_goods_name"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:alpha="0.75"
-                android:gravity="left|center_vertical"
-                android:maxLines="2"
-                android:paddingLeft="6dip"
-                android:layout_centerVertical="true"
-                android:text="商品名称"
-                android:textColor="@color/text_color"
-                android:textSize="@dimen/text_size_small" />
-        </RelativeLayout>
-    </FrameLayout>
+        <TextView
+            android:id="@+id/tv_goods_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dip"
+            android:alpha="0.75"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="商品名称"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_size_small" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_imag"
+        android:layout_below="@+id/layout_goods_name"
         android:background="@drawable/selector_bg_item_huoyuan_bottom"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_yuan"
-                android:layout_width="wrap_content"
-                android:layout_height="29dip"
-                android:layout_centerVertical="true"
-                android:gravity="bottom"
-                android:text="￥"
-                android:textColor="#e91e63"
-                android:textSize="12dip" />
-            <TextView
-                android:id="@+id/lowPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="32dip"
-                android:layout_toRightOf="@+id/tv_yuan"
-                android:layout_centerVertical="true"
-                android:gravity="bottom"
-                android:text="699"
-                android:textColor="#e91e63"
-                android:textSize="18dip" />
 
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
-                android:layout_height="29dip"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/lowPrice"
-                android:gravity="bottom"
-                android:text="起批"
-                android:textColor="#91948d"
-                android:textSize="12dip" />
+            <RelativeLayout
+                android:id="@+id/layout_profit"
+                android:layout_width="fill_parent"
+                android:layout_height="22dp">
 
-            <TextView
-                android:id="@+id/guidePrice"
-                android:layout_width="wrap_content"
-                android:layout_height="29dip"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:gravity="bottom"
-                android:text="指导价1299"
-                android:textColor="#91948d"
-                android:textSize="12dip" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_yuan_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_alignParentBottom="true"
+                    android:text="进价￥"
+                    android:gravity="bottom"
+                    android:textColor="#91948d"
+                    android:textSize="12dip" />
 
-        <qfpay.wxshop.ui.view.TagViews
-            android:id="@+id/layout_tags"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginTop="6dip"
-            android:minHeight="30dip"
-            android:paddingBottom="8dip"
-            android:paddingRight="1dip" />
+                <TextView
+                    android:id="@+id/lowPrice_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_toRightOf="@+id/tv_yuan_0"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="bottom"
+                    android:text="699"
+                    android:textColor="#91948d"
+                    android:textSize="12dip"/>
+
+                <TextView
+                    android:id="@+id/tv_profit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_toLeftOf="@+id/tv_profit"
+                    android:gravity="bottom"
+                    android:text="可赚￥"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#e91e63"
+                    android:textSize="12dip" />
+
+                <TextView
+                    android:id="@+id/tv_profit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dip"
+                    android:gravity="bottom"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:text="20"
+                    android:layout_marginBottom="-3dp"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#e91e63"
+                    android:textSize="18dip" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_guide"
+                android:layout_width="fill_parent"
+                android:layout_height="22dp">
+
+                <TextView
+                    android:id="@+id/tv_yuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:gravity="bottom"
+                    android:layout_alignParentBottom="true"
+                    android:text="进价￥"
+                    android:textColor="#e91e63"
+                    android:textSize="12dip" />
+
+                <TextView
+                    android:id="@+id/lowPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_toRightOf="@+id/tv_yuan"
+                    android:text="699"
+                    android:layout_marginBottom="-3dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="bottom"
+                    android:textColor="#e91e63"
+                    android:textSize="18dip" />
+
+                <TextView
+                    android:id="@+id/guidePrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="bottom"
+                    android:text="指导价1299"
+                    android:textColor="#91948d"
+                    android:textSize="12dip" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <!--<qfpay.wxshop.ui.view.TagViews-->
+            <!--android:id="@+id/layout_tags"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:layout_marginTop="6dip"-->
+            <!--android:minHeight="30dip"-->
+            <!--android:paddingBottom="8dip"-->
+            <!--android:paddingRight="1dip" />-->
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dip"
-            android:paddingBottom="8dip"
-            android:background="@color/grey" />
+            android:background="@color/grey"
+            android:paddingBottom="8dip" />
     </LinearLayout>
 
     <ImageView

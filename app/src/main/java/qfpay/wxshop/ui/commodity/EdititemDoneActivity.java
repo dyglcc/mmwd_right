@@ -132,29 +132,29 @@ public class EdititemDoneActivity extends BaseActivity {
 		Intent intent = new Intent(this, ManagePreViewActivity.class);
 		intent.putExtra(ConstValue.TITLE, "商品预览");
 		intent.putExtra(ConstValue.URL,
-				"http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postview_&ga_source=entrance");
+				"http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance");
 		MobAgentTools.OnEventMobOnDiffUser(this, "goods_preview");
 		this.startActivity(intent);
 	}
 
 	@Click(R.id.ll_share_moments)
 	void shareMoments() {
-		ShareUtils.momentsGoodItem(getGoodsBean(wrapper), this, "android_mmwdapp_postview_wctimeline");
+		ShareUtils.momentsGoodItem(getGoodsBean(wrapper), this, "android_mmwdapp_postshare_wctimeline");
 		MobAgentTools.OnEventMobOnDiffUser(this, "Share_circle_publish");
 	}
 
 	@Click(R.id.ll_share_friends)
 	void shareWX() {
 		MobAgentTools.OnEventMobOnDiffUser(this, "Share_friends_publish");
-		ShareUtils.friendGoodItem(getGoodsBean(wrapper), this, "android_mmwdapp_postview_wcfriend");
+		ShareUtils.friendGoodItem(getGoodsBean(wrapper), this, "android_mmwdapp_postshare_wcfriend");
 	}
 
 	@Click(R.id.ll_share_onekey)
 	void shareOneKey() {
 		MobAgentTools.OnEventMobOnDiffUser(this, "One_keyword_publish");
-		WxShopApplication.shareBean = ShareUtils.getShareBean(getGoodsBean(wrapper), this, "android_mmwdapp_postview_");
+		WxShopApplication.shareBean = ShareUtils.getShareBean(getGoodsBean(wrapper), this);
 		Intent intent = new Intent(EdititemDoneActivity.this, ShareActivity.class);
-		intent.putExtra(ConstValue.gaSrcfrom, ConstValue.android_mmwdapp_postpreview_);
+		intent.putExtra(ConstValue.gaSrcfrom, "android_mmwdapp_postshare_");
 		intent.putExtra("share_content_type", ShareActivity.SHARE_CONTENT_GOOD_ITEM);
 		startActivity(intent);
 	}

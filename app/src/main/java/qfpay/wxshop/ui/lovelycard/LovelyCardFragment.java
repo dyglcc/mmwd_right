@@ -1,10 +1,20 @@
 package qfpay.wxshop.ui.lovelycard;
 
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+
+import java.io.IOException;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.net.ConstValue;
@@ -14,11 +24,13 @@ import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.main.fragment.PopularizingFragment;
 import qfpay.wxshop.ui.view.BadgeView;
-import qfpay.wxshop.utils.*;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import qfpay.wxshop.utils.BitmapUtil;
+import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.QFCommonUtils;
+import qfpay.wxshop.utils.QMMAlert;
+import qfpay.wxshop.utils.T;
+import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;
 
 @EFragment(R.layout.lovelycard_main)
 public class LovelyCardFragment extends BaseFragment {
@@ -96,25 +108,38 @@ public class LovelyCardFragment extends BaseFragment {
 		});
 	}
 
-	private void shareToFriend() {
-		WeiXinDataBean wdb = new WeiXinDataBean();
-		wdb.title = String.format(LovelyCardEditActivity.SHARE_TITLE, mLCPref.name().get());
-		wdb.description = LovelyCardEditActivity.SHARE_CONTENT;
-		wdb.url = LovelyCardEditActivity.getLovelyCardUrl();
-		wdb.imgUrl = Utils.getThumblePic(mLCPref.imgUrl().get(), 120);
-		wdb.scope = ConstValue.friend_share;
-		UtilsWeixinShare.shareWeb(wdb, ConstValue.android_mmwdapp_home_wcfriend, getActivity());
+    @Background(id = ConstValue.THREAD_CANCELABLE)
+	void shareToFriend() {
+		WeiXinDataBean wdb = getShareDataBean("android_mmwdapp_home_wcfriend");
+        wdb.scope = ConstValue.friend_share;
+		UtilsWeixinShare.shareWeb(wdb, null, getActivity());
 	}
 
-	private void shareToMoment() {
-		WeiXinDataBean wdb = new WeiXinDataBean();
-		wdb.title = String.format(LovelyCardEditActivity.SHARE_TITLE, mLCPref.name().get());
-		wdb.description = LovelyCardEditActivity.SHARE_CONTENT;
-		wdb.url = LovelyCardEditActivity.getLovelyCardUrl();
-		wdb.imgUrl = Utils.getThumblePic(mLCPref.imgUrl().get(), 120);
+    @Background(id = ConstValue.THREAD_CANCELABLE)
+	void shareToMoment() {
+		WeiXinDataBean wdb = getShareDataBean("android_mmwdapp_home_wctimeline");
 		wdb.scope = ConstValue.circle_share;
-		UtilsWeixinShare.shareWeb(wdb, ConstValue.android_mmwdapp_home_wctimeline, getActivity());
+		UtilsWeixinShare.shareWeb(wdb, null, getActivity());
 	}
+
+    private WeiXinDataBean getShareDataBean(String medium) {
+        WeiXinDataBean bean = new WeiXinDataBean();
+        bean.title = String.format(LovelyCardEditActivity.SHARE_TITLE, mLCPref.name().get());
+        bean.description = LovelyCardEditActivity.SHARE_CONTENT;
+        bean.url = LovelyCardEditActivity.getLovelyCardUrl(medium);
+        try {
+            bean.thumbData = BitmapUtil.bmpToByteArray(
+                    Picasso.with(getActivity()).
+                            load(Utils.getThumblePic(mLCPref.imgUrl().get(), 120)).
+                            resize(100, 100).
+                            centerCrop().
+                            get(),
+                    true);
+        } catch (IOException e) {
+            T.e(e);
+        }
+        return bean;
+    }
 
 	private void processBadge(boolean isShow) {
 		if (isShow) {

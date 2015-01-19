@@ -820,7 +820,7 @@ public final class DiskLruCache implements Closeable {
       dirtyFiles = new File[valueCount];
 
       // The names are repetitive so re-use the same builder to avoid allocations.
-      StringBuilder fileBuilder = new StringBuilder(key).append('.');
+      StringBuilder fileBuilder = new StringBuilder(key).append('_');
       int truncateTo = fileBuilder.length();
       for (int i = 0; i < valueCount; i++) {
           fileBuilder.append(i);

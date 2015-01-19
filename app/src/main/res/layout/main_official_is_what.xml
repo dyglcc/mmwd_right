@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center"
         android:layout_margin="20dip"
@@ -15,10 +15,11 @@
 
         <ImageView
             android:id="@+id/imageView_title"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="4dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/icon_what_is_hy_title" />
+            android:background="@drawable/icon_what_is_hy_title" />
 
         <ScrollView
             android:layout_width="wrap_content"

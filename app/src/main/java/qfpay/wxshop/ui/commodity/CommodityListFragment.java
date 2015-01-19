@@ -26,13 +26,13 @@ import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.commodity.CommodityDataController.CommodityCallback;
 import qfpay.wxshop.ui.commodity.CommodityDataController.Operation;
+import qfpay.wxshop.ui.main.MainTab;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.ui.view.XListView.IXListViewListener;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.QMMAlert;
-import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 import android.content.Intent;
@@ -100,7 +100,9 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 		case REFRESH:
 			if (dataController.getCurrentList().isEmpty()) {
 				setListState(ListState.NULL);
-			} else {
+			} else if (dataController.getCurrentList().size() <= 3 && MainTab.HUOYUAN.getFragment() == null) {
+                setListState(ListState.NOT_ENOUGH);
+            } else {
 				setListState(ListState.NORMAL);
 			}
 			break;
@@ -176,6 +178,12 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 			fl_indictor.setVisibility(View.VISIBLE);
 			iv_indictor.setImageResource(R.drawable.commodity_list_nodata);
 		}
+
+        if (state == ListState.NOT_ENOUGH) {
+            listView.setVisibility(View.VISIBLE);
+            fl_indictor.setVisibility(View.VISIBLE);
+            iv_indictor.setImageResource(R.drawable.commodity_list_notenoughdata);
+        }
 		
 		if (state == ListState.LOADING) {
 			listView.setVisibility(View.INVISIBLE);
@@ -201,7 +209,7 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 	 * 表示列表的状态
 	 */
 	public enum ListState {
-		NULL, LOADING, NORMAL, ERROR
+		NULL, NOT_ENOUGH, LOADING, NORMAL, ERROR
 	}
 	
 	class DataControllerAdapter extends BaseAdapter {

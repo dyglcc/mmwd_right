@@ -35,7 +35,7 @@ public class BusinessCommunityFragmentWrapper extends BasePagerFragmentWrapper {
 		case 1:
             return new DiscoveryFragment_();
 		case 2:
-            fragment.init(WDConfig.getInstance().getPaihangbang(), true);
+            fragment.init(WDConfig.getInstance().getPaihangbang(),true);
 				T.d("paihangbang + " + WDConfig.getInstance().getCommoditySource());
 				break;
             case 3:

@@ -115,7 +115,7 @@ public class ShopHeaderPreviewActivity extends BaseActivity {
 	@UiThread
 	void onNetDone(String imgUrl) {
 		this.imgUrl = imgUrl;
-		String url = WDConfig.getInstance().getShopUrl() + WxShopApplication.dataEngine.getShopId() + "?tempbg=" + imgUrl + ".jpg";
+		String url = WDConfig.getInstance().getShopUrl() + WxShopApplication.dataEngine.getShopId() + "?tempbg=" + imgUrl;
 		initWebview(url);
 		wrapper.deleteCacheImg();
 		if (wrapper.getImgFilePath().contains(ConstValue.getPICTURE_DIR())) {

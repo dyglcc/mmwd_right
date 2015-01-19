@@ -923,7 +923,10 @@ public class Utils {
 		String cookieString = "sessionid=" + WxShopApplication.dataEngine.getcid();
 		// cookieManager.removeSessionCookie();//移除
 		String pre = url.replace("http://", "");
-		String domain = pre.substring(0, pre.indexOf("/"));
+        String domain = pre;
+        if(pre.indexOf("/")!=-1){
+           domain = pre.substring(0, pre.indexOf("/"));
+        }
 		cookieManager.setCookie(domain, cookieString);
 		CookieSyncManager.getInstance().sync();
 	}
