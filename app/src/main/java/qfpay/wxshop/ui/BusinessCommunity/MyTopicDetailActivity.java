@@ -44,6 +44,7 @@ import org.androidannotations.annotations.res.DrawableRes;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import qfpay.wxshop.R;
@@ -56,6 +57,8 @@ import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
+import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 
 /**
@@ -78,15 +81,13 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
     Drawable commodity_list_refresh;
     @Bean BusinessCommunityDataController businessCommunityDataController;
     @ViewById TextView tv_title;
-    List<MyDynamicNoteListItemView> listItemViews;
     @ViewById ImageView publish_note;
     @ViewById View publish_note_line;
-    final AnimatorSet animatorSet = new AnimatorSet(); ;
+    final AnimatorSet animatorSet = new AnimatorSet();
     @AfterViews
     void init(){
-        listItemViews = new ArrayList<MyDynamicNoteListItemView>();
         ActionBar bar = getSupportActionBar();
-        bar.hide();//隐藏默认actionbar
+        bar.hide();//隐藏默认actionbars
         tool_bar.setVisibility(View.VISIBLE);
         businessCommunityDataController.getMyTopicBeanList().clear();
         businessCommunityDataController.setTopic_last_fid("");
@@ -107,23 +108,23 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
         businessCommunityDataController.getNotesListOfTopicFromServer(myTopicBean.getId());
         oneTopicNotesListAdapter = new OneTopicNotesListAdapter();
         listView.setAdapter(oneTopicNotesListAdapter);
-        startItemReplyAnimation();
+//        startItemReplyAnimation();
     }
-    @Background
-    void startItemReplyAnimation(){
-        try {
-            Thread.currentThread().sleep(4*1000);
-            if(listItemViews!=null&&listItemViews.size()>0){
-                for(MyDynamicNoteListItemView itemView:listItemViews){
-                    itemView.showReplyContent();
-                }
-            }
-            Thread.currentThread().sleep(4*1000);
-            startItemReplyAnimation();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Background
+//    void startItemReplyAnimation(){
+//        try {
+//            Thread.currentThread().sleep(4*1000);
+//            if(listItemViews!=null&&listItemViews.size()>0){
+//                for(MyDynamicNoteListItemView itemView:listItemViews){
+//                    itemView.showReplyContent();
+//                }
+//            }
+//            Thread.currentThread().sleep(4*1000);
+//            startItemReplyAnimation();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
     /**
      * 某一小组帖子列表数据适配器
      */
@@ -152,38 +153,9 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
             MyDynamicNoteListItemView item = (MyDynamicNoteListItemView)convertView;
             if(item==null){
                 item = MyDynamicNoteListItemView_.build(MyTopicDetailActivity.this,businessCommunityDataController);
-                if(!listItemViews.contains(item)){
-                    listItemViews.add(item);
-                }
             }
             final MyDynamicItemBean0 myDynamicItemBean0 = wrapperList.get(position);
             item.setData(myDynamicItemBean0,position);
-//            item.reply_ll.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    System.out.println("点击评论----------");
-//                    listView.setSelection(jumpToPostion);
-//                    LayoutInflater layoutInflater = LayoutInflater.from(MyTopicDetailActivity.this);
-//                    View view = layoutInflater.inflate(R.layout.mydynamic_reply_input,null);
-//                    PopupWindow popupWindow = new PopupWindow(view,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
-//                    popupWindow.setOutsideTouchable(true);
-//                    popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                    popupWindow.showAtLocation(listView, Gravity.NO_GRAVITY, 0, 0);
-//                    EditText editText = (EditText)view.findViewById(R.id.input_reply_et);
-////                    view.setFocusable(true);
-////                    view.setFocusableInTouchMode(true);
-//                    editText.setFocusable(true);
-//                    editText.setFocusableInTouchMode(true);
-//                    editText.requestFocus();
-////                    input_reply_ll.setVisibility(View.VISIBLE);
-////                    input_reply_et.requestFocus();
-//                    InputMethodManager inputMethodManager = (InputMethodManager)editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
-////                    MainActivity_ mainActivity_ = (MainActivity_)getActivity();
-////                    mainActivity_.setBottomBarState(false);
-//
-//                }
-//            });
             //点赞事件
             final MyDynamicNoteListItemView finalItem = item;
             item.link_ll.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +167,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
                     List<String> linkedUser = myDynamicItemBean0.getLike_data().getLiked_user();
                     JSONArray userIds = new JSONArray(linkedUser);
                     DataEngine dataEngine = new DataEngine(MyTopicDetailActivity.this);
+                    MobAgentTools.OnEventMobOnDiffUser(MyTopicDetailActivity.this,"click_merchant_dynamic_like");
                     if(isLiked.equals("0")){//点赞
                         isLiked="1";
                         myDynamicItemBean0.getLike_data().setIs_liked("1");
@@ -231,17 +204,10 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
             wrapperList.addAll(0,businessCommunityDataController.getNotesListOfOneTopic());
         }
     }
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-        }
-    };
     //自定义的网络请求操作的回调事件
     @Override  @UiThread
     public void onSuccess() {
         // 没有加判断是因为现在几乎所有的情况都需要刷新列表来完成
-        System.out.println("--------------onSuccess");
         listView.stopRefresh();
         listView.stopLoadMore();
         refreshListView(RefreshFrom.REFRESH);
@@ -249,22 +215,24 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
 
     @Override  @UiThread
     public void onNetError() {
-        System.out.println("--------------onNetError");
+        listView.stopRefresh();
+        listView.stopLoadMore();
+        Toaster.s(this, "加载失败，请稍后重试！");
     }
 
     @Override  @UiThread
     public void onServerError( String msg) {
-        System.out.println("--------------onServerError");
+        Toaster.s(this,msg);
+        listView.stopRefresh();
+        listView.stopLoadMore();
     }
 
     @Override  @UiThread
     public void refresh() {
-        System.out.println("--------------refresh");
     }
     //XListView的回调事件
     @Override
     public void onRefresh() {
-        System.out.println("listview下拉刷新");
         businessCommunityDataController.setTopic_last_fid("");
         businessCommunityDataController.setCallback(this);
         businessCommunityDataController.getNotesListOfTopicFromServer(myTopicBean.getId());
@@ -305,7 +273,6 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
     }
 
     void setListState(ListState state) {
-        System.out.println("设置列表状态-------"+state);
         if (state == ListState.NULL) {
             listView.setVisibility(View.INVISIBLE);
             fl_indictor.setVisibility(View.VISIBLE);
@@ -369,6 +336,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
      */
     @Click
     void publish_note(){
+        MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_topic_release");
         PublishNoteActivity_.intent(this).myTopicBean(myTopicBean).startForResult(MaijiaxiuFragment.ACTION_PUBLISH_NOTE);
     }
 
@@ -378,8 +346,8 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
     void startAnimation(){
         ViewWrapper viewWrapper = new ViewWrapper(publish_note_line);
         animatorSet.playTogether(
-                ObjectAnimator.ofFloat(publish_note, "translationX",0, Utils.dip2px(this, 10),0,Utils.dip2px(this, 10),0,Utils.dip2px(this, 10),0),
-                ObjectAnimator.ofInt(viewWrapper,"width",0, Utils.dip2px(this, 10),0,Utils.dip2px(this, 10),0,Utils.dip2px(this, 10),0)
+                ObjectAnimator.ofFloat(publish_note, "translationX", 0, Utils.dip2px(this, 10), 0, Utils.dip2px(this, 10), 0, Utils.dip2px(this, 10), 0),
+                ObjectAnimator.ofInt(viewWrapper, "width", 0, Utils.dip2px(this, 10), 0, Utils.dip2px(this, 10), 0, Utils.dip2px(this, 10), 0)
         );
         animatorSet.addListener(new Animator.AnimatorListener() {
             @Override

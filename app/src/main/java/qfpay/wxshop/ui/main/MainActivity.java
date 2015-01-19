@@ -59,6 +59,7 @@ import qfpay.wxshop.ui.view.BadgeView;
 import qfpay.wxshop.ui.view.popupview.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 
@@ -400,6 +401,7 @@ public class MainActivity extends BaseActivity {
         badgeView.setWidth(Utils.dip2px(this, 10));
         badgeView.setHeight(Utils.dip2px(this, 10));
         badgeView.setGravity(Gravity.CENTER);
+        badgeView.setBadgeMargin(15,10);
         badgeView.setTextSize(7);
         initLastNoReadNotification();
         getBusinessCommunityAboutMyNotify();
@@ -472,7 +474,7 @@ public class MainActivity extends BaseActivity {
                     businessCommunityFragment.hideCommunityNotification();
                 }
             }
-            System.out.println("我的消息通知------>"+WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData().data.toString());
+            T.i("我的消息通知------>" + WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData().data.toString());
         }
     }
 
@@ -694,6 +696,7 @@ public class MainActivity extends BaseActivity {
 	}
 
     public void onAddNote(){
+        MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_post");
         changeTab(MainTab.BUSINESS_COMMUNITY,iv_community);
         AddedPopupView.close();
         startPublishNote();

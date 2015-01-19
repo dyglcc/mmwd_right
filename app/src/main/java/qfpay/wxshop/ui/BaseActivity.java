@@ -4,7 +4,13 @@ import org.androidannotations.api.BackgroundExecutor;
 
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.net.ConstValue;
+
+import android.content.Context;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
 import cn.sharesdk.framework.ShareSDK;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 
@@ -51,4 +57,24 @@ public class BaseActivity extends SherlockFragmentActivity {
 	public void onLowMemory() {
 		super.onLowMemory();
 	}
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(ev.getAction() == MotionEvent.ACTION_DOWN){//触摸屏幕关闭软键盘
+            if(this.getCurrentFocus()!=null){
+                CloseSoftInput(getCurrentFocus());
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    protected void CloseSoftInput(View view) { // 关闭软键盘
+        if (view != null) {
+            if (view.getWindowToken() != null) {
+                InputMethodManager imm;
+                imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
 }

@@ -63,45 +63,6 @@
             android:src="@drawable/commodity_list_nodata" />
     </FrameLayout>
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/input_reply_ll"
-        android:background="#f06292"
-        android:visibility="invisible"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:background="#7ff06292"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/bottom_ll"
-            >
-            <EditText
-                android:id="@+id/input_reply_et"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:focusable="true"
-                android:hint="说点什么吧~"
-                android:focusableInTouchMode="true" />
-
-            <ImageButton
-                android:id="@+id/publish_reply_bt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:background="@drawable/mydynamic_publish_bg"
-                />
-        </LinearLayout>
-        </FrameLayout>
-
-    <FrameLayout
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

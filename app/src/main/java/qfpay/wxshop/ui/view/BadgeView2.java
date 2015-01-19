@@ -178,6 +178,7 @@ public class BadgeView2 extends TextView {
             textView.setText(R.string.community_pagertitle_mydynamic);
             linearLayout.addView(container,new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
             container.addView(textView);
+            this.setVisibility(View.GONE);
             container.addView(this);
             group.addView(linearLayout,index);
             linearLayout.setOnClickListener(new OnClickListener() {

@@ -5,6 +5,7 @@ import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.EBean.Scope;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.event.LogoutEvent;
@@ -32,7 +34,7 @@ import retrofit.mime.TypedString;
     private boolean 						 hasNext    = false;
 
 	@AfterInject void init() {
-		netService = netWrapper.getNetService(BusinessCommunityService.class ,"http://bf.mmwd.me");
+		netService = netWrapper.getNetService(BusinessCommunityService.class , WDConfig.SOCIAL_URL);
 		EventBus.getDefault().register(BusinessCommunityDataController.this);
 	}
     public void onEvent(LogoutEvent event) {
@@ -66,7 +68,6 @@ import retrofit.mime.TypedString;
                     data.addAll(0,dataWrapper.data.items);
                 }
                 setLast_fid(data.get(data.size()-1).getId());
-                System.out.println("上次请求最后帖子id----->"+last_fid);
                 if(dataWrapper.data.items.size()>0){
                     hasNext = true;
                 }else{
@@ -74,10 +75,8 @@ import retrofit.mime.TypedString;
                 }
                 if(callback!=null&&callback.get()!=null){
                     callback.get().onSuccess();
-                    System.out.println("帖子列表------服务器请求成功!"+data.size());
                 }
             }else{
-                System.out.println("帖子列表------服务器请求失败!");
                 if(callback!=null&&callback.get()!=null){
                     callback.get().onServerError(dataWrapper.getRespmsg());
                 }
@@ -101,7 +100,7 @@ import retrofit.mime.TypedString;
             if(getTopic_last_fid().equals("")){//last_fid为空，表明是第一次请求
                 dataWrapper =  netService.getOneTopicNotesListFirstTime(g_id);
             }else{
-                dataWrapper =  netService.getOneTopicNotesList(g_id,topic_last_fid);
+                dataWrapper =  netService.getOneTopicNotesList(g_id, topic_last_fid);
             }
             if (dataWrapper.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)) {
                 if(!getTopic_last_fid().equals("")){
@@ -110,7 +109,7 @@ import retrofit.mime.TypedString;
                     notesListOfOneTopic.clear();
                     notesListOfOneTopic.addAll(0,dataWrapper.data.items);
                 }
-                setTopic_last_fid(notesListOfOneTopic.get(notesListOfOneTopic.size()-1).getId());
+                setTopic_last_fid(notesListOfOneTopic.get(notesListOfOneTopic.size() - 1).getId());
                 if(dataWrapper.data.items.size()>0){
                     hasNext = true;
                 }else{
@@ -267,6 +266,16 @@ import retrofit.mime.TypedString;
             return  null;
         }
 
+    }
+
+    /**
+     * 根据用户id得到店铺id
+     * @param userId
+     * @return
+     */
+    public BusinessCommunityService.ShopIdDataWrapper getShopIdByUserId(String userId){
+        BusinessCommunityService.ShopIdDataWrapper response = netService.getShopIdByUserId(userId);
+        return response;
     }
 
     /**

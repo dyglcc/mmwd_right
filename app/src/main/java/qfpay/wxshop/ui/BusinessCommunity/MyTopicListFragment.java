@@ -43,6 +43,8 @@ import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
+import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.Toaster;
 import retrofit.mime.TypedFile;
 import retrofit.mime.TypedString;
 
@@ -116,6 +118,7 @@ public class MyTopicListFragment extends BaseFragment implements
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    MobAgentTools.OnEventMobOnDiffUser(getActivity(), "click_merchant_topic_details");
                     MyTopicDetailActivity_.intent(getActivity()).myTopicBean(wrapperList.get(position)).start();
                 }
             });
@@ -139,7 +142,6 @@ public class MyTopicListFragment extends BaseFragment implements
     @Override  @UiThread
     @IgnoredWhenDetached
     public void onSuccess() {
-        System.out.println("--------------onSuccess");
         listView.stopRefresh();
             fl_indictor.setVisibility(View.INVISIBLE);
             if(myTopicsListAdapter!=null){
@@ -149,13 +151,15 @@ public class MyTopicListFragment extends BaseFragment implements
     }
 
     @Override  @UiThread @IgnoredWhenDetached
-    public void onNetError() {
-        System.out.println("--------------onNetError");
+    public void onNetError(){
+        Toaster.s(getActivity(),"加载失败，请稍后重试！");
+        fl_indictor.setVisibility(View.GONE);
     }
 
     @Override  @UiThread @IgnoredWhenDetached
     public void onServerError( String msg) {
-        System.out.println("--------------onServerError");
+        Toaster.s(getActivity(),"服务器请求失败！"+msg);
+        fl_indictor.setVisibility(View.GONE);
     }
 
     @Override  @UiThread @IgnoredWhenDetached

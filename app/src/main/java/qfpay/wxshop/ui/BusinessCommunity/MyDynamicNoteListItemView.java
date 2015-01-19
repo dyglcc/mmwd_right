@@ -3,9 +3,11 @@ package qfpay.wxshop.ui.BusinessCommunity;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.ResultReceiver;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,12 +20,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.squareup.picasso.Picasso;
 
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.UiThread;
@@ -33,10 +38,15 @@ import java.util.HashMap;
 import java.util.Set;
 
 import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.beans.MyDynamicItemReplyBean;
+import qfpay.wxshop.data.net.RetrofitWrapper;
+import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Util;
 import qfpay.wxshop.utils.Utils;
 
@@ -53,14 +63,13 @@ public class MyDynamicNoteListItemView extends LinearLayout {
     @ViewById
     com.makeramen.RoundedImageView u_avatar, u_avatar_reply2, u_avatar_reply;
     @ViewById
-    TextView u_name, g_name, content, read_num, reply_num, like_data, content_reply, content_reply2,content_reply_name_tv1,content_reply_name_tv2;
+    TextView u_name, g_name, content, read_num, reply_num, like_data, content_reply, content_reply2, content_reply_name_tv1, content_reply_name_tv2;
     @ViewById
-    LinearLayout parent_ll, reply_content_ll, reply_content_child1, reply_content_child2, reply_ll, link_ll,bottom_ll;
+    LinearLayout parent_ll, reply_content_ll, reply_content_child1, reply_content_child2, reply_ll, link_ll, bottom_ll;
     @ViewById
     View imageview_below_line, reply_below_line;
     @ViewById
     FrameLayout root_fl;
-
     @ViewById
     EditText input_reply_et;
     MyDynamicItemBean0 data;
@@ -71,8 +80,7 @@ public class MyDynamicNoteListItemView extends LinearLayout {
     private int position;
     BusinessCommunityDataController businessCommunityDataController;
     private HashMap<String, MyDynamicItemReplyBean> myDynamicItemReplyBeans = new HashMap<String, MyDynamicItemReplyBean>();//待显示的评论列表数据
-
-    private MyDynamicListFragment myDynamicListFragment;
+    private LoopperRunnable loopper;
 
     public MyDynamicNoteListItemView(Context context) {
         super(context);
@@ -96,6 +104,14 @@ public class MyDynamicNoteListItemView extends LinearLayout {
     public MyDynamicNoteListItemView setData(MyDynamicItemBean0 data, int position) {
         this.data = data;
         this.position = position;
+
+        if (loopper == null) {
+            loopper = new LoopperRunnable();
+            loopper.start();
+        } else {
+            loopper.reset();
+        }
+
         android.view.ViewGroup.LayoutParams layoutParams = image
                 .getLayoutParams();
         int picWidth = (int) (screenWidth - (36 * scale + 0.5f));
@@ -104,9 +120,14 @@ public class MyDynamicNoteListItemView extends LinearLayout {
 
         if (data.getItem_type().equals("0")) {
             u_name.setText(data.getU_name());
-            if(context instanceof MyTopicDetailActivity){//如果是某一小组内的帖子，不显示来自组别
+            if (context instanceof MyTopicDetailActivity) {//如果是某一小组内的帖子，不显示来自组别,并且昵称居中
                 g_name.setVisibility(View.GONE);
-            }else{
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.CENTER_VERTICAL);
+                params.addRule(RelativeLayout.RIGHT_OF, u_avatar.getId());
+                params.setMargins(Utils.dip2px(context, 8), 0, 0, 0);
+                u_name.setLayoutParams(params);
+            } else {
                 g_name.setVisibility(View.VISIBLE);
             }
             g_name.setText("来自" + data.getG_name());
@@ -123,7 +144,7 @@ public class MyDynamicNoteListItemView extends LinearLayout {
             if (data.getImage() != null && !data.getImage().equals("")) {
                 image.setVisibility(View.VISIBLE);
                 imageview_below_line.setVisibility(View.INVISIBLE);
-                String picUrl = data.getImage()+"?imageView2/1/w/"+picWidth+"/h/"+picWidth;
+                String picUrl = data.getImage() + "?imageView2/1/w/" + picWidth + "/h/" + picWidth;
                 Picasso.with(getContext()).load(picUrl).fit().centerCrop().placeholder(R.drawable.list_item_default).into(image);
             } else {
                 imageview_below_line.setVisibility(View.VISIBLE);
@@ -143,7 +164,7 @@ public class MyDynamicNoteListItemView extends LinearLayout {
                             error(R.drawable.list_item_default).into(u_avatar_reply);
                     animationRecovery();
                     content_reply.setText(getCurrentReply(myDynamicItemReplyBeans).getContent());
-                    content_reply_name_tv1.setText(getCurrentReply(myDynamicItemReplyBeans).getU_name()+": ");
+                    content_reply_name_tv1.setText(getCurrentReply(myDynamicItemReplyBeans).getU_name() + ": ");
                 } else {
                     reply_content_ll.setVisibility(View.GONE);
                     reply_below_line.setVisibility(View.INVISIBLE);
@@ -198,13 +219,13 @@ public class MyDynamicNoteListItemView extends LinearLayout {
             Picasso.with(getContext()).load(currentReply.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
                     error(R.drawable.list_item_default).into(u_avatar_reply);
             content_reply.setText(currentReply.getContent());
-            content_reply_name_tv1.setText(currentReply.getU_name()+": ");
+            content_reply_name_tv1.setText(currentReply.getU_name() + ": ");
             //下一条要显示的评论
             MyDynamicItemReplyBean nextReply = getNextReply(myDynamicItemReplyBeans);
             Picasso.with(getContext()).load(nextReply.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
                     error(R.drawable.list_item_default).into(u_avatar_reply2);
             content_reply2.setText(nextReply.getContent());
-            content_reply_name_tv2.setText(nextReply.getU_name()+": ");
+            content_reply_name_tv2.setText(nextReply.getU_name() + ": ");
             //开始动画
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.playTogether(
@@ -214,7 +235,7 @@ public class MyDynamicNoteListItemView extends LinearLayout {
                     ObjectAnimator.ofFloat(reply_content_child2, "alpha", 0, 1)
             );
 
-            if(animatorSet.isRunning()){
+            if (animatorSet.isRunning()) {
                 animatorSet.cancel();
             }
             animatorSet.setDuration(1 * 1000);
@@ -225,8 +246,7 @@ public class MyDynamicNoteListItemView extends LinearLayout {
     /**
      * 评论动画恢复原位
      */
-    void animationRecovery(){
-//开始动画
+    void animationRecovery() {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(
                 ObjectAnimator.ofFloat(reply_content_child1, "translationY", 0),
@@ -237,6 +257,7 @@ public class MyDynamicNoteListItemView extends LinearLayout {
         animatorSet.setDuration(1);
         animatorSet.start();
     }
+
     /**
      * 初始化回复列表数据
      *
@@ -255,7 +276,6 @@ public class MyDynamicNoteListItemView extends LinearLayout {
     }
 
 
-
     /**
      * 设置点击事件
      */
@@ -263,6 +283,11 @@ public class MyDynamicNoteListItemView extends LinearLayout {
         parent_ll.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (context instanceof MyTopicDetailActivity) {
+                    MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_topic_post");
+                } else {
+                    MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_dynamic_post");
+                }
                 MyDynamicOneNoteDetailActivity_.intent(context).myDynamicItemBean0(data)
                         .position(position).startForResult(MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
             }
@@ -277,43 +302,77 @@ public class MyDynamicNoteListItemView extends LinearLayout {
         MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_dynamic_comment");
         MyDynamicOneNoteDetailActivity_.intent(context).myDynamicItemBean0(data)
                 .position(position).isPublishReply(true).startForResult(MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
-        //popupWindow的方式 不能指定出现位置 键盘出现后上顶不完全
-//        LayoutInflater layoutInflater = LayoutInflater.from(context);
-//        View view = layoutInflater.inflate(R.layout.mydynamic_reply_input, null);
-//        final EditText editText = (EditText)view.findViewById(R.id.input_reply_et);
-//        ImageButton imageButton = (ImageButton)view.findViewById(R.id.publish_reply_bt);
-//        PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-//        popupWindow.setOutsideTouchable(true);
-//        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        popupWindow.showAtLocation(root_fl, Gravity.TOP,0,0);
-//
-//        imageButton.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String content = editText.getText().toString();
-//                if(content!=null&&!"".equals(content)){
-//                    businessCommunityDataController.publishReply(data.getId(),content);
-//                    InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-//                    editText.setText("");
-//                }
-//            }
-//        });
-//        InputMethodManager inputMethodManager = (InputMethodManager)editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    inputMethodManager.showSoftInputFromInputMethod(editText.getWindowToken(),InputMethodManager.SHOW_FORCED);
-
-//        bottom_ll.setVisibility(View.VISIBLE);
-//        input_reply_et.requestFocus();
-//        input_reply_et.setFocusable(true);
-//        input_reply_et.setFocusableInTouchMode(true);
-//        InputMethodManager inputMethodManager = (InputMethodManager)input_reply_et.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//        inputMethodManager.showSoftInput(input_reply_et,InputMethodManager.SHOW_FORCED,null);
     }
 
     @Click
-    void publish_reply_bt(){
+    void publish_reply_bt() {
         bottom_ll.setVisibility(View.GONE);
-        InputMethodManager inputMethodManager = (InputMethodManager)input_reply_et.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) input_reply_et.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(input_reply_et.getWindowToken(), 0);
+    }
+
+    /**
+     * 点击用户头像
+     */
+    @Click
+    void u_avatar() {
+        MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_avatars");
+        getShopIdByUserId(data.getU_id());
+    }
+
+    @Background
+    void getShopIdByUserId(String userId) {
+        String shopId = "";
+        try {
+            BusinessCommunityService.ShopIdDataWrapper dataWrapper = businessCommunityDataController.getShopIdByUserId(userId);
+            if (dataWrapper != null && dataWrapper.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)) {
+                shopId = dataWrapper.data.shop_id;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        jumpToUserShop(shopId);
+    }
+
+    @UiThread
+    void jumpToUserShop(String shopId) {
+        if (shopId != null && !shopId.equals("")) {
+            String shopUrl = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/" + shopId;
+            ShopDetailActivity_.intent(context).shopUrl(shopUrl).start();
+        } else {
+            Toaster.s(context, "请求失败，请稍后重试！");
+        }
+    }
+
+    class LoopperRunnable implements Runnable {
+        Thread thread;
+        boolean isLoop;
+
+        public void start() {
+            isLoop = true;
+            thread = new Thread(this);
+            thread.start();
+        }
+
+        public void cancel() {
+            isLoop = false;
+            thread.interrupt();
+        }
+
+        public void reset() {
+            thread.interrupt();
+        }
+
+        @Override
+        public void run() {
+            while (isLoop) {
+                try {
+                    Thread.sleep(5000);
+                    showReplyContent();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

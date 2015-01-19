@@ -46,6 +46,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import qfpay.wxshop.R;
@@ -74,19 +75,17 @@ public class MyDynamicListFragment extends BaseFragment implements
     private MyDynamicNotesListAdapter myDynamicNotesListAdapter;
     @ViewById XListView   listView;
     @ViewById
-    FrameLayout fl_indictor,input_reply_ll;
+    FrameLayout fl_indictor;
     @ViewById
     ImageView iv_indictor;
     @ViewById
     RelativeLayout lyt_publish;
-    @ViewById EditText input_reply_et;
     @DrawableRes
     Drawable commodity_list_refresh;
     @Bean BusinessCommunityDataController businessCommunityDataController;
     TextView textView = null;
     @ViewById FrameLayout publish_note_fl;
 
-    List<MyDynamicNoteListItemView> listItemViews;
     @AfterViews
     void init(){
         publish_note_fl.setVisibility(View.GONE);
@@ -96,7 +95,6 @@ public class MyDynamicListFragment extends BaseFragment implements
         refreshListView(RefreshFrom.LOADING);
         businessCommunityDataController.setCallback(this);
         initListView();
-        listItemViews = new ArrayList<MyDynamicNoteListItemView>();
     }
     /**
      * 初始化列表
@@ -109,7 +107,7 @@ public class MyDynamicListFragment extends BaseFragment implements
         myDynamicNotesListAdapter = new MyDynamicNotesListAdapter();
         listView.setAdapter(myDynamicNotesListAdapter);
         listView.autoRefresh();
-        startItemReplyAnimation();
+//        startItemReplyAnimation();
     }
 
     /**
@@ -136,13 +134,9 @@ public class MyDynamicListFragment extends BaseFragment implements
 
         @Override
         public View getView(final int position, final View convertView, ViewGroup parent) {
-            final int jumpToPostion = position+1;
             MyDynamicNoteListItemView item = (MyDynamicNoteListItemView)convertView;
             if(item==null){
                 item = MyDynamicNoteListItemView_.build(getActivity(),businessCommunityDataController);
-                if(!listItemViews.contains(item)){
-                    listItemViews.add(item);
-                }
             }
                 final MyDynamicItemBean0 myDynamicItemBean0 = wrapperList.get(position);
                 item.setData(myDynamicItemBean0,position);
@@ -157,8 +151,8 @@ public class MyDynamicListFragment extends BaseFragment implements
                     List<String> linkedUser = myDynamicItemBean0.getLike_data().getLiked_user();
                     JSONArray userIds = new JSONArray(linkedUser);
                     DataEngine dataEngine = new DataEngine(getActivity());
+                    MobAgentTools.OnEventMobOnDiffUser(getActivity(), "click_merchant_dynamic_like");
                     if(isLiked.equals("0")){//点赞
-                        MobAgentTools.OnEventMobOnDiffUser(getActivity(), "click_merchant_dynamic_like");
                         finalItem.link_data_iv.setBackgroundResource(R.drawable.mydynamic_note_link2);
                         isLiked="1";
                         myDynamicItemBean0.getLike_data().setIs_liked("1");
@@ -195,28 +189,12 @@ public class MyDynamicListFragment extends BaseFragment implements
         }
     }
 
-    @Background
-    void startItemReplyAnimation(){
-        try {
-            Thread.currentThread().sleep(4*1000);
-        if(listItemViews!=null&&listItemViews.size()>0){
-            for(MyDynamicNoteListItemView itemView:listItemViews){
-                itemView.showReplyContent();
-            }
-        }
-            Thread.currentThread().sleep(4*1000);
-            startItemReplyAnimation();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
 //自定义的网络请求操作的回调事件
     @Override  @UiThread
     @IgnoredWhenDetached
     public void onSuccess() {
         // 没有加判断是因为现在几乎所有的情况都需要刷新列表来完成
-        System.out.println("--------------onSuccess");
         listView.stopRefresh();
         listView.stopLoadMore();
         refreshListView(RefreshFrom.REFRESH);
@@ -227,7 +205,6 @@ public class MyDynamicListFragment extends BaseFragment implements
         listView.stopRefresh();
         listView.stopLoadMore();
         Toaster.s(getActivity(),"加载失败，请稍后重试！");
-        System.out.println("--------------onNetError");
     }
 
     @Override  @UiThread @IgnoredWhenDetached
@@ -235,17 +212,14 @@ public class MyDynamicListFragment extends BaseFragment implements
         Toaster.s(getActivity(),msg);
         listView.stopRefresh();
         listView.stopLoadMore();
-        System.out.println("--------------onServerError");
     }
 
     @Override  @UiThread @IgnoredWhenDetached
     public void refresh() {
-        System.out.println("--------------refresh");
     }
 //XListView的回调事件
     @Override
     public void onRefresh() {
-        System.out.println("listview onRefresh-------------");
         businessCommunityDataController.setCallback(this);
         businessCommunityDataController.setLast_fid("");
         businessCommunityDataController.reloadData();
@@ -289,7 +263,6 @@ public class MyDynamicListFragment extends BaseFragment implements
 
     @IgnoredWhenDetached
     void setListState(ListState state) {
-        System.out.println("设置列表状态-------"+state);
         if (state == ListState.NULL) {
             listView.setVisibility(View.INVISIBLE);
             fl_indictor.setVisibility(View.VISIBLE);
@@ -395,5 +368,4 @@ public class MyDynamicListFragment extends BaseFragment implements
 
         }
     }
-
 }

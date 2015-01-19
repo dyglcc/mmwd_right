@@ -38,17 +38,14 @@
                 app:border_width="0dp"
                 app:corner_radius="50dp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/u_avatar"
-                android:layout_centerVertical="true">
                 <TextView
                     android:id="@+id/u_name"
                     style="@style/common_text_content_big"
+                    android:layout_toRightOf="@id/u_avatar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
                     android:textColor="#f06292"
                     android:textSize="@dimen/common_text_content_big"
                     tools:text="发帖人昵称" />
@@ -63,7 +60,6 @@
                     android:textSize="@dimen/common_text_content_mid"
                     tools:text="来自小组名称" />
                 </RelativeLayout>
-        </RelativeLayout>
 
         <TextView
             android:id="@+id/content"
@@ -82,8 +78,8 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_gravity="center_horizontal" />
 
         <View

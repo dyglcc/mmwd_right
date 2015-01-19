@@ -43,10 +43,6 @@ public class TopicListItemView extends LinearLayout{
         super(context);
         this.context = context;
     }
-
-
-
-
     /**
      * 为列表项设置数据
      * @param myTopicBean
@@ -59,13 +55,4 @@ public class TopicListItemView extends LinearLayout{
         member_num.setText(myTopicBean.getMember_num());
         return this;
 	}
-
-    /**
-     * 整个item点击事件监听
-     */
-//    @Click
-//    void mytopic_item_ll(){
-//        MyTopicDetailActivity_.intent(context).myTopicBean(myTopicBean).start();
-//    }
-
 }

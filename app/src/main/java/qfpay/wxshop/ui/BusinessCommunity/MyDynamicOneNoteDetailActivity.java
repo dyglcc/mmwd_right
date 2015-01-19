@@ -43,13 +43,21 @@ import org.androidannotations.annotations.res.DrawableRes;
 import java.io.IOException;
 import java.util.List;
 import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.beans.MyDynamicItemLinkDataBean;
 import qfpay.wxshop.data.beans.MyDynamicItemReplyBean;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.net.DataEngine;
+import qfpay.wxshop.data.net.RetrofitWrapper;
+import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
+import qfpay.wxshop.ui.web.CommonWebActivity;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.CommonWebFragment;
+import qfpay.wxshop.ui.web.CommonWebFragment_;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
@@ -89,7 +97,7 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     private String replyContent;
     DataEngine dataEngine ;
     @ViewById
-    RelativeLayout rootview;
+    RelativeLayout rootview,note_from_rl;
     @AfterViews
     void init() {
         rootview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -156,8 +164,8 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     void liked_ll(){
         MyDynamicItemLinkDataBean myDynamicItemLinkDataBean = myDynamicItemBean0.getLike_data();
         int likeCount = Integer.parseInt(myDynamicItemLinkDataBean.getLike_count());
+        MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_post_like");
         if(myDynamicItemLinkDataBean.getIs_liked().equals("0")){//没有点过赞
-            MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_post_like");
             liked_iv.setBackgroundResource(R.drawable.mydynamic_note_link2);
             myDynamicItemLinkDataBean.setIs_liked("1");
             myDynamicItemLinkDataBean.setLike_count((likeCount+1)+"");
@@ -201,9 +209,10 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
      */
     @Click
     void publish_reply_bt(){
-        replyContent = input_reply_et.getText().toString();
+        replyContent = input_reply_et.getText().toString().trim();
         if(replyContent!=null&&!replyContent.equals("")){
             String t_id = myDynamicItemBean0.getId();
+            businessCommunityDataController.setCallback(this);
             businessCommunityDataController.publishReply(t_id,replyContent);
             if(isPublishReply==true){
                 MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_dynamic_send");
@@ -216,6 +225,8 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
             input_reply_et.setText("");
+        }else{
+            Toaster.s(this,"评论内容不能为空！");
         }
     }
     /**
@@ -299,12 +310,6 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     public void onNetError() {
         fl_indictor.setVisibility(View.INVISIBLE);
         Toaster.s(this,"网络不太好，请稍后重试！");
-        if(isPublishReply==true){
-            MobAgentTools.OnEventMobOnDiffUser(this, "Fail_merchant_dynamic_comment_net_error");
-        }else{
-            MobAgentTools.OnEventMobOnDiffUser(this, "Fail_merchant_post_comment_net_error");
-        }
-
     }
 
     @Override @UiThread
@@ -312,9 +317,9 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         fl_indictor.setVisibility(View.INVISIBLE);
         Toaster.s(this,"服务器不听话啦，请稍后重试！");
         if(isPublishReply==true){
-            MobAgentTools.OnEventMobOnDiffUser(this, "Fail_merchant_dynamic_comment_server_error");
+            MobAgentTools.OnEventMobOnDiffUser(this, "Fail_merchant_dynamic_comment");
         }else{
-            MobAgentTools.OnEventMobOnDiffUser(this, "Fail_merchant_post_comment_server_error");
+            MobAgentTools.OnEventMobOnDiffUser(this, "Fail_merchant_post_comment");
         }
     }
 
@@ -339,14 +344,52 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     }
 
     /**
-     * 点击头像进入到对应话题详情
+     * 点击话题头像进入到对应话题详情
      */
     @Click
-    void g_avatar(){
+    void note_from_rl(){
         MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_dynamic_topic");
         MyTopicBean myTopicBean = new MyTopicBean();
         myTopicBean.setG_name(myDynamicItemBean0.getG_name());
         myTopicBean.setId(myDynamicItemBean0.getG_id());
         MyTopicDetailActivity_.intent(MyDynamicOneNoteDetailActivity.this).myTopicBean(myTopicBean).start();
+    }
+
+    /**
+     * 点击用户头像进入到用户店铺主页
+     */
+    @Click
+    void u_avatar(){
+        MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_avatars");
+        fl_indictor.setVisibility(View.VISIBLE);
+        iv_indictor.setImageDrawable(commodity_list_refresh);
+        ((AnimationDrawable) (commodity_list_refresh)).start();
+        getShopIdByUserId(myDynamicItemBean0.getU_id());
+    }
+
+    @Background
+    void getShopIdByUserId(String userId){
+        String shopId = "";
+        try{
+            BusinessCommunityService.ShopIdDataWrapper dataWrapper =  businessCommunityDataController.getShopIdByUserId(userId);
+            if(dataWrapper!= null&&dataWrapper.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)){
+                shopId = dataWrapper.data.shop_id;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        jumpToUserShop(shopId);
+    }
+
+    @UiThread
+    void jumpToUserShop(String shopId){
+        fl_indictor.setVisibility(View.INVISIBLE);
+        if(shopId!=null&&!shopId.equals("")){
+            String shopUrl = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/shop/"+shopId;
+//            CommonWebActivity_.intent(this).url(shopUrl).title("喵喵微店").start();
+            ShopDetailActivity_.intent(this).shopUrl(shopUrl).start();
+        }else{
+            Toaster.s(this,"请求失败，请稍后重试！");
+        }
     }
 }

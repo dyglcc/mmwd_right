@@ -495,7 +495,7 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
-            </activity>
+        </activity>
         <activity
             android:name=".ui.BusinessCommunity.MyTopicDetailActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -507,21 +507,26 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
-            </activity>
+        </activity>
         <activity
             android:name=".ui.BusinessCommunity.PublishNoteActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait"
-             >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.BusinessCommunity.MyNotificationListActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
-            </activity>
+        </activity>
         <activity
             android:name=".ui.BusinessCommunity.AllTopicListActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".ui.BusinessCommunity.ShopDetailActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >

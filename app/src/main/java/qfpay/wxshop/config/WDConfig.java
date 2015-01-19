@@ -86,7 +86,7 @@ public class WDConfig {
     /**
      * 社交API地址
      */
-    public String SOCIAL_URL = "http://bf.mmwd.me/";
+    public static String SOCIAL_URL = "http://bf.mmwd.me/";
 	// String WD_URL = "http://1.wx.qfpay.com/";// test
 
 	public String getRequestInfo(String get) {

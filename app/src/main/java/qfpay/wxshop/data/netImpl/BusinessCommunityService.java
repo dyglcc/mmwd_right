@@ -1,5 +1,7 @@
 package qfpay.wxshop.data.netImpl;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -103,6 +105,13 @@ public interface BusinessCommunityService {
     @GET("/remind")
     BusinessCommmunityMyNotificationDataWrapper getAboutMyNotification();
 
+    /**
+     * 根据用户id得到店铺id
+     * @param user_id
+     * @return
+     */
+    @GET("/get_shop_id")
+    ShopIdDataWrapper getShopIdByUserId(@Query("user_id") String user_id);
 
     public static class BusinessCommmunityMyNotificationDataWrapper extends CommonJsonBean{
         private static final long serialVersionUID = 1L;
@@ -151,6 +160,30 @@ public interface BusinessCommunityService {
     public static class TopicsListWrapper implements Serializable {
         private static final long serialVersionUID = 1L;
         public List<MyTopicBean> items;
+    }
+
+    public static class ShopIdDataWrapper extends CommonJsonBean{
+        private static final long serialVersionUID = 1L;
+        public ShopIdWrapper data;
+
+        @Override
+        public String toString() {
+            return "ShopIdDataWrapper{" +
+                    "data=" + data +
+                    '}';
+        }
+    }
+
+    public static class ShopIdWrapper implements Serializable{
+        private static final long serialVersionUID = 1L;
+        public String shop_id;
+
+        @Override
+        public String toString() {
+            return "ShopIdWrapper{" +
+                    "shop_id='" + shop_id + '\'' +
+                    '}';
+        }
     }
 
 }

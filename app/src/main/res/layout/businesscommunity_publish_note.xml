@@ -76,8 +76,8 @@
                 android:gravity="center_vertical"
                 >
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="34dp"
+                    android:layout_height="30dp"
                     android:id="@+id/note_iamge"
                     android:background="@drawable/business_community_add_pic"
                     />
@@ -88,7 +88,7 @@
                     android:textSize="@dimen/common_text_content_mid"
                     android:id="@+id/add_pic_tv"
                     android:textColor="#91948d"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     />
             </LinearLayout>
             <LinearLayout
@@ -115,8 +115,8 @@
                     android:gravity="center_vertical"
                     >
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
                         android:background="@drawable/business_community_tip"
                         />
                     <TextView
