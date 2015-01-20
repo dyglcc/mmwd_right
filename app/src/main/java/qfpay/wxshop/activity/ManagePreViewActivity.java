@@ -66,7 +66,7 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
     GoodsBean gooditem;
 
     @Extra
-    String title, url;
+    String title, url,ga_medium;
 
     @AfterViews
     void init() {
@@ -220,15 +220,15 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
             case ONEKEY:
                 WxShopApplication.shareBean = ShareUtils.getShareBean(gooditem, this);
                 Intent intent = new Intent(ManagePreViewActivity.this, ShareActivity.class);
-                intent.putExtra(ConstValue.gaSrcfrom, "android_mmwdapp_previewshare_");
+                intent.putExtra(ConstValue.gaSrcfrom, ga_medium);
                 intent.putExtra("share_content_type", ShareActivity.SHARE_CONTENT_GOOD_ITEM);
                 startActivity(intent);
                 break;
             case WXFRIEND:
-                ShareUtils.friendGoodItem(gooditem, this, "android_mmwdapp_previewshare_wcfriend");
+                ShareUtils.friendGoodItem(gooditem, this, ga_medium +"wcfriend");
                 break;
             case WXMOMENTS:
-                ShareUtils.momentsGoodItem(gooditem, this, "android_mmwdapp_previewshare_wctimeline");
+                ShareUtils.momentsGoodItem(gooditem, this, ga_medium+"wctimeline");
                 break;
             case COPY:
                 Toaster.l(ManagePreViewActivity.this, "已复制商品链接");

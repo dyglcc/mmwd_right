@@ -15,12 +15,10 @@ import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.commodity.CommodityDataController;
-import qfpay.wxshop.ui.commodity.EdititemDoneActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.ShareUtils;
 import qfpay.wxshop.utils.Toaster;
 import android.content.Intent;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -104,8 +102,8 @@ public class ManPromoSuccessActivity extends BaseActivity {
 //        GoodsBean gb = new2Old(data.model);
 //        gb.setMsBean(new2OldMS(data.model));
         ManagePreViewActivity_.intent(ManPromoSuccessActivity.this).
-                title("商品预览").
-                url("http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance").
+                title("商品预览").ga_medium("android_mmwdapp_seckillshare_").
+                url("http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_seckillshare_&ga_source=entrance").
                 gooditem(gb).start();
 
 	}

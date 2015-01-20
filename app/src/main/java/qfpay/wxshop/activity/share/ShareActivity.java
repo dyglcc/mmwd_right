@@ -577,7 +577,7 @@ public class ShareActivity extends BaseActivity implements
             isQQZongeSharing = false;
             MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
                     "qzone_share_fail_sharesdk");
-            Toaster.l(this, getResources().getString(R.string.qqshareFail));
+//            Toaster.l(this, getResources().getString(R.string.qqshareFail));
         } else if (plat.getName().equals(TencentWeibo.NAME)) {
             isTencentSharing = false;
             MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
