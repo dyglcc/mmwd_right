@@ -21,7 +21,6 @@ import org.androidannotations.annotations.ViewById;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.GeneralWebViewActivity;
-import qfpay.wxshop.activity.ManagePreViewActivity;
 import qfpay.wxshop.activity.share.ShareActivity;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.BuyerResponseWrapper.BuyerShowBean;
@@ -905,12 +904,12 @@ public class MaijiaxiuFragment extends BaseFragment implements
 	@Override
 	public void onPositiveButtonClicked(int requestCode) {
 		if (requestCode == 1) {
-			Intent intent = new Intent(getActivity(),
-					ManagePreViewActivity.class);
-			intent.putExtra(ConstValue.TITLE, "店铺预览");
-			intent.putExtra(ConstValue.URL, WDConfig.getInstance().getShopUrl()
-					+ WxShopApplication.dataEngine.getShopId());
-			startActivity(intent);
+//			Intent intent = new Intent(getActivity(),
+//					ManagePreViewActivity.class);
+//			intent.putExtra(ConstValue.TITLE, "店铺预览");
+//			intent.putExtra(ConstValue.URL, WDConfig.getInstance().getShopUrl()
+//					+ WxShopApplication.dataEngine.getShopId());
+//			startActivity(intent);
 		}
 	}
 

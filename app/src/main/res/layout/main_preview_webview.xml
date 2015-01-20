@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lyt_publish"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/linear_icon_back"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_bg_color"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="64dip"
+            android:layout_height="@dimen/title_height"
+            android:background="@null"
+            android:gravity="center"
+            android:src="@drawable/arrow_title_left"
+            android:text="@string/back"
+            android:textSize="18dip" />
+
+        <Button
+            android:id="@+id/btn_back_new"
+            android:layout_width="80dip"
+            android:layout_height="@dimen/title_height"
+            android:background="@drawable/selector_button_click"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/selector_color_title_press"
+            android:textSize="18dip"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/title_height"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="6dip"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="180dip"
+            android:singleLine="true"
+            android:text="@string/add_item"
+            android:textColor="@android:color/white"
+            android:textSize="20dip" />
+
+        <LinearLayout
+            android:id="@+id/layout_progress_load"
+            android:layout_width="64dip"
+            android:layout_height="@dimen/title_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="2dip"
+                android:background="@drawable/actionbar_title_share" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.44"
+        android:background="#FFFFFF">
+
+        <WebView
+            android:id="@+id/contact_webview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shibai" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/bad_net"
+                android:textColor="@color/title_bg_color" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:src="@drawable/commodity_list_refresh"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+</LinearLayout>

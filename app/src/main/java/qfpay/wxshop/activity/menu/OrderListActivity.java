@@ -41,9 +41,9 @@ public class OrderListActivity extends BaseActivity {
 		TextView tv = (TextView) findViewById(R.id.tv_title);
 		tv.setText(getString(R.string.order_manage));
 		failView = findViewById(R.id.load_fail);
-		
+
 		layout_progress_load = findViewById(R.id.layout_progress_load);
-		
+
 		ivProgress= (ImageView) findViewById(R.id.iv_progress_load);
 		
 		findViewById(R.id.btn_back).setOnClickListener(new OnClickListener() {

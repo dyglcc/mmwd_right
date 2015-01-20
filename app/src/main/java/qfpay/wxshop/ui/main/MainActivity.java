@@ -59,10 +59,9 @@ import qfpay.wxshop.ui.view.BadgeView;
 import qfpay.wxshop.ui.view.popupview.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
-import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-
+import com.networkbench.agent.impl.NBSAppAgent;
 import java.util.HashMap;
 import java.util.List;
 
@@ -405,6 +404,7 @@ public class MainActivity extends BaseActivity {
         badgeView.setTextSize(6);
         initLastNoReadNotification();
         getBusinessCommunityAboutMyNotify();
+        NBSAppAgent.setLicenseKey("26f23f2f3f8447b6a450174320f25969").withLocationServiceEnabled(true).start(this);
 	}
 
     @Override

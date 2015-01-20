@@ -7,6 +7,7 @@ buildscript {
         // The Annotations Complier
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
         classpath 'com.jakewharton.hugo:hugo-plugin:1.1.0'
+        classpath "com.networkbench.newlens.agent.android:agent-gradle-plugin:1.2.4"
     }
 }
 
@@ -18,10 +19,13 @@ repositories {
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'hugo'
+apply plugin: 'android'
+apply plugin: 'newlens'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // Common
+    compile "com.networkbench.newlens.agent.android:nbs.newlens.agent:1.2.4"
     compile 'com.android.support:support-v4:21.0.+'
     compile 'org.eclipse.birt.runtime.3_7_1:org.apache.commons.codec:1.3.0'
     compile 'org.apache.httpcomponents:httpmime:4.1.3'
@@ -48,6 +52,8 @@ dependencies {
     // AndroidViewAni
     compile 'com.daimajia.easing:library:1.0.0@aar'
     compile 'com.daimajia.androidanimations:library:1.1.3@aar'
+    compile files('libs/mta-sdk-1.6.2.jar')
+    compile files('libs/open_sdk_r4547.jar')
 }
 
 // Setup the Annotations Complier

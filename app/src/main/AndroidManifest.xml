@@ -107,6 +107,12 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 店铺预览webview 可分享 -->
+        <activity
+            android:name="qfpay.wxshop.activity.ManagePreViewActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <!-- 店铺背景选择页 -->
         <activity
             android:name=".activity.ShopHeaderPhotoPickerActivity_"
@@ -400,12 +406,6 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name=".activity.ManagePreViewActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
-        <activity
             android:name=".activity.InputShopNameActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
@@ -639,6 +639,23 @@
             android:name="com.amap.api.v2.apikey"
             android:value="6d013aa533a74cdf324d4706900239e8" />
 
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent101004970" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+>>>>>>> 60e365671c62d228f5a194dd95eb8a3af4864ef8
     </application>
 
 </manifest>

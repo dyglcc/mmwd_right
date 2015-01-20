@@ -1,16 +1,5 @@
 package qfpay.wxshop.activity.share;
 
-import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.utils.MobAgentTools;
-import qfpay.wxshop.utils.Toaster;
-import qfpay.wxshop.utils.Utils;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +18,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.androidquery.AQuery;
+import com.tencent.connect.share.QzoneShare;
+import com.tencent.tauth.Tencent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -36,12 +35,16 @@ import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.androidquery.AQuery;
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;
 
 public class ShareActivity extends BaseActivity implements
-        PlatformActionListener, Callback {
+        PlatformActionListener, Callback,ActivityListener {
     private boolean initShare;
 
     private Button btn_back;
@@ -64,10 +67,12 @@ public class ShareActivity extends BaseActivity implements
     private String reg2 = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item_detail/\\d+";
     private String reg3 = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/h5/show.html[?]shopid=\\d+";
     private String reg4 = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/\\d+";
+    private String reg5 = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/hmsg/\\d+";
     Pattern pattern1 = Pattern.compile(reg1);
     Pattern pattern2 = Pattern.compile(reg2);
     Pattern pattern3 = Pattern.compile(reg3);
     Pattern pattern4 = Pattern.compile(reg4);
+    Pattern pattern5 = Pattern.compile(reg5);
 
     public static int SHARE_CONTENT_SHOP = 1;
     public static int SHARE_CONTENT_GOOD_ITEM = SHARE_CONTENT_SHOP + 1;
@@ -80,9 +85,13 @@ public class ShareActivity extends BaseActivity implements
     private int shareQQzoneTimes = 0;
 
 
-    private boolean isQQZongeSharing;
+    public  boolean isQQZongeSharing;
     private boolean isSinaSharing;
     private boolean isTencentSharing;
+
+
+    // Tencent
+    Tencent mTencent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +100,9 @@ public class ShareActivity extends BaseActivity implements
         Intent intent = getIntent();
         gaSrcfrom = intent.getStringExtra("gaSrcfrom");
         content_type = intent.getIntExtra("share_content_type", 0);
+
+        // qq 互联 初始化设置
+        mTencent = Tencent.createInstance(ConstValue.QQ_ZONE_ID, this.getApplicationContext());
         aq = new AQuery(this);
         // 初始化ShareSDK
         if (!initShare) {
@@ -160,11 +172,11 @@ public class ShareActivity extends BaseActivity implements
                 if (isChecked) {
 
                     // 如果未绑定绑定
-                    if (!qzone.isValid()) {
-                        Toaster.l(ShareActivity.this, "开始授权");
-                        qzone.setPlatformActionListener(authorListener);
-                        qzone.authorize();
-                    }
+//                    if (!qzone.isValid()) {
+//                        Toaster.l(ShareActivity.this, "开始授权");
+//                        qzone.setPlatformActionListener(authorListener);
+//                        qzone.authorize();
+//                    }
                 }
             }
         });
@@ -210,20 +222,23 @@ public class ShareActivity extends BaseActivity implements
                 tv_content.setText(WxShopApplication.shareBean.title);
             } else {
                 tv_content.setText(WxShopApplication.shareBean.title
-                        + WxShopApplication.shareBean.link);
+                        + WxShopApplication.shareBean.link +" ");
+            }
+
+
+            if (WxShopApplication.shareBean.imgUrl.indexOf("imgstore01") != -1) {
+                aq.id(iv_pic)
+                        .progress(R.id.progress_share)
+                        .image(WxShopApplication.shareBean.imgUrl, true, true, 120,
+                                R.drawable.icon);
+            } else {
+                aq.id(iv_pic).progress(R.id.progress_share)
+                        .image(WxShopApplication.shareBean.imgUrl);
             }
         }
 
 
-        if (WxShopApplication.shareBean.imgUrl.indexOf("imgstore01") != -1) {
-            aq.id(iv_pic)
-                    .progress(R.id.progress_share)
-                    .image(WxShopApplication.shareBean.imgUrl, true, true, 120,
-                            R.drawable.icon);
-        } else {
-            aq.id(iv_pic).progress(R.id.progress_share)
-                    .image(WxShopApplication.shareBean.imgUrl);
-        }
+
 
         // 回退操作
         btn_back.setOnClickListener(new OnClickListener() {
@@ -263,7 +278,7 @@ public class ShareActivity extends BaseActivity implements
                     } else {
                         SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
                         String text = tv_content.getText().toString();
-                        String repleaceText = getRepleaceText(text, "sinaweibo");
+                        String repleaceText = getRepleaceText(text, "sinaWeiBo");
                         if (content_type > 0) {
                             repleaceText += "(分享自 @喵喵微店 http://www.mmweidian.com )";
                         }
@@ -285,7 +300,7 @@ public class ShareActivity extends BaseActivity implements
                         // sp.text = WxShopApplication.shareBean.title
                         // + WxShopApplication.shareBean.link;
                         String textTcentent = tv_content.getText().toString();
-                        sp.text = getRepleaceText(textTcentent, "tecentweibo");
+                        sp.text = getRepleaceText(textTcentent, "tencentWeiBo");
                         sp.imageUrl = WxShopApplication.shareBean.imgUrl;
                         tecentWeibo.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
                         // 执行图文分享
@@ -295,6 +310,7 @@ public class ShareActivity extends BaseActivity implements
                     }
 
                 }
+
                 if (iv_qzone.isChecked()) {
                     if (isQQZongeSharing) {
                         Toaster.l(ShareActivity.this, "QQ空间正在分享中，稍等一下吧");
@@ -303,10 +319,10 @@ public class ShareActivity extends BaseActivity implements
                         if (shareQQzoneTimes >= 3 && !shareQQzoneSuccess) {
                             Toaster.l(ShareActivity.this, getString(R.string.qqshareFail));
                         }
-                        QZone.ShareParams sp = new QZone.ShareParams();
-                        sp.title = WxShopApplication.shareBean.qqTitle;
+//                        QZone.ShareParams sp = new QZone.ShareParams();
+//                        sp.title = WxShopApplication.shareBean.qqTitle;
                         String shareUrl = getGaUrl(WxShopApplication.shareBean.qqTitle_url, "qzone");
-                        sp.titleUrl = shareUrl.replace(" ", ""); // 标题的超链接
+//                        sp.titleUrl = shareUrl.replace(" ", ""); // 标题的超链接
                         // sp.text = WxShopApplication.shareBean.title
                         // + WxShopApplication.shareBean.link;
                         String contextStr = tv_content.getText().toString();
@@ -318,16 +334,29 @@ public class ShareActivity extends BaseActivity implements
                         contextStr = contextStr.replaceAll(reg1, "");
                         contextStr = contextStr.replaceAll(reg2, "");
                         contextStr = contextStr.replaceAll(reg3, "");
+                        contextStr = contextStr.replaceAll(reg4, "");
+                        contextStr = contextStr.replaceAll(reg5, "");
                         contextStr = contextStr.replaceAll("店铺链接：", "");
-                        sp.text = contextStr;
-                        sp.imageUrl = WxShopApplication.shareBean.qq_imageUrl;
-//						sp.comment = "我对此分享内容的评论";
-                        sp.site = "发布分享的网站名称";
-                        // 去掉空格
-                        sp.siteUrl = shareUrl.replace(" ", "");
-                        qzone.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
+//                        sp.text = contextStr;
+//                        sp.imageUrl = WxShopApplication.shareBean.qq_imageUrl;
+////						sp.comment = "我对此分享内容的评论";
+//                        sp.site = "发布分享的网站名称";
+//                        // 去掉空格
+//                        sp.siteUrl = shareUrl.replace(" ", "");
+//                        qzone.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
                         // 执行图文分享
-                        qzone.share(sp);
+//                        qzone.share(sp);
+                        Bundle params = new Bundle();
+                        ArrayList<String> list = new ArrayList<String>();
+                        list.add(WxShopApplication.shareBean.qq_imageUrl);
+                        params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+                        params.putString(QzoneShare.SHARE_TO_QQ_TITLE, WxShopApplication.shareBean.qqTitle);//必填
+                        params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, contextStr);//选填
+                        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, shareUrl.replace(" ", ""));//必填
+                        params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, list);
+                        BaseUIListener listener = new BaseUIListener(ShareActivity.this);
+                        listener.setListener(ShareActivity.this);
+                        mTencent.shareToQzone(ShareActivity.this, params,listener);
                         isQQZongeSharing = true;
                     }
 
@@ -372,6 +401,11 @@ public class ShareActivity extends BaseActivity implements
         if (matcher4.find()) {
             String content4 = matcher4.group();
             text = text.replaceAll(reg4, getGaUrl(content4, platform));
+        }
+        Matcher matcher5 = pattern5.matcher(text);
+        if (matcher5.find()) {
+            String content5 = matcher5.group();
+            text = text.replaceAll(reg5, getGaUrl(content5, platform));
         }
 
         return text;
@@ -564,4 +598,15 @@ public class ShareActivity extends BaseActivity implements
     }
 
     // sp.site = "http://www.mmweidian.com";
+
+    private void shareToQzone() {
+
+        //分享类型
+
+    }
+
+    @Override
+    public void onFinish() {
+        isQQZongeSharing = false;
+    }
 }

@@ -16,6 +16,7 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.event.AddBuyersShowEvent;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
 
 @EActivity(R.layout.main_maijiaxiu_empty)
 public class MaijiaxiuEmptyActivity extends BaseActivity {
@@ -46,10 +47,12 @@ public class MaijiaxiuEmptyActivity extends BaseActivity {
 
 	@Click
 	void tv_link() {
-		Intent intent = new Intent(MaijiaxiuEmptyActivity.this, ManagePreViewActivity.class);
-		intent.putExtra(ConstValue.URL, "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/h5/show.html?shopid=605");
-		intent.putExtra(ConstValue.TITLE, "查看她人买家秀");
-		startActivity(intent);
+//		Intent intent = new Intent(MaijiaxiuEmptyActivity.this, ManagePreViewActivity.class);
+//		intent.putExtra(ConstValue.URL, "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/h5/show.html?shopid=605");
+//		intent.putExtra(ConstValue.TITLE, "查看她人买家秀");
+//		startActivity(intent);
+
+        CommonWebActivity_.intent(MaijiaxiuEmptyActivity.this).url("http://"+WxShopApplication.app.getDomainMMWDUrl()+"/h5/show.html?shopid=605").title("查看她人买家秀").start();
 	}
 
 	@Click

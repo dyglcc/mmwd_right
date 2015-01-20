@@ -108,6 +108,7 @@
     <orderEntry type="library" exported="" name="ormlite-android-4.48" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-TencentWeibo-2.3.12" level="project" />
     <orderEntry type="library" exported="" name="GetuiExt-2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="mta-sdk-1.6.2" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-QQ-2.3.12" level="project" />
     <orderEntry type="library" exported="" name="mframework" level="project" />
@@ -120,8 +121,9 @@
     <orderEntry type="library" exported="" name="aspectjrt-1.7.4" level="project" />
     <orderEntry type="library" exported="" name="org.apache.commons.codec-1.3.0" level="project" />
     <orderEntry type="library" exported="" name="android-query.0.25.10" level="project" />
-    <orderEntry type="library" exported="" name="okhttp-urlconnection-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="open_sdk_r4547" level="project" />
     <orderEntry type="library" exported="" name="hugo-annotations-1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-urlconnection-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="ormlite-core-4.48" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-QZone-2.3.12" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-Core-2.3.12" level="project" />
@@ -139,6 +141,7 @@
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-SinaWeibo-2.3.12" level="project" />
     <orderEntry type="library" exported="" name="androidannotations-api-3.2" level="project" />
+    <orderEntry type="library" exported="" name="nbs.newlens.agent-1.2.4" level="project" />
   </component>
 </module>
 
