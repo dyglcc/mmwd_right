@@ -20,9 +20,16 @@ public class BaseUIListener implements IUiListener {
 	private static final int ON_COMPLETE = 0;
 	private static final int ON_ERROR = 1;
 	private static final int ON_CANCEL = 2;
+    private ActivityListener listener;
+    public  void setListener(ActivityListener listener){
+        this.listener = listener;
+    }
 	private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            if(listener!=null){
+                listener.onFinish();
+            }
             switch (msg.what) {
             case ON_COMPLETE:
                 JSONObject response = (JSONObject)msg.obj;

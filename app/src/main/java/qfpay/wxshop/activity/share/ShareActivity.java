@@ -44,7 +44,7 @@ import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 
 public class ShareActivity extends BaseActivity implements
-        PlatformActionListener, Callback {
+        PlatformActionListener, Callback,ActivityListener {
     private boolean initShare;
 
     private Button btn_back;
@@ -67,10 +67,12 @@ public class ShareActivity extends BaseActivity implements
     private String reg2 = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item_detail/\\d+";
     private String reg3 = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/h5/show.html[?]shopid=\\d+";
     private String reg4 = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/\\d+";
+    private String reg5 = "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/hmsg/\\d+";
     Pattern pattern1 = Pattern.compile(reg1);
     Pattern pattern2 = Pattern.compile(reg2);
     Pattern pattern3 = Pattern.compile(reg3);
     Pattern pattern4 = Pattern.compile(reg4);
+    Pattern pattern5 = Pattern.compile(reg5);
 
     public static int SHARE_CONTENT_SHOP = 1;
     public static int SHARE_CONTENT_GOOD_ITEM = SHARE_CONTENT_SHOP + 1;
@@ -83,7 +85,7 @@ public class ShareActivity extends BaseActivity implements
     private int shareQQzoneTimes = 0;
 
 
-    private boolean isQQZongeSharing;
+    public  boolean isQQZongeSharing;
     private boolean isSinaSharing;
     private boolean isTencentSharing;
 
@@ -220,20 +222,23 @@ public class ShareActivity extends BaseActivity implements
                 tv_content.setText(WxShopApplication.shareBean.title);
             } else {
                 tv_content.setText(WxShopApplication.shareBean.title
-                        + WxShopApplication.shareBean.link);
+                        + WxShopApplication.shareBean.link +" ");
+            }
+
+
+            if (WxShopApplication.shareBean.imgUrl.indexOf("imgstore01") != -1) {
+                aq.id(iv_pic)
+                        .progress(R.id.progress_share)
+                        .image(WxShopApplication.shareBean.imgUrl, true, true, 120,
+                                R.drawable.icon);
+            } else {
+                aq.id(iv_pic).progress(R.id.progress_share)
+                        .image(WxShopApplication.shareBean.imgUrl);
             }
         }
 
 
-        if (WxShopApplication.shareBean.imgUrl.indexOf("imgstore01") != -1) {
-            aq.id(iv_pic)
-                    .progress(R.id.progress_share)
-                    .image(WxShopApplication.shareBean.imgUrl, true, true, 120,
-                            R.drawable.icon);
-        } else {
-            aq.id(iv_pic).progress(R.id.progress_share)
-                    .image(WxShopApplication.shareBean.imgUrl);
-        }
+
 
         // 回退操作
         btn_back.setOnClickListener(new OnClickListener() {
@@ -273,7 +278,7 @@ public class ShareActivity extends BaseActivity implements
                     } else {
                         SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
                         String text = tv_content.getText().toString();
-                        String repleaceText = getRepleaceText(text, "sinaweibo");
+                        String repleaceText = getRepleaceText(text, "sinaWeiBo");
                         if (content_type > 0) {
                             repleaceText += "(分享自 @喵喵微店 http://www.mmweidian.com )";
                         }
@@ -295,7 +300,7 @@ public class ShareActivity extends BaseActivity implements
                         // sp.text = WxShopApplication.shareBean.title
                         // + WxShopApplication.shareBean.link;
                         String textTcentent = tv_content.getText().toString();
-                        sp.text = getRepleaceText(textTcentent, "tecentweibo");
+                        sp.text = getRepleaceText(textTcentent, "tencentWeiBo");
                         sp.imageUrl = WxShopApplication.shareBean.imgUrl;
                         tecentWeibo.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
                         // 执行图文分享
@@ -329,6 +334,8 @@ public class ShareActivity extends BaseActivity implements
                         contextStr = contextStr.replaceAll(reg1, "");
                         contextStr = contextStr.replaceAll(reg2, "");
                         contextStr = contextStr.replaceAll(reg3, "");
+                        contextStr = contextStr.replaceAll(reg4, "");
+                        contextStr = contextStr.replaceAll(reg5, "");
                         contextStr = contextStr.replaceAll("店铺链接：", "");
 //                        sp.text = contextStr;
 //                        sp.imageUrl = WxShopApplication.shareBean.qq_imageUrl;
@@ -347,7 +354,9 @@ public class ShareActivity extends BaseActivity implements
                         params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, contextStr);//选填
                         params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, shareUrl.replace(" ", ""));//必填
                         params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, list);
-                        mTencent.shareToQzone(ShareActivity.this, params, new BaseUIListener(ShareActivity.this));
+                        BaseUIListener listener = new BaseUIListener(ShareActivity.this);
+                        listener.setListener(ShareActivity.this);
+                        mTencent.shareToQzone(ShareActivity.this, params,listener);
                         isQQZongeSharing = true;
                     }
 
@@ -392,6 +401,11 @@ public class ShareActivity extends BaseActivity implements
         if (matcher4.find()) {
             String content4 = matcher4.group();
             text = text.replaceAll(reg4, getGaUrl(content4, platform));
+        }
+        Matcher matcher5 = pattern5.matcher(text);
+        if (matcher5.find()) {
+            String content5 = matcher5.group();
+            text = text.replaceAll(reg5, getGaUrl(content5, platform));
         }
 
         return text;
@@ -589,5 +603,10 @@ public class ShareActivity extends BaseActivity implements
 
         //分享类型
 
+    }
+
+    @Override
+    public void onFinish() {
+        isQQZongeSharing = false;
     }
 }

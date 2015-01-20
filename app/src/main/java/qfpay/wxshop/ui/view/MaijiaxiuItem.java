@@ -7,7 +7,6 @@ import java.util.List;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.activity.ManagePreViewActivity;
 import qfpay.wxshop.data.beans.BuyerResponseWrapper.BuyerShowBean;
 import qfpay.wxshop.data.beans.BuyerResponseWrapper.ImageBean;
 import qfpay.wxshop.data.handler.MainHandler;
@@ -16,6 +15,7 @@ import qfpay.wxshop.data.netImpl.MaijiaxiuDelNetImpl;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseActivity_;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseNetProcesser;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
@@ -161,15 +161,9 @@ public class MaijiaxiuItem extends LinearLayout {
 						T.i("index" + offset);
 						if (offset == gb.getContent().length() + 1) {
 
-							Intent intent = new Intent(context,
-									ManagePreViewActivity.class);
-							intent.putExtra(
-									ConstValue.URL,
-									"http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/"
-											+ gb.getGood_id()
-											+ "?from=app_preview");
-							intent.putExtra(ConstValue.TITLE, "查看商品详情");
-							context.startActivity(intent);
+                            CommonWebActivity_.intent(context).url("http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/"
+                                    + gb.getGood_id()
+                                    + "?from=app_preview").title("查看商品详情").start();
 
 						}
 					}

@@ -93,11 +93,21 @@ public class ManPromoSuccessActivity extends BaseActivity {
 
 	@Click
 	void btn_preview() {
-		Intent intent = new Intent(this, ManagePreViewActivity.class);
-		intent.putExtra(ConstValue.TITLE, "商品预览");
-		String url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_seckill_&ga_source=entrance";
-		intent.putExtra(ConstValue.URL, url);
-		startActivity(intent);
+
+//		Intent intent = new Intent(this, ManagePreViewActivity.class);
+//		intent.putExtra(ConstValue.TITLE, "商品预览");
+//		String url = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_seckill_&ga_source=entrance";
+//		intent.putExtra(ConstValue.URL, url);
+//		startActivity(intent);
+
+
+//        GoodsBean gb = new2Old(data.model);
+//        gb.setMsBean(new2OldMS(data.model));
+        ManagePreViewActivity_.intent(ManPromoSuccessActivity.this).
+                title("商品预览").
+                url("http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + gb.getGoodsId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance").
+                gooditem(gb).start();
+
 	}
 
 	private void finish_activity2Manlist() {

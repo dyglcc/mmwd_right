@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="10dip"
+                android:layout_marginRight="2dip"
                 android:background="@drawable/actionbar_title_share" />
         </LinearLayout>
 
@@ -81,7 +81,7 @@
             android:layout_height="fill_parent" />
 
         <LinearLayout
-            android:id="@+id/load_fail"
+            android:id="@+id/ll_fail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -100,6 +100,16 @@
                 android:text="@string/bad_net"
                 android:textColor="@color/title_bg_color" />
         </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:src="@drawable/commodity_list_refresh"
+            android:visibility="invisible" />
     </FrameLayout>
 
 </LinearLayout>

@@ -141,6 +141,7 @@
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="ShareSDK-SinaWeibo-2.3.12" level="project" />
     <orderEntry type="library" exported="" name="androidannotations-api-3.2" level="project" />
+    <orderEntry type="library" exported="" name="nbs.newlens.agent-1.2.4" level="project" />
   </component>
 </module>
 

@@ -1,12 +1,16 @@
 package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.activity.share.ShareActivity;
+import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.BaseActivity;
 
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.common.actionbar.SharePopupView;
+import qfpay.wxshop.utils.ShareUtils;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 
@@ -17,7 +21,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.DownloadListener;
@@ -32,6 +35,7 @@ import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
 
@@ -40,9 +44,11 @@ import java.util.List;
 
 @EActivity(R.layout.main_preview_webview)
 public class ManagePreViewActivity extends BaseActivity implements OnShareLinstener {
-    private View failView;
-    WebView webView = null;
-    private TextView tvTitle;
+    @ViewById(R.id.contact_webview)
+    WebView webView;
+
+    @ViewById
+    TextView tvTitle;
     @ViewById
     ImageView iv_share;
 
@@ -56,11 +62,15 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
     @ViewById
     ImageView iv_loading;
 
+    @Extra
+    GoodsBean gooditem;
+
+    @Extra
+    String title, url;
 
     @AfterViews
     void init() {
         tvTitle = (TextView) findViewById(R.id.tv_title);
-        String title = getIntent().getStringExtra(ConstValue.TITLE);
         tvTitle.setText(title == null ? getResources().getString(R.string.title) : title);
         layout_progress_load.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +85,12 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
 
             }
         });
+        if (gooditem != null) {
+            layout_progress_load.setVisibility(View.VISIBLE);
+        } else {
+            layout_progress_load.setVisibility(View.INVISIBLE);
+        }
+        init(url);
     }
 
 
@@ -104,8 +120,6 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
                 finish();
             }
         });
-        failView = findViewById(R.id.load_fail);
-        webView = (WebView) this.findViewById(R.id.contact_webview);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDefaultTextEncodingName("utf-8");
         webView.getSettings().setBuiltInZoomControls(false);
@@ -204,18 +218,27 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
 
         switch (which) {
             case ONEKEY:
-
-
+                WxShopApplication.shareBean = ShareUtils.getShareBean(gooditem, this);
+                Intent intent = new Intent(ManagePreViewActivity.this, ShareActivity.class);
+                intent.putExtra(ConstValue.gaSrcfrom, "android_mmwdapp_previewshare_");
+                intent.putExtra("share_content_type", ShareActivity.SHARE_CONTENT_GOOD_ITEM);
+                startActivity(intent);
                 break;
             case WXFRIEND:
+                ShareUtils.friendGoodItem(gooditem, this, "android_mmwdapp_previewshare_wcfriend");
                 break;
             case WXMOMENTS:
+                ShareUtils.momentsGoodItem(gooditem, this, "android_mmwdapp_previewshare_wctimeline");
                 break;
             case COPY:
+                Toaster.l(ManagePreViewActivity.this, "已复制商品链接");
+                Utils.saveClipBoard(ManagePreViewActivity.this,
+                        "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + gooditem.getGoodsId());
                 break;
             default:
                 break;
         }
+
 
     }
 
@@ -233,7 +256,6 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         }
-
     }
 
     enum PageState {

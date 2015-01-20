@@ -259,6 +259,9 @@ import qfpay.wxshop.ui.main.fragment.ShopFragmentsWrapper;
 	 * 取消商品的秒杀状态
 	 */
 	public void cancelPromotion(CommodityModel model) {
+        if(model ==null){
+            return;
+        }
 		cancelPromotion(model.getID(), model.getSalesPromotion().getPromotionID());
 		model.setSalesPromotion(null);
 		refresh(Operation.CHANGE_PROMOTION);

@@ -24,6 +24,11 @@
 -keep class qfpay.wxshop.activity.menu.MyInComeActivity$*{ *;}
 -keep class qfpay.wxshop.activity.menu.ForumActivity$*{ *;}
 
+
+-keep class com.networkbench.** { *; }
+-dontwarn com.networkbench.**
+-keepattributes Exceptions, Signature, InnerClasses
+
 -keepattributes Signature 
 -keepattributes *Annotation*
 -keep class sun.misc.Unsafe { *; }

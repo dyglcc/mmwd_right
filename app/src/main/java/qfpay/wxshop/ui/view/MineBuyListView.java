@@ -1,23 +1,16 @@
 package qfpay.wxshop.ui.view;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.activity.ManagePreViewActivity;
-import qfpay.wxshop.activity.SSNPublishActivity;
-import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainTab;
 import qfpay.wxshop.ui.main.fragment.HuoYuanFragment;
-import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment_;
 import qfpay.wxshop.ui.main.fragment.MineBuysListFragment;
 import qfpay.wxshop.ui.main.fragment.MineBuysListFragment_;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 

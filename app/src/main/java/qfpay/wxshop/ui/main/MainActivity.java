@@ -52,6 +52,7 @@ import qfpay.wxshop.ui.view.popupview.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.Toaster;
+import com.networkbench.agent.impl.NBSAppAgent;
 
 import java.util.HashMap;
 import java.util.List;
@@ -379,6 +380,8 @@ public class MainActivity extends BaseActivity {
 			}
 		}, 4400);
 		WxShopApplication.MAIN_IS_RUNNING = true;
+
+        NBSAppAgent.setLicenseKey("26f23f2f3f8447b6a450174320f25969").withLocationServiceEnabled(true).start(this);
 	}
 
 	private void statLocalNotifyClick() {
