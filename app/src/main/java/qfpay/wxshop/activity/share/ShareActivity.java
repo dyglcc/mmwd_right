@@ -278,7 +278,7 @@ public class ShareActivity extends BaseActivity implements
                     } else {
                         SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
                         String text = tv_content.getText().toString();
-                        String repleaceText = getRepleaceText(text, "sinaWeiBo");
+                        String repleaceText = getRepleaceText(text, "sinaweibo");
                         if (content_type > 0) {
                             repleaceText += "(分享自 @喵喵微店 http://www.mmweidian.com )";
                         }
@@ -300,7 +300,7 @@ public class ShareActivity extends BaseActivity implements
                         // sp.text = WxShopApplication.shareBean.title
                         // + WxShopApplication.shareBean.link;
                         String textTcentent = tv_content.getText().toString();
-                        sp.text = getRepleaceText(textTcentent, "tencentWeiBo");
+                        sp.text = getRepleaceText(textTcentent, "tencentweibo");
                         sp.imageUrl = WxShopApplication.shareBean.imgUrl;
                         tecentWeibo.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
                         // 执行图文分享
