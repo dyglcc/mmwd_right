@@ -222,7 +222,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
 
     @Override  @UiThread
     public void onServerError( String msg) {
-        Toaster.s(this,msg);
+        Toaster.l(this,msg);
         listView.stopRefresh();
         listView.stopLoadMore();
     }
@@ -240,6 +240,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
 
     @Override
     public void onLoadMore() {
+        businessCommunityDataController.setCallback(this);
         businessCommunityDataController.getNotesListOfTopicFromServer(myTopicBean.getId());
     }
 
@@ -319,6 +320,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
                     break;
                 case MaijiaxiuFragment.ACTION_PUBLISH_NOTE://发帖返回
                     listView.autoRefresh();
+                    listView.setSelection(0);
                     break;
             }
         }

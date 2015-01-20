@@ -19,6 +19,7 @@ import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.event.LogoutEvent;
 import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
+import qfpay.wxshop.utils.T;
 import retrofit.mime.TypedFile;
 import retrofit.mime.TypedString;
 
@@ -78,11 +79,11 @@ import retrofit.mime.TypedString;
                 }
             }else{
                 if(callback!=null&&callback.get()!=null){
-                    callback.get().onServerError(dataWrapper.getRespmsg());
+                    callback.get().onServerError(dataWrapper.getResperr());
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            T.i(e.getMessage());
             if(callback!=null&&callback.get()!=null){
                 callback.get().onNetError();
             }
@@ -120,11 +121,11 @@ import retrofit.mime.TypedString;
                 }
             }else{
                 if(callback!=null&&callback.get()!=null){
-                    callback.get().onServerError(dataWrapper.getRespmsg());
+                    callback.get().onServerError(dataWrapper.getResperr());
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            T.i(e.getMessage());
             if(callback!=null&&callback.get()!=null){
                 callback.get().onNetError();
             }
@@ -159,11 +160,11 @@ import retrofit.mime.TypedString;
                 }
             }else{
                 if(callback!=null&&callback.get()!=null) {
-                    callback.get().onServerError(commonJsonBean.getRespmsg());
+                    callback.get().onServerError(commonJsonBean.getResperr());
                 }
             }
         }catch(Exception e){
-            e.printStackTrace();
+            T.i(e.getMessage());
             if(callback!=null&&callback.get()!=null) {
                 callback.get().onNetError();
             }
@@ -190,11 +191,11 @@ import retrofit.mime.TypedString;
                 }
             }else{
                 if(callback!=null&&callback.get()!=null) {
-                    callback.get().onServerError(topicsListDataWrapper.getRespmsg());
+                    callback.get().onServerError(topicsListDataWrapper.getResperr());
                 }
             }
         }catch(Exception e){
-            e.printStackTrace();
+            T.i(e.getMessage());
             if(callback!=null&&callback.get()!=null) {
                 callback.get().onNetError();
             }
@@ -205,14 +206,14 @@ import retrofit.mime.TypedString;
      * 获取所有的话题列表
      * @param
      */
-    public BusinessCommunityService.TopicsListDataWrapper getAllTopicList(){
+    public BusinessCommunityService.TopicsListDataWrapper getMyTopicList2(String u_id){
         try{
-            BusinessCommunityService.TopicsListDataWrapper topicsListDataWrapper = netService.getALlTopicList();
+            BusinessCommunityService.TopicsListDataWrapper topicsListDataWrapper = netService.getMyTopicList(u_id);
             if(topicsListDataWrapper!=null){
                 return topicsListDataWrapper;
             }
         }catch(Exception e){
-            e.printStackTrace();
+            T.i(e.getMessage());
             return  null;
         }
             return null;
@@ -242,11 +243,11 @@ import retrofit.mime.TypedString;
                 }
             }else{
                 if(callback!=null&&callback.get()!=null) {
-                    callback.get().onServerError(commonJsonBean.getRespmsg());
+                    callback.get().onServerError(commonJsonBean.getResperr());
                 }
             }
         }catch(Exception e){
-            e.printStackTrace();
+            T.i(e.getMessage());
             if(callback!=null&&callback.get()!=null) {
                 callback.get().onNetError();
             }
@@ -262,7 +263,7 @@ import retrofit.mime.TypedString;
         BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper data = netService.getAboutMyNotification();
             return data;
         }catch(Exception e){
-            e.printStackTrace();
+            T.i(e.getMessage());
             return  null;
         }
 

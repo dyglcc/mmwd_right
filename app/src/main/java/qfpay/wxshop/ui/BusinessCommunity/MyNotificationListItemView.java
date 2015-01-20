@@ -58,7 +58,7 @@ public class MyNotificationListItemView extends LinearLayout{
             reply_content_tv.setVisibility(View.GONE);
         }
         if(notificationBean.getTopic()!=null){
-            if(notificationBean.getTopic().items.get(0).getImage()!=null){
+            if(notificationBean.getTopic().items.get(0).getImage()!=null&&!"".equals(notificationBean.getTopic().items.get(0).getImage())){
                 t_content_iv.setVisibility(View.VISIBLE);
                 t_content_tv.setVisibility(View.GONE);
                 Picasso.with(context).load(notificationBean.getTopic().items.get(0).getImage()).fit().centerCrop().into(t_content_iv);

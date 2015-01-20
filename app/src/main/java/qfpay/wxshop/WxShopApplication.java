@@ -354,7 +354,8 @@ public class WxShopApplication extends Application {
                 .data.has_new="0";
         businessCommmunityMyNotificationDataWrapper.data.count="0";
         businessCommmunityMyNotificationDataWrapper.data.items = new ArrayList<BusinessCommunityMyNotificationBean>();
-        dataEngine.setBusinessCommunityAboutMyNotification(businessCommmunityMyNotificationDataWrapper);
-        dataEngine.setBusinessCommmunityMyNotificationData(businessCommmunityMyNotificationDataWrapper);
+        WxShopApplication.dataEngine.setBusinessCommmunityMyNotificationData(businessCommmunityMyNotificationDataWrapper);
     }
+
+
 }

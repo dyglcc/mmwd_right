@@ -44,12 +44,6 @@ public class BaseActivity extends SherlockFragmentActivity {
 	@Override
 	protected void onDestroy() {
 		BackgroundExecutor.cancelAll(ConstValue.THREAD_CANCELABLE, true);
-        //如果程序退出时还有未读的商户圈动态消息，则存储到本地
-        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
-        if(dataWrapper!=null&&dataWrapper.data.items.size()>0){
-            System.out.println("存储未读消息到本地");
-            WxShopApplication.dataEngine.setBusinessCommunityAboutMyNotification(dataWrapper);
-        }
 		super.onDestroy();
 	}
 	

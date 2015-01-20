@@ -72,14 +72,15 @@
             android:textColorHint="@color/common_text_grey"
             android:focusableInTouchMode="true" />
 
-        <ImageButton
-            android:id="@+id/publish_reply_bt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/mydynamic_publish_bg"
-             />
+            <ImageButton
+                android:id="@+id/publish_reply_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/mydynamic_publish_bg"
+                />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -90,13 +91,14 @@
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="10dp"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
 
                 <com.makeramen.RoundedImageView
                     android:id="@+id/u_avatar"

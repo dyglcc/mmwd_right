@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -73,6 +74,7 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     @ViewById
     ImageView iv_indictor,liked_iv;
     @ViewById LinearLayout bottom_ll;
+    @ViewById ImageButton publish_reply_ib;
     @ViewById
     ScrollView scrollview;
     @Extra
@@ -81,6 +83,8 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     int position;
     @Extra
     boolean isPublishReply;
+    @Extra
+    boolean isFromTopicDetail;
     @Bean
     BusinessCommunityDataController businessCommunityDataController;
     @ViewById
@@ -90,8 +94,6 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     @ViewById com.makeramen.RoundedImageView u_avatar,g_avatar;
     @ViewById
     LinearLayout liked_u_avatar,reply_u_avatar,reply_ll;
-    @ViewById
-    ImageButton publish_reply_bt;
     @ViewById
     EditText input_reply_et;
     private String replyContent;
@@ -125,6 +127,27 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         if(myDynamicItemBean0!=null&&myDynamicItemBean0.getId()!=null){
             setViewContent();
         }
+
+        publish_reply_ib.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction()==MotionEvent.ACTION_DOWN){
+                    replyContent = input_reply_et.getText().toString().trim();
+                    if(replyContent!=null&&!replyContent.equals("")){
+                        String t_id = myDynamicItemBean0.getId();
+                        businessCommunityDataController.publishReply(t_id,replyContent);
+                        if(isPublishReply==true){
+                            MobAgentTools.OnEventMobOnDiffUser(MyDynamicOneNoteDetailActivity.this, "click_merchant_dynamic_send");
+                        }else{
+                            MobAgentTools.OnEventMobOnDiffUser(MyDynamicOneNoteDetailActivity.this, "click_merchant_post_comment");
+                        }
+                    }else{
+                        Toaster.s(MyDynamicOneNoteDetailActivity.this,"评论内容不能为空！");
+                    }
+                }
+                return true;
+            }
+        });
     }
 
     /**
@@ -193,7 +216,6 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         intent.putExtra("result", MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
         setResult(Activity.RESULT_OK, intent);
         this.finish();
-        super.onBackPressed();
     }
 
     @Override
@@ -207,28 +229,21 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     /**
      * 发布评论点击事件
      */
-    @Click
-    void publish_reply_bt(){
-        replyContent = input_reply_et.getText().toString().trim();
-        if(replyContent!=null&&!replyContent.equals("")){
-            String t_id = myDynamicItemBean0.getId();
-            businessCommunityDataController.setCallback(this);
-            businessCommunityDataController.publishReply(t_id,replyContent);
-            if(isPublishReply==true){
-                MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_dynamic_send");
-            }else{
-                MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_post_comment");
-            }
-            View view = getWindow().peekDecorView();
-            if(view!=null){
-                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            }
-            input_reply_et.setText("");
-        }else{
-            Toaster.s(this,"评论内容不能为空！");
-        }
-    }
+//    public void publish_reply_ll(View v){
+//        replyContent = input_reply_et.getText().toString().trim();
+//        if(replyContent!=null&&!replyContent.equals("")){
+//            String t_id = myDynamicItemBean0.getId();
+//            businessCommunityDataController.setCallback(this);
+//            businessCommunityDataController.publishReply(t_id,replyContent);
+//            if(isPublishReply==true){
+//                MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_dynamic_send");
+//            }else{
+//                MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_post_comment");
+//            }
+//        }else{
+//            Toaster.s(this,"评论内容不能为空！");
+//        }
+//    }
     /**
      * 显示点赞数据
      */
@@ -236,6 +251,11 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         liked_u_avatar.removeAllViews();
         MyDynamicItemLinkDataBean myDynamicItemLinkDataBean = myDynamicItemBean0.getLike_data();
         liked_num_tv.setText(myDynamicItemBean0.getLike_data().getLike_count());
+        if(myDynamicItemBean0.getLike_data().getIs_liked().equals("0")){
+            liked_iv.setBackgroundResource(R.drawable.mydynamic_note_link);
+        }else{
+            liked_iv.setBackgroundResource(R.drawable.mydynamic_note_link2);
+        }
         if(Integer.parseInt(myDynamicItemLinkDataBean.getLike_count())>0){
             liked_u_avatar.setVisibility(View.VISIBLE);
             for(String oneLikeUser:myDynamicItemLinkDataBean.getLiked_user()){
@@ -284,8 +304,13 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
 
     @Override @UiThread
     public void onSuccess() {
-        if(!this.isDestroyed()){
             fl_indictor.setVisibility(View.INVISIBLE);
+            input_reply_et.setText("");
+            View view = getWindow().peekDecorView();
+            if(view!=null){
+                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
             MyDynamicItemReplyBean myDynamicItemReplyBean = new MyDynamicItemReplyBean();
             myDynamicItemReplyBean.setContent(replyContent);
             myDynamicItemReplyBean.setFloor((myDynamicItemBean0.getReply().getItems().size() + 1) + "");
@@ -302,7 +327,6 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
             if(isPublishReply){
                 btn_back();
             }
-        }
 
     }
 
@@ -315,7 +339,7 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     @Override @UiThread
     public void onServerError(String msg) {
         fl_indictor.setVisibility(View.INVISIBLE);
-        Toaster.s(this,"服务器不听话啦，请稍后重试！");
+        Toaster.l(this,msg);
         if(isPublishReply==true){
             MobAgentTools.OnEventMobOnDiffUser(this, "Fail_merchant_dynamic_comment");
         }else{
@@ -349,10 +373,14 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     @Click
     void note_from_rl(){
         MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_dynamic_topic");
-        MyTopicBean myTopicBean = new MyTopicBean();
-        myTopicBean.setG_name(myDynamicItemBean0.getG_name());
-        myTopicBean.setId(myDynamicItemBean0.getG_id());
-        MyTopicDetailActivity_.intent(MyDynamicOneNoteDetailActivity.this).myTopicBean(myTopicBean).start();
+        if(isFromTopicDetail){//如果是话题动态列表进入到帖子详情的，再次点击话题小组头像后，不再跳转，直接关闭当前页面
+            this.finish();
+        }else{
+            MyTopicBean myTopicBean = new MyTopicBean();
+            myTopicBean.setG_name(myDynamicItemBean0.getG_name());
+            myTopicBean.setId(myDynamicItemBean0.getG_id());
+            MyTopicDetailActivity_.intent(MyDynamicOneNoteDetailActivity.this).myTopicBean(myTopicBean).start();
+        }
     }
 
     /**
@@ -386,7 +414,6 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         fl_indictor.setVisibility(View.INVISIBLE);
         if(shopId!=null&&!shopId.equals("")){
             String shopUrl = "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/shop/"+shopId;
-//            CommonWebActivity_.intent(this).url(shopUrl).title("喵喵微店").start();
             ShopDetailActivity_.intent(this).shopUrl(shopUrl).start();
         }else{
             Toaster.s(this,"请求失败，请稍后重试！");

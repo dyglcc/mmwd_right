@@ -120,7 +120,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
     @Override @UiThread
     public void onServerError(String msg) {
         fl_indictor.setVisibility(View.INVISIBLE);
-        Toaster.s(this,"服务器错误"+msg);
+        Toaster.l(this,msg);
     }
 
     @Override @UiThread
@@ -151,7 +151,8 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
                 params.height = screenWidth*3/7;
                 note_iamge.setLayoutParams(params);
                 File picFile = new File(fb.getFileStr());
-                Picasso.with(PublishNoteActivity.this).load(picFile).fit().centerCrop().into(note_iamge);
+                Picasso.with(PublishNoteActivity.this).load(picFile).fit().centerInside().into(note_iamge);
+                hasPic = true;
                 uploadThePicture(fb.getFileStr());
             }
         }
@@ -186,12 +187,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
                     businessCommunityDataController.publishOneNote(myTopicBean.getId()
                             ,noteConentStr,picUrl);
                 }else{
-                    try {
-                        Thread.currentThread().sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    publish_note();
+                    Toaster.s(this,"正在上传图片...");
                 }
             }else{
                 businessCommunityDataController.publishOneNote(myTopicBean.getId()
@@ -209,7 +205,6 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
     @Click
     void add_note_pic_ll(){
         MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_topic_picture");
-        hasPic = true;
         TakePicUtils.getInstance().init(PublishNoteActivity.this);
         TakePicUtils.getInstance().takePic(
                 TakePicUtils.TAKE_PIC_MODE_ONLY);

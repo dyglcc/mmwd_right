@@ -81,18 +81,18 @@ public class BusinessCommunityFragment extends BaseFragment {
             badgeView.setWidth(Utils.dip2px(getActivity(), 10));
             badgeView.setHeight(Utils.dip2px(getActivity(), 10));
             badgeView.setGravity(Gravity.CENTER);
-            badgeView.setTextSize(7);
+            badgeView.setTextSize(6);
             //初始化动态消息通知角标
-//            BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
-//            if (dataWrapper.data.tag.equals("1") && dataWrapper.data.items.size() > 0) {
-//                showCommunityNotification("1", dataWrapper.data.items.size() + "");
-//            }
-//            if (dataWrapper.data.tag.equals("0") && dataWrapper.data.has_new.equals("1")) {
-//                showCommunityNotification("0", "0");
-//            }
-//            if (dataWrapper.data.tag.equals("0") && dataWrapper.data.has_new.equals("0")) {
-//                hideCommunityNotification();
-//            }
+            BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
+            if (dataWrapper.data.tag.equals("1") && dataWrapper.data.items.size() > 0) {
+                showCommunityNotification("1", dataWrapper.data.items.size() + "");
+            }
+            if (dataWrapper.data.tag.equals("0") && dataWrapper.data.has_new.equals("1")) {
+                showCommunityNotification("0", "0");
+            }
+            if (dataWrapper.data.tag.equals("0") && dataWrapper.data.has_new.equals("0")) {
+                hideCommunityNotification();
+            }
         }
     }
 

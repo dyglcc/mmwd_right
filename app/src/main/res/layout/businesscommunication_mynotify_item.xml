@@ -43,7 +43,6 @@
             android:layout_gravity="center_vertical|right"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/buyersshow_shared_qzone_selected"
             />
         </FrameLayout>
     <FrameLayout
@@ -68,7 +67,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:id="@+id/reply_content_iv"
-                android:background="@drawable/mydynamic_note_link"
+                android:background="@drawable/mydynamic_note_link2"
                 />
         </FrameLayout>
     <View

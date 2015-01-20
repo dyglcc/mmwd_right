@@ -31,7 +31,6 @@
         android:layout_alignLeft="@id/u_name"
         android:textSize="@dimen/common_text_content_big"
         android:text="内容"
-        android:singleLine="true"
         />
     <TextView
         android:layout_width="wrap_content"

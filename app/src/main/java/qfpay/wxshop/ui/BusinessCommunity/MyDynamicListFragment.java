@@ -89,9 +89,6 @@ public class MyDynamicListFragment extends BaseFragment implements
     @AfterViews
     void init(){
         publish_note_fl.setVisibility(View.GONE);
-        if(WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData().data.tag.equals("1")) {
-            addNewMyNotificationLayout(WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData().data.items.size()+"");
-        }
         refreshListView(RefreshFrom.LOADING);
         businessCommunityDataController.setCallback(this);
         initListView();
@@ -205,13 +202,15 @@ public class MyDynamicListFragment extends BaseFragment implements
         listView.stopRefresh();
         listView.stopLoadMore();
         Toaster.s(getActivity(),"加载失败，请稍后重试！");
+        fl_indictor.setVisibility(View.INVISIBLE);
     }
 
     @Override  @UiThread @IgnoredWhenDetached
     public void onServerError( String msg) {
-        Toaster.s(getActivity(),msg);
+        Toaster.l(getActivity(),msg);
         listView.stopRefresh();
         listView.stopLoadMore();
+        fl_indictor.setVisibility(View.INVISIBLE);
     }
 
     @Override  @UiThread @IgnoredWhenDetached
@@ -279,6 +278,9 @@ public class MyDynamicListFragment extends BaseFragment implements
         if (state == ListState.NORMAL) {
             listView.setVisibility(View.VISIBLE);
             fl_indictor.setVisibility(View.INVISIBLE);
+            if(WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData().data.tag.equals("1")) {
+                addNewMyNotificationLayout(WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData().data.items.size()+"");
+            }
         }
     }
     /**
@@ -309,6 +311,7 @@ public class MyDynamicListFragment extends BaseFragment implements
                 break;
             case MaijiaxiuFragment.ACTION_PUBLISH_NOTE://发帖返回
                 listView.autoRefresh();
+                listView.setSelection(0);
                 break;
         }
     }

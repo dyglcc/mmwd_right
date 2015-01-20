@@ -402,10 +402,19 @@ public class MainActivity extends BaseActivity {
         badgeView.setHeight(Utils.dip2px(this, 10));
         badgeView.setGravity(Gravity.CENTER);
         badgeView.setBadgeMargin(15,10);
-        badgeView.setTextSize(7);
+        badgeView.setTextSize(6);
         initLastNoReadNotification();
         getBusinessCommunityAboutMyNotify();
 	}
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
+        if(dataWrapper!=null&&dataWrapper.data.items.size()>0){
+            WxShopApplication.dataEngine.setBusinessCommunityAboutMyNotification(dataWrapper);
+        }
+        super.onSaveInstanceState(outState);
+    }
 
     /**
      * 初始话上次未读商户圈消息
@@ -474,7 +483,6 @@ public class MainActivity extends BaseActivity {
                     businessCommunityFragment.hideCommunityNotification();
                 }
             }
-            T.i("我的消息通知------>" + WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData().data.toString());
         }
     }
 
@@ -656,6 +664,11 @@ public class MainActivity extends BaseActivity {
 		if (UtilsWeixinShare.map != null) {
 			UtilsWeixinShare.map = null;
 		}
+        //如果程序退出时还有未读的商户圈动态消息，则存储到本地
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
+        if(dataWrapper!=null&&dataWrapper.data.items.size()>0){
+            WxShopApplication.dataEngine.setBusinessCommunityAboutMyNotification(dataWrapper);
+        }
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
@@ -19,9 +20,13 @@ import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.RestAdapter.LogLevel;
 import retrofit.RetrofitError;
+import retrofit.client.OkClient;
+
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
+
+import com.squareup.okhttp.OkHttpClient;
 
 @EBean
 public class RetrofitWrapper {
@@ -40,12 +45,19 @@ public class RetrofitWrapper {
 		LogLevel logLevel = LogLevel.NONE;
 		if (qfpay.wxshop.utils.T.isTesting) logLevel = LogLevel.HEADERS_AND_ARGS;
 
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
+        okHttpClient.setWriteTimeout(20,TimeUnit.SECONDS);
+        okHttpClient.setReadTimeout(20,TimeUnit.SECONDS);
+
 		RestAdapter ra = new RestAdapter.Builder()
 			.setEndpoint(endPoiont)
 			.setLogLevel(logLevel)
 			.setErrorHandler(new RetrofitErrorHandler())
-                .setRequestInterceptor(new RetrofitRequestInterceptor())
-                .build();
+            .setRequestInterceptor(new RetrofitRequestInterceptor())
+            .setClient(new OkClient(okHttpClient))
+            .build();
 		return ra.create(clazz);
 	}
 

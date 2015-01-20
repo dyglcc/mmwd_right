@@ -285,11 +285,14 @@ public class MyDynamicNoteListItemView extends LinearLayout {
             public void onClick(View v) {
                 if (context instanceof MyTopicDetailActivity) {
                     MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_topic_post");
+                    MyDynamicOneNoteDetailActivity_.intent(context).myDynamicItemBean0(data)
+                            .position(position).isFromTopicDetail(true).startForResult(MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
                 } else {
                     MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_dynamic_post");
+                    MyDynamicOneNoteDetailActivity_.intent(context).myDynamicItemBean0(data)
+                            .position(position).isFromTopicDetail(false).startForResult(MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
                 }
-                MyDynamicOneNoteDetailActivity_.intent(context).myDynamicItemBean0(data)
-                        .position(position).startForResult(MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
+
             }
         });
     }
@@ -300,8 +303,14 @@ public class MyDynamicNoteListItemView extends LinearLayout {
     @Click
     void reply_ll() {
         MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_dynamic_comment");
-        MyDynamicOneNoteDetailActivity_.intent(context).myDynamicItemBean0(data)
-                .position(position).isPublishReply(true).startForResult(MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
+        if (context instanceof MyTopicDetailActivity) {
+            MyDynamicOneNoteDetailActivity_.intent(context).myDynamicItemBean0(data)
+                    .position(position).isPublishReply(true).isFromTopicDetail(true).startForResult(MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
+        }else{
+            MyDynamicOneNoteDetailActivity_.intent(context).myDynamicItemBean0(data)
+                    .position(position).isPublishReply(true).isFromTopicDetail(false).startForResult(MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE);
+        }
+
     }
 
     @Click

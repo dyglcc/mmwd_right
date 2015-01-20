@@ -114,7 +114,6 @@ public class TakePicUtils {
 						case MMAlertSelect1:
 							// 点击拍照
                             if(context instanceof PublishNoteActivity){
-                                System.out.println("发帖点击拍照");
                                 MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_topic_photo");
                             }
 							MobAgentTools.OnEventMobOnDiffUser(context, "click_camera");
@@ -140,7 +139,6 @@ public class TakePicUtils {
 							}
 							// 点击从照片库选择
                             if(context instanceof PublishNoteActivity){
-                                System.out.println("发帖点击从照片库选择");
                                 MobAgentTools.OnEventMobOnDiffUser(context, "click_merchant_topic_album ");
                             }
 							currentMode = SELECT_PIC;

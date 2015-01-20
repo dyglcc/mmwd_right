@@ -154,12 +154,14 @@ public class MyTopicListFragment extends BaseFragment implements
     public void onNetError(){
         Toaster.s(getActivity(),"加载失败，请稍后重试！");
         fl_indictor.setVisibility(View.GONE);
+        listView.stopRefresh();
     }
 
     @Override  @UiThread @IgnoredWhenDetached
     public void onServerError( String msg) {
-        Toaster.s(getActivity(),"服务器请求失败！"+msg);
+        Toaster.l(getActivity(),msg);
         fl_indictor.setVisibility(View.GONE);
+        listView.stopRefresh();
     }
 
     @Override  @UiThread @IgnoredWhenDetached
@@ -171,6 +173,7 @@ public class MyTopicListFragment extends BaseFragment implements
 //XListView的回调事件
     @Override
     public void onRefresh() {
+        businessCommunityDataController.setCallback(this);
         businessCommunityDataController.getMyTopicList(dataEngine.getUserId());
     }
 

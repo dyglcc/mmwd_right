@@ -28,6 +28,7 @@ import org.androidannotations.annotations.res.DrawableRes;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.beans.MyTopicBean;
+import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
@@ -55,10 +56,11 @@ public class AllTopicListActivity extends BaseActivity {
     BusinessCommunityDataController dataController;
     BusinessCommunityService.TopicsListDataWrapper topicsListDataWrapper;
     AllTopicListAdapter allTopicListAdapter;
-
+    DataEngine dataEngine;
 
     @AfterViews
     void init(){
+        dataEngine = new DataEngine(this);
         ActionBar bar = getSupportActionBar();
         bar.hide();//隐藏默认actionbar
         publish_note_fl.setVisibility(View.GONE);
@@ -122,7 +124,7 @@ public class AllTopicListActivity extends BaseActivity {
 
     @Background
     void getAllTopics(){
-       topicsListDataWrapper =  dataController.getAllTopicList();
+       topicsListDataWrapper =  dataController.getMyTopicList2(dataEngine.getUserId());
         if(topicsListDataWrapper!=null){
             initListView();
         }else{

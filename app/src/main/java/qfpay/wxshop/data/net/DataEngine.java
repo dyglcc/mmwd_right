@@ -481,17 +481,14 @@ public class DataEngine extends Activity {
      * @param businessCommmunityMyNotificationDataWrapper
      */
     public void setBusinessCommunityAboutMyNotification(BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper businessCommmunityMyNotificationDataWrapper){
-        if(businessCommmunityMyNotificationDataWrapper==null){
-            data.edit().putString("notification","").commit();
-        }else{
             Gson gson = new Gson();
             data.edit().putString("notification",gson.toJson(businessCommmunityMyNotificationDataWrapper)).commit();
-        }
     }
 
     public BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper getBusinessCommunityAboutMyNotification(){
         BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper businessCommmunityMyNotificationDataWrapper;
         String string = getData("notification","");
+        data.edit().putString("notification","").commit();
         if(!string.equals("")){
             Gson gson = new Gson();
             businessCommmunityMyNotificationDataWrapper = gson.fromJson(string, BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper.class);

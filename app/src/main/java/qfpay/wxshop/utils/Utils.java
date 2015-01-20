@@ -1204,7 +1204,12 @@ public class Utils {
     public static long getFreeSizeOfSDCard(){
         long SDFreeSize;//存储卡剩余空间大小 kb
         StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getPath());
-        SDFreeSize = statFs.getAvailableBlocks()*statFs.getBlockSize()/1024;
+        if(18 <= VERSION.SDK_INT){
+            SDFreeSize = statFs.getAvailableBlocksLong()*statFs.getBlockSizeLong()/1024;
+        }else{
+            SDFreeSize = statFs.getAvailableBlocks()*statFs.getBlockSize()/1024;
+        }
+        System.out.println("存储卡剩余空间------>"+SDFreeSize);
         return SDFreeSize;
     }
 }
