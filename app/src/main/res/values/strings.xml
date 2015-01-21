@@ -202,8 +202,7 @@
 	<string name="errcode_deny">分享被拒绝</string>
 	<string name="errcode_unknown">分享返回</string>
 	<string name="tip_needinstallkehuduan">亲，先安装微信客户端</string>
-	<string name="qqshareFail">TAT空间分享失败了！\n安装了QQ轻聊版本？求换普通版本嗷~</string>
-	
+
 	<!--  -->
 	<string name="suisuinian_content">正文写这里~</string>
 	<string name="show_more">显示更多</string>

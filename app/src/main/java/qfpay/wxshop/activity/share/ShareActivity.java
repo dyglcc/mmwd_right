@@ -44,7 +44,7 @@ import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 
 public class ShareActivity extends BaseActivity implements
-        PlatformActionListener, Callback,ActivityListener {
+        PlatformActionListener, Callback, ActivityListener {
     private boolean initShare;
 
     private Button btn_back;
@@ -85,7 +85,7 @@ public class ShareActivity extends BaseActivity implements
     private int shareQQzoneTimes = 0;
 
 
-    public  boolean isQQZongeSharing;
+    public boolean isQQZongeSharing;
     private boolean isSinaSharing;
     private boolean isTencentSharing;
 
@@ -222,7 +222,7 @@ public class ShareActivity extends BaseActivity implements
                 tv_content.setText(WxShopApplication.shareBean.title);
             } else {
                 tv_content.setText(WxShopApplication.shareBean.title
-                        + WxShopApplication.shareBean.link +" ");
+                        + WxShopApplication.shareBean.link + " ");
             }
 
 
@@ -236,8 +236,6 @@ public class ShareActivity extends BaseActivity implements
                         .image(WxShopApplication.shareBean.imgUrl);
             }
         }
-
-
 
 
         // 回退操作
@@ -315,12 +313,6 @@ public class ShareActivity extends BaseActivity implements
                     if (isQQZongeSharing) {
                         Toaster.l(ShareActivity.this, "QQ空间正在分享中，稍等一下吧");
                     } else {
-                        shareQQzoneTimes++;
-                        if (shareQQzoneTimes >= 3 && !shareQQzoneSuccess) {
-                            Toaster.l(ShareActivity.this, getString(R.string.qqshareFail));
-                        }
-//                        QZone.ShareParams sp = new QZone.ShareParams();
-//                        sp.title = WxShopApplication.shareBean.qqTitle;
                         String shareUrl = getGaUrl(WxShopApplication.shareBean.qqTitle_url, "qzone");
 //                        sp.titleUrl = shareUrl.replace(" ", ""); // 标题的超链接
                         // sp.text = WxShopApplication.shareBean.title
@@ -356,7 +348,7 @@ public class ShareActivity extends BaseActivity implements
                         params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, list);
                         BaseUIListener listener = new BaseUIListener(ShareActivity.this);
                         listener.setListener(ShareActivity.this);
-                        mTencent.shareToQzone(ShareActivity.this, params,listener);
+                        mTencent.shareToQzone(ShareActivity.this, params, listener);
                         isQQZongeSharing = true;
                     }
 
