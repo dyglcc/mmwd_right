@@ -12,7 +12,7 @@ import qfpay.wxshop.image.ImageProcesserBean;
 import qfpay.wxshop.ui.customergallery.*;
 import qfpay.wxshop.ui.view.DeleteImgProcesser;
 import qfpay.wxshop.ui.view.ImgGridItem;
-import qfpay.wxshop.ui.view.ImgGridItem_;
+import qfpay.wxshop.ui.view.*;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;

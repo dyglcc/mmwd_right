@@ -1,9 +1,8 @@
 package qfpay.wxshop.ui.main.fragmentcontroller;
 
-import qfpay.wxshop.ui.lovelycard.LovelyCardFragment_;
+import qfpay.wxshop.ui.lovelycard.*;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
-import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment_;
-import qfpay.wxshop.ui.main.fragment.SSNListFragment_;
+import qfpay.wxshop.ui.main.fragment.*;
 
 public class PopularizingFragmentWrapper extends BasePagerFragmentWrapper {
 

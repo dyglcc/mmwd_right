@@ -21,7 +21,7 @@ import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.LabelupdateNetImpl;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.ShareUtils;

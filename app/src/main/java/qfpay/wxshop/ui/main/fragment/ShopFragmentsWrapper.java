@@ -1,13 +1,13 @@
 package qfpay.wxshop.ui.main.fragment;
 
+import android.content.Context;
+
 import java.lang.ref.SoftReference;
 
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.commodity.CommodityListFragment_;
-import qfpay.wxshop.ui.web.CommonWebFragment_;
-import android.content.Context;
-import qfpay.wxshop.utils.T;
+import qfpay.wxshop.ui.main.fragmentGoods.*;
+import qfpay.wxshop.ui.web.*;
 
 public enum ShopFragmentsWrapper {
 	COMMODITY("click_shopmanagement"), PREVIEW("Preview"), STATISTICS(
@@ -90,7 +90,7 @@ public enum ShopFragmentsWrapper {
 		switch (this) {
 		case COMMODITY:
 			fragmentRef = new SoftReference<BaseFragment>(
-					new CommodityListFragment_());
+					new GoodFragment_());
 			break;
 		case PREVIEW:
 			fragmentRef = new SoftReference<BaseFragment>(

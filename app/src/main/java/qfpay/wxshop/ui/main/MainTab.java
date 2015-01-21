@@ -4,10 +4,7 @@ import java.lang.ref.SoftReference;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
-import qfpay.wxshop.ui.main.fragment.BusinessCommunityFragment_;
-import qfpay.wxshop.ui.main.fragment.HuoYuanFragment_;
-import qfpay.wxshop.ui.main.fragment.PopularizingFragment_;
-import qfpay.wxshop.ui.main.fragment.ShopFragment_;
+import qfpay.wxshop.ui.main.fragment.*;
 import android.support.v4.app.FragmentTransaction;
 
 public enum MainTab {

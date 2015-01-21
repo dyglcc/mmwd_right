@@ -3,7 +3,7 @@ package qfpay.wxshop.activity.menu;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.LoginActivity;
-import qfpay.wxshop.activity.RegBankAccountActivity_;
+import qfpay.wxshop.activity.*;
 import qfpay.wxshop.activity.ShowBankInfoActivity;
 import qfpay.wxshop.activity.WeixinQmmActivity;
 import qfpay.wxshop.config.WDConfig;

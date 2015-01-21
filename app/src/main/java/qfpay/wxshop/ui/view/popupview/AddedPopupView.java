@@ -7,8 +7,8 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.commodity.EditItemActivity_;
-import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+import qfpay.wxshop.ui.commodity.*;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainAddAniUtils;
 import qfpay.wxshop.utils.MobAgentTools;
@@ -28,7 +28,6 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.animation.ValueAnimator.AnimatorUpdateListener;
-
 @EViewGroup(R.layout.main_popup_add)
 public class AddedPopupView extends RelativeLayout {
 	private static PopupWindowCompat win = null;

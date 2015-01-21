@@ -8,8 +8,9 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.LovelyCardNetService;
-import qfpay.wxshop.ui.lovelycard.LovelyCardPref_;
+import qfpay.wxshop.ui.lovelycard.*;
 import qfpay.wxshop.utils.T;
+
 
 /**
  * Created by LiFZhe on 12/1/14.

@@ -2,7 +2,7 @@ package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.commodity.EditItemActivity_;
+import qfpay.wxshop.ui.commodity.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
