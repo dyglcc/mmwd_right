@@ -36,7 +36,7 @@ public class BadgeView extends TextView {
     public static final int POSITION_CENTER = 5;
 
     private static final int DEFAULT_MARGIN_DIP = 5;
-    private static final int DEFAULT_LR_PADDING_DIP = 5;
+    private static final int DEFAULT_LR_PADDING_DIP = 0;
     private static final int DEFAULT_CORNER_RADIUS_DIP = 8;
     private static final int DEFAULT_POSITION = POSITION_TOP_RIGHT;
     private static final int DEFAULT_BADGE_COLOR = Color.parseColor("#CCFF0000"); //Color.RED;

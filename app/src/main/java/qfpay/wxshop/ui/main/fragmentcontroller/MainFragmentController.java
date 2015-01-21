@@ -54,7 +54,7 @@ public class MainFragmentController {
 		SHOP              (new PopularizingFragmentWrapper()),
 		ORDER             (new PopularizingFragmentWrapper()),
 		POPULARIZING      (new PopularizingFragmentWrapper()),
-		BUSINESS_COMMUNITY(new PopularizingFragmentWrapper());
+		BUSINESS_COMMUNITY(new BusinessCommunityFragmentWrapper());
 		
 		private FragmentWrapper wrapper;
 		

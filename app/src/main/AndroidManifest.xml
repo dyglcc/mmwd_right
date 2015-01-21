@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="qfpay.wxshop">
+    package="qfpay.wxshop" >
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -36,13 +37,13 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-	<uses-feature android:name="android.hardware.camera" /> 
-	<uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        tools:replace="android:icon"
-        android:name="qfpay.wxshop.WxShopApplication_"
+        android:name=".WxShopApplication_"
         android:allowBackup="true"
         android:allowClearUserData="false"
         android:icon="@drawable/icon"
@@ -51,24 +52,26 @@
         android:largeHeap="true"
         android:logo="@drawable/actionbar_title_icon"
         android:persistent="true"
-        android:theme="@style/QFAppTheme" >
+        android:theme="@style/QFAppTheme"
+        tools:replace="android:icon" >
 
         <!-- Activity -->
         <!-- 欢迎页 -->
         <activity
-            android:name="qfpay.wxshop.ui.main.WelcomeActivity_"
-            android:screenOrientation="portrait"
+            android:name=".ui.main.WelcomeActivity_"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:taskAffinity="qfpay.wxshop"
             android:theme="@style/QFTransparent" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <!-- 主界面(Tab) -->
         <activity
-            android:name="qfpay.wxshop.ui.main.MainActivity_"
+            android:name=".ui.main.MainActivity_"
             android:configChanges="keyboardHidden|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="singleTask"
@@ -77,30 +80,30 @@
             android:windowSoftInputMode="adjustNothing" />
         <!-- 所有无需特殊处理的页面的WebView包装 -->
         <activity
-            android:name="qfpay.wxshop.ui.web.CommonWebActivity_"
+            android:name=".ui.web.CommonWebActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name="qfpay.wxshop.ui.web.WebActivity_"
+            android:name=".ui.web.WebActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
             android:screenOrientation="portrait" />
         <!-- 所有无需特殊处理的页面的WebView包装 -->
         <activity
-            android:name="qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan_"
+            android:name=".ui.web.huoyuan.CommonWebActivityHuoyuan_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
             android:screenOrientation="portrait" />
         <!-- 上传商品以及编辑商品 -->
         <activity
-            android:name="qfpay.wxshop.ui.commodity.EditItemActivity_"
+            android:name=".ui.commodity.EditItemActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
         <!-- 编辑/上传完成页 -->
         <activity
-            android:name="qfpay.wxshop.ui.commodity.EdititemDoneActivity_"
+            android:name=".ui.commodity.EdititemDoneActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
@@ -112,45 +115,51 @@
             android:theme="@android:style/Theme.NoTitleBar" />
         <!-- 店铺背景选择页 -->
         <activity
-            android:name="qfpay.wxshop.activity.ShopHeaderPhotoPickerActivity_"
+            android:name=".activity.ShopHeaderPhotoPickerActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" />
         <!-- 店铺背景预览页 -->
         <activity
-            android:name="qfpay.wxshop.activity.ShopHeaderPreviewActivity_"
+            android:name=".activity.ShopHeaderPreviewActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" />
         <!-- 更多页 -->
         <activity
-            android:name="qfpay.wxshop.ui.main.MoreActivity_"
+            android:name=".ui.main.MoreActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" />
         <!-- 我的收入页面 -->
         <activity
-            android:name="qfpay.wxshop.activity.menu.MyInComeActivity"
+            android:name=".activity.menu.MyInComeActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" />
         <!-- 店铺信息页 -->
         <activity
-            android:name="qfpay.wxshop.ui.presonalinfo.ShopInfoActivity_"
+            android:name=".ui.presonalinfo.ShopInfoActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" />
         <!-- 通知中心 -->
         <activity
-            android:name="qfpay.wxshop.activity.NoticeCenterActivity_"
+            android:name=".activity.NoticeCenterActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" />
         <!-- 自定义相册 -->
-        <activity android:name="qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_" android:screenOrientation="sensorPortrait" />
-		<!-- 萌片编辑页 -->
-		<activity android:name="qfpay.wxshop.ui.lovelycard.LovelyCardEditActivity_"       android:screenOrientation="sensorPortrait" />
-		<!-- 萌片评论页 -->
-		<activity android:name="qfpay.wxshop.ui.lovelycard.LovelyCardCommentActivity_"    android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".ui.customergallery.CustomerGalleryActivity_"
+            android:screenOrientation="sensorPortrait" />
+        <!-- 萌片编辑页 -->
+        <activity
+            android:name=".ui.lovelycard.LovelyCardEditActivity_"
+            android:screenOrientation="sensorPortrait" />
+        <!-- 萌片评论页 -->
+        <activity
+            android:name=".ui.lovelycard.LovelyCardCommentActivity_"
+            android:screenOrientation="sensorPortrait" />
 
         <!-- Receiver -->
-        <receiver android:name="qfpay.wxshop.getui.RestartReceiver" />
+        <receiver android:name=".getui.RestartReceiver" />
         <receiver
-            android:name="qfpay.wxshop.config.update.InstalledReceiver"
+            android:name=".config.update.InstalledReceiver"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" >
@@ -176,7 +185,7 @@
 
         <!-- 配置第三方Receiver -->
         <receiver
-            android:name="qfpay.wxshop.getui.PushReceiver"
+            android:name=".getui.PushReceiver"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.igexin.sdk.action.8imafJpbTT6OWrl4CZRjA2" />
@@ -184,7 +193,7 @@
         </receiver>
         <!-- 本地通知service -->
         <service
-            android:name="qfpay.wxshop.getui.StartAlarmService"
+            android:name=".getui.StartAlarmService"
             android:exported="true"
             android:label="AlarmService"
             android:process=":alarmService" >
@@ -268,7 +277,7 @@
         <!-- 个推配置结束 -->
 
         <activity
-            android:name="qfpay.wxshop.activity.NewIntroductionActivity"
+            android:name=".activity.NewIntroductionActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
@@ -280,225 +289,260 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.EditAdvertisementActivity_"
+            android:name=".activity.EditAdvertisementActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.ShopNameEditActivity_"
+            android:name=".activity.ShopNameEditActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.WeixinEditActivity_"
+            android:name=".activity.WeixinEditActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.CopyUrlGuideActivity_"
+            android:name=".activity.CopyUrlGuideActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.ui.selectpic.ImageGridActivity"
+            android:name=".ui.selectpic.ImageGridActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.ui.selectpic.AlbumActivity"
+            android:name=".ui.selectpic.AlbumActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.Function1Activity"
+            android:name=".activity.Function1Activity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.FunctionNoticeActivity"
+            android:name=".activity.FunctionNoticeActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.menu.OrderListActivity"
+            android:name=".activity.menu.OrderListActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.MaijiaxiuEmptyActivity_"
+            android:name=".activity.MaijiaxiuEmptyActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.ui.buyersshow.BuyersShowReleaseActivity_"
+            android:name=".ui.buyersshow.BuyersShowReleaseActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.ui.buyersshow.GoodsListForBuyersShowActivity_"
+            android:name=".ui.buyersshow.GoodsListForBuyersShowActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.ManPromoActivity_"
+            android:name=".activity.ManPromoActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.ManPromoSuccessActivity_"
+            android:name=".activity.ManPromoSuccessActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.share.ShareActivity"
+            android:name=".activity.share.ShareActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
-            android:theme="@style/QFAppTheme" >
+            android:theme="@style/QFAppTheme"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.GeneralWebViewActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
-        <activity
-            android:name="qfpay.wxshop.activity.ChangePwdActivity"
+            android:name=".activity.GeneralWebViewActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.ChangeBankAccoutActivity"
+            android:name=".activity.ChangePwdActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.ChangeBankCardInfoActivity"
+            android:name=".activity.ChangeBankAccoutActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.InputShopNameActivity"
+            android:name=".activity.ChangeBankCardInfoActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".activity.InputShopNameActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.LoginActivity"
+            android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.LoginPreviewActivity"
+            android:name=".activity.LoginPreviewActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.RegBankAccountActivity_"
+            android:name=".activity.RegBankAccountActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.BankPickerActivity_"
+            android:name=".activity.BankPickerActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.RegStep1Activity_"
+            android:name=".activity.RegStep1Activity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.RegCompleteActivity"
+            android:name=".activity.RegCompleteActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.ShowBankInfoActivity"
+            android:name=".activity.ShowBankInfoActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.menu.WeiXinCollectMoney"
+            android:name=".activity.menu.WeiXinCollectMoney"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.CollectMoneyCompleteActivity_"
+            android:name=".activity.CollectMoneyCompleteActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.ui.presonalinfo.ShopInfoActivity"
+            android:name=".ui.presonalinfo.ShopInfoActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.SelectPicActivity_"
+            android:name=".activity.SelectPicActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.OtherShopViewActivity"
+            android:name=".activity.OtherShopViewActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.SSNPublishActivity_"
+            android:name=".activity.SSNPublishActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
-            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".activity.SSNEditActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".ui.BusinessCommunity.MyTopicDetailActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".ui.BusinessCommunity.MyDynamicOneNoteDetailActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".ui.BusinessCommunity.PublishNoteActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.SSNEditActivity_"
+            android:name=".ui.BusinessCommunity.MyNotificationListActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
-            android:name="qfpay.wxshop.activity.LabelActivity_"
+            android:name=".ui.BusinessCommunity.AllTopicListActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".ui.BusinessCommunity.ShopDetailActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".activity.LabelActivity_"
             android:hardwareAccelerated="true"
             android:label="@string/title_activity_more"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="qfpay.wxshop.activity.OfficialGoodIsWhatActivity_"
+            android:name=".activity.OfficialGoodIsWhatActivity_"
             android:hardwareAccelerated="true"
             android:label="@string/title_activity_more"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="qfpay.wxshop.activity.WeixinQmmActivity"
+            android:name=".activity.WeixinQmmActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
@@ -525,9 +569,10 @@
 
         <activity
             android:name="cn.sharesdk.framework.ShareSDKUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" >
+
             <!--
             	AuthorizeAdapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter
             	的类，这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。
@@ -559,24 +604,23 @@
                 事件的过滤器，其中的scheme是“tencent”前缀再开发者应用的加上appId。如果此过滤器不设置，
                 则分享结束以后不能得到正确的回调
             -->
-            <!--<intent-filter>-->
-                <!--<data android:scheme="tencent100371282" />-->
-                <!--<action android:name="android.intent.action.VIEW" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-                <!--<category android:name="android.intent.category.BROWSABLE" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <data android:scheme="tencent100371282" /> -->
+            <!-- <action android:name="android.intent.action.VIEW" /> -->
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+            <!-- </intent-filter> -->
 
         </activity>
-
         <activity
-            android:name="qfpay.wxshop.share.WXEntryActivity"
+            android:name=".share.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
 
         <receiver
-            android:name="qfpay.wxshop.getui.LaunchReceiver"
+            android:name=".getui.LaunchReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -587,7 +631,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="qfpay.wxshop.getui.AlarmReceiver"
+            android:name=".getui.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
         <!-- 高德地图APIKEY -->
@@ -611,6 +655,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+>>>>>>> 60e365671c62d228f5a194dd95eb8a3af4864ef8
     </application>
 
 </manifest>

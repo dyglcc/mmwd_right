@@ -2,6 +2,7 @@ package qfpay.wxshop;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.Executors;
 
 import org.acra.ReportingInteractionMode;
@@ -13,10 +14,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import qfpay.wxshop.config.WDConfig;
+import qfpay.wxshop.data.beans.BusinessCommunityMyNotificationBean;
 import qfpay.wxshop.data.beans.PromoStatus;
 import qfpay.wxshop.data.beans.ShareBean;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.net.DataEngine;
+import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.listener.MaijiaxiuUploadListener;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
@@ -46,7 +49,6 @@ public class WxShopApplication extends Application {
 
 	public static DataEngine dataEngine;
 	public byte[] aeskey;
-
 	public String cookie;
 	public static String DEFAULT_KEY = "ffffffffffffffffffffffffffffffff";
 	public static ShareBean shareBean;
@@ -133,6 +135,7 @@ public class WxShopApplication extends Application {
 		String str = "QMMWD/" + Utils.getAppVersionString(this) + " Android/"
 				+ Utils.getOSVerison(this) + " Device/" + Utils.getDeviceName();
 		dataEngine.setUserAgent(str);
+        initBusinessCommunityAboutMyNotification();
 	}
 
 	public static WxShopApplication app = null;
@@ -323,5 +326,36 @@ public class WxShopApplication extends Application {
 		return locationString.split(",")[1];
 
 	}
+
+	public boolean checkDupMainactivity(String checkName) {
+		for (int i = 0; i < actList.size(); i++) {
+			Activity act = actList.get(i);
+			if (act.getClass().getName().equals(MainActivity_.class.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	// test
+
+    /**
+     * 初始化本地存储的消息通知
+     */
+    public static void initBusinessCommunityAboutMyNotification(){
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper businessCommmunityMyNotificationDataWrapper
+                = new BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper();
+        BusinessCommunityService.BusinessCommmunityMyNotificationListWrapper businessCommmunityMyNotificationListWrapper
+                = new BusinessCommunityService.BusinessCommmunityMyNotificationListWrapper();
+        businessCommmunityMyNotificationDataWrapper
+                .data = businessCommmunityMyNotificationListWrapper;
+        businessCommmunityMyNotificationDataWrapper
+                .data.tag="0";
+        businessCommmunityMyNotificationDataWrapper
+                .data.has_new="0";
+        businessCommmunityMyNotificationDataWrapper.data.count="0";
+        businessCommmunityMyNotificationDataWrapper.data.items = new ArrayList<BusinessCommunityMyNotificationBean>();
+        WxShopApplication.dataEngine.setBusinessCommmunityMyNotificationData(businessCommmunityMyNotificationDataWrapper);
+    }
+
 
 }

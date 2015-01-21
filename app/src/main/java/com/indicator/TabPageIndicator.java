@@ -281,7 +281,6 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
 
     private class TabView extends TextView {
         private int mIndex;
-
         public TabView(Context context) {
             super(context, null, R.attr.vpiTabPageIndicatorStyle);
         }

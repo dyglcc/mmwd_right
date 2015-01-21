@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lyt_publish"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_bg_color"
+        android:orientation="horizontal"
+        android:id="@+id/tool_bar"
+        android:visibility="gone"
+        >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="48dip"
+            android:layout_height="48dip"
+            android:background="@drawable/selector_ssn_btn_close" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dip"
+            android:textColor="@color/white"
+            android:text="小组名称"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_centerVertical="true" />
+
+
+    </RelativeLayout>
+    <qfpay.wxshop.ui.view.XListView
+        android:id="@+id/listView"
+        android:layout_below="@id/tool_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/common_background"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="vertical" />
+    <FrameLayout
+        android:id="@+id/fl_indictor"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/iv_indictor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/commodity_list_nodata" />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/business_community_corner_bg"
+        android:id="@+id/publish_note_fl"
+        android:visibility="gone"
+
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/publish_note"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:background="@drawable/business_community_publish_note"
+                />
+            <View
+                android:id="@+id/publish_note_line"
+                android:layout_below="@id/publish_note"
+                android:layout_alignLeft="@id/publish_note"
+                android:layout_marginTop="-1dp"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:background="#7fffffff"/>
+            </RelativeLayout>
+
+        </FrameLayout>
+
+</RelativeLayout>

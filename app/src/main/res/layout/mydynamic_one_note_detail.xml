@@ -1,0 +1,274 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rootview"
+    >
+    <FrameLayout
+        android:id="@+id/fl_indictor"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible"
+         >
+
+        <ImageView
+            android:id="@+id/iv_indictor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/commodity_list_nodata" />
+    </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_bg_color"
+        android:orientation="horizontal"
+        android:id="@+id/tool_bar"
+        >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="48dip"
+            android:layout_height="48dip"
+            android:background="@drawable/selector_ssn_btn_close" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dip"
+            android:textColor="@color/white"
+            android:text="小组名称"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_centerVertical="true" />
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#fd778e"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottom_ll"
+        >
+        <EditText
+            android:id="@+id/input_reply_et"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:paddingLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/business_community_edittext_corner_bg"
+            android:focusable="true"
+            android:hint="说点什么吧~"
+            android:textColorHint="@color/common_text_grey"
+            android:focusableInTouchMode="true" />
+
+            <ImageButton
+                android:id="@+id/publish_reply_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/mydynamic_publish_bg"
+                />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_ll"
+        android:layout_below="@id/tool_bar"
+        android:id="@+id/scrollview"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+
+                <com.makeramen.RoundedImageView
+                    android:id="@+id/u_avatar"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp"
+                    android:scaleType="centerCrop"
+                    app:border_width="0dp"
+                    app:corner_radius="50dp" />
+
+                <TextView
+                    android:id="@+id/u_name"
+                    style="@style/common_text_content_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/u_avatar"
+                    android:textColor="#f06292"
+                    android:textSize="@dimen/common_text_content_big"
+                    tools:text="发帖人昵称" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/content"
+                style="@style/common_text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:ellipsize="end"
+                tools:text="帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容帖子内容" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/note_from_rl"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/common_text_grey"
+                    android:textSize="@dimen/common_text_content_big"
+                    android:text="来自"
+                    android:id="@+id/laizi"
+                    android:layout_centerVertical="true"
+                    />
+                <com.makeramen.RoundedImageView
+                    android:id="@+id/g_avatar"
+                    android:layout_toRightOf="@id/laizi"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="8dp"
+                    android:scaleType="centerCrop"
+                    app:border_width="0dp"
+                    app:corner_radius="50dp" />
+                <TextView
+                    android:id="@+id/g_name"
+                    android:layout_toRightOf="@id/g_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#f06292"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/common_text_content_big"
+                    tools:text="来自小组名称" />
+            </RelativeLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="#7fd3d3d3"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                >
+                <LinearLayout
+                    android:id="@+id/liked_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/liked_iv"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/mydynamic_note_link"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/liked_num_tv"
+                        android:textColor="#91948d"
+                        android:textSize="@dimen/common_text_content_mid"
+                        android:layout_gravity="center_vertical"
+                        android:text="1"
+                        android:layout_marginLeft="8dp"
+                        />
+                    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/liked_u_avatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/liked_ll"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    ></LinearLayout>
+                </RelativeLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="#7fd3d3d3"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                >
+                <LinearLayout
+                    android:id="@+id/reply_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/mydynamic_note_reply" />
+
+                    <TextView
+                        android:id="@+id/reply_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="#91948d"
+                        android:textSize="@dimen/common_text_content_mid"
+                        tools:text="回复数" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/reply_u_avatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/reply_ll"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    ></LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

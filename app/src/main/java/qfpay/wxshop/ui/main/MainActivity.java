@@ -10,10 +10,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.ImageView;
 import android.widget.PopupWindow.OnDismissListener;
+import android.widget.RelativeLayout;
+
 import cn.sharesdk.framework.ShareSDK;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -31,6 +34,7 @@ import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.CacheData;
 import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.data.netImpl.LabelGetNetImpl;
 import qfpay.wxshop.data.netImpl.NoticeUnReadNetImpl;
 import qfpay.wxshop.getui.RestartReceiver;
@@ -39,6 +43,9 @@ import qfpay.wxshop.listener.MaijiaxiuUploadListener;
 import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.ui.BusinessCommunity.AllTopicListActivity_;
+import qfpay.wxshop.ui.BusinessCommunity.BusinessCommunityDataController;
+import qfpay.wxshop.ui.BusinessCommunity.MyDynamicListFragment;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseActivity_;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseNetProcesser;
 import qfpay.wxshop.ui.common.actionbar.InfoMenuProvider;
@@ -48,12 +55,13 @@ import qfpay.wxshop.ui.main.fragment.*;
 import qfpay.wxshop.ui.main.fragmentcontroller.MainFragmentController;
 import qfpay.wxshop.ui.main.fragmentcontroller.MainFragmentController.WrapperType;
 import qfpay.wxshop.ui.main.fragmentcontroller.StartupProcessor;
+import qfpay.wxshop.ui.view.BadgeView;
 import qfpay.wxshop.ui.view.popupview.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;
 import com.networkbench.agent.impl.NBSAppAgent;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -78,6 +86,8 @@ public class MainActivity extends BaseActivity {
 	@ViewById
 	ImageView iv_shop, iv_order, iv_promotion, iv_community, iv_add,
 			iv_indicater;
+    @ViewById
+    public RelativeLayout main_bottom_rl,layout_parent;
 	@Bean
 	MainAddAniUtils aniUtils;
 	@Bean
@@ -96,7 +106,9 @@ public class MainActivity extends BaseActivity {
 	private boolean isShowShareButton = true;
 	private Handler handler;
 	private boolean initShare;
-
+    private BadgeView badgeView;//商户圈选项右上角有更新提示点
+    @Bean
+    BusinessCommunityDataController businessCommunityDataController;
 	private void changeTab(MainTab tab, View view) {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		tab.showFragment(ft, this);
@@ -264,7 +276,8 @@ public class MainActivity extends BaseActivity {
 
 	@Click
 	void iv_community(View iv) {
-		changeTab(MainTab.BUSINESS_COMMUNITY, iv);
+        MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant");
+        changeTab(MainTab.BUSINESS_COMMUNITY, iv);
 	}
 
 	@Override
@@ -381,10 +394,99 @@ public class MainActivity extends BaseActivity {
 		}, 4400);
 		WxShopApplication.MAIN_IS_RUNNING = true;
 
+        //商户圈通知角标初始化
+        badgeView = new BadgeView(this,iv_community);
+        badgeView.setBackgroundResource(R.drawable.icon_reddot2);
+        badgeView.setWidth(Utils.dip2px(this, 10));
+        badgeView.setHeight(Utils.dip2px(this, 10));
+        badgeView.setGravity(Gravity.CENTER);
+        badgeView.setBadgeMargin(15,10);
+        badgeView.setTextSize(6);
+        initLastNoReadNotification();
+        getBusinessCommunityAboutMyNotify();
         NBSAppAgent.setLicenseKey("26f23f2f3f8447b6a450174320f25969").withLocationServiceEnabled(true).start(this);
 	}
 
-	private void statLocalNotifyClick() {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
+        if(dataWrapper!=null&&dataWrapper.data.items.size()>0){
+            WxShopApplication.dataEngine.setBusinessCommunityAboutMyNotification(dataWrapper);
+        }
+        super.onSaveInstanceState(outState);
+    }
+
+    /**
+     * 初始话上次未读商户圈消息
+     */
+    void initLastNoReadNotification(){
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommunityAboutMyNotification();
+        if(dataWrapper!=null&&dataWrapper.data.items.size()>0){
+            WxShopApplication.dataEngine.setBusinessCommmunityMyNotificationData(dataWrapper);
+        }
+    }
+
+    /**
+     * 获取商户圈我的消息通知
+     */
+    @Background
+    void getBusinessCommunityAboutMyNotify(){
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper businessCommmunityMyNotificationDataWrapper = businessCommunityDataController.getAboutMyNotification();
+        if(businessCommmunityMyNotificationDataWrapper!=null){
+            dealMyNotification(businessCommmunityMyNotificationDataWrapper);
+        }
+        try {
+            Thread.currentThread().sleep(30*1000);
+            if(!this.isFinishing()){
+                getBusinessCommunityAboutMyNotify();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *根据返回结果，并设置角标
+     * @param newData
+     */
+    @UiThread
+    void dealMyNotification(BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper newData){
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper originData = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
+        if(originData!=null){
+            if(newData.data.tag.equals("1")&&originData.data.tag.equals("0")){
+                originData.data.tag = "1";
+            }
+            if(newData.data.has_new!=null){
+                originData.data.has_new = newData.data.has_new;
+            }
+            if(newData.data.items!=null){
+                originData.data.items.addAll(0,newData.data.items);
+            }
+            BusinessCommunityFragment businessCommunityFragment = (BusinessCommunityFragment)MainTab.BUSINESS_COMMUNITY.getFragment();
+            if(originData.data.tag.equals("1")){
+                showCommunityNotifycation("1",originData.data.items.size()+"");
+                MyDynamicListFragment myDynamicListFragment = (MyDynamicListFragment)MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(0);
+                if(myDynamicListFragment!=null){//我的动态列表头部添加消息通知
+                    myDynamicListFragment.addNewMyNotificationLayout(originData.data.items.size()+"");
+                }
+                if(businessCommunityFragment!=null){//我的动态tab添加角标通知
+                    businessCommunityFragment.showCommunityNotification("1",originData.data.items.size()+"");
+                }
+            }else if(originData.data.tag.equals("0")&&originData.data.has_new.equals("1")){
+                showCommunityNotifycation("0","0");
+                if(businessCommunityFragment!=null){//我的动态tab添加角标通知
+                    businessCommunityFragment.showCommunityNotification("0","0");
+                }
+            }else{
+                hideCommunityNotifycation();
+                if(businessCommunityFragment!=null){//我的动态tab隐藏角标通知
+                    businessCommunityFragment.hideCommunityNotification();
+                }
+            }
+        }
+    }
+
+    private void statLocalNotifyClick() {
 		Intent intent = getIntent();
 		String day = intent.getStringExtra("daysWhenClick");
 		if (day != null && !day.equals("")) {
@@ -562,6 +664,11 @@ public class MainActivity extends BaseActivity {
 		if (UtilsWeixinShare.map != null) {
 			UtilsWeixinShare.map = null;
 		}
+        //如果程序退出时还有未读的商户圈动态消息，则存储到本地
+        BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
+        if(dataWrapper!=null&&dataWrapper.data.items.size()>0){
+            WxShopApplication.dataEngine.setBusinessCommunityAboutMyNotification(dataWrapper);
+        }
 	}
 
 	@Override
@@ -586,7 +693,13 @@ public class MainActivity extends BaseActivity {
 		}else if (result == OrderFragment_.REFRESH) {
 			ShopFragmentsWrapper.getFragment(3, this).onActivityResult(
 					requestCode, resultCode, intent);
-		}
+		}else if(result == MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE){
+            MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(0)
+                    .onActivityResult(requestCode, resultCode, intent);
+        }else if(result == MaijiaxiuFragment.ACTION_PUBLISH_NOTE){
+            MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(0)
+                    .onActivityResult(requestCode, resultCode, intent);
+        }
 	}
 
 	public void onAddSsuinian() {
@@ -594,6 +707,17 @@ public class MainActivity extends BaseActivity {
 		AddedPopupView.close();
 		startSuisuiNainPublish();
 	}
+
+    public void onAddNote(){
+        MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_post");
+        changeTab(MainTab.BUSINESS_COMMUNITY,iv_community);
+        AddedPopupView.close();
+        startPublishNote();
+    }
+
+    void startPublishNote(){
+        AllTopicListActivity_.intent(MainActivity.this).startForResult(MaijiaxiuFragment.ACTION_PUBLISH_NOTE);
+    }
 
 	@UiThread(delay = 200)
 	void startSuisuiNainPublish() {
@@ -604,4 +728,30 @@ public class MainActivity extends BaseActivity {
 				MainFragmentController.get(WrapperType.POPULARIZING).get(0))
 				.startForResult(MaijiaxiuFragment_.ACTION_ADD_SSN);
 	}
+
+
+
+    /**
+     * 商户圈 根据tag值显示角标 0 显示红点 1 显示数字加红点
+     * @param tag
+     * @param count
+     */
+    @UiThread
+    public void showCommunityNotifycation(String tag,String count){
+        if(tag.equals("0")){
+            badgeView.show();
+        }
+        if(tag.equals("1")){
+            badgeView.setText(count);
+            badgeView.show();
+        }
+    }
+
+    /**
+     * 商户圈 隐藏角标
+     */
+    public void hideCommunityNotifycation(){
+        badgeView.setText("");
+        badgeView.hide();
+    }
 }

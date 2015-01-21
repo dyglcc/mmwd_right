@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    tools:context="qfpay.wxshop.ui.BusinessCommunity.ShopDetailActivity">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/title_bg_color"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:id="@+id/tool_bar"-->
+        <!-->-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_back"-->
+            <!--android:layout_width="48dip"-->
+            <!--android:layout_height="48dip"-->
+            <!--android:background="@drawable/selector_ssn_btn_close" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="18sp"-->
+            <!--android:singleLine="true"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_marginLeft="10dip"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="喵喵微店"-->
+            <!--android:focusable="true"-->
+            <!--android:focusableInTouchMode="true"-->
+            <!--android:layout_centerVertical="true" />-->
+
+
+    <!--</RelativeLayout>-->
+    <WebView
+        android:layout_below="@+id/tool_bar"
+        android:id="@+id/webView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        </WebView>
+
+    <LinearLayout
+        android:id="@+id/ll_fail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shibai" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/bad_net"
+            android:textColor="@color/title_bg_color" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_indictor"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/iv_indictor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/commodity_list_nodata" />
+    </FrameLayout>
+
+</RelativeLayout>

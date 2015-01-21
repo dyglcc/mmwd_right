@@ -81,11 +81,33 @@ public class CommonWebFragment extends BaseFragment {
             webView.loadUrl(url, header);
         }
     }
-
+    public CommonWebFragment init(String url, boolean isNeedLoadNewActivity) {
+        return init(url, isNeedLoadNewActivity, null, null, new SharedPlatfrom[0]);
+    }
     public CommonWebFragment init(String url, boolean isNeedLoadNewActivity, String title) {
         return init(url, isNeedLoadNewActivity, null, null, title, new SharedPlatfrom[0]);
     }
+    public CommonWebFragment init(String url, boolean isNeedLoadNewActivity, String shareTitle, String shareName, SharedPlatfrom... platForms) {
+        this.url = url;
+        this.isNeedLoadNewActivity = isNeedLoadNewActivity;
+        this.shareName = shareName;
+        this.shareTitle = shareTitle;
+        this.platFroms = Arrays.asList(platForms);
 
+        if (getActivity() != null) {
+            Utils.setCookies(url, getActivity());
+            header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
+            if (url != null && !"".equals(url)) {
+                webView.loadUrl(url,header);
+            }
+        }
+
+        if (webView != null) {
+            webView.stopLoading();
+            webView.loadUrl(url,header);
+        }
+        return this;
+    }
     public CommonWebFragment init(String url, boolean isNeedLoadNewActivity, String shareTitle, String shareName, String title, SharedPlatfrom... platForms) {
         this.url = url;
         this.isNeedLoadNewActivity = isNeedLoadNewActivity;

@@ -167,6 +167,9 @@ public class MaijiaxiuFragment extends BaseFragment implements
 	public static final int ACTION_ADD_SSN = ACTION_EDIT_SSN + 1;
 	// 货源
 	public static final int ACTION_HUOYUAN_ADD = ACTION_ADD_SSN + 1;
+    //商户圈我的动态
+    public static final int ACTION_MYDYNAMIC_EDIT_NOTE = ACTION_HUOYUAN_ADD + 1;
+    public static final int ACTION_PUBLISH_NOTE = ACTION_MYDYNAMIC_EDIT_NOTE + 1;
 
 	TopExpandAnimation expand_animation;
 	TopCloseAnimation closeAnima;
