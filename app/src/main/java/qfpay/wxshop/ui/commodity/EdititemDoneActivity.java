@@ -134,7 +134,7 @@ public class EdititemDoneActivity extends BaseActivity {
     @Click
     void btn_preview() {
 
-        ManagePreViewActivity_.intent(this).title("商品预览").url("http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance").gooditem(getGoodsBean(wrapper)).start();
+        ManagePreViewActivity_.intent(this).ga_medium("android_mmwdapp_postpreviewshare_").title("商品预览").url("http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance").gooditem(getGoodsBean(wrapper)).start();
 
 //		Intent intent = new Intent(this, ManagePreViewActivity.class);
 //		intent.putExtra(ConstValue.URL,
