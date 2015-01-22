@@ -19,7 +19,8 @@ import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 
 /**
- * 话题列表item
+ * 我的消息通知列表item
+ * @author zhangzhichao
  */
 @EViewGroup(R.layout.businesscommunication_mynotify_item)
 public class MyNotificationListItemView extends LinearLayout{

@@ -52,6 +52,7 @@ import qfpay.wxshop.utils.Utils;
 
 /**
  * 我的动态列表item
+ * @author zhangzhichao
  */
 @EViewGroup(R.layout.mydynamic_notes_list_item)
 public class MyDynamicNoteListItemView extends LinearLayout {

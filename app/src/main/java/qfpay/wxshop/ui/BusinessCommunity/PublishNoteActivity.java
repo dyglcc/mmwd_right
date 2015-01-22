@@ -71,6 +71,7 @@ import retrofit.mime.TypedString;
 
 /**
  * 发帖页
+ * @author 张志超
  */
 @EActivity(R.layout.businesscommunity_publish_note)
 public class PublishNoteActivity extends BaseActivity implements BusinessCommunityDataController.BusinessCommunityCallback{

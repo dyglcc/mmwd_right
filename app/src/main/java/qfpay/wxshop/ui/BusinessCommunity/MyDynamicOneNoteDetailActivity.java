@@ -66,6 +66,10 @@ import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Util;
 import qfpay.wxshop.utils.Utils;
 
+/**
+ * 帖子详情页面
+ * @author zhangzhichao
+ */
 @EActivity(R.layout.mydynamic_one_note_detail)
 public class MyDynamicOneNoteDetailActivity extends BaseActivity implements BusinessCommunityDataController.BusinessCommunityCallback{
     @DrawableRes

@@ -184,7 +184,7 @@ public class BadgeView2 extends TextView {
             linearLayout.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getPager().setCurrentItem(0);
+                    getPager().setCurrentItem(1);
                 }
             });
 

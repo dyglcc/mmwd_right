@@ -36,6 +36,7 @@ import qfpay.wxshop.ui.view.XListView;
 
 /**
  * 所有话题列表页
+ * @author zhangzhichao
  */
 @EActivity(R.layout.mydynamic_notes_list)
 public class AllTopicListActivity extends BaseActivity {

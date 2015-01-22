@@ -62,7 +62,8 @@ import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 
 /**
- * 我的话题详情页
+ * 我的话题详情页  即显示该话题下所有帖子
+ * @author zhangzhichao
  */
 @EActivity(R.layout.mydynamic_notes_list)
 public class MyTopicDetailActivity extends BaseActivity implements XListView.IXListViewListener,BusinessCommunityDataController.BusinessCommunityCallback{

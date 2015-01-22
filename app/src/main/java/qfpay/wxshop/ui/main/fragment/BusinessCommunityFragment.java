@@ -40,7 +40,7 @@ import qfpay.wxshop.utils.Utils;
 
 @EFragment(R.layout.businesscommunity_layout)
 public class BusinessCommunityFragment extends BaseFragment {
-    private static final int[] titles = {R.string.community_pagertitle_mydynamic, R.string.community_pagertitle_discovery, R.string.community_pagertitle_ranginglist, R.string.community_pagertitle_mytopic};
+    private static final int[] titles = { R.string.community_pagertitle_mytopic,R.string.community_pagertitle_mydynamic,R.string.community_pagertitle_ranginglist,R.string.community_pagertitle_discovery};
 
     private Map<String, String> header = new HashMap<String, String>();
     @ViewById
@@ -74,7 +74,7 @@ public class BusinessCommunityFragment extends BaseFragment {
             indicator.setOnPageChangeListener((OnPageChangeListener) adapter);
             indicator.notifyDataSetChanged();
 
-            TextView textView = ((TextView) indicator.getTabView(0));
+            TextView textView = ((TextView) indicator.getTabView(1));
             badgeView = new BadgeView2(getActivity(), textView);
             badgeView.setPager(pager);
             badgeView.setBackgroundResource(R.drawable.icon_reddot2);

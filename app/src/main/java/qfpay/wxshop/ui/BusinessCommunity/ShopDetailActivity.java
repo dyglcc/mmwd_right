@@ -31,6 +31,10 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.utils.Utils;
 
+/**
+ * 店铺详情页面
+ * @author 张志超
+ */
 @EActivity(R.layout.activity_shop_detail)
 public class ShopDetailActivity extends BaseActivity {
     @Extra

@@ -188,33 +188,9 @@ import retrofit.mime.TypedString;
      * 获取我加入的话题列表
      * @param u_id
      */
-    @Background
-    public void getMyTopicList(String u_id){
-        try{
-            if(callback!=null&&callback.get()!=null){
-                callback.get().refresh();
-            }
-             BusinessCommunityService.TopicsListDataWrapper topicsListDataWrapper = netService.getMyTopicList(u_id);
-
-            if(topicsListDataWrapper.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)){
-                myTopicBeanList.clear();
-                myTopicBeanList = topicsListDataWrapper.data.items;
-                if(callback!=null&&callback.get()!=null){
-                    callback.get().onSuccess();
-                }
-            }else{
-                if(callback!=null&&callback.get()!=null) {
-                    callback.get().onServerError(topicsListDataWrapper.getResperr());
-                }
-            }
-        }catch(Exception e){
-            if(e.getMessage()!=null){
-                T.i(e.getMessage());
-            }
-            if(callback!=null&&callback.get()!=null) {
-                callback.get().onNetError();
-            }
-        }
+    public  BusinessCommunityService.TopicsListDataWrapper getMyTopicList(String u_id){
+        BusinessCommunityService.TopicsListDataWrapper topicsListDataWrapper = netService.getMyTopicList(u_id);
+        return topicsListDataWrapper;
     }
 
     /**

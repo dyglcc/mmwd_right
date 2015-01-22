@@ -68,6 +68,7 @@ import qfpay.wxshop.utils.Utils;
 
 /**
  * 显示商户圈中“我的动态”列表页面
+ * @author zhangzhichao
  */
 @EFragment(R.layout.mydynamic_notes_list)
 public class MyDynamicListFragment extends BaseFragment implements

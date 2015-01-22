@@ -38,6 +38,7 @@ import qfpay.wxshop.ui.view.XListView;
 
 /**
  * 我的消息列表页
+ * @author zhangzhichao
  */
 @EActivity(R.layout.mydynamic_notes_list)
 public class MyNotificationListActivity extends BaseActivity {
