@@ -1,52 +1,30 @@
 package qfpay.wxshop.ui.BusinessCommunity;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
-import android.os.Message;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.IgnoredWhenDetached;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import qfpay.wxshop.R;
-import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.net.DataEngine;
-import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
-import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Toaster;
-import retrofit.mime.TypedFile;
-import retrofit.mime.TypedString;
 
 /**
  * 显示商户圈中“我加入的话题”列表页面
@@ -138,7 +116,7 @@ public class MyTopicListFragment extends BaseFragment implements
             wrapperList.addAll(0,businessCommunityDataController.getMyTopicBeanList());
         }
     }
-//自定义的网络请求操作的回调事件
+    //自定义的网络请求操作的回调事件
     @Override  @UiThread
     @IgnoredWhenDetached
     public void onSuccess() {
@@ -170,7 +148,7 @@ public class MyTopicListFragment extends BaseFragment implements
         iv_indictor.setImageDrawable(commodity_list_refresh);
         ((AnimationDrawable) (commodity_list_refresh)).start();
     }
-//XListView的回调事件
+    //XListView的回调事件
     @Override
     public void onRefresh() {
         businessCommunityDataController.setCallback(this);

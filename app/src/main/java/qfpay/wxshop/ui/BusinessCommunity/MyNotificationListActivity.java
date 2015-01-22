@@ -109,9 +109,9 @@ public class MyNotificationListActivity extends BaseActivity {
             switch (code) {
                 case MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE:
                     int position = data.getIntExtra("position",-1);
-                    if(position!=-1){
-                        notificationDataWrapper.data.items.remove(position);
-                        adapter.notifyDataSetChanged();
+                    MyDynamicItemBean0 myDynamicItemBean0 = (MyDynamicItemBean0)data.getSerializableExtra("myDynamicItemBean0");
+                    if(position!=-1&&myDynamicItemBean0!=null){
+                        notificationDataWrapper.data.items.get(position).getTopic().items.set(0,myDynamicItemBean0);
                     }
                     break;
             }

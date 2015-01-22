@@ -1209,7 +1209,6 @@ public class Utils {
         }else{
             SDFreeSize = statFs.getAvailableBlocks()*statFs.getBlockSize()/1024;
         }
-        System.out.println("存储卡剩余空间------>"+SDFreeSize);
         return SDFreeSize;
     }
 }

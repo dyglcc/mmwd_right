@@ -7,6 +7,8 @@ import java.util.List;
 
 import qfpay.wxshop.data.beans.BusinessCommunityMyNotificationBean;
 import qfpay.wxshop.data.beans.MyDynamicItemBean0;
+import qfpay.wxshop.data.beans.MyDynamicItemLinkDataBean;
+import qfpay.wxshop.data.beans.MyDynamicItemReplyBean;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.net.RetrofitWrapper.CommonJsonBean;
 import retrofit.http.Field;
@@ -48,6 +50,14 @@ public interface BusinessCommunityService {
      */
     @GET("/group")
     MyDynamicNotesListDataWrapper getOneTopicNotesListFirstTime(@Query("g_id") String g_id);
+
+    /**
+     * 获取某一帖子的所有回复和评论
+     * @param t_id
+     * @return
+     */
+    @GET("/topic")
+    ReplyAndLikeOfOneNoteDataWrapper getReplyAndLikeOfOneNote(@Query("t_id") String t_id);
 
     /**
      * 点赞或取消点赞
@@ -184,6 +194,18 @@ public interface BusinessCommunityService {
                     "shop_id='" + shop_id + '\'' +
                     '}';
         }
+    }
+
+    public static class ReplyAndLikeOfOneNoteDataWrapper extends CommonJsonBean{
+        private static final long serialVersionUID = 1L;
+        public ReplyAndLikeOfOneNoteWrapper data;
+
+    }
+
+    public static class ReplyAndLikeOfOneNoteWrapper implements Serializable{
+        private static final long serialVersionUID = 1L;
+        public List<MyDynamicItemReplyBean> items;
+        public MyDynamicItemLinkDataBean like_data;
     }
 
 }

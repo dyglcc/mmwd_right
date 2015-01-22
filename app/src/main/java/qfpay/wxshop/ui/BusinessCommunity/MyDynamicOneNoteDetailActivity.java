@@ -37,6 +37,7 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.SystemService;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
@@ -100,8 +101,13 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     DataEngine dataEngine ;
     @ViewById
     RelativeLayout rootview,note_from_rl;
+    private boolean isActivityRunning = false;//当前Activity是否在运行
+    private boolean hasPublishReply = false;//是否已经发布过评论
+    BusinessCommunityService.ReplyAndLikeOfOneNoteDataWrapper dataWrapper;
     @AfterViews
     void init() {
+        isActivityRunning = true;
+        getLatestReply(myDynamicItemBean0.getId());
         rootview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -127,7 +133,9 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         if(myDynamicItemBean0!=null&&myDynamicItemBean0.getId()!=null){
             setViewContent();
         }
-
+        /**
+         * 发布评论点击事件
+         */
         publish_reply_ib.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -202,7 +210,6 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
             businessCommunityDataController.setPriaseState(myDynamicItemBean0.getId(),"0");
         }
         showLikeData();
-
     }
 
     /**
@@ -225,115 +232,86 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         }
         return false;
     }
-
-    /**
-     * 发布评论点击事件
-     */
-//    public void publish_reply_ll(View v){
-//        replyContent = input_reply_et.getText().toString().trim();
-//        if(replyContent!=null&&!replyContent.equals("")){
-//            String t_id = myDynamicItemBean0.getId();
-//            businessCommunityDataController.setCallback(this);
-//            businessCommunityDataController.publishReply(t_id,replyContent);
-//            if(isPublishReply==true){
-//                MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_dynamic_send");
-//            }else{
-//                MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_post_comment");
-//            }
-//        }else{
-//            Toaster.s(this,"评论内容不能为空！");
-//        }
-//    }
     /**
      * 显示点赞数据
      */
-    private void showLikeData(){
-        liked_u_avatar.removeAllViews();
-        MyDynamicItemLinkDataBean myDynamicItemLinkDataBean = myDynamicItemBean0.getLike_data();
-        liked_num_tv.setText(myDynamicItemBean0.getLike_data().getLike_count());
-        if(myDynamicItemBean0.getLike_data().getIs_liked().equals("0")){
-            liked_iv.setBackgroundResource(R.drawable.mydynamic_note_link);
-        }else{
-            liked_iv.setBackgroundResource(R.drawable.mydynamic_note_link2);
-        }
-        if(Integer.parseInt(myDynamicItemLinkDataBean.getLike_count())>0){
-            liked_u_avatar.setVisibility(View.VISIBLE);
-            for(String oneLikeUser:myDynamicItemLinkDataBean.getLiked_user()){
-                RoundedImageView roundedImageView = new RoundedImageView(getBaseContext());
-                String url = "http://b-avatar.qiniudn.com/"+oneLikeUser+".png";
-                roundedImageView.setPadding(0, 0, 8, 0);
-                roundedImageView.setCornerRadius(50f);
-                Picasso.with(getBaseContext()).load(url).fit().centerInside().placeholder(R.drawable.list_item_default).
-                        error(R.drawable.list_item_default).into(roundedImageView);
-                roundedImageView.setLayoutParams(new ViewGroup.LayoutParams(Utils.dip2px(getBaseContext(),30),Utils.dip2px(getBaseContext(), 30)));
-                liked_u_avatar.addView(roundedImageView);
+    @UiThread
+    void showLikeData(){
+            liked_u_avatar.removeAllViews();
+            MyDynamicItemLinkDataBean myDynamicItemLinkDataBean = myDynamicItemBean0.getLike_data();
+            liked_num_tv.setText(myDynamicItemLinkDataBean.getLike_count());
+            if(myDynamicItemBean0.getLike_data().getIs_liked().equals("0")){
+                liked_iv.setBackgroundResource(R.drawable.mydynamic_note_link);
+            }else{
+                liked_iv.setBackgroundResource(R.drawable.mydynamic_note_link2);
             }
-        }else{
-            liked_u_avatar.setVisibility(View.GONE);
+            if(myDynamicItemLinkDataBean.getLiked_user().size()>0){
+                liked_u_avatar.setVisibility(View.VISIBLE);
+                for(String oneLikeUser:myDynamicItemLinkDataBean.getLiked_user()){
+                    RoundedImageView roundedImageView = new RoundedImageView(getBaseContext());
+                    String url = "http://b-avatar.qiniudn.com/"+oneLikeUser+".png";
+                    roundedImageView.setPadding(0, 0, 8, 0);
+                    roundedImageView.setCornerRadius(50f);
+                    Picasso.with(getBaseContext()).load(url).fit().centerInside().placeholder(R.drawable.list_item_default).
+                            error(R.drawable.list_item_default).into(roundedImageView);
+                    roundedImageView.setLayoutParams(new ViewGroup.LayoutParams(Utils.dip2px(getBaseContext(),30),Utils.dip2px(getBaseContext(), 30)));
+                    liked_u_avatar.addView(roundedImageView);
+                }
+            }else{
+                liked_u_avatar.setVisibility(View.GONE);
+            }
         }
-    }
 
     /**
      * 显示评论数据
      */
-    private void  showReplyContent(){
-        reply_u_avatar.removeAllViews();
-        List<MyDynamicItemReplyBean> myDynamicItemReplyBeanList = myDynamicItemBean0.getReply().getItems();
-        reply_num.setText(myDynamicItemBean0.getReply_num());
-        if(myDynamicItemReplyBeanList!=null&&myDynamicItemReplyBeanList.size()>0){
-            reply_u_avatar.setVisibility(View.VISIBLE);
-            LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-            for(MyDynamicItemReplyBean myDynamicItemReplyBean:myDynamicItemReplyBeanList){
-                View view = layoutInflater.inflate(R.layout.mydynamic_note_reply_item,null);
-                TextView u_name =  (TextView)view.findViewById(R.id.u_name);
-                u_name.setText(myDynamicItemReplyBean.getU_name());
-                RoundedImageView u_avatar = (RoundedImageView)view.findViewById(R.id.u_avatar);
-                Picasso.with(getBaseContext()).load(myDynamicItemReplyBean.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
-                        error(R.drawable.list_item_default).into(u_avatar);
-                TextView content = (TextView)view.findViewById(R.id.content);
-                content.setText(myDynamicItemReplyBean.getContent());
-                TextView floor = (TextView)view.findViewById(R.id.floor);
-                floor.setText(myDynamicItemReplyBean.getFloor()+"楼");
-                reply_u_avatar.addView(view);
+    @UiThread
+    void  showReplyContent(){
+            reply_u_avatar.removeAllViews();
+            List<MyDynamicItemReplyBean> myDynamicItemReplyBeanList = myDynamicItemBean0.getReply().getItems();
+            reply_num.setText(myDynamicItemBean0.getReply_num());
+            if(myDynamicItemReplyBeanList!=null&&myDynamicItemReplyBeanList.size()>0){
+                reply_u_avatar.setVisibility(View.VISIBLE);
+                LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+                for(MyDynamicItemReplyBean myDynamicItemReplyBean:myDynamicItemReplyBeanList){
+                    View view = layoutInflater.inflate(R.layout.mydynamic_note_reply_item,null);
+                    TextView u_name =  (TextView)view.findViewById(R.id.u_name);
+                    u_name.setText(myDynamicItemReplyBean.getU_name());
+                    RoundedImageView u_avatar = (RoundedImageView)view.findViewById(R.id.u_avatar);
+                    Picasso.with(getBaseContext()).load(myDynamicItemReplyBean.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
+                            error(R.drawable.list_item_default).into(u_avatar);
+                    TextView content = (TextView)view.findViewById(R.id.content);
+                    content.setText(myDynamicItemReplyBean.getContent());
+                    TextView floor = (TextView)view.findViewById(R.id.floor);
+                    floor.setText(myDynamicItemReplyBean.getFloor()+"楼");
+                    reply_u_avatar.addView(view);
+                }
+            }else{
+                reply_u_avatar.setVisibility(View.GONE);
             }
-        }else{
-            reply_u_avatar.setVisibility(View.GONE);
         }
-
-    }
 
     @Override @UiThread
     public void onSuccess() {
-            fl_indictor.setVisibility(View.INVISIBLE);
+            hasPublishReply = true;
             input_reply_et.setText("");
             View view = getWindow().peekDecorView();
             if(view!=null){
                 InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-            MyDynamicItemReplyBean myDynamicItemReplyBean = new MyDynamicItemReplyBean();
-            myDynamicItemReplyBean.setContent(replyContent);
-            myDynamicItemReplyBean.setFloor((myDynamicItemBean0.getReply().getItems().size() + 1) + "");
-            myDynamicItemReplyBean.setU_name(dataEngine.getShopName());
-            myDynamicItemReplyBean.setU_avatar("http://b-avatar.qiniudn.com/"+dataEngine.getUserId()+".png");
-            myDynamicItemBean0.getReply().getItems().add(0,myDynamicItemReplyBean);
-            myDynamicItemBean0.setReply_num((Integer.parseInt(myDynamicItemBean0.getReply_num())+1)+"");
-            showReplyContent();
+            getLatestReply(myDynamicItemBean0.getId());//评论成功后再次请求最新评论数据
             if(isPublishReply==true){//直接点击评论进来
                 MobAgentTools.OnEventMobOnDiffUser(this, "Succ_merchant_dynamic_comment");
             }else{//点击帖子详情进来
                 MobAgentTools.OnEventMobOnDiffUser(this, "Succ_merchant_post_comment");
             }
-            if(isPublishReply){
-                btn_back();
-            }
-
     }
 
     @Override @UiThread
     public void onNetError() {
         fl_indictor.setVisibility(View.INVISIBLE);
-        Toaster.s(this,"网络不太好，请稍后重试！");
+        Toaster.s(this,"评论失败,请检查网络！");
     }
 
     @Override @UiThread
@@ -418,5 +396,55 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         }else{
             Toaster.s(this,"请求失败，请稍后重试！");
         }
+    }
+
+    /**
+     * 进入到帖子详情后，请求最新的帖子回复和点赞数据
+     * @param t_id
+     */
+    @Background
+    void getLatestReply(String t_id){
+        dataWrapper = businessCommunityDataController.getReplyAndLikeData(t_id);
+        showLatestReply();
+    }
+
+    @UiThread
+    void showLatestReply(){
+        if(dataWrapper!=null){
+            if(dataWrapper.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)){
+                if(dataWrapper.data.items==null){
+                    return;
+                }
+                MyDynamicItemBean0.ReplyWrapper replyWrapper = new MyDynamicItemBean0.ReplyWrapper();
+                replyWrapper.setItems(dataWrapper.data.items);
+                myDynamicItemBean0.setReply(replyWrapper);
+                myDynamicItemBean0.setLike_data(dataWrapper.data.like_data);
+                myDynamicItemBean0.setReply_num(replyWrapper.getItems().size()+"");
+                if(isActivityRunning) {
+                    showLikeData();
+                    showReplyContent();
+                    fl_indictor.setVisibility(View.INVISIBLE);
+                }
+                if(isPublishReply&&hasPublishReply){
+                    btn_back();
+                }
+            }else{
+                Toaster.l(this,dataWrapper.getResperr());
+            }
+        }else{
+            Toaster.s(this,"数据加载失败，请刷新重试！");
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isActivityRunning = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isActivityRunning = true;
     }
 }

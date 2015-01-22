@@ -85,6 +85,7 @@ public class MyDynamicListFragment extends BaseFragment implements
     @Bean BusinessCommunityDataController businessCommunityDataController;
     TextView textView = null;
     @ViewById FrameLayout publish_note_fl;
+    private boolean isLoadingMore = false;//是否正在加载更多
 
     @AfterViews
     void init(){
@@ -194,6 +195,7 @@ public class MyDynamicListFragment extends BaseFragment implements
         // 没有加判断是因为现在几乎所有的情况都需要刷新列表来完成
         listView.stopRefresh();
         listView.stopLoadMore();
+        isLoadingMore = false;
         refreshListView(RefreshFrom.REFRESH);
     }
 
@@ -227,8 +229,11 @@ public class MyDynamicListFragment extends BaseFragment implements
 
     @Override
     public void onLoadMore() {
-        businessCommunityDataController.setCallback(this);
-        businessCommunityDataController.reloadData();
+        if(!isLoadingMore){
+            isLoadingMore = true;
+            businessCommunityDataController.setCallback(this);
+            businessCommunityDataController.reloadData();
+        }
     }
 
     /**

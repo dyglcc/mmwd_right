@@ -84,6 +84,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
     @ViewById ImageView publish_note;
     @ViewById View publish_note_line;
     final AnimatorSet animatorSet = new AnimatorSet();
+    private boolean isLoadingMore = false;//是否正在加载更多
     @AfterViews
     void init(){
         ActionBar bar = getSupportActionBar();
@@ -210,6 +211,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
         // 没有加判断是因为现在几乎所有的情况都需要刷新列表来完成
         listView.stopRefresh();
         listView.stopLoadMore();
+        isLoadingMore = false;
         refreshListView(RefreshFrom.REFRESH);
     }
 
@@ -240,8 +242,11 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
 
     @Override
     public void onLoadMore() {
-        businessCommunityDataController.setCallback(this);
-        businessCommunityDataController.getNotesListOfTopicFromServer(myTopicBean.getId());
+        if(!isLoadingMore) {
+            isLoadingMore = true;
+            businessCommunityDataController.setCallback(this);
+            businessCommunityDataController.getNotesListOfTopicFromServer(myTopicBean.getId());
+        }
     }
 
     /**

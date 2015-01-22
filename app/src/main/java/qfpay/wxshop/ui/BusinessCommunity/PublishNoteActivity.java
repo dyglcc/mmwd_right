@@ -135,6 +135,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
         if (requestCode == TakePicUtils.TAKE_PIC_REQUEST_CODE) {
 
             if (resultCode != RESULT_OK) {
+                Toaster.s(this,"选取照片失败！请重试！");
                 return;
             }
             if(Utils.getFreeSizeOfSDCard()<100){

@@ -17,6 +17,7 @@ import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.event.LogoutEvent;
+import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.utils.T;
@@ -83,7 +84,9 @@ import retrofit.mime.TypedString;
                 }
             }
         } catch (Exception e) {
-            T.i(e.getMessage());
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
             if(callback!=null&&callback.get()!=null){
                 callback.get().onNetError();
             }
@@ -125,7 +128,9 @@ import retrofit.mime.TypedString;
                 }
             }
         } catch (Exception e) {
-            T.i(e.getMessage());
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
             if(callback!=null&&callback.get()!=null){
                 callback.get().onNetError();
             }
@@ -137,9 +142,15 @@ import retrofit.mime.TypedString;
      * @param id
      * @param flag
      */
-    @Background
+    @Background(serial = "setPriaseState")
     public void setPriaseState(String id,String flag){
-        netService.setPraiseState(id,flag);
+        try{
+            netService.setPraiseState(id,flag);
+        }catch(Exception e){
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -164,7 +175,9 @@ import retrofit.mime.TypedString;
                 }
             }
         }catch(Exception e){
-            T.i(e.getMessage());
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
             if(callback!=null&&callback.get()!=null) {
                 callback.get().onNetError();
             }
@@ -195,7 +208,9 @@ import retrofit.mime.TypedString;
                 }
             }
         }catch(Exception e){
-            T.i(e.getMessage());
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
             if(callback!=null&&callback.get()!=null) {
                 callback.get().onNetError();
             }
@@ -213,11 +228,34 @@ import retrofit.mime.TypedString;
                 return topicsListDataWrapper;
             }
         }catch(Exception e){
-            T.i(e.getMessage());
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
             return  null;
         }
             return null;
     }
+
+    /**
+     * 获取某一帖子的所有回复
+     * @param t_id
+     * @return
+     */
+    public BusinessCommunityService.ReplyAndLikeOfOneNoteDataWrapper getReplyAndLikeData(String t_id){
+        try{
+            BusinessCommunityService.ReplyAndLikeOfOneNoteDataWrapper dataWrapper = netService.getReplyAndLikeOfOneNote(t_id);
+            if(dataWrapper!=null){
+                return dataWrapper;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
+            return  null;
+        }
+        return null;
+        }
 
     /**
      * 发帖
@@ -247,7 +285,9 @@ import retrofit.mime.TypedString;
                 }
             }
         }catch(Exception e){
-            T.i(e.getMessage());
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
             if(callback!=null&&callback.get()!=null) {
                 callback.get().onNetError();
             }
@@ -263,7 +303,9 @@ import retrofit.mime.TypedString;
         BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper data = netService.getAboutMyNotification();
             return data;
         }catch(Exception e){
-            T.i(e.getMessage());
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
             return  null;
         }
 
