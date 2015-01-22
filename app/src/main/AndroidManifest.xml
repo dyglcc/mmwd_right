@@ -655,7 +655,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
->>>>>>> 60e365671c62d228f5a194dd95eb8a3af4864ef8
     </application>
 
 </manifest>
