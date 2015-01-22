@@ -29,7 +29,7 @@ import qfpay.wxshop.data.event.LogoutEvent;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.QFCommonUtils;
 
 @EActivity(R.layout.more_layout)

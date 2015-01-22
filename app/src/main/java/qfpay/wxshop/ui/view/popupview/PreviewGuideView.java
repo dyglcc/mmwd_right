@@ -6,7 +6,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.utils.QFCommonUtils;
 import android.content.Context;

@@ -5,7 +5,7 @@ import java.io.File;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.main.MainActivity_;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Utils;
 import android.content.Intent;

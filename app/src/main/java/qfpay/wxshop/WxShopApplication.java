@@ -2,7 +2,6 @@ package qfpay.wxshop;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.Executors;
 
 import org.acra.ReportingInteractionMode;
@@ -22,8 +21,7 @@ import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.listener.MaijiaxiuUploadListener;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.main.MainActivity_;
-import qfpay.wxshop.ui.main.MoreActivity;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.selectpic.ImageItem;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;

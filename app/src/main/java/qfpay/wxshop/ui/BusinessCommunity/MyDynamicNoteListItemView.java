@@ -44,7 +44,7 @@ import qfpay.wxshop.data.beans.MyDynamicItemReplyBean;
 import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Util;

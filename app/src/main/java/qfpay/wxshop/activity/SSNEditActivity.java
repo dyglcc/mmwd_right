@@ -33,8 +33,7 @@ import qfpay.wxshop.listener.onScrollviewFocusListener;
 import qfpay.wxshop.takepicUtils.PictureBean;
 import qfpay.wxshop.takepicUtils.TakePicUtils;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.buyersshow.GoodsListForBuyersShowActivity;
-import qfpay.wxshop.ui.buyersshow.GoodsListForBuyersShowActivity_;
+import qfpay.wxshop.ui.buyersshow.*;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.selectpic.ImageItem;
 import qfpay.wxshop.ui.view.EditorView;
@@ -62,7 +61,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener;
 
 @EActivity(R.layout.main_suisuinian_pub)
 public class SSNEditActivity extends BaseActivity implements
