@@ -8,7 +8,7 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.main.*;
+import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.utils.MobAgentTools;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,7 +22,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.makeramen.RoundedImageView;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.squareup.picasso.Picasso;
-
 
 @EBean
 public class InfoMenuProvider extends ActionProvider implements OnClickListener {

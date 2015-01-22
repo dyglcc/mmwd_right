@@ -15,10 +15,13 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
+import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.main.fragmentcontroller.MainFragmentController;
 import qfpay.wxshop.ui.main.fragmentcontroller.MainFragmentController.WrapperType;
+import qfpay.wxshop.ui.view.BadgeView;
 import qfpay.wxshop.ui.view.BadgeView2;
-import qfpay.wxshop.ui.web.*;
+import qfpay.wxshop.ui.web.CommonWebFragment;
+import qfpay.wxshop.ui.web.CommonWebFragment_;
 import qfpay.wxshop.utils.MobAgentTools;
 
 import android.support.v4.app.Fragment;
@@ -27,10 +30,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.indicator.TabPageIndicator;
 
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 
 @EFragment(R.layout.businesscommunity_layout)

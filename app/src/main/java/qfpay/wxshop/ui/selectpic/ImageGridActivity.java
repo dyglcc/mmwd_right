@@ -5,7 +5,7 @@ import java.util.List;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.commodity.*;
+import qfpay.wxshop.ui.commodity.EditItemActivity_;
 import qfpay.wxshop.ui.selectpic.ImageGridAdapter.TextCallback;
 import android.app.Activity;
 import android.content.Intent;

@@ -54,14 +54,17 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
-import qfpay.wxshop.ui.main.*;
+import qfpay.wxshop.ui.main.MainActivity;
+import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.MainTab;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.main.fragment.BusinessCommunityFragment;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;
 
 /**
  * 显示商户圈中“我的动态”列表页面

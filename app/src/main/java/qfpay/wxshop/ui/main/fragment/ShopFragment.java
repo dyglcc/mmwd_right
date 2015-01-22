@@ -20,9 +20,10 @@ import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.commodity.CommodityDataController;
-import qfpay.wxshop.ui.main.*;
+import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;
@@ -31,6 +32,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+
 import com.indicator.TabPageIndicator;
 
 @SuppressLint("DefaultLocale") @EFragment(R.layout.shop_manager)

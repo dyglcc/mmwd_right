@@ -3,9 +3,10 @@ package qfpay.wxshop.ui.common.actionbar;
 import org.androidannotations.annotations.EBean;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.activity.*;
+import qfpay.wxshop.activity.NoticeCenterActivity_;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.XmlResourceParser;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.view.LayoutInflater;

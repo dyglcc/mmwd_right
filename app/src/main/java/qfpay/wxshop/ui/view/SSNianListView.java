@@ -2,7 +2,8 @@ package qfpay.wxshop.ui.view;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.ui.main.MainActivity;
-import qfpay.wxshop.ui.main.fragment.*;
+import qfpay.wxshop.ui.main.fragment.SSNListFragment;
+import qfpay.wxshop.ui.main.fragment.SSNListFragment_;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;

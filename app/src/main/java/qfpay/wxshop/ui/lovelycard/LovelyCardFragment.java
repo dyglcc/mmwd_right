@@ -20,7 +20,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
-import qfpay.wxshop.ui.main.*;
+import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.main.fragment.PopularizingFragment;
 import qfpay.wxshop.ui.view.BadgeView;

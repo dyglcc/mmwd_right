@@ -21,7 +21,7 @@ import qfpay.wxshop.data.netImpl.LovelyCardNetService;
 import qfpay.wxshop.data.netImpl.LovelyCardNetService.CommentBean;
 import qfpay.wxshop.data.netImpl.LovelyCardNetService.CommonNetBean;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.main.*;
+import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.ui.view.XListView.IXListViewListener;
 import qfpay.wxshop.utils.T;
@@ -36,7 +36,6 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.view.MenuItem;
 import com.squareup.picasso.Picasso;
-
 
 @EActivity(R.layout.lovelycard_comment)
 public class LovelyCardCommentActivity extends BaseActivity implements IXListViewListener {

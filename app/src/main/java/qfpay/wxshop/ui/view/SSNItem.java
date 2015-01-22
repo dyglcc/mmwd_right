@@ -3,13 +3,14 @@ package qfpay.wxshop.ui.view;
 import java.text.SimpleDateFormat;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.activity.*;
+import qfpay.wxshop.activity.SSNEditActivity;
+import qfpay.wxshop.activity.SSNEditActivity_;
 import qfpay.wxshop.activity.SSNPublishActivity;
 import qfpay.wxshop.data.beans.SSNItemBean;
 import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.netImpl.SSnDelNetImpl;
 import qfpay.wxshop.ui.main.fragment.SSNListFragment;
-import qfpay.wxshop.ui.web.*;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;

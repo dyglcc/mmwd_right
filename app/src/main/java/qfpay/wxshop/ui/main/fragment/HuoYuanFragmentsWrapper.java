@@ -5,7 +5,7 @@ import java.lang.ref.SoftReference;
 import android.content.Context;
 
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.web.*;
+import qfpay.wxshop.ui.web.CommonWebFragment_;
 import qfpay.wxshop.utils.MobAgentTools;
 
 public enum HuoYuanFragmentsWrapper {

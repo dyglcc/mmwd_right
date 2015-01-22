@@ -11,12 +11,16 @@ import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.activity.*;
+import qfpay.wxshop.activity.ManPromoActivity;
+import qfpay.wxshop.activity.ManPromoActivity_;
+import qfpay.wxshop.activity.ManagePreViewActivity;
+import qfpay.wxshop.activity.ManagePreViewActivity_;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.CommodityModel;
 import qfpay.wxshop.data.beans.GoodMSBean;
 import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.beans.SalesPromotionModel;
+import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.getui.ImageUtils.ImageSizeForUrl;
 import qfpay.wxshop.ui.commodity.CommodityListFragment.CommodityWrapper;
 import qfpay.wxshop.utils.MobAgentTools;
@@ -25,6 +29,7 @@ import qfpay.wxshop.utils.Toaster;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;

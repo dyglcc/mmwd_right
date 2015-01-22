@@ -10,7 +10,7 @@ import org.androidannotations.annotations.ViewById;
 import qfpay.wxshop.R;
 import qfpay.wxshop.activity.NoticeCenterActivity;
 import qfpay.wxshop.data.beans.NoticeItemBean;
-import qfpay.wxshop.ui.web.*;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;

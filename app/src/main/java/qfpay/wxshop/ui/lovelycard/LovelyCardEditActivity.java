@@ -44,15 +44,14 @@ import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.processer.ImageType;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.customergallery.*;
-import qfpay.wxshop.ui.web.*;
+import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
+import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-
-import qfpay.wxshop.ui.*;
 
 @EActivity(R.layout.lovelycard_edit)
 public class LovelyCardEditActivity extends BaseActivity implements ISimpleDialogListener {

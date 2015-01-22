@@ -14,7 +14,9 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.GetMobileCode;
 import qfpay.wxshop.data.netImpl.RegImpl;
 import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.ui.main.*;
+import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+import qfpay.wxshop.ui.main.MainActivity;
+import qfpay.wxshop.ui.main.WelcomeActivity_;
 import qfpay.wxshop.ui.view.MyWatcher;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QMMAlert;
@@ -42,7 +44,7 @@ public class RegStep1Activity extends BaseActivity implements Callback {
 	@ViewById
 	TextView tv_haiwaitips;
 	
-	@Pref AppStateSharePreferences pref;
+	@Pref AppStateSharePreferences_ pref;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

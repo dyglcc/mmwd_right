@@ -8,7 +8,10 @@ import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.activity.*;
+import qfpay.wxshop.activity.EditAdvertisementActivity_;
+import qfpay.wxshop.activity.ShopHeaderPhotoPickerActivity_;
+import qfpay.wxshop.activity.ShopNameEditActivity_;
+import qfpay.wxshop.activity.WeixinEditActivity_;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.AbstractNet;
