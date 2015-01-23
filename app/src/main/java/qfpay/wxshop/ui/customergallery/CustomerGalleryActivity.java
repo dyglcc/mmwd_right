@@ -12,7 +12,7 @@ import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.image.ImageProcesserBean;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.Toaster;
 import android.annotation.SuppressLint;
 import android.app.Activity;

@@ -47,7 +47,7 @@ public class BuyersShowReleaseNetProcesser implements ImageGroupUploadLinstener 
 	public void init(BuyersShowDataprovider provider) {
 		mImageUploadHelper.cancelAll();
 		this.dataProvider = provider;
-		mImageUploadHelper.setLinstener(this);
+		mImageUploadHelper.setGroupLinstener(this);
 	}
 	
 	public void setMaijiaxiuLinstener(MaijiaxiuUploadListener maijiaxiuUploadLinstener, int index) {
@@ -58,7 +58,7 @@ public class BuyersShowReleaseNetProcesser implements ImageGroupUploadLinstener 
 	public void uploadImg(List<ImageProcesserBean> imgs) {
 		for (ImageProcesserBean imageProcesserBean : imgs) {
 			mImageUploadHelper
-				.setLinstener(this)
+				.setGroupLinstener(this)
 				.with(imageProcesserBean.getId())
 				.path(imageProcesserBean.getPath())
 				.urlSetter(imageProcesserBean)
@@ -82,8 +82,13 @@ public class BuyersShowReleaseNetProcesser implements ImageGroupUploadLinstener 
 		}
 		
 	}
-	
-	public void releaseData() {
+
+    @Override
+    public void onImageReady() {
+
+    }
+
+    public void releaseData() {
 		this.dataBean = dataProvider.getData();
 		this.isEdit = this.dataBean.getMid() != null && !this.dataBean.getMid().equals("");
 		this.delImgs = dataProvider.getDelImgids();
@@ -104,7 +109,7 @@ public class BuyersShowReleaseNetProcesser implements ImageGroupUploadLinstener 
 		mImageUploadHelper.cancelAll();
 		for (ImageProcesserBean bean : dataProvider.getImgs()) {
 			mImageUploadHelper
-				.setLinstener(this)
+				.setGroupLinstener(this)
 				.with(bean.getId())
 				.path(bean.getPath())
 				.urlSetter(bean)

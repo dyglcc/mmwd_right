@@ -14,7 +14,7 @@ import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.UserPaymentImpl;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.view.MyWatcher;
 import qfpay.wxshop.utils.MobAgentTools;

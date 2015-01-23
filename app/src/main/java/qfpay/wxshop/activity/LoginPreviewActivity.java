@@ -2,7 +2,7 @@ package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import android.content.Intent;
 import android.os.Bundle;

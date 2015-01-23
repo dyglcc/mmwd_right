@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
@@ -19,9 +20,13 @@ import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.RestAdapter.LogLevel;
 import retrofit.RetrofitError;
+import retrofit.client.OkClient;
+
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
+
+import com.squareup.okhttp.OkHttpClient;
 
 @EBean
 public class RetrofitWrapper {

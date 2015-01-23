@@ -11,7 +11,7 @@ import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.beans.BankBean;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.view.BankPickerItem;
 import android.content.Intent;
 import android.text.SpannableString;

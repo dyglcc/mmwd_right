@@ -18,7 +18,7 @@ import qfpay.wxshop.data.net.RetrofitWrapper.CommonJsonBean;
 import qfpay.wxshop.data.netImpl.EdititemService;
 import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.processer.ImageType;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.ShopFragmentsWrapper;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Toaster;

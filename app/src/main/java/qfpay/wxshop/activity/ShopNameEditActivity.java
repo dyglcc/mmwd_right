@@ -10,7 +10,7 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.ShopNameUpdateImpl;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.presonalinfo.ShopInfoActivity;
 import qfpay.wxshop.utils.Toaster;
 import android.app.Activity;

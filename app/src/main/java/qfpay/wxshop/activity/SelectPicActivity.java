@@ -15,7 +15,7 @@ import org.androidannotations.annotations.ViewById;
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.beans.ImageWrapper;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import android.annotation.SuppressLint;

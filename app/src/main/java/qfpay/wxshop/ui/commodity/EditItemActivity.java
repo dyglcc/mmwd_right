@@ -15,7 +15,8 @@ import org.androidannotations.annotations.ViewById;
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.beans.CommodityModel;
 import qfpay.wxshop.image.ImageProcesserBean;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
+import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
 import qfpay.wxshop.ui.view.NewitemUnitItem;
 import qfpay.wxshop.ui.view.ProgressDialog;
@@ -60,8 +61,9 @@ public class EditItemActivity extends BaseActivity implements EditItemIView {
 	
 	@AfterViews
 	void init() {
-		MobAgentTools.OnEventMobOnDiffUser(this, "release");
-		presenter.afterInit(commodityModel == null ? STATES_NEW : STATES_EDIT);
+
+//        MobAgentTools.OnEventMobOnDiffUser(this, "release");
+//        presenter.afterInit(commodityModel == null ? STATES_NEW : STATES_EDIT);
 	}
 	
 	@Override

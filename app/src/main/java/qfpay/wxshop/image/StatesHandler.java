@@ -84,5 +84,8 @@ public class StatesHandler {
 		if (mErrorCount + mSuccessCount == mTotalCount && isReady) {
 			mLinstener.get().onComplete(mSuccessCount, mErrorCount);
 		}
+        if (mErrorCount + mSuccessCount == mTotalCount) {
+            mLinstener.get().onImageReady();
+        }
 	}
 }

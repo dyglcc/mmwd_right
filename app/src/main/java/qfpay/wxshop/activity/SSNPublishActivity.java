@@ -28,7 +28,7 @@ import qfpay.wxshop.dialogs.SimpleDialogFragment;
 import qfpay.wxshop.listener.onScrollviewFocusListener;
 import qfpay.wxshop.takepicUtils.PictureBean;
 import qfpay.wxshop.takepicUtils.TakePicUtils;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.buyersshow.GoodsListForBuyersShowActivity;
 import qfpay.wxshop.ui.buyersshow.GoodsListForBuyersShowActivity_;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;

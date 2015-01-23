@@ -23,6 +23,7 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.GeneralWebViewActivity;
 import qfpay.wxshop.activity.ManagePreViewActivity;
 import qfpay.wxshop.activity.share.ShareActivity;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.BuyerResponseWrapper.BuyerShowBean;
 import qfpay.wxshop.data.beans.BuyerResponseWrapper.ImageBean;

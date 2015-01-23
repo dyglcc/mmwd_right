@@ -9,7 +9,7 @@ import org.androidannotations.annotations.IgnoredWhenDetached;
 import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;

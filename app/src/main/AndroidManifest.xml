@@ -98,6 +98,11 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <!-- 编辑/上传完成页 -->
         <activity
             android:name="qfpay.wxshop.ui.commodity.EdititemDoneActivity_"

@@ -123,8 +123,13 @@ public class EdititemNetImpl implements ImageGroupUploadLinstener {
 		saveItemServer();
 		T.d(QFImageUploader.logTag, "Start save to server");
 	}
-	
-	public void saveItem(GoodWrapper wrapper) {
+
+    @Override
+    public void onImageReady() {
+
+    }
+
+    public void saveItem(GoodWrapper wrapper) {
 		this.savingGoodWrapper = wrapper;
 		presenter.showProgressDialog();
 	}

@@ -14,9 +14,8 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
-import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -25,7 +24,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
@@ -36,8 +34,6 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import com.actionbarsherlock.app.ActionBar;
 
 @EFragment(R.layout.web_common_fragment_huoyuan)
 public class CommonWebFragmentHuyuan extends BaseFragment {

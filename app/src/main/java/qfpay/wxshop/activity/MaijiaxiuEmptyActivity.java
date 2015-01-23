@@ -15,7 +15,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.event.AddBuyersShowEvent;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 
 @EActivity(R.layout.main_maijiaxiu_empty)
 public class MaijiaxiuEmptyActivity extends BaseActivity {

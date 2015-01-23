@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="left|center"
+        android:textColor="@color/common_text_black"
+        android:textSize="@dimen/text_size_big"
+        tools:text="黑板"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="2dp"
+        android:layout_below="@id/tv_name"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="left|center"
+            android:textColor="@color/promo_red_text_color"
+            android:textSize="@dimen/text_size_normal"
+            tools:text="$ "/>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="left|center"
+            android:textColor="@color/promo_red_text_color"
+            android:textSize="@dimen/text_size_normal"
+            tools:text="199"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="left|center"
+            android:textColor="@color/common_text_black"
+            android:textSize="@dimen/text_size_normal"
+            tools:text=" * "/>
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="left|center"
+            android:textColor="@color/common_text_black"
+            android:textSize="@dimen/text_size_normal"
+            tools:text="13"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="left|center"
+            android:textColor="@color/common_text_black"
+            android:textSize="@dimen/text_size_normal"
+            tools:text=" 件"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/itemdetail_sku_edit"/>
+</RelativeLayout>

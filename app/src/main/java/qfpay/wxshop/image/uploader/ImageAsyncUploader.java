@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
 import qfpay.wxshop.data.dao.ImageUploaderDaoImpl;
+import qfpay.wxshop.image.ImageProgressListener;
 import qfpay.wxshop.image.ImageWrapper;
 import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.StatesHandler;
@@ -17,18 +18,24 @@ import qfpay.wxshop.utils.T;
 import com.j256.ormlite.dao.Dao;
 
 public class ImageAsyncUploader implements Cancelable {
-	private StatesHandler        mHandler;
-	private ImageUrlSetter       mSetter;
-	private ImageWrapper         mImage;
-	private ImageUploaderDaoImpl mDao;
+	private StatesHandler          mHandler;
+    private ImageProgressListener  mLinstener;
+	private ImageUrlSetter         mSetter;
+	private ImageWrapper           mImage;
+	private ImageUploaderDaoImpl   mDao;
 	
-	private ImageProcesserTask   mTask;
-	private ImageNetProcesser    mNetProcesser;
-	private UploadUtils          mUtils;
-	private long                 mDecodedSize;
+	private ImageProcesserTask     mTask;
+	private ImageNetProcesser      mNetProcesser;
+	private UploadUtils            mUtils;
+	private long                   mDecodedSize;
 	
-	public ImageAsyncUploader(ImageWrapper image, Dao<ImageWrapper, Integer> dao, StatesHandler handler, ImageUrlSetter setter) {
+	public ImageAsyncUploader(ImageWrapper               image,
+                              Dao<ImageWrapper, Integer> dao,
+                              StatesHandler              handler,
+                              ImageUrlSetter             setter,
+                              ImageProgressListener linstener) {
 		this.mHandler      = handler;
+        this.mLinstener    = linstener;
 		this.mImage        = image;
 		this.mSetter       = setter;
 		this.mDao          = new ImageUploaderDaoImpl(dao);
@@ -36,6 +43,10 @@ public class ImageAsyncUploader implements Cancelable {
 		this.mNetProcesser = new ImageNetProcesser(mImage.getPath());
 		this.mUtils        = new UploadUtils(image, mDao);
 	}
+
+    public void setLinstener(ImageProgressListener linstener) {
+        this.mLinstener = linstener;
+    }
 	
 	public String upload() {
 		new Thread(mTask).start();
@@ -58,6 +69,7 @@ public class ImageAsyncUploader implements Cancelable {
 	
 	public void onLoading(long currentSize) {
 		mHandler.onPreUploading(mImage.getPath(), currentSize);
+        if (mLinstener != null) mLinstener.onProgress(mImage.getPath(), mDecodedSize, currentSize);
 	}
 	
 	private class ImageProcesserTask extends FutureTask<String> {
@@ -77,9 +89,12 @@ public class ImageAsyncUploader implements Cancelable {
 			}
 			if (isSuccess) {
 				mImage.setNetUrl(result);
-				mSetter.setImageUrl(result);
+				if (mSetter != null) mSetter.setImageUrl(result);
 				mUtils.cacheImage(result);
-			}
+                if (mLinstener != null) mLinstener.onSuccess(result);
+			} else {
+                if (mLinstener != null) mLinstener.onFailure();
+            }
 			mHandler.onPreUploading(mImage.getPath(), mDecodedSize);
 			mHandler.onPreUploadComplete(isSuccess);
 			ImageAsyncUploader.this.cancel();

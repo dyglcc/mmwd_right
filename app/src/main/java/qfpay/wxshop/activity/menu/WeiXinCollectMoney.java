@@ -10,7 +10,7 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.CreateWeixinCMImpl;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.view.MoneyEditTextView;
 import qfpay.wxshop.utils.BitmapUtil;
 import qfpay.wxshop.utils.MobAgentTools;

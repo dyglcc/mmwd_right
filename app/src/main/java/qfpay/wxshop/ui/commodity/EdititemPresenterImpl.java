@@ -195,7 +195,7 @@ public class EdititemPresenterImpl implements EdititemPresenter {
 	public void addImgItem(ImageProcesserBean wrapper) {
 		imgAdapter.addData(wrapper, true);
 		mImageUploadHelper
-			.setLinstener(netImpl)
+			.setGroupLinstener(netImpl)
 			.with(wrapper.getId())
 			.path(wrapper.getPath())
 			.urlSetter(wrapper)
@@ -209,7 +209,7 @@ public class EdititemPresenterImpl implements EdititemPresenter {
 			boolean isFirst = imgAdapter.getImgData().indexOf(imageProcesserBean) == 0;
 			if (isFirst) {
 				mImageUploadHelper
-					.setLinstener(netImpl)
+					.setGroupLinstener(netImpl)
 					.with(imageProcesserBean.getId())
 					.path(imageProcesserBean.getPath())
 					.urlSetter(imageProcesserBean)
@@ -217,7 +217,7 @@ public class EdititemPresenterImpl implements EdititemPresenter {
 					.uploadInGroup();
 			} else {
 				mImageUploadHelper
-					.setLinstener(netImpl)
+					.setGroupLinstener(netImpl)
 					.with(imageProcesserBean.getId())
 					.path(imageProcesserBean.getPath())
 					.urlSetter(imageProcesserBean)

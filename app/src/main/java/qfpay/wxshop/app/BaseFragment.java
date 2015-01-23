@@ -1,4 +1,4 @@
-package qfpay.wxshop.ui.main.fragment;
+package qfpay.wxshop.app;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -20,6 +20,7 @@ import qfpay.wxshop.data.beans.SalesPromotionModel;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.getui.ImageUtils.ImageSizeForUrl;
 import qfpay.wxshop.ui.commodity.CommodityListFragment.CommodityWrapper;
+import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
@@ -165,7 +166,7 @@ public class CommodityItemView extends LinearLayout {
 			Toaster.l(getContext(), "出错了,刷新界面试试");
 			return;
 		}
-		EditItemActivity_.intent(getContext()).commodityModel(data.model).start();
+        ItemDetailManagerActivity_.intent(getContext()).id(Integer.parseInt(goodid, 10)).start();
 	}
 	
 	@Click void ll_menu_top() {
