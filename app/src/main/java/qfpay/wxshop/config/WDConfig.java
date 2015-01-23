@@ -51,7 +51,7 @@ public class WDConfig {
 		this.WD_URL = url;
 		if (url == null || url.equals("")) {
 //			 WD_URL = "http://shiyong.local.qmm.la/";
-			WD_URL = "http://wx.qfpay.com/";
+			WD_URL = "http://1.wx.qfpay.com/";
 //			WD_URL = "http://172.100.101.150:8989/";
 			 
 		}
@@ -74,7 +74,7 @@ public class WDConfig {
 	// public String WD_URL = "http://172.100.101.150:8400/";
 //	 public String WD_URL = "http://172.100.101.150:8989/";
 //	 public String WD_URL = "http://shiyong.local.qmm.la/";
-	public String WD_URL = "http://wx.qfpay.com/";
+	public String WD_URL = "http://1.wx.qfpay.com/";
 	public int mPushServer;
 
 //	public String WD_URL_HUO_YUAN = "http://mmwd.me/";
@@ -437,6 +437,12 @@ public class WDConfig {
 	public String suisuiNianDatalist(String get) {
 		return WD_URL + "qmm/hmsg/v1/hybrid_msg"+getRequestInfo(get);
 	}
+	/**
+	 * 一键代理商品列表
+	 * */
+	public String onkeybehlfList(String get) {
+		return WD_URL + "qmm/item/v2/mycpslist"+getRequestInfo(get);
+	}
 
 	/**
 	 * 得到label列表
@@ -459,6 +465,12 @@ public class WDConfig {
 		return WD_URL + "qmm/wd/app/api/category/cate_appl"+getRequestInfo(get);
 	}
 
+	/**
+	 * 取消代理
+	 * */
+	public String delOnkeybehlf(String get) {
+		return WD_URL + "qmm/item/v2/cancelagent"+getRequestInfo(get);
+	}
 	/**
 	 * 获取厂商联系方式
 	 * */

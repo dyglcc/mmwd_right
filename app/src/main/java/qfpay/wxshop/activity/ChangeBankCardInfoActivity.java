@@ -27,7 +27,7 @@ import android.widget.TextView;
 public class ChangeBankCardInfoActivity extends BaseActivity {
 
 	private View failView;
-	private WebView webView = null;
+	private qfpay.wxshop.ui.view.WebViewSavePic webView = null;
 	private TextView tvTitle;
 
 	private String url;
@@ -62,7 +62,7 @@ public class ChangeBankCardInfoActivity extends BaseActivity {
 		}
 		failView = findViewById(R.id.load_fail);
 
-		webView = (WebView) this.findViewById(R.id.contact_webview);
+		webView = (qfpay.wxshop.ui.view.WebViewSavePic) this.findViewById(R.id.contact_webview);
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setDefaultTextEncodingName("utf-8");
 		webView.getSettings().setBuiltInZoomControls(false);

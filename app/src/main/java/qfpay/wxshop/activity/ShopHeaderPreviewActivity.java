@@ -42,7 +42,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 @EActivity(R.layout.web_common_fragment)
 public class ShopHeaderPreviewActivity extends BaseActivity {
-	@ViewById WebView webView;
+	@ViewById qfpay.wxshop.ui.view.WebViewSavePic webView;
 	
 	@Bean RetrofitWrapper retrofitWrapper;
 	@Bean QFImageUploader imageUploader;

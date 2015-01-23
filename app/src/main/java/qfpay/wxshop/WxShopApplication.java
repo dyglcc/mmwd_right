@@ -2,7 +2,6 @@ package qfpay.wxshop;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.Executors;
 
 import org.acra.ReportingInteractionMode;

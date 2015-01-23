@@ -10,6 +10,7 @@ import qfpay.wxshop.ui.BaseActivity;
 
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.common.actionbar.SharePopupView;
+import qfpay.wxshop.ui.view.WebViewSavePic;
 import qfpay.wxshop.utils.ShareUtils;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
@@ -45,7 +46,7 @@ import java.util.List;
 @EActivity(R.layout.main_preview_webview)
 public class ManagePreViewActivity extends BaseActivity implements OnShareLinstener {
     @ViewById(R.id.contact_webview)
-    WebView webView;
+    WebViewSavePic webView;
 
     @ViewById
     TextView tvTitle;

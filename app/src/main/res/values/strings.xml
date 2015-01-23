@@ -79,6 +79,7 @@
     <string name="existing_phonenum">手机号已经存在</string>
     <string name="no_found_SD">未找到sdcard,暂时不能拍照，不能选择图片。</string>
     <string name="no_found_SD_2">未找到sdcard，不能进行拍照和从相册选择图片</string>
+    <string name="no_found_SD_3">未找到sdcard，不能保存图片</string>
     <string name="fail_new_tmp">创建临时文件失败，没法子往下走了，问问喵喵客服寻求帮助吧</string>
     <string name="open_file_wrong">打开文件错误，文件有问题！</string>
     <string name="pic_no_exist">该照片在原始路径已经不存在，请核实！</string>

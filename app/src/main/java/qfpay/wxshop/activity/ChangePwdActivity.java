@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 public class ChangePwdActivity extends BaseActivity {
 	private View failView;
-	WebView webView = null;
+    qfpay.wxshop.ui.view.WebViewSavePic webView = null;
 	private TextView tvTitle;
 	View layout_progress_load;
 	private ImageView ivProgress;
@@ -62,7 +62,7 @@ public class ChangePwdActivity extends BaseActivity {
 			}
 		});
 		failView = findViewById(R.id.load_fail);
-		webView = (WebView) this.findViewById(R.id.contact_webview);
+		webView = (qfpay.wxshop.ui.view.WebViewSavePic) this.findViewById(R.id.contact_webview);
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setDefaultTextEncodingName("utf-8");
 		webView.getSettings().setBuiltInZoomControls(false);

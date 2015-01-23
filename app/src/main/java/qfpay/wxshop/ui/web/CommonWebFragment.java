@@ -37,7 +37,7 @@ import android.widget.LinearLayout;
 @EFragment(R.layout.web_common_fragment)
 public class CommonWebFragment extends BaseFragment {
     @ViewById
-    WebView webView;
+    qfpay.wxshop.ui.view.WebViewSavePic webView;
     @ViewById
     LinearLayout ll_fail;
     @ViewById

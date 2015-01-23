@@ -28,6 +28,7 @@ import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.common.actionbar.ShareActionProvider;
 import qfpay.wxshop.ui.main.MainActivity_;
+import qfpay.wxshop.ui.view.WebViewSavePic;
 import qfpay.wxshop.utils.BitmapUtil;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
@@ -37,7 +38,8 @@ import qfpay.wxshop.utils.Utils;
 
 @EActivity(R.layout.web_common_activity)
 public class CommonWebActivity extends BaseActivity implements OnShareLinstener {
-	@ViewById WebView webView;
+	@ViewById
+    WebViewSavePic webView;
 	@ViewById LinearLayout ll_fail;
 	
 	@FragmentById CommonWebFragment webFragment;

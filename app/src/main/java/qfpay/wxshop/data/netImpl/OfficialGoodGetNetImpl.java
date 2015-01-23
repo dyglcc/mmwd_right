@@ -10,6 +10,7 @@ import qfpay.wxshop.data.beans.OfficialGoodsResponseWrapper;
 import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.CacheData;
 import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.ui.main.fragment.OfficalListFragment;
 import qfpay.wxshop.utils.T;
 
 import android.annotation.SuppressLint;
@@ -31,7 +32,7 @@ public class OfficialGoodGetNetImpl extends AbstractNet {
         try {
 
             int page = parameter2.getInt("page");
-            int offset = page * ConstValue.PAGE_SIZE;
+            int offset = page * OfficalListFragment.page_size;
             int category = parameter2.getInt("category");
 
             // 买家秀 1
@@ -41,7 +42,7 @@ public class OfficialGoodGetNetImpl extends AbstractNet {
                     + "?offset="
                     + offset
                     + "&length="
-                    + ConstValue.PAGE_SIZE;
+                    + OfficalListFragment.page_size;
             if (category != 0) {
                 url = url + "&cid=" + category;
             }

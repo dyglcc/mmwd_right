@@ -15,6 +15,7 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.ui.view.WebViewSavePic;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;
@@ -41,7 +42,7 @@ import com.actionbarsherlock.app.ActionBar;
 @EFragment(R.layout.web_common_fragment_huoyuan)
 public class CommonWebFragmentHuyuan extends BaseFragment {
 	@ViewById
-	WebView webView;
+    WebViewSavePic webView;
 	@ViewById
 	LinearLayout ll_fail;
 	@ViewById
@@ -89,6 +90,7 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 		webView.setDownloadListener(new MyWebViewDownLoadListener());
 		webView.setWebChromeClient(new MyWebChromeClient());
 		header.put("Qfuid", WxShopApplication.dataEngine.getUserId());
+		header.put("qfcookie", WxShopApplication.dataEngine.getcid());
 		Utils.setCookies(url, getActivity());
 		if (url != null && !"".equals(url)) {
 			webView.loadUrl(url, header);

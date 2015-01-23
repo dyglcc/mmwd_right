@@ -34,12 +34,13 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.OrderFragment_;
+import qfpay.wxshop.ui.view.WebViewSavePic;
 import qfpay.wxshop.utils.Utils;
 
 @EActivity(R.layout.web_activity)
 public class WebActivity extends BaseActivity {
 	@ViewById
-	WebView webView;
+    WebViewSavePic webView;
 	@ViewById
 	LinearLayout ll_fail;
 

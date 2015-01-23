@@ -23,9 +23,12 @@ import qfpay.wxshop.ui.main.fragment.HuoYuanFragment;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
+import qfpay.wxshop.utils.Toaster;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
@@ -217,5 +220,11 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
             }
         }
         super.onWindowFocusChanged(hasFocus);
+    }
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        Toaster.l(this,"long press");
+        return super.onKeyLongPress(keyCode, event);
     }
 }
