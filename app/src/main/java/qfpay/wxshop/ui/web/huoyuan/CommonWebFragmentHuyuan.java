@@ -1,6 +1,5 @@
 package qfpay.wxshop.ui.web.huoyuan;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +11,6 @@ import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.view.WebViewSavePic;
@@ -25,7 +23,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
@@ -36,8 +33,6 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import com.actionbarsherlock.app.ActionBar;
 
 @EFragment(R.layout.web_common_fragment_huoyuan)
 public class CommonWebFragmentHuyuan extends BaseFragment {
@@ -68,31 +63,44 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 			return;
 		}
 		// 创建缓存文件夹
-		webView.getSettings().setDomStorageEnabled(true);
-		webView.getSettings().setAppCacheMaxSize(1024 * 1024 * 20);
-		String webView_cache = ConstValue.getWebView_cache();
-		File file  = new File(webView_cache);
-		if(!file.exists()){
-			file.mkdirs();
-		}
-		webView.getSettings().setAppCachePath(webView_cache);
-		webView.getSettings().setAllowFileAccess(true);
-		webView.getSettings().setAppCacheEnabled(true);
-		webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//		webView.getSettings().setDomStorageEnabled(true);
+//		webView.getSettings().setAppCacheMaxSize(1024 * 1024 * 20);
+//		String webView_cache = ConstValue.getWebView_cache();
+//		File file  = new File(webView_cache);
+//		if(!file.exists()){
+//			file.mkdirs();
+//		}
+//		webView.getSettings().setAppCachePath(webView_cache);
+//		webView.getSettings().setAllowFileAccess(true);
+//		webView.getSettings().setAppCacheEnabled(true);
+//		webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//
+//		webView.getSettings().setJavaScriptEnabled(true);
+//		webView.getSettings().setDefaultTextEncodingName("utf-8");
+//		webView.getSettings().setBuiltInZoomControls(false);
+//		webView.getSettings().setSupportZoom(false);
+//		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.getSettings().setDefaultTextEncodingName("utf-8");
-		webView.getSettings().setBuiltInZoomControls(false);
-		webView.getSettings().setSupportZoom(false);
-		webView.getSettings().setCacheMode(WebSettings.LOAD_NORMAL);
-		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDefaultTextEncodingName("utf-8");
+        webView.getSettings().setBuiltInZoomControls(false);
+        webView.getSettings().setSupportZoom(false);
+        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        webView.getSettings().setDomStorageEnabled(true);
+
+
+        header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
+        header.put("qf_uid", WxShopApplication.dataEngine.getcid());
+
 		webView.setWebViewClient(new MyWebViewClient());
 		webView.setDownloadListener(new MyWebViewDownLoadListener());
 		webView.setWebChromeClient(new MyWebChromeClient());
-		header.put("Qfuid", WxShopApplication.dataEngine.getUserId());
-		header.put("qfcookie", WxShopApplication.dataEngine.getcid());
-		Utils.setCookies(url, getActivity());
+//		header.put("QFUID", "id="+WxShopApplication.dataEngine.getUserId());
+//		Utils.setCookies(url, getActivity());
 		if (url != null && !"".equals(url)) {
+            header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
+            header.put("qf_uid", WxShopApplication.dataEngine.getcid());
 			webView.loadUrl(url, header);
 		}
 
@@ -109,26 +117,6 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 
 			CommonWebActivityHuoyuan activity = (CommonWebActivityHuoyuan) getActivity();
 			activity.setVisiable();
-			// Toaster.l(getActivity(), "exe function");
-//			ActionBar supportActionBar = activity.getSupportActionBar();
-//			View view = supportActionBar.getCustomView();
-//			try {
-//				view.setVisibility(View.INVISIBLE);
-//			} catch (Exception e) {
-//				T.i(e.toString());
-//			}
-//
-//			Button btn_save = (Button) view.findViewById(R.id.btn_save);
-//			try {
-//				btn_save.setVisibility(View.VISIBLE);
-//			} catch (Exception e) {
-//				T.i(e.toString());
-//			}
-//			activity.supportInvalidateOptionsMenu();
-//
-//			view.setVisibility(View.VISIBLE);
-//			// T.i("sdddddddddddddddddddddd");
-//			// Toaster.l(getActivity(), "visiable");
 		}
 	}
 
@@ -146,24 +134,16 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 		this.shareName = shareName;
 		this.shareTitle = shareTitle;
 		this.platFroms = Arrays.asList(platForms);
-		//
-		if (getActivity() != null) {
-			Utils.setCookies(url, getActivity());
-		}
 
 		if (webView != null) {
 			webView.stopLoading();
+            header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
+            header.put("qf_uid", WxShopApplication.dataEngine.getcid());
 			webView.loadUrl(url, header);
 		}
 		return this;
 	}
 
-	@Override
-	public void onFragmentRefresh() {
-		if (webView != null) {
-			webView.loadUrl(url, header);
-		}
-	}
 
 	public boolean isCanGoback() {
 		return webView.canGoBack();
@@ -217,12 +197,12 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 			if (isNeedLoadNewActivity) {
 				startWebActivity(url);
 			} else {
+                header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
+                header.put("qf_uid", WxShopApplication.dataEngine.getcid());
 				webView.loadUrl(url, header);
 				CommonWebFragmentHuyuan.this.url = url;
 			}
 
-			
-			Utils.setCookies(url, getActivity());
 			return true;
 		}
 

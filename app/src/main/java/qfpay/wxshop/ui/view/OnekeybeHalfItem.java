@@ -40,7 +40,7 @@ import android.os.Handler;
 
 
 @EViewGroup(R.layout.onkeybehalf_list_item)
-public class OnkeybeHalfItem extends LinearLayout {
+public class OnekeybeHalfItem extends LinearLayout {
     private static final int SIZE_MENU_HEIGHT_DP = 82;
     private static final String DATE_FORMATSTR = "MM-dd";
 
@@ -67,11 +67,11 @@ public class OnkeybeHalfItem extends LinearLayout {
     private CommodityShare shareUtils;
     private OnekeybehalfItemBean data;
 
-    public OnkeybeHalfItem(Context context) {
+    public OnekeybeHalfItem(Context context) {
         super(context);
     }
 
-    public OnkeybeHalfItem setData(OnekeybehalfItemBean data,Handler handler,Context context) {
+    public OnekeybeHalfItem setData(OnekeybehalfItemBean data,Handler handler,Context context) {
         this.data = data;
 
         this.context = context;

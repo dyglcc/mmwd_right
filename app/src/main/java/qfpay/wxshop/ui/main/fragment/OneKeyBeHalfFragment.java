@@ -59,8 +59,8 @@ import qfpay.wxshop.getui.ImageUtils;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.view.CustomProgressDialog;
-import qfpay.wxshop.ui.view.OnkeybeHalfItem;
-import qfpay.wxshop.ui.view.OnkeybeHalfItem_;
+import qfpay.wxshop.ui.view.OnekeybeHalfItem;
+import qfpay.wxshop.ui.view.OnekeybeHalfItem_;
 import qfpay.wxshop.ui.view.TopCloseAnimation;
 import qfpay.wxshop.ui.view.TopExpandAnimation;
 import qfpay.wxshop.ui.view.XListView;
@@ -415,9 +415,9 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
         @Override
         public View getView(int pos, View convertview, ViewGroup arg2) {
 
-            OnkeybeHalfItem item = (OnkeybeHalfItem) convertview;
+            OnekeybeHalfItem item = (OnekeybeHalfItem) convertview;
             if (item == null) {
-                item = OnkeybeHalfItem_.build(getActivity());
+                item = OnekeybeHalfItem_.build(getActivity());
             }
             item.setData(data.get(pos), handler, getActivity());
             return item;

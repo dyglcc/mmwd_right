@@ -29,23 +29,23 @@ public class WDConfig {
 		case 2:
 			this.PIC_SERVER = "http://172.100.102.153:8181/";
 			// huoyuan url
-//			WD_URL_HUO_YUAN = url.replaceAll("qmm.la", "mmwd.me");
+			WD_URL_HUO_YUAN = url.replaceAll("qmm.la", "mmwd.me");
 			break;
 		case 1:
 			PIC_SERVER = "http://o2.qfpay.com/";
-//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		case -1:
 			PIC_SERVER = "http://o2.qfpay.com/";
-//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		case 0:
 			PIC_SERVER = "http://o2.qfpay.com/";
-//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		default:
 			PIC_SERVER = "http://o2.qfpay.com/";
-//			WD_URL_HUO_YUAN = "http://mmwd.me/";
+			WD_URL_HUO_YUAN = "http://mmwd.me/";
 			break;
 		}
 		this.WD_URL = url;
@@ -77,7 +77,7 @@ public class WDConfig {
 	public String WD_URL = "http://1.wx.qfpay.com/";
 	public int mPushServer;
 
-//	public String WD_URL_HUO_YUAN = "http://mmwd.me/";
+	public String WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 
 	public String getShopUrl() {
 		return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/";
