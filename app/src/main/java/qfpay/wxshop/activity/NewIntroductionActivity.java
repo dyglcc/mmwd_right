@@ -4,6 +4,8 @@ import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.config.WDConfig;
+import qfpay.wxshop.utils.QFCommonUtils;
+
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.indicator.CirclePageIndicator;
@@ -36,6 +39,7 @@ public class NewIntroductionActivity extends Activity {
 	TextView tvLogin;
 	TextView tvOldLogin;
 	View tv_other_people;
+    ImageView shouFaImageView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -129,6 +133,12 @@ public class NewIntroductionActivity extends Activity {
 	}
 
 	private void initUi() {
+        shouFaImageView = (ImageView)page5.findViewById(R.id.imageView1);
+        if (QFCommonUtils.isFirstLaunch(this)) {
+            shouFaImageView.setVisibility(View.VISIBLE);
+        } else {
+            shouFaImageView.setVisibility(View.INVISIBLE);
+        }
 		tvRegister = (TextView) page5.findViewById(R.id.tv_register);
 		tvLogin = (TextView) page5.findViewById(R.id.tv_login);
 		tvOldLogin = (TextView) page5.findViewById(R.id.tv_old_login);

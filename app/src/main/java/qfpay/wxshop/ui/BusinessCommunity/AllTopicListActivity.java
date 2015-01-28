@@ -15,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.squareup.picasso.Cache;
+import com.squareup.picasso.LruCache;
+import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -58,6 +61,8 @@ public class AllTopicListActivity extends BaseActivity {
     BusinessCommunityService.TopicsListDataWrapper topicsListDataWrapper;
     AllTopicListAdapter allTopicListAdapter;
     DataEngine dataEngine;
+    private Picasso picasso;
+    private Cache cache = new LruCache(1024*512);
 
     @AfterViews
     void init(){
@@ -66,11 +71,12 @@ public class AllTopicListActivity extends BaseActivity {
         bar.hide();//隐藏默认actionbar
         publish_note_fl.setVisibility(View.GONE);
         tool_bar.setVisibility(View.VISIBLE);
-        tv_title.setText("选择话题");
+        tv_title.setText("选择想要发帖的话题");
         fl_indictor.setVisibility(View.VISIBLE);
         iv_indictor.setImageDrawable(commodity_list_refresh);
         ((AnimationDrawable) (commodity_list_refresh)).start();
         getAllTopics();
+        picasso = new Picasso.Builder(this).memoryCache(cache).build();
     }
     /**
      * 初始化列表
@@ -109,7 +115,7 @@ public class AllTopicListActivity extends BaseActivity {
         public View getView(final int position, View convertView, ViewGroup parent) {
             TopicListItemView item = (TopicListItemView)convertView;
             if(item==null){
-                item = TopicListItemView_.build(AllTopicListActivity.this);
+                item = TopicListItemView_.build(AllTopicListActivity.this,picasso);
             }
             final MyTopicBean myTopicBean = topicsListDataWrapper.data.items.get(position);
             item.setData(myTopicBean);
@@ -152,5 +158,12 @@ public class AllTopicListActivity extends BaseActivity {
             setResult(Activity.RESULT_OK,data);
             finish();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cache.clear();
+        picasso = null;
     }
 }

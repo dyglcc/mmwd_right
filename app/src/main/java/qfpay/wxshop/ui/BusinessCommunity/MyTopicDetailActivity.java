@@ -29,6 +29,8 @@ import com.makeramen.RoundedImageView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
+import com.squareup.picasso.Cache;
+import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
@@ -86,6 +88,8 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
     @ViewById View publish_note_line;
     final AnimatorSet animatorSet = new AnimatorSet();
     private boolean isLoadingMore = false;//是否正在加载更多
+    private Cache cache = new LruCache(1024*1024*2);
+    private Picasso picasso;
     @AfterViews
     void init(){
         ActionBar bar = getSupportActionBar();
@@ -97,6 +101,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
         businessCommunityDataController.setCallback(this);
         initListView();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        picasso = new Picasso.Builder(this).memoryCache(cache).build();
     }
     /**
      * 初始化列表
@@ -154,7 +159,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
             final int jumpToPostion = position+1;
             MyDynamicNoteListItemView item = (MyDynamicNoteListItemView)convertView;
             if(item==null){
-                item = MyDynamicNoteListItemView_.build(MyTopicDetailActivity.this,businessCommunityDataController);
+                item = MyDynamicNoteListItemView_.build(MyTopicDetailActivity.this,businessCommunityDataController,picasso);
             }
             final MyDynamicItemBean0 myDynamicItemBean0 = wrapperList.get(position);
             item.setData(myDynamicItemBean0,position);
@@ -398,5 +403,12 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
             mTarget.getLayoutParams().width = width;
             mTarget.requestLayout();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cache.clear();
+        picasso = null;
     }
 }

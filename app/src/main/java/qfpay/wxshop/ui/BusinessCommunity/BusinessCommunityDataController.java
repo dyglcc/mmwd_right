@@ -298,6 +298,23 @@ import retrofit.mime.TypedString;
     }
 
     /**
+     * 获取发现数据
+     * @return
+     */
+    public BusinessCommunityService.DiscoveryDataWrapper getDiscoveryData(){
+        return netService.getDiscoveryData();
+    }
+
+    /**
+     * 帖子举报
+     * @param t_id
+     * @return
+     */
+    public RetrofitWrapper.CommonJsonBean noteReport(String t_id){
+        return netService.noteReport(t_id);
+    }
+
+    /**
      * 得到当前已获取的列表数据
      * @return
      */
@@ -376,4 +393,5 @@ import retrofit.mime.TypedString;
     public void setNotesListOfOneTopic(List<MyDynamicItemBean0> notesListOfOneTopic) {
         this.notesListOfOneTopic = notesListOfOneTopic;
     }
+
 }

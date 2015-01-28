@@ -20,7 +20,7 @@
         android:layout_marginLeft="8dp"
         android:layout_toRightOf="@id/u_avatar"
         android:textColor="#f06292"
-        android:textSize="@dimen/common_text_content_big"
+        android:textSize="@dimen/common_text_content_mid"
         android:text="昵称"
         />
     <TextView
@@ -29,15 +29,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/u_name"
         android:layout_alignLeft="@id/u_name"
-        android:textSize="@dimen/common_text_content_big"
+        android:textSize="@dimen/common_text_content_mid"
         android:text="内容"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/floor"
-        android:textSize="@dimen/common_text_content_big"
-        android:textColor="#f06292"
+        android:textSize="@dimen/common_text_content_mid"
+        android:textColor="#91948d"
         android:text="1楼"
         android:layout_alignBaseline="@id/u_avatar"
         android:layout_alignParentRight="true"

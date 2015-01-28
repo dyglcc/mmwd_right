@@ -9,7 +9,7 @@ import qfpay.wxshop.ui.web.CommonWebFragment_;
 import qfpay.wxshop.utils.MobAgentTools;
 
 public enum HuoYuanFragmentsWrapper {
-    OFFICIAL("click_official"), FANS("click_fans"), MINE("click_mine");
+    OFFICIAL("click_official"), FANS("click_fans"), MINE("click_mine"),CommoditySource("click_source");
 
     String umenEventName = "";
     SoftReference<BaseFragment> fragmentRef;
@@ -34,6 +34,8 @@ public enum HuoYuanFragmentsWrapper {
                 return MINE.getFragment(context);
             case 1:
                 return FANS.getFragment(context);
+            case 3:
+                return  CommoditySource.getFragment(context);
         }
         return null;
     }
@@ -52,6 +54,9 @@ public enum HuoYuanFragmentsWrapper {
                 break;
             case 1:
                 FANS.onFragmentSelect();
+                break;
+            case 3:
+                CommoditySource.onFragmentSelect();
                 break;
         }
     }
@@ -80,6 +85,10 @@ public enum HuoYuanFragmentsWrapper {
                 fragmentRef = new SoftReference<BaseFragment>(
                         new MineBuysListFragment_());
                 break;
+            case CommoditySource:
+                fragmentRef = new SoftReference<BaseFragment>(
+                        new CommonWebFragment_().init(WDConfig.getInstance().getCommoditySource(), true,"货源推荐"));
+                break;
         }
     }
 
@@ -92,6 +101,9 @@ public enum HuoYuanFragmentsWrapper {
         }
         if (MINE.fragmentRef != null) {
             MINE.fragmentRef.clear();
+        }
+        if (CommoditySource.fragmentRef != null) {
+            CommoditySource.fragmentRef.clear();
         }
     }
 

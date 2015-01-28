@@ -58,12 +58,14 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import cn.sharesdk.framework.Platform;
 
@@ -1201,6 +1203,10 @@ public class Utils {
 				: type + System.currentTimeMillis();
 	}
 
+    /**
+     * 获取内存卡剩余空间
+     * @return
+     */
     public static long getFreeSizeOfSDCard(){
         long SDFreeSize;//存储卡剩余空间大小 kb
         StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getPath());
@@ -1210,5 +1216,25 @@ public class Utils {
             SDFreeSize = statFs.getAvailableBlocks()*statFs.getBlockSize()/1024;
         }
         return SDFreeSize;
+    }
+
+    public static boolean isShouldHideInput(View v,MotionEvent event){
+        if (v != null && (v instanceof EditText)) {
+            int[] leftTop = { 0, 0 };
+            //获取输入框当前的location位置
+            v.getLocationInWindow(leftTop);
+            int left = leftTop[0];
+            int top = leftTop[1];
+            int bottom = top + v.getHeight();
+            int right = left + v.getWidth();
+            if (event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom) {
+                // 点击的是输入框区域，保留点击EditText的事件
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -54,6 +54,7 @@ import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
+import qfpay.wxshop.dialogs.SimpleDialogFragment;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.web.CommonWebActivity;
@@ -108,6 +109,8 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
     private boolean isActivityRunning = false;//当前Activity是否在运行
     private boolean hasPublishReply = false;//是否已经发布过评论
     BusinessCommunityService.ReplyAndLikeOfOneNoteDataWrapper dataWrapper;
+    boolean canReport = true;
+
     @AfterViews
     void init() {
         isActivityRunning = true;
@@ -160,6 +163,23 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(ev.getAction()==MotionEvent.ACTION_DOWN){
+            View v = getCurrentFocus();
+            if(Utils.isShouldHideInput(v,ev)){
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        if(getWindow().superDispatchTouchEvent(ev)){
+            return true;
+        }
+        return onTouchEvent(ev);
     }
 
     /**
@@ -252,13 +272,13 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
             if(myDynamicItemLinkDataBean.getLiked_user().size()>0){
                 liked_u_avatar.setVisibility(View.VISIBLE);
                 for(String oneLikeUser:myDynamicItemLinkDataBean.getLiked_user()){
-                    RoundedImageView roundedImageView = new RoundedImageView(getBaseContext());
+                    RoundedImageView roundedImageView = new RoundedImageView(this);
                     String url = "http://b-avatar.qiniudn.com/"+oneLikeUser+".png";
-                    roundedImageView.setPadding(0, 0, 8, 0);
+                    roundedImageView.setLayoutParams(new LinearLayout.LayoutParams(Utils.dip2px(this,35),Utils.dip2px(this,35)));
+                    roundedImageView.setPadding(0, 0, Utils.dip2px(this, 5), 0);
                     roundedImageView.setCornerRadius(50f);
                     Picasso.with(getBaseContext()).load(url).fit().centerInside().placeholder(R.drawable.list_item_default).
                             error(R.drawable.list_item_default).into(roundedImageView);
-                    roundedImageView.setLayoutParams(new ViewGroup.LayoutParams(Utils.dip2px(getBaseContext(),30),Utils.dip2px(getBaseContext(), 30)));
                     liked_u_avatar.addView(roundedImageView);
                 }
             }else{
@@ -277,11 +297,18 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
             if(myDynamicItemReplyBeanList!=null&&myDynamicItemReplyBeanList.size()>0){
                 reply_u_avatar.setVisibility(View.VISIBLE);
                 LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
-                for(MyDynamicItemReplyBean myDynamicItemReplyBean:myDynamicItemReplyBeanList){
+                for(final MyDynamicItemReplyBean myDynamicItemReplyBean:myDynamicItemReplyBeanList){
                     View view = layoutInflater.inflate(R.layout.mydynamic_note_reply_item,null);
                     TextView u_name =  (TextView)view.findViewById(R.id.u_name);
                     u_name.setText(myDynamicItemReplyBean.getU_name());
                     RoundedImageView u_avatar = (RoundedImageView)view.findViewById(R.id.u_avatar);
+                    final String u_id = myDynamicItemReplyBean.getU_id();
+                    u_avatar.setOnClickListener(new View.OnClickListener() {//点击评论用户头像进入到
+                        @Override
+                        public void onClick(View view) {
+                            getShopIdByUserId(u_id);
+                        }
+                    });
                     Picasso.with(getBaseContext()).load(myDynamicItemReplyBean.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
                             error(R.drawable.list_item_default).into(u_avatar);
                     TextView content = (TextView)view.findViewById(R.id.content);
@@ -451,4 +478,52 @@ public class MyDynamicOneNoteDetailActivity extends BaseActivity implements Busi
         super.onResume();
         isActivityRunning = true;
     }
+
+    /**
+     * 举报
+     */
+    @Click
+    void note_report(){
+        if(canReport){
+        SimpleDialogFragment.createBuilder(this, getSupportFragmentManager())
+                .setTitle(getString(R.string.mm_hint)).setMessage("喵喵收到举报后，会尽快核实处理！")
+                .setNegativeButtonText("取消").setPositiveButtonText("举报")
+                .setPositiveClick(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        canReport = false;
+                        fl_indictor.setVisibility(View.VISIBLE);
+                        iv_indictor.setImageDrawable(commodity_list_refresh);
+                        reportThisNote();
+                    }
+                }).show();
+        }else{
+            Toaster.s(this,"正在发送举报请求，请稍后！");
+        }
+    }
+
+    @Background
+    void reportThisNote(){
+        RetrofitWrapper.CommonJsonBean reportReturn = businessCommunityDataController.noteReport(myDynamicItemBean0.getId());
+        dealReportReturn(reportReturn);
+    }
+
+    @UiThread
+    void dealReportReturn(RetrofitWrapper.CommonJsonBean data){
+        canReport = true;
+        if(data!=null){
+            if(data.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)){
+                if(isActivityRunning) {
+                    fl_indictor.setVisibility(View.INVISIBLE);
+                    Toaster.l(this,"喵喵已经收到举报，会尽快核实处理！");
+                }
+            }else{
+                Toaster.l(this,data.getResperr());
+            }
+        }else{
+            Toaster.s(this,"请求失败，请检查网络！");
+        }
+    }
+
 }

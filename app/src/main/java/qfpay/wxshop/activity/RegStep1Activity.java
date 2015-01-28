@@ -182,7 +182,6 @@ public class RegStep1Activity extends BaseActivity implements Callback {
 
 			@Override
 			public void onSuccess(Bundle bundle) {
-
 				WxShopApplication.dataEngine.setMobile(mobile);
 				WxShopApplication.dataEngine.setLoginStatus(true);
 				WxShopApplication.app.closeAllActivity();

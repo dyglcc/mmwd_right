@@ -104,6 +104,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="66dip"
         android:visibility="invisible"
-        android:src="@drawable/wd91sf_077" />
+        android:src="@drawable/shoufa360" />
 
 </RelativeLayout>

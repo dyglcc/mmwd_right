@@ -80,8 +80,9 @@ public class BusinessCommunityFragment extends BaseFragment {
             badgeView.setBackgroundResource(R.drawable.icon_reddot2);
             badgeView.setWidth(Utils.dip2px(getActivity(), 10));
             badgeView.setHeight(Utils.dip2px(getActivity(), 10));
+            badgeView.setTextSize(7);
             badgeView.setGravity(Gravity.CENTER);
-            badgeView.setTextSize(6);
+            badgeView.setBadgeMargin(Utils.dip2px(getActivity(),17),Utils.dip2px(getActivity(),12));
             //初始化动态消息通知角标
             BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
             if (dataWrapper.data.tag.equals("1") && dataWrapper.data.items.size() > 0) {
@@ -142,13 +143,18 @@ public class BusinessCommunityFragment extends BaseFragment {
             String pointName = "";
             switch (arg0) {
                 case 0:
+                    pointName = "click_merchant_mine";
+                    break;
+                case 1:
                     pointName = "click_merchant_dynamic";
                     break;
                 case 2:
                     pointName = "click_merchant_ranklist";
                     break;
                 case 3:
-                    pointName = "click_merchant_mine";
+                    pointName = "click_merchant_fxgm";
+                    break;
+
             }
             MobAgentTools.OnEventMobOnDiffUser(getActivity(), pointName);
         }
@@ -177,5 +183,21 @@ public class BusinessCommunityFragment extends BaseFragment {
     public void hideCommunityNotification() {
         badgeView.setText("");
         badgeView.hide();
+    }
+
+    public ViewPager getPager() {
+        return pager;
+    }
+
+    public void setPager(ViewPager pager) {
+        this.pager = pager;
+    }
+
+    public TabPageIndicator getIndicator() {
+        return indicator;
+    }
+
+    public void setIndicator(TabPageIndicator indicator) {
+        this.indicator = indicator;
     }
 }

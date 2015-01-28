@@ -1,5 +1,8 @@
 package qfpay.wxshop.ui.main.fragmentcontroller;
 
+import qfpay.wxshop.R;
+import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.BusinessCommunity.DiscoveryFragment_;
 import qfpay.wxshop.ui.BusinessCommunity.MyDynamicListFragment_;
 import qfpay.wxshop.ui.BusinessCommunity.MyTopicListFragment_;
@@ -15,11 +18,13 @@ public class BusinessCommunityFragmentWrapper extends BasePagerFragmentWrapper {
     public String getUmengEventName(int position) {
         switch (position) {
             case 0:
-                return "click_suisuinian";
+                return "click_merchant_mine";
             case 1:
-                return "click_maijiaxiu";
+                return "click_merchant_dynamic";
             case 2:
-                return "promote_namecard";
+                return "click_merchant_ranklist";
+            case 3:
+                return "click_merchant_fxgm";
         }
         return "";
     }
@@ -37,7 +42,10 @@ public class BusinessCommunityFragmentWrapper extends BasePagerFragmentWrapper {
                 T.d("paihangbang + " + WDConfig.getInstance().getCommoditySource());
                 break;
             case 3:
-                return new DiscoveryFragment_();
+                fragment.init(WDConfig.FAXIANGEMIAO, true, "", ConstValue.SHARE_NAME_FINDMIAO,
+						SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS);
+                break;
+//                return new DiscoveryFragment_();
         }
         fragment.onFragmentRefresh();
         return fragment;

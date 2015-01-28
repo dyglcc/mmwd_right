@@ -10,6 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Cache;
+import com.squareup.picasso.LruCache;
+import com.squareup.picasso.Picasso;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -30,6 +34,7 @@ import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.ui.main.fragment.BaseFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 
 /**
@@ -55,11 +60,13 @@ public class MyTopicListFragment extends BaseFragment implements
     BusinessCommunityDataController businessCommunityDataController;
     DataEngine dataEngine;
     BusinessCommunityService.TopicsListDataWrapper topicsListDataWrapper;
-
+    private Picasso picasso;
+    private Cache cache = new LruCache(1024*512);
     @AfterViews
     void init() {
         dataEngine = new DataEngine(getActivity());
         initListView();
+        picasso = new Picasso.Builder(getActivity()).memoryCache(cache).build();
     }
 
     /**
@@ -102,7 +109,7 @@ public class MyTopicListFragment extends BaseFragment implements
         public View getView(final int position, View convertView, ViewGroup parent) {
             TopicListItemView item = (TopicListItemView) convertView;
             if (item == null) {
-                item = TopicListItemView_.build(getActivity());
+                item = TopicListItemView_.build(getActivity(),picasso);
             }
             item.setData(wrapperList.get(position));
             item.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +150,13 @@ public class MyTopicListFragment extends BaseFragment implements
 
     @Background
     void getMyTopicList(){
-        topicsListDataWrapper =  businessCommunityDataController.getMyTopicList(dataEngine.getUserId());
+        try{
+            topicsListDataWrapper =  businessCommunityDataController.getMyTopicList(dataEngine.getUserId());
+        }catch (Exception e){
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
+        }
         showMyTopicList();
     }
     @UiThread

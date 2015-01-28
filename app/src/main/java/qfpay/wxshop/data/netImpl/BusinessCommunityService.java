@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import qfpay.wxshop.data.beans.BusinessCommunityMyNotificationBean;
+import qfpay.wxshop.data.beans.DiscoveryBean;
 import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.beans.MyDynamicItemLinkDataBean;
 import qfpay.wxshop.data.beans.MyDynamicItemReplyBean;
@@ -88,6 +89,7 @@ public interface BusinessCommunityService {
     @FormUrlEncoded
     @POST("/post")
     CommonJsonBean publishOneNoteNoImg(@Field("g_id") String g_id,@Field("content") String content);
+
     /**
      * 发表评论
      * @param t_id
@@ -122,6 +124,37 @@ public interface BusinessCommunityService {
      */
     @GET("/get_shop_id")
     ShopIdDataWrapper getShopIdByUserId(@Query("user_id") String user_id);
+
+    /**
+     * 举报帖子
+     * @param t_id
+     * @return
+     */
+    @GET("/report")
+    CommonJsonBean noteReport(@Query("t_id") String t_id);
+
+    /**
+     * 发现
+     * @return
+     */
+    @GET("/explore")
+    DiscoveryDataWrapper getDiscoveryData();
+
+    /**
+     * 发现 获取更多优质帖子
+     * @param topic
+     * @return
+     */
+    @GET("/ex_more")
+    MyDynamicNotesListDataWrapper getDiscoveryMoreTopic(@Query("topic") String topic);
+
+    /**
+     * 发现 获取更多优质话题
+     * @param group
+     * @return
+     */
+    @GET("/ex_more")
+    TopicsListDataWrapper getDiscoveryMoreGroup(@Query("group") String group);
 
     public static class BusinessCommmunityMyNotificationDataWrapper extends CommonJsonBean{
         private static final long serialVersionUID = 1L;
@@ -208,4 +241,8 @@ public interface BusinessCommunityService {
         public MyDynamicItemLinkDataBean like_data;
     }
 
+    public static class DiscoveryDataWrapper extends CommonJsonBean{
+        private static final long serialVersionUID = 1L;
+        public DiscoveryBean data;
+    }
 }

@@ -13,6 +13,7 @@ import android.os.Message;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -102,6 +103,23 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
         initPublishNoteRules();
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(ev.getAction()==MotionEvent.ACTION_DOWN){
+            View v = getCurrentFocus();
+            if(Utils.isShouldHideInput(v,ev)){
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        if(getWindow().superDispatchTouchEvent(ev)){
+            return true;
+        }
+        return onTouchEvent(ev);
+    }
+
     @Override @UiThread
     public void onSuccess() {
         fl_indictor.setVisibility(View.INVISIBLE);
@@ -153,7 +171,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
                 params.height = screenWidth*3/7;
                 note_iamge.setLayoutParams(params);
                 File picFile = new File(fb.getFileStr());
-                Picasso.with(PublishNoteActivity.this).load(picFile).fit().centerInside().into(note_iamge);
+                Picasso.with(PublishNoteActivity.this).load(picFile).fit().centerCrop().into(note_iamge);
                 hasPic = true;
                 uploadThePicture(fb.getFileStr());
             }
@@ -182,7 +200,9 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
     @Click
     void publish_note(){
         String noteConentStr = note_content.getText().toString().trim();
-        if(!noteConentStr.equals("")){
+        if(noteConentStr.equals("")&&hasPic==false){
+            Toaster.s(this, "不写东西的裸奔帖会被警察蜀黍抓走的！");
+        }else{
             MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_topic_send");
             if(hasPic==true){
                 if(picUrl!=null&&!picUrl.equals("")){
@@ -195,10 +215,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
                 businessCommunityDataController.publishOneNote(myTopicBean.getId()
                         ,noteConentStr,picUrl);
             }
-        }else{
-            Toaster.s(this,"帖子内容不能为空！");
         }
-
     }
 
     /**
