@@ -70,13 +70,13 @@ public class PictureItem extends RelativeLayout implements ImageProgressListener
         Picasso.with(getContext()).cancelRequest(iv_picture);
         if (mPictureViewModel.isDefault()) {
             setStatus(Status.DEFAULT);
-            Picasso.with(getContext()).load(R.drawable.newitem_img_add).into(iv_picture);
+            Picasso.with(getContext()).load(R.drawable.itemmanager_add_img).resize(100, 100).into(iv_picture);
         } else {
             setStatus(Status.NORMAL);
             if (mPictureViewModel.hasNative()) {
-                Picasso.with(getContext()).load(new File(mPictureViewModel.getPath())).centerCrop().into(iv_picture);
+                Picasso.with(getContext()).load(new File(mPictureViewModel.getPath())).resize(400, 400).centerCrop().into(iv_picture);
             } else {
-                Picasso.with(getContext()).load(mPictureViewModel.getUrl()).centerCrop().into(iv_picture);
+                Picasso.with(getContext()).load(mPictureViewModel.getUrl()).resize(400, 400).centerCrop().into(iv_picture);
             }
         }
     }

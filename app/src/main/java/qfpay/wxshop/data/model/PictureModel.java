@@ -1,11 +1,13 @@
 package qfpay.wxshop.data.model;
 
+import java.io.Serializable;
+
 /**
  * 图片
  *
  * Created by LiFZhe on 1/19/15.
  */
-public class PictureModel {
+public class PictureModel implements Serializable {
     private int    id; // 本地ID, 不需要存储Server ID, 但是存储到本地库的时候一定要先查询是否URL在本地存在再进行存储
     private String path;
     private String url;

@@ -74,7 +74,7 @@ public class WDConfig {
 	// public String WD_URL = "http://172.100.101.150:8400/";
 //	 public String WD_URL = "http://172.100.101.150:8989/";
 //	 public String WD_URL = "http://shiyong.local.qmm.la/";
-	public String WD_URL = "http://wx.qfpay.com/";
+	public String WD_URL = "http://0.wx.qfpay.com/";
 	public int mPushServer;
 
 //	public String WD_URL_HUO_YUAN = "http://mmwd.me/";

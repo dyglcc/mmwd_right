@@ -21,6 +21,8 @@ import qfpay.wxshop.image.ImageGroupUploadLinstener;
 import qfpay.wxshop.image.ImageProgressListener;
 import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.processer.ImageType;
+import qfpay.wxshop.ui.commodity.CommodityDataController;
+import qfpay.wxshop.ui.commodity.EdititemDoneActivity_;
 
 /**
  * ItemDetail的逻辑层
@@ -30,23 +32,40 @@ import qfpay.wxshop.image.processer.ImageType;
  */
 @EBean
 public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetailPresenter, ImageGroupUploadLinstener {
+    private Context               mContext;
     private ItemDetailManagerView mView;
     private CommodityModel        mModel;
-    private int                   commodityId = 0;
+    private int                   commodityId = -1;
 
     @Inject CommodityRepository   mRepository;
     @Bean   QFImageUploader       mUploader;
+    @Bean   CommodityDataController mCommodityListController;
 
     public ItemDetailPresenterImpl(Context context) {
         super(context);
+        this.mContext = context;
+    }
+
+    @Override public void setView(ItemDetailManagerView view) {
+        this.mView = view;
+    }
+
+    @Override public void onViewCreate() {
+        if (commodityId > 0) {
+            requestCommodityModel();
+            mView.setTitle("编辑商品");
+        } else {
+            mModel = new CommodityModel();
+            mView.setTitle("新添加商品");
+        }
+    }
+
+    @Override public void onViewResume() {
 
     }
 
-    @Override
-    public void onViewCreate() {
-        if (commodityId > 0) {
-            requestCommodityModel();
-        }
+    @Override public void onViewDestroy() {
+
     }
 
     @Override public void setCommodityId(int id) {
@@ -91,45 +110,73 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
         }
     }
 
-    @Override public void onViewResume() {
-
+    @Override public void addSku(SkuViewModel skuViewModel) {
+        if (skuViewModel.getPrice() == null || skuViewModel.getPrice().equals("")) {
+            mView.showErrorMessage("请输入价格");
+            return;
+        }
+        if (skuViewModel.getAmount() == null || skuViewModel.getAmount().equals("")) {
+            mView.showErrorMessage("请输入数量");
+            return;
+        }
+        if (!mModel.getSkuList().isEmpty() && isNull(skuViewModel.getName())) {
+            mView.showErrorMessage("规格名称不可为空");
+            return;
+        }
+        if (! checkSkuName(skuViewModel.getName(), mModel.getSkuList())) {
+            mView.showErrorMessage("规格名称已经存在,请检查后再次添加");
+            return;
+        }
+        SKUModel model = new SKUModel();
+        model.setName(skuViewModel.getName());
+        model.setPrice(Float.parseFloat(skuViewModel.getPrice()));
+        model.setAmount(Integer.parseInt(skuViewModel.getAmount(), 10));
+        mModel.getSkuList().add(0, model);
+        mView.addSku(skuViewModel);
     }
 
-    @Override public void onViewDestroy() {
-
+    @Override public void setSku(int position, SkuViewModel skuViewModel) {
+        if (position < 0) return;
+        if (skuViewModel.getPrice() == null || skuViewModel.getPrice().equals("")) {
+            mView.showErrorMessage("请输入价格");
+            return;
+        }
+        if (skuViewModel.getAmount() == null || skuViewModel.getAmount().equals("")) {
+            mView.showErrorMessage("请输入数量");
+            return;
+        }
+        if (! checkSkuName(skuViewModel.getName(), mModel.getSkuList(), position)) {
+            mView.showErrorMessage("规格名称已经存在,请检查后再次添加");
+            return;
+        }
+        SKUModel skuModel = mModel.getSkuList().get(position);
+        skuModel.setName(skuViewModel.getName());
+        skuModel.setPrice(Float.parseFloat(skuViewModel.getPrice()));
+        skuModel.setAmount(Integer.parseInt(skuViewModel.getAmount(), 10));
+        mView.setSku(position, skuViewModel);
     }
 
-    @Override public void setView(ItemDetailManagerView view) {
-        this.mView = view;
-    }
-
-    @Override public void editSku(SkuViewModel skuViewModel) throws NumberFormatException {
-        boolean isHit = false;
-        for (SKUModel model : mModel.getSkuList()) {
-            if (skuViewModel.getId() == model.getId()) {
-                model.setName(skuViewModel.getName());
-                model.setPrice(Float.parseFloat(skuViewModel.getPrice()));
-                model.setAmount(Integer.parseInt(skuViewModel.getAmount(), 10));
-                isHit = true;
+    public boolean checkSkuName(String name, List<SKUModel> skuModels) {
+        for (SKUModel model : skuModels) {
+            if (model.getName().equals(name)) {
+                return false;
             }
         }
-        if (isHit) {
-            SKUModel model = new SKUModel();
-            model.setName(skuViewModel.getName());
-            model.setPrice(Float.parseFloat(skuViewModel.getPrice()));
-            model.setAmount(Integer.parseInt(skuViewModel.getAmount(), 10));
-            mModel.getSkuList().add(model);
-        }
+        return true;
     }
 
-    @Override public void deleteSku(SkuViewModel skuViewModel) {
-        SKUModel skuModel = null;
-        for (SKUModel model : mModel.getSkuList()) {
-            if (model.getId() == skuViewModel.getId()) {
-                skuModel = model;
+    public boolean checkSkuName(String name, List<SKUModel> skuModels, int withoutPosition) {
+        for (SKUModel model : skuModels) {
+            if (model.getName().equals(name) && withoutPosition != skuModels.indexOf(model)) {
+                return false;
             }
         }
-        mModel.getSkuList().remove(skuModel);
+        return true;
+    }
+
+    @Override public void deleteSku(int position) {
+        mModel.getSkuList().remove(mModel.getSkuList().get(position));
+        mView.deleteSku(position);
     }
 
     @Override public void uploadPicture(PictureViewModel viewModel, ImageProgressListener listener) {
@@ -151,10 +198,14 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
         mUploader.setSingleTaskLinstener(path, listener);
     }
 
-    @Override public void commit(List<PictureViewModel> pictureViewModelList, String name, String postage, String description) throws NumberFormatException {
+    @Override public void commit(List<PictureViewModel> pictureViewModelList, String name, String postage, String description) {
+        if (! checkCommoitData(pictureViewModelList, mModel.getSkuList(), name, postage, description)) {
+            return;
+        }
+
         mModel.getPictureList().clear();
         for (PictureViewModel pic : pictureViewModelList) {
-            if (!pic.isNative()) continue;
+            if (pic.isNative()) continue;
             PictureModel model = new PictureModel();
             model.setPath(pic.getPath());
             model.setUrl(pic.getUrl());
@@ -164,20 +215,83 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
         mModel.setName(name);
         mModel.setPostage(Float.parseFloat(postage));
         mModel.setDescription(description);
+
+        if (commodityId > 0) {
+            editServerModel(mModel);
+        } else {
+            newServerModel(mModel);
+        }
     }
 
-    @Override
-    public void onUploadProgress(float progress) {
+    public boolean checkCommoitData(List<PictureViewModel> pictureViewModelList, List<SKUModel> skuModels, String name, String postage, String description) {
+        if (isNull(name)) {
+            mView.showErrorMessage("请输入名称");
+            return false;
+        } else if (isNull(postage)) {
+            mView.showErrorMessage("请输入邮费");
+            return false;
+        } else if (isNull(description)) {
+            mView.showErrorMessage("请输入描述");
+            return false;
+        } else if (pictureViewModelList == null || pictureViewModelList.isEmpty()) {
+            mView.showErrorMessage("请选择至少一张图片");
+            return false;
+        } else if (mModel.getSkuList() == null || mModel.getSkuList().isEmpty()){
+            mView.showErrorMessage("请选择添加至少一个规格");
+            return false;
+        } else if (! checkSku(skuModels)) {
+            mView.showErrorMessage("您有规格的名称为空, 请补全规格名称");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkSku(List<SKUModel> skuModels) {
+        for (SKUModel sku : skuModels) {
+            if (sku.getName() == null || sku.getName().equals("")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isNull(String string) {
+        return string == null || string.equals("");
+    }
+
+    @Background void editServerModel(CommodityModel model) {
+        try {
+            mRepository.updateCommodity(mModel);
+            onModelRequestDone(mModel.getId());
+        } catch (MessageException e) {
+            mView.showErrorMessage(e.getMsgForToast());
+        }
+    }
+
+    @Background void newServerModel(CommodityModel model) {
+        try {
+            onModelRequestDone(mRepository.createCommodity(mModel));
+        } catch (MessageException e) {
+            mView.showErrorMessage(e.getMsgForToast());
+        }
+    }
+
+    @UiThread void onModelRequestDone(int id) {
+        mCommodityListController.reloadData();
+        mModel.setId(id);
+        EdititemDoneActivity_.intent(mContext).wrapper(mModel).start();
+        mView.finish();
+    }
+
+    @Override public void onUploadProgress(float progress) {
         mView.disableCommit();
     }
 
-    @Override
-    public void onComplete(int successCount, int failureCount) {
+    @Override public void onComplete(int successCount, int failureCount) {
         // 在Group检测中才生效, 此处无作用
     }
 
-    @Override
-    public void onImageReady() {
+    @Override public void onImageReady() {
         mView.enableCommit();
     }
 }

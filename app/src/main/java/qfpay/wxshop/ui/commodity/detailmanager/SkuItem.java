@@ -1,7 +1,6 @@
 package qfpay.wxshop.ui.commodity.detailmanager;
 
 import android.content.Context;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -42,6 +41,6 @@ public class SkuItem extends LinearLayout {
     }
 
     @Click void iv_edit() {
-        mActivity.onSkuEditClick(mViewModel);
+        mActivity.onSkuEditClick(((LinearLayout) getParent()).indexOfChild(this), mViewModel);
     }
 }

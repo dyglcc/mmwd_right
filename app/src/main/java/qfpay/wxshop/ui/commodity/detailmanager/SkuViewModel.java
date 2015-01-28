@@ -11,10 +11,9 @@ import qfpay.wxshop.data.model.SKUModel;
  */
 public class SkuViewModel implements Serializable {
     private int    id;
-    private String name;
-    private String price;
-    private String amount;
-    private int position;
+    private String name   = "";
+    private String price  = "";
+    private String amount = "";
 
     public int getId() {
         return id;
@@ -46,13 +45,5 @@ public class SkuViewModel implements Serializable {
 
     public void setAmount(String amount) {
         this.amount = amount;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
     }
 }

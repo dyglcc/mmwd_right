@@ -1,20 +1,18 @@
 package qfpay.wxshop.ui.commodity.detailmanager;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OnActivityResult;
@@ -24,10 +22,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.image.ImageProcesserBean;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
@@ -46,10 +41,11 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
 
     @ViewById GridView       gv_image;
     @ViewById EditText       et_name, et_postage;
+    @ViewById TextView       tv_description, tv_title, tv_save;
     @ViewById LinearLayout   ll_skus;
 
-    private   String         description;
     @Extra    int            id;
+    @Extra    boolean        isPromotation;
 
     @Override protected void onResume() {
         super.onResume();
@@ -69,13 +65,9 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
         gv_image.setAdapter(mAdapter);
     }
 
-    @Click void ll_add_sku() {
-        ItemDetailSkuEditActivity_.intent(this).startForResult(ItemDetailManagerView.REQUEST_SKU);
-    }
-
-    @Override public void addSku(SkuViewModel skuViewModel) {
-        SkuItem item = SkuItem_.build(this).setData(skuViewModel).setParentView(this);
-        ll_skus.addView(item);
+    @Override
+    public void setTitle(String string) {
+        tv_title.setText(string);
     }
 
     @Override public void addPicture(PictureViewModel pictureViewModel, boolean isRefresh) {
@@ -85,8 +77,7 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
         }
     }
 
-    @Override
-    public void detelePicture(PictureViewModel pictureViewModel) {
+    @Override public void detelePicture(PictureViewModel pictureViewModel) {
         mAdapter.removeView(pictureViewModel);
         mAdapter.notifyDataSetChanged();
         mPresenter.cancelPictureUpload(pictureViewModel);
@@ -113,13 +104,47 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
         }
     }
 
-    public void onSkuEditClick(SkuViewModel skuViewModel) {
-        ItemDetailSkuEditActivity_.intent(this).skuViewModel(skuViewModel).startForResult(ItemDetailManagerView.REQUEST_SKU);
+    @Click void ll_add_sku() {
+        if (isPromotation) {
+            showErrorMessage("正在进行秒杀活动的商品无法添加规格");
+            return;
+        }
+        ItemDetailSkuEditActivity_.intent(this).startForResult(ItemDetailManagerView.REQUEST_SKU_ADD);
     }
 
-    @OnActivityResult(REQUEST_SKU) void onSkuEdited(int resultCode, Intent data) {
+    /**
+     * 页面中SkuItem的编辑按钮回调方法
+     */
+    public void onSkuEditClick(int position, SkuViewModel skuViewModel) {
+        ItemDetailSkuEditActivity_.intent(this).skuViewModel(skuViewModel).position(position).startForResult(ItemDetailManagerView.REQUEST_SKU_EDIT);
+    }
+
+    @Override public void addSku(SkuViewModel skuViewModel) {
+        SkuItem item = SkuItem_.build(this).setData(skuViewModel).setParentView(this);
+        ll_skus.addView(item, 0);
+    }
+
+    @Override public void setSku(int position, SkuViewModel skuViewModel) {
+        if (position < 0) return;
+        ((SkuItem) ll_skus.getChildAt(position)).setData(skuViewModel);
+    }
+
+    @Override public void deleteSku(int position) {
+        ll_skus.removeViewAt(position);
+    }
+
+    @OnActivityResult(REQUEST_SKU_ADD) void onSkuAdded(int resultCode, Intent data) {
         if (resultCode != RESULT_OK) return;
-        mPresenter.editSku((SkuViewModel) data.getSerializableExtra("SkuViewModel"));
+        mPresenter.addSku((SkuViewModel) data.getSerializableExtra("SkuViewModel"));
+    }
+
+    @OnActivityResult(REQUEST_SKU_EDIT) void onSkuEdited(int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) return;
+        if (data.hasExtra("SkuViewModel")) {
+            mPresenter.setSku(data.getIntExtra("position", -1), (SkuViewModel) data.getSerializableExtra("SkuViewModel"));
+        } else {
+            mPresenter.deleteSku(data.getIntExtra("position", -1));
+        }
     }
 
     @Override public void setName(String name) {
@@ -131,17 +156,17 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
     }
 
     @Override public void setDescription(String description) {
-        this.description = description;
+        tv_description.setText(description);
     }
 
-    @Override
-    public void disableCommit() {
-
+    @Override public void disableCommit() {
+        tv_save.setClickable(false);
+        tv_save.setTextColor(getResources().getColor(R.color.common_text_grey));
     }
 
-    @Override
-    public void enableCommit() {
-
+    @Override public void enableCommit() {
+        tv_save.setClickable(true);
+        tv_save.setTextColor(getResources().getColor(R.color.common_white));
     }
 
     @Override @UiThread public void showErrorMessage(String message) {
@@ -149,12 +174,12 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
     }
 
     @Click void ll_description() {
-        ItemDetailDescriptionEditActivity_.intent(this).description(description).startForResult(ItemDetailManagerView.REQUEST_DESC);
+        ItemDetailDescriptionEditActivity_.intent(this).description(tv_description.getText().toString()).startForResult(ItemDetailManagerView.REQUEST_DESC);
     }
 
     @OnActivityResult(REQUEST_DESC) void onDescriptionEdited(int resultCode, Intent data) {
         if (resultCode != RESULT_OK) return;
-        description = data.getStringExtra("description");
+        tv_description.setText(data.getStringExtra("description"));
     }
 
     @Click(R.id.iv_close) void onCloseClick() {
@@ -162,7 +187,7 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
     }
 
     @Click(R.id.tv_save) void onSaveClick() {
-        mPresenter.commit(mAdapter.getData(), et_name.getText().toString(), et_postage.getText().toString(), description);
+        mPresenter.commit(mAdapter.getData(), et_name.getText().toString(), et_postage.getText().toString(), tv_description.getText().toString());
     }
 
     @Override public void onBackPressed() {

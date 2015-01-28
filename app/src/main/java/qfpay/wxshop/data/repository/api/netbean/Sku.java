@@ -14,5 +14,4 @@ public class Sku {
     public float price;
     public int amount;
     public String modified;
-    public List<ItemImage> itemimgs;
 }

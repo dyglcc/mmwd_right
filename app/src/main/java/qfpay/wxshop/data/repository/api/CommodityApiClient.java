@@ -10,9 +10,9 @@ import qfpay.wxshop.data.model.CommodityModel;
  * Created by LiFZhe on 1/19/15.
  */
 public interface CommodityApiClient {
-    public boolean newItem(CommodityModel model) throws MessageException;
+    public int newItem(CommodityModel model) throws MessageException;
 
-    public boolean editItem(CommodityModel model) throws MessageException;
+    public void editItem(CommodityModel model) throws MessageException;
 
     public CommodityModel getCommodityModel(int id) throws MessageException;
 }

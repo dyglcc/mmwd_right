@@ -29,7 +29,7 @@
             android:gravity="left|center"
             android:textColor="@color/promo_red_text_color"
             android:textSize="@dimen/text_size_normal"
-            tools:text="$ "/>
+            android:text="￥ "/>
 
         <TextView
             android:id="@+id/tv_price"
@@ -46,7 +46,7 @@
             android:gravity="left|center"
             android:textColor="@color/common_text_black"
             android:textSize="@dimen/text_size_normal"
-            tools:text=" * "/>
+            android:text=" * "/>
 
         <TextView
             android:id="@+id/tv_count"
@@ -63,7 +63,7 @@
             android:gravity="left|center"
             android:textColor="@color/common_text_black"
             android:textSize="@dimen/text_size_normal"
-            tools:text=" 件"/>
+            android:text=" 件"/>
     </LinearLayout>
 
     <ImageView

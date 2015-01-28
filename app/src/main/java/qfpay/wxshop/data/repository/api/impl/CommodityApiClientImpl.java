@@ -1,5 +1,7 @@
 package qfpay.wxshop.data.repository.api.impl;
 
+import com.google.gson.Gson;
+
 import qfpay.wxshop.data.exception.HttpRequestException;
 import qfpay.wxshop.data.exception.HttpServerException;
 import qfpay.wxshop.data.exception.MessageException;
@@ -8,6 +10,7 @@ import qfpay.wxshop.data.repository.api.CommodityApiClient;
 import qfpay.wxshop.data.repository.api.CommodityDataMapper;
 import qfpay.wxshop.data.repository.api.netbean.ItemWrapper;
 import qfpay.wxshop.data.repository.api.netbean.NetDataContainer;
+import qfpay.wxshop.data.repository.api.netbean.NewItemResponseWrapper;
 import qfpay.wxshop.data.repository.api.retrofit.CommodityService;
 import qfpay.wxshop.data.repository.api.retrofit.setting.MMRetrofitCreator;
 import retrofit.RetrofitError;
@@ -27,37 +30,38 @@ public class CommodityApiClientImpl implements CommodityApiClient {
     }
 
     @Override
-    public boolean newItem(CommodityModel model) throws MessageException {
+    public int newItem(CommodityModel model) throws MessageException {
         try {
-            NetDataContainer container = mNetService.newItem(
+            Gson gson = new Gson();
+            NewItemResponseWrapper container = mNetService.newItem(
                     model.getName(),
                     model.getDescription(),
                     model.getPostage(),
-                    mMapper.mapSKUModel(model),
-                    mMapper.mapImageModel(model));
+                    gson.toJson(mMapper.mapSKUModel(model)),
+                    gson.toJson(mMapper.mapImageModelToString(model)));
             if (!container.respcd.equals("0000")) {
                 throw new HttpServerException(container.getShownMessage());
             }
-            return true;
+            return container.data.item_id;
         } catch(RetrofitError e) {
             throw new HttpRequestException(e);
         }
     }
 
     @Override
-    public boolean editItem(CommodityModel model) throws MessageException {
+    public void editItem(CommodityModel model) throws MessageException {
         try {
+            Gson gson = new Gson();
             NetDataContainer container = mNetService.editItem(
                     model.getId(),
                     model.getName(),
                     model.getDescription(),
                     model.getPostage(),
-                    mMapper.mapSKUModel(model),
-                    mMapper.mapImageModel(model));
+                    gson.toJson(mMapper.mapSKUModel(model)),
+                    gson.toJson(mMapper.mapImageModelToBean(model)));
             if (!container.respcd.equals("0000")) {
                 throw new HttpServerException(container.getShownMessage());
             }
-            return true;
         } catch(RetrofitError e) {
             throw new HttpRequestException(e);
         }

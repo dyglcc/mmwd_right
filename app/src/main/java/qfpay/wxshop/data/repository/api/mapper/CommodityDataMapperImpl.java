@@ -25,12 +25,18 @@ import timber.log.Timber;
  * Created by LiFZhe on 1/19/15.
  */
 public class CommodityDataMapperImpl implements CommodityDataMapper {
+    private static final int DEFAULT_ID_SERVER = 0;
+
     @Override
     public List<Sku> mapSKUModel(CommodityModel commodityModel) {
         List<Sku> skuBeans = new ArrayList<Sku>();
         for (SKUModel model : commodityModel.getSkuList()) {
             Sku skuBean = new Sku();
-            skuBean.id = model.getId();
+            if (model.getId() <= 0) {
+                skuBean.id = DEFAULT_ID_SERVER;
+            } else {
+                skuBean.id = model.getId();
+            }
             skuBean.prop_value = model.getName();
             skuBean.price = model.getPrice();
             skuBean.amount = model.getAmount();
@@ -40,7 +46,7 @@ public class CommodityDataMapperImpl implements CommodityDataMapper {
     }
 
     @Override
-    public List<String> mapImageModel(CommodityModel commodityModel) {
+    public List<String> mapImageModelToString(CommodityModel commodityModel) {
         List<String> imageUrls = new ArrayList<String>();
         for (PictureModel model : commodityModel.getPictureList()) {
             imageUrls.add(model.getUrl());
@@ -49,19 +55,35 @@ public class CommodityDataMapperImpl implements CommodityDataMapper {
     }
 
     @Override
+    public List<ItemImage> mapImageModelToBean(CommodityModel commodityModel) {
+        List<ItemImage> list = new ArrayList<ItemImage>();
+        for (PictureModel model : commodityModel.getPictureList()) {
+            ItemImage image = new ItemImage();
+            if (model.getId() <= 0) {
+                image.id = DEFAULT_ID_SERVER;
+            } else {
+                image.id = model.getId();
+            }
+            image.url = model.getUrl();
+            list.add(image);
+        }
+        return list;
+    }
+
+    @Override
     public CommodityModel mapItemWrapper(ItemWrapper itemWrapper) throws MessageException {
         CommodityModel model = new CommodityModel();
-        model.setId(itemWrapper.data.id);
-        model.setName(itemWrapper.data.title);
-        model.setPrice(itemWrapper.data.price);
-        model.setPostage(itemWrapper.data.postage);
-        model.setDescription(itemWrapper.data.descr);
-        model.setStatus(CommodityStatus.getStatus(itemWrapper.data.status));
+        model.setId(itemWrapper.data.item.id);
+        model.setName(itemWrapper.data.item.title);
+        model.setPrice(itemWrapper.data.item.price);
+        model.setPostage(itemWrapper.data.item.postage);
+        model.setDescription(itemWrapper.data.item.descr);
+        model.setStatus(CommodityStatus.getStatus(itemWrapper.data.item.status));
 
         SimpleDateFormat formatter = new SimpleDateFormat(Item.DATE_FORMAT);
         Date createDate = new Date();
         try {
-            createDate = formatter.parse(itemWrapper.data.modified);
+            createDate = formatter.parse(itemWrapper.data.item.modified);
         } catch (ParseException e) {
             Timber.e(e, "解析创建日期报错");
             MessageException exception = new ParserException("数据解析出错");
@@ -69,27 +91,23 @@ public class CommodityDataMapperImpl implements CommodityDataMapper {
             throw exception;
         }
 
-        for (Sku sku : itemWrapper.data.specs) {
+        List<SKUModel> skuModelList = new ArrayList<SKUModel>();
+        for (Sku sku : itemWrapper.data.item.specs) {
             SKUModel skuModel = new SKUModel();
             skuModel.setId(sku.id);
             skuModel.setCommodityId(sku.iid);
             skuModel.setName(sku.prop_value);
             skuModel.setPrice(sku.price);
             skuModel.setAmount(sku.amount);
-
-            List<PictureModel> pictureList = new ArrayList<PictureModel>();
-            for (ItemImage image : sku.itemimgs) {
-                PictureModel pictureModel = new PictureModel();
-                pictureModel.setUrl(image.url);
-                pictureList.add(pictureModel);
-            }
-            skuModel.setPictureList(pictureList);
+            skuModelList.add(skuModel);
         }
+        model.setSkuList(skuModelList);
 
         List<PictureModel> pictureList = new ArrayList<PictureModel>();
-        for (ItemImage image : itemWrapper.data.itemimgs) {
+        for (ItemImage image : itemWrapper.data.item.images) {
             PictureModel pictureModel = new PictureModel();
             pictureModel.setUrl(image.url);
+            pictureModel.setId(image.id);
             pictureList.add(pictureModel);
         }
         model.setPictureList(pictureList);

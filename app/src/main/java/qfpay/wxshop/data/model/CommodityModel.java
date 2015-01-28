@@ -1,5 +1,7 @@
 package qfpay.wxshop.data.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,15 +12,15 @@ import java.util.List;
  *
  * Created by LiFZhe on 1/19/15.
  */
-public class CommodityModel {
+public class CommodityModel implements Serializable {
     private int                id;
     private String             name;
     private float              price;
     private float              postage;
     private String             description;
     private CommodityStatus    status;
-    private List<SKUModel>     skuList;
-    private List<PictureModel> pictureList;
+    private List<SKUModel>     skuList     = new ArrayList<SKUModel>();
+    private List<PictureModel> pictureList = new ArrayList<PictureModel>();
     private Date               lastModified;
 
     public int getId() {

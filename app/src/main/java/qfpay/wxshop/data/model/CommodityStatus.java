@@ -1,11 +1,13 @@
 package qfpay.wxshop.data.model;
 
+import java.io.Serializable;
+
 /**
  * 商品的状态枚举
  *
  * Created by LiFZhe on 1/19/15.
  */
-public enum CommodityStatus {
+public enum CommodityStatus implements Serializable {
     NORMAL(0),
     PROMOTION(11),
     OFF_SHELF(1),

@@ -18,13 +18,13 @@ public class CommodityRepositoryImpl implements CommodityRepository {
     }
 
     @Override
-    public boolean createCommodity(CommodityModel model) throws MessageException {
+    public int createCommodity(CommodityModel model) throws MessageException {
         return apiClient.newItem(model);
     }
 
     @Override
-    public boolean updateCommodity(CommodityModel model) throws MessageException {
-        return apiClient.editItem(model);
+    public void updateCommodity(CommodityModel model) throws MessageException {
+        apiClient.editItem(model);
     }
 
     @Override

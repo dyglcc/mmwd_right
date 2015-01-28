@@ -155,8 +155,12 @@ public class CommodityItemView extends LinearLayout {
 				});
 		} else {
 			MobAgentTools.OnEventMobOnDiffUser(getContext(), "manage_seckill");
-			ManPromoActivity_.intent(getContext()).gb(new2Old(data.model)).pos(controller.getIndex(data.model)).
-				from("GoodlistFragment").start();
+            if (data.model.getPrice_count() > 1) {
+                Toaster.s(getContext(), "您的此商品有多个规格, 多规格的商品暂时无法设置秒杀");
+            } else {
+                ManPromoActivity_.intent(getContext()).gb(new2Old(data.model)).pos(controller.getIndex(data.model)).
+                        from("GoodlistFragment").start();
+            }
 		}
 	}
 	
@@ -166,7 +170,10 @@ public class CommodityItemView extends LinearLayout {
 			Toaster.l(getContext(), "出错了,刷新界面试试");
 			return;
 		}
-        ItemDetailManagerActivity_.intent(getContext()).id(Integer.parseInt(goodid, 10)).start();
+        ItemDetailManagerActivity_.intent(getContext()).
+                id(Integer.parseInt(goodid, 10)).
+                isPromotation(data.model.getSalesPromotion() != null && data.model.getSalesPromotion().getPromotionID() > 0).
+                start();
 	}
 	
 	@Click void ll_menu_top() {

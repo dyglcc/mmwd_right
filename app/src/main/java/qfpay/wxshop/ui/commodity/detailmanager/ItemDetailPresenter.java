@@ -14,9 +14,14 @@ public interface ItemDetailPresenter extends MMPresenter<ItemDetailManagerView> 
 
     public void setCommodityId(int id);
 
-    public void editSku(SkuViewModel skuViewModel);
+    public void addSku(SkuViewModel skuViewModel);
 
-    public void deleteSku(SkuViewModel skuViewModel);
+    /**
+     * 如果position为-1则无效
+     */
+    public void setSku(int position, SkuViewModel skuViewModel);
+
+    public void deleteSku(int position);
 
     public void uploadPicture(PictureViewModel viewModel, ImageProgressListener listener);
 

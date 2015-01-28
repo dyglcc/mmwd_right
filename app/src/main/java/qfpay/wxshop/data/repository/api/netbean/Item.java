@@ -18,6 +18,6 @@ public class Item {
     public List<Sku> specs;// 多规格, 若用户创建商品时未使用多规格，则本列表为空。价格、库存请取 item 的 price、amount 属性
     public float postage;
     public String descr;
-    public List<ItemImage> itemimgs;
+    public List<ItemImage> images;
     public String modified;
 }

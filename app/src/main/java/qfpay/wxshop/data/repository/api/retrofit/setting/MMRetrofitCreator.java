@@ -13,8 +13,8 @@ public class MMRetrofitCreator {
     private RestAdapter mRestAdapter;
 
     public MMRetrofitCreator(String endPoint, RequestInterceptor interceptor, ErrorHandler errorHandler, boolean isTesting) {
-        RestAdapter.LogLevel logLevel = RestAdapter.LogLevel.HEADERS_AND_ARGS;
-        if (isTesting) {
+        RestAdapter.LogLevel logLevel = RestAdapter.LogLevel.FULL;
+        if (!isTesting) {
             logLevel = RestAdapter.LogLevel.NONE;
         }
 

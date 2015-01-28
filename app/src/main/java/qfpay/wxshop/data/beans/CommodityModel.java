@@ -24,6 +24,7 @@ public class CommodityModel implements Serializable {
 	private String 				update_time;  // 更新时间
 	private String 				create_time;  // 创建时间
 	private SalesPromotionModel goodpanic;    // 秒杀的表示
+    private int                 price_count;  // 有多少个价格
 	
 	private boolean isOffshelfed = false;
 	public static enum CommodityState {
@@ -138,89 +139,85 @@ public class CommodityModel implements Serializable {
 	public boolean isOffshelfed() {
 		return isOffshelfed;
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((create_time == null) ? 0 : create_time.hashCode());
-		result = prime * result + good_amount;
-		result = prime * result
-				+ ((good_desc == null) ? 0 : good_desc.hashCode());
-		result = prime * result
-				+ ((good_img == null) ? 0 : good_img.hashCode());
-		result = prime * result
-				+ ((good_name == null) ? 0 : good_name.hashCode());
-		result = prime * result + Float.floatToIntBits(good_prize);
-		result = prime * result + good_state;
-		result = prime * result
-				+ ((goodpanic == null) ? 0 : goodpanic.hashCode());
-		result = prime * result + id;
-		result = prime * result + (isOffshelfed ? 1231 : 1237);
-		result = (int) (prime * result + postage);
-		result = prime * result + sales;
-		result = prime * result
-				+ ((update_time == null) ? 0 : update_time.hashCode());
-		result = prime * result + weight;
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CommodityModel other = (CommodityModel) obj;
-		if (create_time == null) {
-			if (other.create_time != null)
-				return false;
-		} else if (!create_time.equals(other.create_time))
-			return false;
-		if (good_amount != other.good_amount)
-			return false;
-		if (good_desc == null) {
-			if (other.good_desc != null)
-				return false;
-		} else if (!good_desc.equals(other.good_desc))
-			return false;
-		if (good_img == null) {
-			if (other.good_img != null)
-				return false;
-		} else if (!good_img.equals(other.good_img))
-			return false;
-		if (good_name == null) {
-			if (other.good_name != null)
-				return false;
-		} else if (!good_name.equals(other.good_name))
-			return false;
-		if (Float.floatToIntBits(good_prize) != Float
-				.floatToIntBits(other.good_prize))
-			return false;
-		if (good_state != other.good_state)
-			return false;
-		if (goodpanic == null) {
-			if (other.goodpanic != null)
-				return false;
-		} else if (!goodpanic.equals(other.goodpanic))
-			return false;
-		if (id != other.id)
-			return false;
-		if (isOffshelfed != other.isOffshelfed)
-			return false;
-		if (postage != other.postage)
-			return false;
-		if (sales != other.sales)
-			return false;
-		if (update_time == null) {
-			if (other.update_time != null)
-				return false;
-		} else if (!update_time.equals(other.update_time))
-			return false;
-		if (weight != other.weight)
-			return false;
-		return true;
-	}
+
+    public int getPrice_count() {
+        return price_count;
+    }
+
+    public void setPrice_count(int price_count) {
+        this.price_count = price_count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CommodityModel)) return false;
+
+        CommodityModel that = (CommodityModel) o;
+
+        if (good_amount != that.good_amount) return false;
+        if (Float.compare(that.good_prize, good_prize) != 0) return false;
+        if (good_state != that.good_state) return false;
+        if (id != that.id) return false;
+        if (isOffshelfed != that.isOffshelfed) return false;
+        if (Float.compare(that.postage, postage) != 0) return false;
+        if (price_count != that.price_count) return false;
+        if (sales != that.sales) return false;
+        if (weight != that.weight) return false;
+        if (create_time != null ? !create_time.equals(that.create_time) : that.create_time != null)
+            return false;
+        if (good_desc != null ? !good_desc.equals(that.good_desc) : that.good_desc != null)
+            return false;
+        if (good_img != null ? !good_img.equals(that.good_img) : that.good_img != null)
+            return false;
+        if (good_name != null ? !good_name.equals(that.good_name) : that.good_name != null)
+            return false;
+        if (goodpanic != null ? !goodpanic.equals(that.goodpanic) : that.goodpanic != null)
+            return false;
+        if (update_time != null ? !update_time.equals(that.update_time) : that.update_time != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (good_name != null ? good_name.hashCode() : 0);
+        result = 31 * result + (good_img != null ? good_img.hashCode() : 0);
+        result = 31 * result + (good_prize != +0.0f ? Float.floatToIntBits(good_prize) : 0);
+        result = 31 * result + good_amount;
+        result = 31 * result + (good_desc != null ? good_desc.hashCode() : 0);
+        result = 31 * result + (postage != +0.0f ? Float.floatToIntBits(postage) : 0);
+        result = 31 * result + sales;
+        result = 31 * result + good_state;
+        result = 31 * result + weight;
+        result = 31 * result + (update_time != null ? update_time.hashCode() : 0);
+        result = 31 * result + (create_time != null ? create_time.hashCode() : 0);
+        result = 31 * result + (goodpanic != null ? goodpanic.hashCode() : 0);
+        result = 31 * result + price_count;
+        result = 31 * result + (isOffshelfed ? 1 : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CommodityModel{" +
+                "id=" + id +
+                ", good_name='" + good_name + '\'' +
+                ", good_img='" + good_img + '\'' +
+                ", good_prize=" + good_prize +
+                ", good_amount=" + good_amount +
+                ", good_desc='" + good_desc + '\'' +
+                ", postage=" + postage +
+                ", sales=" + sales +
+                ", good_state=" + good_state +
+                ", weight=" + weight +
+                ", update_time='" + update_time + '\'' +
+                ", create_time='" + create_time + '\'' +
+                ", goodpanic=" + goodpanic +
+                ", price_count=" + price_count +
+                ", isOffshelfed=" + isOffshelfed +
+                '}';
+    }
 }
