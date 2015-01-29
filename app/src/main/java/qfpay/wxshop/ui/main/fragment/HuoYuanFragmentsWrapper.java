@@ -31,11 +31,11 @@ public enum HuoYuanFragmentsWrapper {
             case 0:
                 return OFFICIAL.getFragment(context);
             case 2:
-                return MINE.getFragment(context);
+                return  CommoditySource.getFragment(context);
             case 1:
                 return FANS.getFragment(context);
             case 3:
-                return  CommoditySource.getFragment(context);
+                return MINE.getFragment(context);
         }
         return null;
     }
@@ -50,13 +50,13 @@ public enum HuoYuanFragmentsWrapper {
                 OFFICIAL.onFragmentSelect();
                 break;
             case 2:
-                MINE.onFragmentSelect();
+                CommoditySource.onFragmentSelect();
                 break;
             case 1:
                 FANS.onFragmentSelect();
                 break;
             case 3:
-                CommoditySource.onFragmentSelect();
+                MINE.onFragmentSelect();
                 break;
         }
     }

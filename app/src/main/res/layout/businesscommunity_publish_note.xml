@@ -64,7 +64,7 @@
                 android:gravity="start"
                 android:textSize="@dimen/common_text_content_mid"
                 android:padding="10dp"
-                android:hint="快来吐槽一下吧~~"
+                android:hint="听说发了东西会变聪明~~"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
