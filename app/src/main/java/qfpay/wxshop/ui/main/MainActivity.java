@@ -707,6 +707,17 @@ public class MainActivity extends BaseActivity {
 		AddedPopupView.close();
 		startSuisuiNainPublish();
 	}
+	public void showOneKeybehalf() {
+		changeTab(MainTab.SHOP, iv_shop);
+        ShopFragment shopFragment = (ShopFragment) MainTab.SHOP.getFragment();
+        if(shopFragment!=null){
+            shopFragment.changePager(0);
+        }
+        GoodFragment goodFragment = (GoodFragment) ShopFragmentsWrapper.getFragment(0, MainActivity.this);
+        if(goodFragment!=null){
+            goodFragment.changePager(1);
+        }
+	}
 
     public void onAddNote(){
         MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_post");

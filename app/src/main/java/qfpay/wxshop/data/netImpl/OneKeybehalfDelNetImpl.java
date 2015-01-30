@@ -10,8 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.data.beans.FactoryContractResponseWrapper;
-import qfpay.wxshop.data.beans.FactoryContractResponseWrapper.Contract;
+import qfpay.wxshop.data.beans.CommonJsonBean;
 import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.utils.T;
@@ -49,18 +48,13 @@ public class OneKeybehalfDelNetImpl extends AbstractNet {
 		if (jsonStr != null && jsonStr.length() > 0) {
 			try {
 				Gson gosn = new Gson();
-				FactoryContractResponseWrapper fromJson = gosn.fromJson(jsonStr,
-						FactoryContractResponseWrapper.class);
+				CommonJsonBean fromJson = gosn.fromJson(jsonStr,
+                        CommonJsonBean.class);
 				if (!fromJson.getRespcd().equals("0000")) {
 					bundle.putInt(ConstValue.JSON_RETURN,
 							ConstValue.JSON_FAILED);
 					return bundle;
 				}
-				Contract contract = fromJson.getData().getContact();
-
-				bundle.putString("qq", contract.getQq());
-				bundle.putString("weixin", contract.getWeixin());
-				bundle.putString("mobile", contract.getTelephone());
 				/** 界面上展示的时候直接根据key取存储类的数据 */
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
 			} catch (Exception e) {

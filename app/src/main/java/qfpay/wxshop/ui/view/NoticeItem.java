@@ -10,6 +10,10 @@ import org.androidannotations.annotations.ViewById;
 import qfpay.wxshop.R;
 import qfpay.wxshop.activity.NoticeCenterActivity;
 import qfpay.wxshop.data.beans.NoticeItemBean;
+import qfpay.wxshop.ui.main.MainTab;
+import qfpay.wxshop.ui.main.fragment.GoodFragment;
+import qfpay.wxshop.ui.main.fragment.ShopFragment;
+import qfpay.wxshop.ui.main.fragment.ShopFragmentsWrapper;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
@@ -30,11 +34,11 @@ public class NoticeItem extends LinearLayout {
 	ImageView iv_read;
 	@ViewById
 	View layout_parent;
-	@SuppressLint("SimpleDateFormat")
-	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	@SuppressLint("SimpleDateFormat")
-	SimpleDateFormat format2 = new SimpleDateFormat("MM-dd");
-	private Context context;
+    @SuppressLint("SimpleDateFormat")
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    @SuppressLint("SimpleDateFormat")
+    SimpleDateFormat format2 = new SimpleDateFormat("MM-dd");
+    private Context context;
 	
 	private Handler handler;
 
@@ -49,15 +53,15 @@ public class NoticeItem extends LinearLayout {
 		if (gb == null) {
 			return;
 		}
-		
+
 		tv_content.setText(gb.getContent());
-		if(gb.getClickable()!=null && gb.getClickable().equals("1")){
-			tv_detail.setVisibility(View.VISIBLE);
-		}else{
-			tv_detail.setVisibility(View.INVISIBLE);
-		}
-		showImg(gb);
-		
+		if(gb.getClickable()!=null && gb.getClickable().equals("1")) {
+            tv_detail.setVisibility(View.VISIBLE);
+        }else{
+            tv_detail.setVisibility(View.INVISIBLE);
+        }
+        showImg(gb);
+
 		setDateStr(gb);
 
 		setclickListener(gb);
@@ -99,6 +103,10 @@ public class NoticeItem extends LinearLayout {
 				if(gb2.getClickable().equals("1")){
 					go2ReadingActivity(gb2);
 				}
+                // 一键代发 消息类
+                if(gb2.getType() == 6){
+                    handler.sendEmptyMessage(NoticeCenterActivity.CHANGETAB);
+                }
 				
 			}
 		});

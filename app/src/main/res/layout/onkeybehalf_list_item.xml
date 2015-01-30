@@ -35,11 +35,11 @@
 
             <ImageView
                 android:id="@+id/iv_carriage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_gravity="center"
-                android:visibility="gone"
-                android:src="@drawable/ic_launcher" />
+                android:visibility="visible"
+                android:src="@drawable/mask_invalid" />
         </FrameLayout>
 
 

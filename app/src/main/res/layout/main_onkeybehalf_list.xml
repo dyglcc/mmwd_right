@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
 
-    <qfpay.wxshop.ui.view.XListView
+    <qfpay.wxshop.ui.view.OnekeyBehalfListView
         android:id="@+id/listView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -30,7 +30,6 @@
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="10dp"
             android:src="@drawable/commodity_list_nodata" />
-
 
     </FrameLayout>
 

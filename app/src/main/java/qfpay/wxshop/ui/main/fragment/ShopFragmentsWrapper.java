@@ -4,7 +4,6 @@ import java.lang.ref.SoftReference;
 
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.commodity.CommodityListFragment_;
 import qfpay.wxshop.ui.web.CommonWebFragment_;
 import android.content.Context;
 

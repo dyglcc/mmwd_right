@@ -18,7 +18,7 @@
     <dimen name="tag_text_size">16dp</dimen>
     <dimen name="tag_horizontalMargin">10dp</dimen>
     <dimen name="tag_verticalMargin">0dp</dimen>
-    <dimen name="header_height">80dp</dimen>
+    <dimen name="header_height">60dp</dimen>
     <dimen name="footer_height">150dp</dimen>
     <dimen name="footer_padding">20dp</dimen>
     <dimen name="line_margin_bottom_edittext">16dip</dimen>

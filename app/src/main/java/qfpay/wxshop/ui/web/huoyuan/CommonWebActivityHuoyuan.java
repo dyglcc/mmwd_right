@@ -1,6 +1,5 @@
 package qfpay.wxshop.ui.web.huoyuan;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,14 +8,19 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.net.http.SslError;
+import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -36,12 +40,14 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.getui.ImageUtils.ImageSizeForUrl;
 import qfpay.wxshop.share.OnShareLinstener;
@@ -51,12 +57,19 @@ import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.common.actionbar.ShareActionProvider;
 import qfpay.wxshop.ui.main.MainTab;
+import qfpay.wxshop.ui.main.fragment.GoodFragment;
 import qfpay.wxshop.ui.main.fragment.HuoYuanFragment;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
+import qfpay.wxshop.ui.main.fragment.OneKeyBeHalfListFragment;
+import qfpay.wxshop.ui.main.fragment.OrderFragment_;
+import qfpay.wxshop.ui.main.fragment.ShopFragment;
+import qfpay.wxshop.ui.main.fragment.ShopFragmentsWrapper;
 import qfpay.wxshop.ui.view.WebViewSavePic;
+import qfpay.wxshop.ui.web.WebActivity;
+import qfpay.wxshop.ui.web.WebActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
-import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 @EActivity(R.layout.web_common_activity_huoyuan)
 public class CommonWebActivityHuoyuan extends BaseActivity implements
@@ -106,50 +119,61 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
             return;
         }
         // 创建缓存文件夹
-//		webView.getSettings().setDomStorageEnabled(true);
-//		webView.getSettings().setAppCacheMaxSize(1024 * 1024 * 20);
-//		String webView_cache = ConstValue.getWebView_cache();
-//		File file  = new File(webView_cache);
-//		if(!file.exists()){
-//			file.mkdirs();
-//		}
-//		webView.getSettings().setAppCachePath(webView_cache);
-//		webView.getSettings().setAllowFileAccess(true);
-//		webView.getSettings().setAppCacheEnabled(true);
-//		webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-//
-//		webView.getSettings().setJavaScriptEnabled(true);
-//		webView.getSettings().setDefaultTextEncodingName("utf-8");
-//		webView.getSettings().setBuiltInZoomControls(false);
-//		webView.getSettings().setSupportZoom(false);
-//		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+		webView.getSettings().setDomStorageEnabled(true);
+		webView.getSettings().setAppCacheMaxSize(1024 * 1024 * 20);
+		String webView_cache = ConstValue.getWebView_cache();
+		File file  = new File(webView_cache);
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		webView.getSettings().setAppCachePath(webView_cache);
+		webView.getSettings().setAllowFileAccess(true);
+		webView.getSettings().setAppCacheEnabled(true);
+		webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+		webView.getSettings().setJavaScriptEnabled(true);
+		webView.getSettings().setDefaultTextEncodingName("utf-8");
+		webView.getSettings().setBuiltInZoomControls(false);
+		webView.getSettings().setSupportZoom(false);
+		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setDefaultTextEncodingName("utf-8");
-        webView.getSettings().setBuiltInZoomControls(false);
-        webView.getSettings().setSupportZoom(false);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webView.getSettings().setDomStorageEnabled(true);
-
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setDefaultTextEncodingName("utf-8");
+//        webView.getSettings().setBuiltInZoomControls(false);
+//        webView.getSettings().setSupportZoom(false);
+//        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+//        webView.getSettings().setDomStorageEnabled(true);
 
         header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
         header.put("qf_uid", WxShopApplication.dataEngine.getUserId());
 
-        webView.setWebViewClient(new MyWebViewClient());
+//        webView.setWebViewClient(new MyWebViewClient());
         webView.setDownloadListener(new MyWebViewDownLoadListener());
         webView.setWebChromeClient(new MyWebChromeClient());
-        if (url != null && !"".equals(url)) {
-            header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
-            header.put("qf_uid", WxShopApplication.dataEngine.getUserId());
-            Toaster.l(this,"header:" + header.toString());
-            webView.loadUrl(url, header);
-        }
+//        Utils.setCookieHuoyuansHuoyuan(url, CommonWebActivityHuoyuan.this);
+//        if (url != null && !"".equals(url)) {
+//            header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
+//            header.put("qf_uid", WxShopApplication.dataEngine.getUserId());
+////            Toaster.l(this,"header:" + header.toString());
+//            webView.loadUrl(url, header);
+//        }
 
         webView.addJavascriptInterface(new callCameroJavaScriptInterface(),
                 "android_finish_page");
+        webView.addJavascriptInterface(new SendUidInterface(),
+                "android_senduid2page");
+        webView.addJavascriptInterface(new OnkeybehalfSuccess(),
+                "android_behalf_success");
+//        go2Onekey();
+
+
+        new WebViewTask11().execute();
+
 
 	}
+    @UiThread
+    void go2Onekey(){
+    }
 	@UiThread
 	public void setVisiable(){
 		if(btn_save!=null){
@@ -163,6 +187,22 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
         public void clickOnAndroid() {
 
             setVisiable();
+        }
+    }
+    private class SendUidInterface {
+        @JavascriptInterface
+        public String clickOnAndroid() {
+
+            T.i("get uid click on android ..");
+            return WxShopApplication.dataEngine.getUserId();
+        }
+    }
+    private class OnkeybehalfSuccess {
+        @JavascriptInterface
+        public void clickOnAndroid() {
+
+            WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF = true;
+
         }
     }
 	public void setCustomView(){
@@ -196,13 +236,13 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 		HuoYuanFragment fragment = (HuoYuanFragment) MainTab.HUOYUAN
                 .getFragment();
         fragment.changePager(1);
-//        WxShopApplication.IS_NEED_REFRESH_MINE_HUOYUAN = true;
-		Intent intent = new Intent();
-		intent.putExtra("result", MaijiaxiuFragment.ACTION_HUOYUAN_ADD);
-		setResult(Activity.RESULT_OK, intent);
-		finish();
-	}
 
+		Intent intent = new Intent();
+        intent.putExtra("result", MaijiaxiuFragment.ACTION_HUOYUAN_ADD);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+        WxShopApplication.IS_NEED_REFRESH_MINE_HUOYUAN = true;
+    }
 
 
 
@@ -308,51 +348,10 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-        Toaster.l(this,"long press");
+//        Toaster.l(this,"long press");
         return super.onKeyLongPress(keyCode, event);
     }
 
-    class MyWebViewClient extends WebViewClient {
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            header.put("QFCOOKIE", "sessionid=" + WxShopApplication.dataEngine.getcid());
-            header.put("qf_uid", WxShopApplication.dataEngine.getUserId());
-            Utils.setCookies(url, CommonWebActivityHuoyuan.this);
-            Toaster.l(CommonWebActivityHuoyuan.this,"header:" + header.toString());
-            webView.loadUrl(url, header);
-            return true;
-        }
-
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            setPageState(PageState.LOADING);
-        }
-
-        public void onPageFinished(WebView view, String url) {
-            if (!Utils.isCanConnectionNetWork(CommonWebActivityHuoyuan.this)) {
-                setPageState(PageState.ERROR);
-            } else {
-                setPageState(PageState.COMPLETE);
-            }
-        }
-
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            setPageState(PageState.ERROR);
-        }
-
-//        @SuppressLint("NewApi")
-//        @Override
-//        public WebResourceResponse shouldInterceptRequest(WebView view,String url) {
-//            // 非超链接(如Ajax)请求无法直接添加请求头，现拼接到url末尾,这里拼接一个imei作为示例
-//
-//            String ajaxUrl = url;
-//            // 如标识:req=ajax
-//            if (url.contains("req=ajax")) {
-//                ajaxUrl += "&imei=" + "nimeidsdfisdf";
-//            }
-//
-//            return super.shouldInterceptRequest(view, ajaxUrl);
-//
-//        }
-    }
 
     class MyWebChromeClient extends WebChromeClient {
         @Override
@@ -430,5 +429,57 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
         }
     }
 
+    private class WebViewTask11 extends AsyncTask<Void, Void, Boolean> {
+        String sessionCookie ="sessionid="
+                + WxShopApplication.dataEngine.getcid()+";qf_uid=" + WxShopApplication.dataEngine.getUserId();
+        CookieManager cookieManager;
+
+        @Override
+        protected void onPreExecute() {
+            CookieSyncManager.createInstance(CommonWebActivityHuoyuan.this);
+            cookieManager = CookieManager.getInstance();
+
+            if (sessionCookie != null) {
+                                /* delete old cookies */
+                cookieManager.removeSessionCookie();
+            }
+            super.onPreExecute();
+        }
+        protected Boolean doInBackground(Void... param) {
+                        /* this is very important - THIS IS THE HACK */
+			SystemClock.sleep(1000);
+            return false;
+        }
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (sessionCookie != null) {
+                cookieManager.setCookie(url, sessionCookie);
+                CookieSyncManager.getInstance().sync();
+            }
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    Utils.setCookiesHuoyuan(url, CommonWebActivityHuoyuan.this);
+                    webView.loadUrl(url, header);
+                    return true;
+                }
+
+            });
+            Utils.setCookiesHuoyuan(url, CommonWebActivityHuoyuan.this);
+            webView.loadUrl(url,header);
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        int code = data.getIntExtra("result", -1);
+        if(code == REFRESH){
+            new WebViewTask11().execute();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public static final int REFRESH = 1;
 
 }

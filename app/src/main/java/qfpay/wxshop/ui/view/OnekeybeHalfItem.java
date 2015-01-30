@@ -33,7 +33,7 @@ import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.netImpl.OneKeybehalfDelNetImpl;
 import qfpay.wxshop.getui.ImageUtils;
 import qfpay.wxshop.ui.commodity.CommodityShare;
-import qfpay.wxshop.ui.main.fragment.OneKeyBeHalfFragment;
+import qfpay.wxshop.ui.main.fragment.OneKeyBeHalfListFragment;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import android.os.Handler;
@@ -61,6 +61,11 @@ public class OnekeybeHalfItem extends LinearLayout {
     LinearLayout ll_name, ll_menu;
     @ViewById
     View v_line;
+    @ViewById
+    ImageView iv_carriage;
+
+    @ViewById
+    View ll_menu_share,ll_menu_offshelf,ll_menu_preview;
 
     private Context context;
     private Handler handler;
@@ -98,23 +103,31 @@ public class OnekeybeHalfItem extends LinearLayout {
         processTitleWidth();
         
         settextColor(data.getStatus());
+
         return this;
     }
 
+
+
     private void settextColor(String status) {
         if("1".equals(status) || "2".equals(status)){
-            tv_name.setTextColor(getResources().getColor(R.color.grey777));
-            tv_price.setTextColor(getResources().getColor(R.color.grey777));
+            tv_name.setTextColor(getResources().getColor(R.color.text_color_cancel));
+            tv_price.setTextColor(getResources().getColor(R.color.text_color_cancel));
 
-            tv_commission.setTextColor(getResources().getColor(R.color.grey777));
-            tv_time.setTextColor(getResources().getColor(R.color.grey777));
-            tv_salesvolume.setTextColor(getResources().getColor(R.color.grey777));
+            tv_commission.setTextColor(getResources().getColor(R.color.text_color_cancel));
+            tv_time.setTextColor(getResources().getColor(R.color.text_color_cancel));
+            tv_salesvolume.setTextColor(getResources().getColor(R.color.text_color_cancel));
 
-            tv_price_text.setTextColor(getResources().getColor(R.color.grey777));
+            tv_price_text.setTextColor(getResources().getColor(R.color.text_color_cancel));
 
-            tv_commission_text.setTextColor(getResources().getColor(R.color.grey777));
-            tv_time_text.setTextColor(getResources().getColor(R.color.grey777));
-            tv_salesvolume_text.setTextColor(getResources().getColor(R.color.grey777));
+            tv_commission_text.setTextColor(getResources().getColor(R.color.text_color_cancel));
+            tv_time_text.setTextColor(getResources().getColor(R.color.text_color_cancel));
+            tv_salesvolume_text.setTextColor(getResources().getColor(R.color.text_color_cancel));
+            iv_carriage.setVisibility(View.VISIBLE);
+
+            ll_menu_preview.setVisibility(View.GONE);
+            ll_menu_share.setVisibility(View.GONE);
+
         }else{
             tv_name.setTextColor(getResources().getColor(R.color.text_content));
             tv_price.setTextColor(getResources().getColor(R.color.text_content));
@@ -128,6 +141,10 @@ public class OnekeybeHalfItem extends LinearLayout {
             tv_commission_text.setTextColor(getResources().getColor(R.color.text_content));
             tv_time_text.setTextColor(getResources().getColor(R.color.text_content));
             tv_salesvolume_text.setTextColor(getResources().getColor(R.color.text_content));
+            iv_carriage.setVisibility(View.GONE);
+
+            ll_menu_preview.setVisibility(View.VISIBLE);
+            ll_menu_share.setVisibility(View.VISIBLE);
         }
     }
 
@@ -174,7 +191,7 @@ public class OnekeybeHalfItem extends LinearLayout {
     void ll_menu_share() {
 
         Message msg = handler.obtainMessage();
-        msg.what = OneKeyBeHalfFragment.SSN_SHARE;
+        msg.what = OneKeyBeHalfListFragment.SSN_SHARE;
         Bundle bun = new Bundle();
         bun.putSerializable("share",data);
         msg.setData(bun);
@@ -221,7 +238,7 @@ public class OnekeybeHalfItem extends LinearLayout {
             public void onSuccess(Bundle bundle) {
 
                 Message msg = handler.obtainMessage();
-                msg.what = OneKeyBeHalfFragment.SSN_DEL;
+                msg.what = OneKeyBeHalfListFragment.SSN_DEL;
                 Bundle bun = new Bundle();
                 bun.putSerializable(SSNPublishActivity.SSN_DEL_BEAN,data);
                 msg.setData(bun);

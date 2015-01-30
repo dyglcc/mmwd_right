@@ -61,7 +61,6 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 	@AfterViews @UiThread(delay = 1000) void init() {
 		dataController.setCallback(this);
 		initListView();
-        Toaster.l(getActivity(),"commodity");
 	}
 	
     @Override public void onDestroy() {
@@ -429,9 +428,4 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 			return true;
 		}
 	}
-//	public void destory(){
-//		if(dataController!=null){
-//			dataController.removeCallback();
-//		}
-//	}
 }

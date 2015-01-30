@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,9 +47,11 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.SSNPublishActivity;
 import qfpay.wxshop.activity.share.ShareActivity;
 import qfpay.wxshop.config.WDConfig;
+import qfpay.wxshop.data.beans.CommodityModel;
 import qfpay.wxshop.data.beans.OneKeybehalfListResponseWrapper;
 import qfpay.wxshop.data.beans.OneKeybehalfListResponseWrapper.MsgsWrapper;
 import qfpay.wxshop.data.beans.OnekeybehalfItemBean;
+import qfpay.wxshop.data.beans.SalesPromotionModel;
 import qfpay.wxshop.data.beans.ShareBean;
 import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.AbstractNet;
@@ -59,6 +63,7 @@ import qfpay.wxshop.getui.ImageUtils;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.view.CustomProgressDialog;
+import qfpay.wxshop.ui.view.OnekeyBehalfListView;
 import qfpay.wxshop.ui.view.OnekeybeHalfItem;
 import qfpay.wxshop.ui.view.OnekeybeHalfItem_;
 import qfpay.wxshop.ui.view.TopCloseAnimation;
@@ -74,7 +79,7 @@ import qfpay.wxshop.utils.Utils;
 
 @SuppressLint("HandlerLeak")
 @EFragment(R.layout.main_onkeybehalf_list)
-public class OneKeyBeHalfFragment extends BaseFragment implements
+public class OneKeyBeHalfListFragment extends BaseFragment implements
         ISimpleDialogListener, XListView.IXListViewListener, PlatformActionListener, Callback {
     public static final String SP_NAME_MANAGE = "config";
     public static final String SP_ITEN_ISNEW = "copy_isnew";
@@ -94,7 +99,7 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
 
     private LayoutInflater mInflater;
     @ViewById(R.id.listView)
-    XListView listView;
+    OnekeyBehalfListView listView;
 
     public OnekeybehalfItemBean sharebean;
 
@@ -134,11 +139,10 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
     private boolean isloadding;
     private int pageIndex = 1;
 
-    public static int clickedPos;
-
-    TopExpandAnimation expand_animation;
-    TopCloseAnimation closeAnima;
-    Animation leftAnima, leftanima2;
+    @ViewById
+    FrameLayout fl_indictor;
+    @ViewById
+    ImageView iv_indictor;
 
     @SuppressLint("SimpleDateFormat")
     private SimpleDateFormat format = new SimpleDateFormat(
@@ -179,6 +183,7 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
 
     }
 
+
     private OnekeybehalfItemBean demobean;
 
 
@@ -188,12 +193,25 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
 
     @Override
     public void onFragmentRefresh() {
-        if (data != null) {
-            if (data.isEmpty() && initSuccess) {
-                getData(true);
-            }
+
+        Toaster.l(getActivity(),"refresh : boolean - "+ WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF);
+        if(WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF){
+            Toaster.l(getActivity(),"refresh onekey");
+            pageIndex = -1;
+            getData(true);
+            WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF = false;
+            return;
+        }
+
+        if (data.isEmpty() && initSuccess ) {
+            getData(true);
+            return;
+        }else{
+            notifyData();
         }
         super.onFragmentRefresh();
+
+
     }
 
     View headerViewInfo;
@@ -276,10 +294,11 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
      * 初始化列表
      */
     private void initListView() {
-        listView.setPullRefreshEnable(false);
         listView.setAutoLoadEnable(false);
         listView.setXListViewListener(this);
         listView.setPullLoadEnable(false);
+        listView.setPullRefreshEnable(true);
+        listView.setFragment(OneKeyBeHalfListFragment.this);
         adapter = new MyAdatpter();
         listView.setAdapter(adapter);
     }
@@ -329,7 +348,6 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
                     data.addAll(datas);
                     notifyData();
                     isLoadingData = false;
-                    stopOldProgress();
                     pageIndex++;
                 }
             }
@@ -339,7 +357,6 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
             public void onFailed(Bundle bundle) {
                 isLoadingData = false;
                 loadFail = true;
-                stopOldProgress();
                 MobAgentTools.OnEventMobOnDiffUser(getActivity(),
                         "maijiaxiu_pub_faild");
             }
@@ -350,24 +367,29 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
 
 
     protected void notifyData() {
+        checkEmptyfooter();
         adapter.notifyDataSetChanged();
     }
+
+    private void checkEmptyfooter() {
+        checkFooterView();
+    }
+
+    
 
 
     protected void notifyData1() {
 
         initListView();
-
-
-        adapter.notifyDataSetChanged();
+        notifyData();
     }
 
 
     private int mHideGroupPos = -1;
 
+
     @Override
     public void onRefresh() {
-
 
         pageIndex = -1;
         getData(true);
@@ -404,6 +426,9 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
 
         @Override
         public OnekeybehalfItemBean getItem(int arg0) {
+            if(arg0 == -1){
+                return null;
+            }
             return data.get(arg0);
         }
 
@@ -583,15 +608,6 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
         }
     }
 
-    @UiThread
-    void stopOldProgress() {
-        if (getActivity() != null && !getActivity().isFinishing()) {
-            if (progressDialog != null && progressDialog.isShowing()) {
-                progressDialog.dismiss();
-                progressDialog = null;
-            }
-        }
-    }
 
     public void removeItem(int position) {
         data.remove(position);
@@ -624,25 +640,24 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
                     @Override
                     public void onClick(int whichButton) {
                         switch (whichButton) {
+                            case SHARE_MOMENT:
+                                // 显示启动分享文字
+                                handler.sendEmptyMessage(1);
+                                MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+                                        "click_onkeybehalf_share_moments");
+                                momentsGoodItem(sharebean);
+                                break;
                             case SHARE_FRIENT:
                                 // 显示启动分享文字
                                 handler.sendEmptyMessage(1);
-                                MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                                        "click_ssn_share_moments");
-                                momentsGoodItem(sharebean);
-                                break;
-                            case SHARE_MOMENT:
-                                // 显示启动分享文字
-                                MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                                        "click_ssn_share_friend");
-
-                                handler.sendEmptyMessage(1);
                                 friendGoodItem(sharebean);
+                                MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+                                        "click_onkeybehalf_share_friend");
                                 break;
                             case ONE_KEY_SHARE:
                                 // 显示启动分享文字
                                 MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                                        "click_ssn_share_onkeyshare");
+                                        "click_onkeybehalf_share_onkeyshare");
                                 WxShopApplication.shareBean = getShareBean(sharebean);
                                 Intent intent = new Intent(getActivity(),
                                         ShareActivity.class);
@@ -650,7 +665,6 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
                                 intent.putExtra(ConstValue.gaSrcfrom, "android_mmwdapp_hmsgshare_");
                                 intent.putExtra("share_content_type", ShareActivity.SHARE_CONTENT_GOOD_ITEM);
                                 startActivity(intent);
-
                                 break;
                             case COPY:
 
@@ -666,7 +680,7 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
 
 
     private String getOnkeydaifa(OnekeybehalfItemBean model) {
-        return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + model.getId() + "?fx_refer=qfuid_" + WxShopApplication.dataEngine.getUserId() + "&ga_medium=android_mmwdapp_preview_&ga_source=entrance";
+        return WDConfig.getInstance().WD_URL_HUO_YUAN + "item/" + model.getId() + "?fx_refer=qfuid_" + WxShopApplication.dataEngine.getUserId() + "&ga_medium=android_mmwdapp_preview_&ga_source=entrance";
     }
 
     private void momentsGoodItem(OnekeybehalfItemBean model) {
@@ -679,12 +693,7 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
             desc = desc.substring(0, 100) + "...";
         }
         wdb.description = desc;
-//        SalesPromotionModel promotionModel = model.getSalesPromotion();
-//        if (promotionModel != null && promotionModel.getPromotionID() != 0) {
-//            wdb.title = "【限时秒杀】" + model.getName() + "特价" + promotionModel.getPromotionPrice() + "元，手快有、手慢无哦！";
-//        } else {
-//            wdb.title = "【新品推荐】" + model.getName() + "仅需" + model.getPrice() + "元，欢迎进店选购下单哟！";
-//        }
+        wdb.title = "【新品推荐】" + model.getTitle() + "仅需" + model.getPrice() + "元，欢迎进店选购下单哟！";
         wdb.scope = ConstValue.circle_share;
         UtilsWeixinShare.shareWeb(wdb, ConstValue.android_mmwdapp_manageshare_wctimeline, getActivity());
     }
@@ -699,20 +708,25 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
             desc = desc.substring(0, 100) + "...";
         }
         wdb.description = desc;
-//        SalesPromotionModel promotionModel = model.getSalesPromotion();
-//        if (promotionModel != null && promotionModel.getPromotionID() != 0) {
-//            wdb.title = "【限时秒杀】" + model.getName() + "特价" + promotionModel.getPromotionPrice() + "元，手快有、手慢无哦！";
-//        } else {
-//            wdb.title = "【新品推荐】" + model.getName() + "仅需" + model.getPrice() + "元，欢迎进店选购下单哟！";
-//        }
+        wdb.title = "【新品推荐】" + model.getTitle()+ "仅需" + model.getPrice() + "元，欢迎进店选购下单哟！";
+        wdb.scope = ConstValue.friend_share;
         UtilsWeixinShare.shareWeb(wdb, ConstValue.android_mmwdapp_manageshare_wcfriend, getActivity());
     }
 
     protected ShareBean getShareBean(OnekeybehalfItemBean model) {
         ShareBean shareBean = new ShareBean();
-        shareBean.imgUrl = Utils.getThumblePic(model.getImg(), ConstValue.shareBigPic);
-        shareBean.link = getOnkeydaifa(model);
+        shareBean.imgUrl = Utils.getThumblePic(model.getImg(), ConstValue.shareSmallPic);
+        shareBean.link = WDConfig.getInstance().WD_URL_HUO_YUAN+"item/" + model.getId();
 
+            String descString = model.getDescr();
+            if (descString.length() > 100) {
+                descString = descString.substring(0, 98) + "...";
+            }
+            shareBean.title = "亲,我的店铺又有新宝贝了哦!" + model.getTitle() + " "
+                    + descString + " 仅需" + model.getPrice() + "元,点击宝贝链接"
+                    + "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + model.getId()
+                    + " 直接下单购买哦";
+            shareBean.from = "manageshop";
 
         String desc = model.getDescr();
         if (desc.length() > 100) {
@@ -724,8 +738,8 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
         shareBean.qqTitle_url = shareBean.link;
         shareBean.qqText = shareBean.title;
         return shareBean;
-
     }
+
 
     private static final int SIZE = 80;
 
@@ -815,5 +829,31 @@ public class OneKeyBeHalfFragment extends BaseFragment implements
                     "qqweibo_share_fail_sharesdk");
         }
     }
+
+
+    private void checkFooterView() {
+        listView.stopRefresh();
+        listView.stopLoadMore();
+
+
+        if (OneKeyBeHalfListFragment_.data.isEmpty() && OneKeyBeHalfListFragment_.nodata) {
+            fl_indictor.setVisibility(View.VISIBLE);
+            return;
+        }else{
+            invisiableEmptyView();
+        }
+        // 空列表 有数据
+        if (OneKeyBeHalfListFragment_.data.isEmpty()){
+            if (handler != null) {
+                handler.sendEmptyMessage(OneKeyBeHalfListFragment.ACTION_GET_DATA);
+            }
+            return;
+        }
+    }
+    private void invisiableEmptyView() {
+        fl_indictor.setVisibility(View.INVISIBLE);
+    }
+
+
 
 }

@@ -21,6 +21,7 @@ import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.listener.MaijiaxiuUploadListener;
 import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.MoreActivity;
 import qfpay.wxshop.ui.selectpic.ImageItem;
@@ -45,6 +46,7 @@ import com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener;
 public class WxShopApplication extends Application {
 	public static IWXAPI api;
 	public static  boolean IS_NEED_REFRESH_MINE_HUOYUAN = false;
+	public static  boolean IS_NEED_REFRESH_ONE_KEY_BEFALLF = false;
 
 	public static DataEngine dataEngine;
 	public byte[] aeskey;
@@ -64,6 +66,7 @@ public class WxShopApplication extends Application {
 	// 碎碎念活动参数
 	public String SSN_ACTIVITY_TEXT = "";
 	public String SSN_ACTIVITY_URL="http://www.qianmiaomiao.com/explore2/";
+    public MainActivity main;
 
 	@Override
 	public void onCreate() {

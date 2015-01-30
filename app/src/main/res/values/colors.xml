@@ -38,7 +38,10 @@
     <color name="text_hint_color">#91948d</color>
     <color name="text_color">#333333</color>
     <color name="text_color_green">#61be05</color>
-    
+    <color name="text_color_cancel">#cecfcc</color>
+    <color name="text_color_tab_selected">#f06292</color>
+    <color name="text_color_tab_unselected">#91948d</color>
+
     
     <!-- tabindicator -->
     

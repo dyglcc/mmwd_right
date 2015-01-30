@@ -30,7 +30,6 @@ public class WebViewSavePic extends WebView {
 
     private void init(){
 
-        Toaster.l(context,"long inti");
         setFocusable(true);
         setLongClickable(true);
         this.setOnLongClickListener(new OnLongClickListener() {
@@ -46,7 +45,6 @@ public class WebViewSavePic extends WebView {
                     }
                 }
 
-                Toaster.l(context,"long press");
                 return false;
             }
         });

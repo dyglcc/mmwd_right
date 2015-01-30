@@ -101,14 +101,4 @@ public class NoticeListNetImpl extends AbstractNet {
 		return bundle;
 	}
 
-	private void getClickAbleData(List<NoticeItemBean> notification) {
-
-		for (int i = notification.size() - 1; i >= 0; i--) {
-			NoticeItemBean noticeItemBean = notification.get(i);
-			String titleString = noticeItemBean.getTitle();
-			if (titleString == null || titleString.trim().equals("")) {
-				notification.remove(noticeItemBean);
-			}
-		}
-	}
 }

@@ -930,6 +930,29 @@ public class Utils {
 		cookieManager.setCookie(domain, cookieString);
 		CookieSyncManager.getInstance().sync();
 	}
+	public static void setCookiesHuoyuan(String url, Context context) {
+		if(url== null || url.equals("")){
+			return;
+		}
+		if (context == null) {
+			return;
+		}
+		CookieSyncManager.createInstance(context);
+		CookieManager cookieManager = CookieManager.getInstance();
+		cookieManager.setAcceptCookie(true);
+		String cookieString = "qf_uid=" + WxShopApplication.dataEngine.getUserId();
+//		// cookieManager.removeSessionCookie();//移除
+		String pre = url.replace("http://", "");
+        String domain = pre;
+        if(pre.indexOf("/")!=-1){
+           domain = pre.substring(0, pre.indexOf("/"));
+        }
+        cookieManager.setCookie("1.wx.qfpay.com", "sessionid="+WxShopApplication.dataEngine.getcid());
+        cookieManager.setCookie("1.wx.qfpay.com", cookieString);
+        cookieManager.setCookie(domain, "sessionid="+WxShopApplication.dataEngine.getcid());
+        cookieManager.setCookie(domain, cookieString);
+		CookieSyncManager.getInstance().sync();
+	}
 	// public static void setCookiesOrderList(String url, Context context) {
 	// 	if(url== null || url.equals("")){
 	// 		return;
