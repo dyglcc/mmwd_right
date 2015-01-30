@@ -26,6 +26,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.ManagePreViewActivity_;
 import qfpay.wxshop.activity.SSNPublishActivity;
+import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.beans.OnekeybehalfItemBean;
 import qfpay.wxshop.data.handler.MainHandler;
@@ -102,15 +103,15 @@ public class OnekeybeHalfItem extends LinearLayout {
 
         processTitleWidth();
         
-        settextColor(data.getStatus());
+        settextColor(data.getIs_agent_actived());
 
         return this;
     }
 
 
 
-    private void settextColor(String status) {
-        if("1".equals(status) || "2".equals(status)){
+    private void settextColor(int status) {
+        if(0 == status){
             tv_name.setTextColor(getResources().getColor(R.color.text_color_cancel));
             tv_price.setTextColor(getResources().getColor(R.color.text_color_cancel));
 
@@ -207,7 +208,7 @@ public class OnekeybeHalfItem extends LinearLayout {
         GoodsBean gb = new2Old(data);
         ManagePreViewActivity_.intent(getContext()).ga_medium("android_mmwdapp_previewshare_").
                 title("商品预览").
-                url("http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + data.getId() + "?fx_refer=qfuid_"+WxShopApplication.dataEngine.getUserId()+"&ga_medium=android_mmwdapp_preview_&ga_source=entrance").
+                url(WDConfig.getInstance().getGoodPreviewUrl() + data.getId() + "?fx_refer=qfuid_"+WxShopApplication.dataEngine.getUserId()+"&ga_medium=android_mmwdapp_preview_&ga_source=entrance").
                 gooditem(gb).start();
     }
 

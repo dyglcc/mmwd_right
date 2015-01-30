@@ -228,7 +228,7 @@ public class CommodityItemView extends LinearLayout {
                             gb.setMsBean(new2OldMS(data.model));
                             ManagePreViewActivity_.intent(getContext()).
                                     title("商品预览").
-                                    url("http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + data.model.getID() + "?ga_medium=android_mmwdapp_preview_&ga_source=entrance").
+                                    url(WDConfig.getInstance().getGoodPreviewUrl() + data.model.getID() + "?ga_medium=android_mmwdapp_preview_&ga_source=entrance").
                                     gooditem(gb).start();
                         }
                     });
@@ -244,7 +244,7 @@ public class CommodityItemView extends LinearLayout {
         gb.setMsBean(new2OldMS(data.model));
         ManagePreViewActivity_.intent(getContext()).ga_medium("android_mmwdapp_previewshare_").
                 title("商品预览").
-                url("http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + data.model.getID() + "?ga_medium=android_mmwdapp_preview_&ga_source=entrance").
+                url(WDConfig.getInstance().getGoodPreviewUrl() + data.model.getID() + "?ga_medium=android_mmwdapp_preview_&ga_source=entrance").
                 gooditem(gb).start();
 //		Intent intent = new Intent(getContext(), ManagePreViewActivity.class);
 //		intent.putExtra(ConstValue.TITLE, "商品预览");

@@ -50,7 +50,6 @@ public class ShopFragment extends BaseFragment implements OnShareLinstener {
 	}
 	
 	@Override public void onFragmentRefresh() {
-        Toaster.l(getActivity(),"commodity list refresh");
         ShopFragmentsWrapper.getFragment(0,getActivity()).onFragmentRefresh();
 		refreshView(true);
 	}

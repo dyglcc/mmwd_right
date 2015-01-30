@@ -39,7 +39,7 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:visibility="visible"
-                android:src="@drawable/mask_invalid" />
+                android:background="@drawable/mask_invalid" />
         </FrameLayout>
 
 

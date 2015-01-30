@@ -51,7 +51,7 @@ public class WDConfig {
 		this.WD_URL = url;
 		if (url == null || url.equals("")) {
 //			 WD_URL = "http://shiyong.local.qmm.la/";
-			WD_URL = "http://1.wx.qfpay.com/";
+			WD_URL = "http://wx.qfpay.com/";
 //			WD_URL = "http://172.100.101.150:8989/";
 			 
 		}
@@ -74,10 +74,10 @@ public class WDConfig {
 	// public String WD_URL = "http://172.100.101.150:8400/";
 //	 public String WD_URL = "http://172.100.101.150:8989/";
 //	 public String WD_URL = "http://shiyong.local.qmm.la/";
-	public String WD_URL = "http://1.wx.qfpay.com/";
+	public String WD_URL = "http://wx.qfpay.com/";
 	public int mPushServer;
 
-	public String WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+	public String WD_URL_HUO_YUAN = "http://mmwd.me/";
 
 	public String getShopUrl() {
 		return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/";
@@ -494,10 +494,23 @@ public class WDConfig {
 	 * */
 	public String getPreviewShopAddress() {
 		// TODO Auto-generated method stub
+        if(mPushServer !=0){
+            return  "http://bj.mmwd.me/shop/";
+        }
 		return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/";
 	}
 
     public String getMyDynamicNotesListUrl(){
         return SOCIAL_URL + "my_forum";
     }
+    public String getGoodPreviewUrl(){
+
+        // 非线上都用北京06
+        if(mPushServer != 0){
+           return  "http://bj.mmwd.me/item/";
+        }
+        return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/";
+    }
+
+
 }

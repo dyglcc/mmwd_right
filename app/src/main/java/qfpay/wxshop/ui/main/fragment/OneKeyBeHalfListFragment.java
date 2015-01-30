@@ -194,9 +194,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
     @Override
     public void onFragmentRefresh() {
 
-        Toaster.l(getActivity(),"refresh : boolean - "+ WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF);
         if(WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF){
-            Toaster.l(getActivity(),"refresh onekey");
             pageIndex = -1;
             getData(true);
             WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF = false;
@@ -716,7 +714,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
     protected ShareBean getShareBean(OnekeybehalfItemBean model) {
         ShareBean shareBean = new ShareBean();
         shareBean.imgUrl = Utils.getThumblePic(model.getImg(), ConstValue.shareSmallPic);
-        shareBean.link = WDConfig.getInstance().WD_URL_HUO_YUAN+"item/" + model.getId();
+        shareBean.link = getOnkeydaifa(model);
 
             String descString = model.getDescr();
             if (descString.length() > 100) {
@@ -726,7 +724,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
                     + descString + " 仅需" + model.getPrice() + "元,点击宝贝链接"
                     + "http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item_detail/" + model.getId()
                     + " 直接下单购买哦";
-            shareBean.from = "manageshop";
+            shareBean.from = "onekeybehalf";
 
         String desc = model.getDescr();
         if (desc.length() > 100) {
