@@ -215,8 +215,8 @@ public class OnekeybeHalfItem extends LinearLayout {
     @Click
     void ll_menu_offshelf() {
         String msg = "";
-        msg = "下架该商品吗？";
-        QFCommonUtils.showDialog((FragmentActivity) getContext(), getResources().getString(R.string.item_dialog_title_offshelf),
+        msg = "取消代理该商品吗？";
+        QFCommonUtils.showDialogCancelBehalf((FragmentActivity) getContext(), "喵喵提示",
                 msg, new OnClickListener() {
                     @Override
                     public void onClick(View v) {

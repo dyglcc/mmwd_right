@@ -11,7 +11,6 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -47,11 +46,9 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.SSNPublishActivity;
 import qfpay.wxshop.activity.share.ShareActivity;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.data.beans.CommodityModel;
 import qfpay.wxshop.data.beans.OneKeybehalfListResponseWrapper;
 import qfpay.wxshop.data.beans.OneKeybehalfListResponseWrapper.MsgsWrapper;
 import qfpay.wxshop.data.beans.OnekeybehalfItemBean;
-import qfpay.wxshop.data.beans.SalesPromotionModel;
 import qfpay.wxshop.data.beans.ShareBean;
 import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.AbstractNet;
@@ -63,11 +60,8 @@ import qfpay.wxshop.getui.ImageUtils;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.view.CustomProgressDialog;
-import qfpay.wxshop.ui.view.OnekeyBehalfListView;
 import qfpay.wxshop.ui.view.OnekeybeHalfItem;
 import qfpay.wxshop.ui.view.OnekeybeHalfItem_;
-import qfpay.wxshop.ui.view.TopCloseAnimation;
-import qfpay.wxshop.ui.view.TopExpandAnimation;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
@@ -99,7 +93,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
 
     private LayoutInflater mInflater;
     @ViewById(R.id.listView)
-    OnekeyBehalfListView listView;
+    XListView listView;
 
     public OnekeybehalfItemBean sharebean;
 
@@ -296,7 +290,6 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
         listView.setXListViewListener(this);
         listView.setPullLoadEnable(false);
         listView.setPullRefreshEnable(true);
-        listView.setFragment(OneKeyBeHalfListFragment.this);
         adapter = new MyAdatpter();
         listView.setAdapter(adapter);
     }
