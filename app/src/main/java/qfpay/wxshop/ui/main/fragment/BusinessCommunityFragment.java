@@ -11,6 +11,7 @@ import org.androidannotations.annotations.ViewById;
 import org.w3c.dom.Text;
 
 import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.net.ConstValue;

@@ -55,7 +55,7 @@ import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.dialogs.SimpleDialogFragment;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.web.CommonWebActivity;
 import qfpay.wxshop.ui.web.CommonWebActivity_;

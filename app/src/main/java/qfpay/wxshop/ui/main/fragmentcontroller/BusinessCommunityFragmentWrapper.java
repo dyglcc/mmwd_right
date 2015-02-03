@@ -6,7 +6,7 @@ import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.BusinessCommunity.DiscoveryFragment_;
 import qfpay.wxshop.ui.BusinessCommunity.MyDynamicListFragment_;
 import qfpay.wxshop.ui.BusinessCommunity.MyTopicListFragment_;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.web.CommonWebFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.ui.web.CommonWebFragment_;

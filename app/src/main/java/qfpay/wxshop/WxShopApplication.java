@@ -1,34 +1,5 @@
 package qfpay.wxshop;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.Executors;
-
-import org.acra.ReportingInteractionMode;
-import org.acra.annotation.ReportsCrashes;
-import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.EApplication;
-import org.androidannotations.api.BackgroundExecutor;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import dagger.ObjectGraph;
-import qfpay.wxshop.app.dependencies.RootModule;
-import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.data.beans.BusinessCommunityMyNotificationBean;
-import qfpay.wxshop.data.beans.PromoStatus;
-import qfpay.wxshop.data.beans.ShareBean;
-import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.data.net.DataEngine;
-import qfpay.wxshop.data.netImpl.BusinessCommunityService;
-import qfpay.wxshop.listener.MaijiaxiuUploadListener;
-import qfpay.wxshop.app.BaseActivity;
-import qfpay.wxshop.ui.main.MainActivity_;
-import qfpay.wxshop.ui.main.MoreActivity;
-import qfpay.wxshop.ui.selectpic.ImageItem;
-import qfpay.wxshop.utils.T;
-import qfpay.wxshop.utils.Utils;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -42,6 +13,35 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.onlineconfig.UmengOnlineConfigureListener;
+
+import org.acra.ReportingInteractionMode;
+import org.acra.annotation.ReportsCrashes;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EApplication;
+import org.androidannotations.api.BackgroundExecutor;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.concurrent.Executors;
+
+import dagger.ObjectGraph;
+import qfpay.wxshop.app.BaseActivity;
+import qfpay.wxshop.app.dependencies.RootModule;
+import qfpay.wxshop.config.WDConfig;
+import qfpay.wxshop.data.beans.BusinessCommunityMyNotificationBean;
+import qfpay.wxshop.data.beans.PromoStatus;
+import qfpay.wxshop.data.beans.ShareBean;
+import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.data.net.DataEngine;
+import qfpay.wxshop.data.netImpl.BusinessCommunityService;
+import qfpay.wxshop.listener.MaijiaxiuUploadListener;
+import qfpay.wxshop.ui.main.MainActivity_;
+import qfpay.wxshop.ui.main.MoreActivity;
+import qfpay.wxshop.ui.selectpic.ImageItem;
+import qfpay.wxshop.utils.T;
+import qfpay.wxshop.utils.Utils;
 
 @EApplication
 @ReportsCrashes(mailTo = "lifangzhe@qfpay.com", mode = ReportingInteractionMode.SILENT, formKey = "")

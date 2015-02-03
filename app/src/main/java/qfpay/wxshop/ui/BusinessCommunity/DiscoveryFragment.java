@@ -22,7 +22,7 @@ import java.util.List;
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.view.XScrollView;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
