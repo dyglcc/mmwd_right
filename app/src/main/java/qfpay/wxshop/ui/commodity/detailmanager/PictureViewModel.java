@@ -89,6 +89,10 @@ public class PictureViewModel {
         return progress;
     }
 
+    /**
+     * 最大为1
+     * @param progress
+     */
     public void setProgress(float progress) {
         this.progress = progress;
     }

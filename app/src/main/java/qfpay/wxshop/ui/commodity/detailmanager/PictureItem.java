@@ -3,10 +3,10 @@ package qfpay.wxshop.ui.commodity.detailmanager;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.lzyzsd.circleprogress.CircleProgress;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.Click;
@@ -29,7 +29,7 @@ public class PictureItem extends RelativeLayout implements ImageProgressListener
     @ViewById ImageView      iv_picture, iv_delete;
     @ViewById RelativeLayout rl_layer;
     @ViewById TextView       tv_msg;
-    @ViewById ProgressBar    pb_loading;
+    @ViewById CircleProgress pb_loading;
 
     private PictureViewModel mPictureViewModel;
     private ItemDetailManagerView mView;
@@ -56,7 +56,7 @@ public class PictureItem extends RelativeLayout implements ImageProgressListener
         loadImage();
         if (mPictureViewModel.getProgress() > 0 && mPictureViewModel.isUploading()) {
             setStatus(Status.PROGRESS);
-            pb_loading.setProgress((int) (mPictureViewModel.getProgress() / 100));
+            pb_loading.setProgress((int) (mPictureViewModel.getProgress() * 100f));
         }
         if (mPictureViewModel.isSuccess()) {
             setStatus(Status.SUCCESS);
@@ -70,7 +70,7 @@ public class PictureItem extends RelativeLayout implements ImageProgressListener
         Picasso.with(getContext()).cancelRequest(iv_picture);
         if (mPictureViewModel.isDefault()) {
             setStatus(Status.DEFAULT);
-            Picasso.with(getContext()).load(R.drawable.itemmanager_add_img).resize(100, 100).into(iv_picture);
+            Picasso.with(getContext()).load(R.drawable.itemmanager_add_img).resize(50, 50).into(iv_picture);
         } else {
             setStatus(Status.NORMAL);
             if (mPictureViewModel.hasNative()) {
@@ -88,7 +88,7 @@ public class PictureItem extends RelativeLayout implements ImageProgressListener
     @Override @UiThread public void onProgress(String path, long total, long progress) {
         setStatus(Status.PROGRESS);
         if (path.equals(mPictureViewModel.getPath())) {
-            pb_loading.setProgress((int) (progress / total));
+            pb_loading.setProgress((int) (progress * 100f / total));
         }
     }
 
@@ -116,12 +116,11 @@ public class PictureItem extends RelativeLayout implements ImageProgressListener
                 iv_picture.setVisibility(View.VISIBLE);
                 break;
             case SUCCESS:
-                rl_layer.setVisibility(View.VISIBLE);
-                tv_msg.setVisibility(View.VISIBLE);
+                rl_layer.setVisibility(View.GONE);
+                tv_msg.setVisibility(View.GONE);
                 pb_loading.setVisibility(View.GONE);
                 iv_delete.setVisibility(View.VISIBLE);
                 iv_picture.setVisibility(View.VISIBLE);
-                tv_msg.setText("上传成功");
                 break;
             case FAILURE:
                 rl_layer.setVisibility(View.VISIBLE);

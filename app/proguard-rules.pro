@@ -51,6 +51,7 @@
 # Dagger
 -keep class * extends dagger.internal.*
 -keep class qfpay.wxshop.app.dependencies.*
+-keep class qfpay.wxshop.ui.commodity.detailmanager.ItemDetailPresenterImpl_
 -keep class dagger.Lazy
 -dontwarn dagger.internal.**
 

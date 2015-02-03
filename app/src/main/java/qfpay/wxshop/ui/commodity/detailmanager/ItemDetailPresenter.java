@@ -3,6 +3,7 @@ package qfpay.wxshop.ui.commodity.detailmanager;
 import java.util.List;
 
 import qfpay.wxshop.app.MMPresenter;
+import qfpay.wxshop.data.model.SKUModel;
 import qfpay.wxshop.image.ImageProgressListener;
 
 /**
@@ -23,6 +24,8 @@ public interface ItemDetailPresenter extends MMPresenter<ItemDetailManagerView> 
 
     public void deleteSku(int position);
 
+    public List<SKUModel> getSkuModelList();
+
     public void uploadPicture(PictureViewModel viewModel, ImageProgressListener listener);
 
     public void cancelPictureUpload(PictureViewModel viewModel);
@@ -30,4 +33,6 @@ public interface ItemDetailPresenter extends MMPresenter<ItemDetailManagerView> 
     public void setPictureListener(String path, ImageProgressListener listener);
 
     public void commit(List<PictureViewModel> pictureViewModelList, String name, String postage, String description);
+
+    public void onClose(List<PictureViewModel> pictureViewModelList, String name, String postage, String description);
 }

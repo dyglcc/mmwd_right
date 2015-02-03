@@ -156,7 +156,7 @@ public class CommodityItemView extends LinearLayout {
 		} else {
 			MobAgentTools.OnEventMobOnDiffUser(getContext(), "manage_seckill");
             if (data.model.getPrice_count() > 1) {
-                Toaster.s(getContext(), "您的此商品有多个规格, 多规格的商品暂时无法设置秒杀");
+                Toaster.s(getContext(), "亲，此商品包含多个规格，暂不能设置秒杀活动哦！");
             } else {
                 ManPromoActivity_.intent(getContext()).gb(new2Old(data.model)).pos(controller.getIndex(data.model)).
                         from("GoodlistFragment").start();

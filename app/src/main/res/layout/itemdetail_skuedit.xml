@@ -43,6 +43,7 @@
                 android:focusable="true"
                 android:hint="限10个汉字"
                 android:imeOptions="actionNext"
+                android:maxLength="10"
                 android:nextFocusForward="@+id/et_price"
                 android:padding="5dp"
                 android:singleLine="true"

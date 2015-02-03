@@ -99,7 +99,7 @@ public class CommodityDataMapperImpl implements CommodityDataMapper {
             skuModel.setName(sku.prop_value);
             skuModel.setPrice(sku.price);
             skuModel.setAmount(sku.amount);
-            skuModelList.add(skuModel);
+            skuModelList.add(0, skuModel);
         }
         model.setSkuList(skuModelList);
 

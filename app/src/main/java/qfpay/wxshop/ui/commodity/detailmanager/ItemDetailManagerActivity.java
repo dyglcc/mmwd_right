@@ -1,6 +1,7 @@
 package qfpay.wxshop.ui.commodity.detailmanager;
 
 import android.content.Intent;
+import android.text.Editable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,6 +10,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
@@ -24,6 +26,7 @@ import java.util.List;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.app.BaseActivity;
+import qfpay.wxshop.dialogs.ISimpleDialogListener;
 import qfpay.wxshop.image.ImageProcesserBean;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_;
@@ -35,7 +38,7 @@ import qfpay.wxshop.utils.Toaster;
  * Created by LiFZhe on 1/19/15.
  */
 @EActivity(R.layout.itemdetail_layout)
-public class ItemDetailManagerActivity extends BaseActivity implements ItemDetailManagerView {
+public class ItemDetailManagerActivity extends BaseActivity implements ItemDetailManagerView, ISimpleDialogListener {
     @Bean(ItemDetailPresenterImpl.class) ItemDetailPresenter mPresenter;
     private   PictureAdapter mAdapter;
 
@@ -106,22 +109,35 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
 
     @Click void ll_add_sku() {
         if (isPromotation) {
-            showErrorMessage("正在进行秒杀活动的商品无法添加规格");
+            showErrorMessage("亲，此商品正在进行秒杀活动，暂时不能设置多个规格哦！请先取消秒杀活动，或等待秒杀活动结束，再尝试吧！");
             return;
         }
-        ItemDetailSkuEditActivity_.intent(this).startForResult(ItemDetailManagerView.REQUEST_SKU_ADD);
+        ItemDetailSkuEditActivity_.intent(this).skuModelList(mPresenter.getSkuModelList()).startForResult(ItemDetailManagerView.REQUEST_SKU_ADD);
     }
 
     /**
      * 页面中SkuItem的编辑按钮回调方法
      */
     public void onSkuEditClick(int position, SkuViewModel skuViewModel) {
-        ItemDetailSkuEditActivity_.intent(this).skuViewModel(skuViewModel).position(position).startForResult(ItemDetailManagerView.REQUEST_SKU_EDIT);
+        ItemDetailSkuEditActivity_.intent(this).skuViewModel(skuViewModel).skuModelList(mPresenter.getSkuModelList()).position(position).startForResult(ItemDetailManagerView.REQUEST_SKU_EDIT);
     }
 
     @Override public void addSku(SkuViewModel skuViewModel) {
         SkuItem item = SkuItem_.build(this).setData(skuViewModel).setParentView(this);
-        ll_skus.addView(item, 0);
+        if (ll_skus.getChildCount() > 0) {
+            SkuItem itemLast = (SkuItem) ll_skus.getChildAt(ll_skus.getChildCount() - 1);
+            itemLast.showLine();
+        }
+        item.hideLine();
+        ll_skus.addView(item);
+    }
+
+    @Override public void addSku(SkuViewModel skuViewModel, int index) {
+        SkuItem item = SkuItem_.build(this).setData(skuViewModel).setParentView(this);
+        if (ll_skus.getChildCount() == 0) {
+            item.hideLine();
+        }
+        ll_skus.addView(item, index);
     }
 
     @Override public void setSku(int position, SkuViewModel skuViewModel) {
@@ -191,11 +207,23 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
     }
 
     @Override public void onBackPressed() {
-        super.onBackPressed();
+        mPresenter.onClose(mAdapter.getData(), et_name.getText().toString(), et_postage.getText().toString(), tv_description.getText().toString());
+    }
+
+    /**
+     * Dialog的确认事件
+     */
+    @Override public void onPositiveButtonClicked(int requestCode) { }
+
+    /**
+     * Dialog的取消事件
+     */
+    @Override public void onNegativeButtonClicked(int requestCode) {
+        finish();
     }
 
     class PictureAdapter extends BaseAdapter {
-        static final int MAX_PIC_COUNT = 9;
+        static final int MAX_PIC_COUNT = 10;
 
         private List<PictureViewModel> mData = new ArrayList<PictureViewModel>();
 
@@ -232,7 +260,7 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
         }
 
         @Override public int getCount() {
-            if (mData.size() < 9) {
+            if (mData.size() < MAX_PIC_COUNT) {
                 return mData.size() + 1;
             } else {
                 return mData.size();

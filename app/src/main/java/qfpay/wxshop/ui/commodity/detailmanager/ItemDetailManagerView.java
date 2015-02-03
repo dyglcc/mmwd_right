@@ -25,6 +25,13 @@ public interface ItemDetailManagerView extends MMView {
 
     public void addSku(SkuViewModel skuViewModel);
 
+    /**
+     * 如果index为-1则加载到末尾
+     * @param skuViewModel
+     * @param index
+     */
+    public void addSku(SkuViewModel skuViewModel, int index);
+
     public void setSku(int position, SkuViewModel skuViewModel);
 
     public void deleteSku(int position);

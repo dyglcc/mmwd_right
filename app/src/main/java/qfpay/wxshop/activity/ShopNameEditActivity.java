@@ -57,7 +57,6 @@ public class ShopNameEditActivity extends BaseActivity {
 		String shopName = WxShopApplication.dataEngine.getShopName();
 		if(shopName!=null && !shopName.equals("")){
 			et_text.setText(shopName);
-			et_text.setSelection(shopName.length());
 		}
 	}
 

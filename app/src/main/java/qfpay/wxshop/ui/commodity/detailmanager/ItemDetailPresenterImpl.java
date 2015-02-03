@@ -1,12 +1,14 @@
 package qfpay.wxshop.ui.commodity.detailmanager;
 
 import android.content.Context;
+import android.view.View;
 
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.UiThread;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,6 +25,7 @@ import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.processer.ImageType;
 import qfpay.wxshop.ui.commodity.CommodityDataController;
 import qfpay.wxshop.ui.commodity.EdititemDoneActivity_;
+import qfpay.wxshop.utils.Utils;
 
 /**
  * ItemDetail的逻辑层
@@ -36,6 +39,7 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
     private ItemDetailManagerView mView;
     private CommodityModel        mModel;
     private int                   commodityId = -1;
+    private boolean               isSkuEdited = false;
 
     @Inject CommodityRepository   mRepository;
     @Bean   QFImageUploader       mUploader;
@@ -111,72 +115,33 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
     }
 
     @Override public void addSku(SkuViewModel skuViewModel) {
-        if (skuViewModel.getPrice() == null || skuViewModel.getPrice().equals("")) {
-            mView.showErrorMessage("请输入价格");
-            return;
-        }
-        if (skuViewModel.getAmount() == null || skuViewModel.getAmount().equals("")) {
-            mView.showErrorMessage("请输入数量");
-            return;
-        }
-        if (!mModel.getSkuList().isEmpty() && isNull(skuViewModel.getName())) {
-            mView.showErrorMessage("规格名称不可为空");
-            return;
-        }
-        if (! checkSkuName(skuViewModel.getName(), mModel.getSkuList())) {
-            mView.showErrorMessage("规格名称已经存在,请检查后再次添加");
-            return;
-        }
         SKUModel model = new SKUModel();
         model.setName(skuViewModel.getName());
         model.setPrice(Float.parseFloat(skuViewModel.getPrice()));
         model.setAmount(Integer.parseInt(skuViewModel.getAmount(), 10));
         mModel.getSkuList().add(0, model);
-        mView.addSku(skuViewModel);
+        mView.addSku(skuViewModel, 0);
+        isSkuEdited = true;
     }
 
     @Override public void setSku(int position, SkuViewModel skuViewModel) {
         if (position < 0) return;
-        if (skuViewModel.getPrice() == null || skuViewModel.getPrice().equals("")) {
-            mView.showErrorMessage("请输入价格");
-            return;
-        }
-        if (skuViewModel.getAmount() == null || skuViewModel.getAmount().equals("")) {
-            mView.showErrorMessage("请输入数量");
-            return;
-        }
-        if (! checkSkuName(skuViewModel.getName(), mModel.getSkuList(), position)) {
-            mView.showErrorMessage("规格名称已经存在,请检查后再次添加");
-            return;
-        }
         SKUModel skuModel = mModel.getSkuList().get(position);
         skuModel.setName(skuViewModel.getName());
         skuModel.setPrice(Float.parseFloat(skuViewModel.getPrice()));
         skuModel.setAmount(Integer.parseInt(skuViewModel.getAmount(), 10));
         mView.setSku(position, skuViewModel);
-    }
-
-    public boolean checkSkuName(String name, List<SKUModel> skuModels) {
-        for (SKUModel model : skuModels) {
-            if (model.getName().equals(name)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean checkSkuName(String name, List<SKUModel> skuModels, int withoutPosition) {
-        for (SKUModel model : skuModels) {
-            if (model.getName().equals(name) && withoutPosition != skuModels.indexOf(model)) {
-                return false;
-            }
-        }
-        return true;
+        isSkuEdited = true;
     }
 
     @Override public void deleteSku(int position) {
         mModel.getSkuList().remove(mModel.getSkuList().get(position));
         mView.deleteSku(position);
+        isSkuEdited = true;
+    }
+
+    @Override public List<SKUModel> getSkuModelList() {
+        return mModel.getSkuList();
     }
 
     @Override public void uploadPicture(PictureViewModel viewModel, ImageProgressListener listener) {
@@ -223,6 +188,49 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
         }
     }
 
+    @Override
+    public void onClose(List<PictureViewModel> pictureViewModelList, String name, String postage, String description) {
+        if (isSkuEdited) {
+            showCloseDialog();
+            return;
+        }
+        List<PictureModel> list = new ArrayList<PictureModel>();
+        for (PictureViewModel pic : pictureViewModelList) {
+            if (pic.isNative()) continue;
+            PictureModel model = new PictureModel();
+            model.setPath(pic.getPath());
+            model.setUrl(pic.getUrl());
+            model.setId(pic.getId());
+            list.add(model);
+        }
+        if (!list.equals(mModel.getPictureList())){
+            showCloseDialog();
+            return;
+        }
+        if (!name.equals(mModel.getName())) {
+            showCloseDialog();
+            return;
+        }
+        if (Float.parseFloat(postage) != mModel.getPostage()) {
+            showCloseDialog();
+            return;
+        }
+        if (!description.equals(mModel.getDescription())) {
+            showCloseDialog();
+            return;
+        }
+        mView.finish();
+    }
+
+    private void showCloseDialog() {
+        Utils.showNativeDialog((android.support.v4.app.FragmentActivity) mContext, "提示", "编辑信息有变化,要放弃吗?", "确认放弃", "继续编辑", true, 1, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
     public boolean checkCommoitData(List<PictureViewModel> pictureViewModelList, List<SKUModel> skuModels, String name, String postage, String description) {
         if (isNull(name)) {
             mView.showErrorMessage("请输入名称");
@@ -239,7 +247,7 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
         } else if (mModel.getSkuList() == null || mModel.getSkuList().isEmpty()){
             mView.showErrorMessage("请选择添加至少一个规格");
             return false;
-        } else if (! checkSku(skuModels)) {
+        } else if (! checkSku(skuModels) && skuModels.size() != 1) {
             mView.showErrorMessage("您有规格的名称为空, 请补全规格名称");
             return false;
         }
