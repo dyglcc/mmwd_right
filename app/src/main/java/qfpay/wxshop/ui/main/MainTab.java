@@ -3,7 +3,7 @@ package qfpay.wxshop.ui.main;
 import java.lang.ref.SoftReference;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.main.fragment.BusinessCommunityFragment_;
 import qfpay.wxshop.ui.main.fragment.HuoYuanFragment_;
 import qfpay.wxshop.ui.main.fragment.PopularizingFragment_;

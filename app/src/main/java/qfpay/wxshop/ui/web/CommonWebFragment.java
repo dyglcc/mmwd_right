@@ -13,7 +13,7 @@ import org.androidannotations.annotations.res.DrawableRes;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.utils.Utils;
 
 import android.annotation.SuppressLint;

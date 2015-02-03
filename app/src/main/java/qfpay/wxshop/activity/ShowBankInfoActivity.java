@@ -4,7 +4,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.content.Intent;

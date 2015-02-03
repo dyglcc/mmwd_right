@@ -2,7 +2,7 @@ package qfpay.wxshop.ui.main.fragmentcontroller;
 
 import java.lang.ref.WeakReference;
 
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import android.util.SparseArray;
 
 public abstract class BasePagerFragmentWrapper implements FragmentWrapper {

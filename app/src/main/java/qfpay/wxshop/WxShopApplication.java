@@ -13,6 +13,8 @@ import org.androidannotations.api.BackgroundExecutor;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import dagger.ObjectGraph;
+import qfpay.wxshop.app.dependencies.RootModule;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.BusinessCommunityMyNotificationBean;
 import qfpay.wxshop.data.beans.PromoStatus;
@@ -21,7 +23,7 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.listener.MaijiaxiuUploadListener;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.MoreActivity;
 import qfpay.wxshop.ui.selectpic.ImageItem;
@@ -47,6 +49,8 @@ public class WxShopApplication extends Application {
 	public static IWXAPI api;
 	public static  boolean IS_NEED_REFRESH_MINE_HUOYUAN = false;
 
+    private ObjectGraph objectGraph;
+
 	public static DataEngine dataEngine;
 	public byte[] aeskey;
 	public String cookie;
@@ -69,6 +73,9 @@ public class WxShopApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+        objectGraph = ObjectGraph.create(new RootModule(this));
+        objectGraph.inject(this);
+
 		BackgroundExecutor.setExecutor(Executors.newScheduledThreadPool(8));
 //		if(!T.isTesting){
 //			ACRA.init(this);
@@ -123,6 +130,10 @@ public class WxShopApplication extends Application {
 					}
 				});
 	}
+
+    public static WxShopApplication get(Context context) {
+        return (WxShopApplication) context.getApplicationContext();
+    }
 
 	public boolean useQiniu = true;
 	public String miaomiaoUploadServer;
@@ -355,6 +366,10 @@ public class WxShopApplication extends Application {
         businessCommmunityMyNotificationDataWrapper.data.count="0";
         businessCommmunityMyNotificationDataWrapper.data.items = new ArrayList<BusinessCommunityMyNotificationBean>();
         WxShopApplication.dataEngine.setBusinessCommmunityMyNotificationData(businessCommmunityMyNotificationDataWrapper);
+	}
+
+    public void inject(Object object) {
+        objectGraph.inject(object);
     }
 
 

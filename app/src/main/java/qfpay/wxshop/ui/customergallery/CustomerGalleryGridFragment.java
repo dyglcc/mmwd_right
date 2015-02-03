@@ -8,7 +8,7 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;

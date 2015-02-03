@@ -97,11 +97,21 @@
             android:screenOrientation="portrait" />
         <!-- 上传商品以及编辑商品 -->
         <activity
-            android:name=".ui.commodity.EditItemActivity_"
+            android:name="qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
-        <!-- 编辑/上传完成页 -->
+        <activity
+            android:name="qfpay.wxshop.ui.commodity.detailmanager.ItemDetailDescriptionEditActivity_"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+		<activity
+            android:name="qfpay.wxshop.ui.commodity.detailmanager.ItemDetailSkuEditActivity_"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".ui.commodity.EdititemDoneActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"

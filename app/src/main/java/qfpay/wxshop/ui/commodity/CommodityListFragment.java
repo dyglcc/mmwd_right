@@ -27,7 +27,7 @@ import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.commodity.CommodityDataController.CommodityCallback;
 import qfpay.wxshop.ui.commodity.CommodityDataController.Operation;
 import qfpay.wxshop.ui.main.MainTab;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.ui.view.XListView.IXListViewListener;
 import qfpay.wxshop.utils.MobAgentTools;

@@ -5,8 +5,10 @@ import java.util.List;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.commodity.EditItemActivity_;
+import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
 import qfpay.wxshop.ui.selectpic.ImageGridAdapter.TextCallback;
+import qfpay.wxshop.utils.Toaster;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,7 +26,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 
@@ -46,7 +47,7 @@ public class ImageGridActivity extends Activity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				Toast.makeText(ImageGridActivity.this, "最多选择9张图片", 400).show();
+                Toaster.s(ImageGridActivity.this, "最多选择9张图片");
 				break;
 			case REFRESH_HORISCROLLVIEW_ADD:
 				Bundle bunAdd = msg.getData();
@@ -100,7 +101,7 @@ public class ImageGridActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				Intent intent = new Intent(ImageGridActivity.this,EditItemActivity_.class);
+				Intent intent = new Intent(ImageGridActivity.this, ItemDetailManagerActivity_.class);
 				setResult(Activity.RESULT_OK, intent);
 				finish();
 				

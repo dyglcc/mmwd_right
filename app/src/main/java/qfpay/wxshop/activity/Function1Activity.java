@@ -2,7 +2,9 @@ package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.commodity.EditItemActivity_;
+import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity;
+import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,7 +40,7 @@ public class Function1Activity extends Activity {
 			@Override
 			public void onClick(View paramView) {
 				
-				EditItemActivity_.intent(Function1Activity.this).start();
+				ItemDetailManagerActivity_.intent(Function1Activity.this).start();
 				finish();
 			}
 		});

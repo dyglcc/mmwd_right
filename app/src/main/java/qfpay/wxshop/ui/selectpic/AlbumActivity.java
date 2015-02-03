@@ -1,8 +1,5 @@
 package qfpay.wxshop.ui.selectpic;
 
-import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.utils.MobAgentTools;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,8 +7,6 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;

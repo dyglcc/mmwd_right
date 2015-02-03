@@ -1,4 +1,4 @@
-package qfpay.wxshop.ui;
+package qfpay.wxshop.app;
 
 import org.androidannotations.api.BackgroundExecutor;
 

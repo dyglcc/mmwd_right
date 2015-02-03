@@ -11,7 +11,7 @@ import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.NoticeUpdateImpl;
 import qfpay.wxshop.dialogs.SimpleDialogFragment;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.presonalinfo.ShopInfoActivity;
 import qfpay.wxshop.utils.Toaster;
 import android.content.Intent;

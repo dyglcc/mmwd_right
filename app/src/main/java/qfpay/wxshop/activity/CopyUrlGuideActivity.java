@@ -1,7 +1,6 @@
 package qfpay.wxshop.activity;
 
-import qfpay.wxshop.ui.BaseActivity;
-import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.app.BaseActivity;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;

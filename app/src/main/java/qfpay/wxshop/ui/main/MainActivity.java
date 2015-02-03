@@ -28,6 +28,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.InputShopNameActivity;
 import qfpay.wxshop.activity.SSNPublishActivity_;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.update.UpdateManager;
 import qfpay.wxshop.data.beans.LabelBean;
 import qfpay.wxshop.data.handler.MainHandler;
@@ -42,10 +43,10 @@ import qfpay.wxshop.getui.StartAlarmService;
 import qfpay.wxshop.listener.MaijiaxiuUploadListener;
 import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
-import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.BusinessCommunity.AllTopicListActivity_;
 import qfpay.wxshop.ui.BusinessCommunity.BusinessCommunityDataController;
 import qfpay.wxshop.ui.BusinessCommunity.MyDynamicListFragment;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseActivity_;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseNetProcesser;
 import qfpay.wxshop.ui.common.actionbar.InfoMenuProvider;
@@ -728,8 +729,6 @@ public class MainActivity extends BaseActivity {
 				MainFragmentController.get(WrapperType.POPULARIZING).get(0))
 				.startForResult(MaijiaxiuFragment_.ACTION_ADD_SSN);
 	}
-
-
 
     /**
      * 商户圈 根据tag值显示角标 0 显示红点 1 显示数字加红点

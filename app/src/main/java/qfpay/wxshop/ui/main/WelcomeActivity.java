@@ -31,7 +31,7 @@ import qfpay.wxshop.activity.NewIntroductionActivity;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.SplashParams;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 

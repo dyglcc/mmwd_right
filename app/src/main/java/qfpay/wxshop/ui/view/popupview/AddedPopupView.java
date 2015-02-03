@@ -7,7 +7,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.commodity.EditItemActivity_;
+import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
 import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainAddAniUtils;
@@ -135,7 +135,7 @@ public class AddedPopupView extends RelativeLayout {
 	}
 	
 	@Click void iv_addcommodity() {
-		EditItemActivity_.intent(getContext()).start();
+		ItemDetailManagerActivity_.intent(getContext()).start();
 		activity.onAddCommodity();
 	}
 	

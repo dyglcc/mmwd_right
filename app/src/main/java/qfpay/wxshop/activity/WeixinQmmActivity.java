@@ -1,7 +1,7 @@
 package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Toaster;
 import android.content.ComponentName;

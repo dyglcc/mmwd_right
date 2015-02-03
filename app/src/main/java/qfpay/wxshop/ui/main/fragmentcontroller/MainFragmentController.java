@@ -3,7 +3,7 @@ package qfpay.wxshop.ui.main.fragmentcontroller;
 import java.util.HashMap;
 
 import android.content.Context;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 

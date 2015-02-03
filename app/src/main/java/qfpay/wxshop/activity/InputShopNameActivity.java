@@ -12,7 +12,7 @@ import qfpay.wxshop.data.netImpl.UploadPic4QiNiuImpl;
 import qfpay.wxshop.data.netImpl.UploadPicImpl;
 import qfpay.wxshop.takepicUtils.PictureBean;
 import qfpay.wxshop.takepicUtils.TakePicUtils;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.utils.BitmapUtil;

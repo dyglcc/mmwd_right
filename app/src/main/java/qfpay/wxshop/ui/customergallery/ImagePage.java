@@ -4,7 +4,7 @@ import java.lang.ref.SoftReference;
 
 import android.support.v4.app.FragmentTransaction;
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 
 public enum ImagePage {
 	GRID, DETAIL;

@@ -13,7 +13,7 @@ import qfpay.wxshop.activity.share.ShareActivity;
 import qfpay.wxshop.data.beans.GoodMSBean;
 import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.commodity.CommodityDataController;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.ShareUtils;

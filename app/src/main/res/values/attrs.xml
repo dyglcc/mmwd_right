@@ -6,8 +6,9 @@
         <!-- Determines the amount of rotation during over scroll. Maximum rotation angle is 90 degrees divided by thisÏ value. Default is 2 -->
         <attr name="overscroll_rotation" format="float" />
         <!--
-        determines the maximum amount of translation along the z-axis during the overscroll. 
-        Default is 150.        -->
+        determines the maximum amount of translation along the z-axis during the overscroll.
+        Default is 150.
+        -->
         <attr name="overscroll_translation" format="integer" />
         <!-- Controls maximum rotation during swipe. Maximum rotation angle is 90 degrees divided by this value. Default is 3. -->
         <attr name="swipe_rotation" format="float" />

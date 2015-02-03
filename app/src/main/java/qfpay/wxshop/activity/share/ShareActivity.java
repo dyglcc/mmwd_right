@@ -1,5 +1,17 @@
 package qfpay.wxshop.activity.share;
 
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.app.BaseActivity;
+import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;Toaster;
+import qfpay.wxshop.utils.Utils;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;

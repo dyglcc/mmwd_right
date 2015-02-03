@@ -43,7 +43,7 @@ import qfpay.wxshop.image.ImageProcesserBean;
 import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.processer.ImageType;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
