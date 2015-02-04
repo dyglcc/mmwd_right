@@ -21,6 +21,7 @@ import cn.sharesdk.framework.ShareSDK;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.gson.Gson;
+import com.igexin.sdk.PushManager;
 import com.nineoldandroids.animation.ObjectAnimator;
 import org.androidannotations.annotations.*;
 import org.androidannotations.annotations.sharedpreferences.Pref;
@@ -305,7 +306,7 @@ public class MainActivity extends BaseActivity {
 		if (!isShowShareButton) {
 			menu.removeItem(R.id.menu_share);
 		}
-		// // 通知中心
+		// 通知中心
 		MenuItem actInfoItem = menu.findItem(R.id.menu_notice_info);
 		noticeProvider = new NoticeActionProvider(this);
 		noticeProvider.setHandler(handler);
@@ -325,8 +326,11 @@ public class MainActivity extends BaseActivity {
 
 		running = true;
 
+       //
+
 		mStartupProcessor.processLovelyCard();
 
+        // 第一次进入应用记录
 		handler = new Handler();
 		if (WxShopApplication.dataEngine.isFirstInMainActivity()) {
 			updateHandler.sendEmptyMessage(GO2ACTIVITY);
@@ -335,6 +339,7 @@ public class MainActivity extends BaseActivity {
 
 		MobAgentTools.OnEventMobOnDiffUser(MainActivity.this, "Index_page");
 
+        // 应用更新提示
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -404,8 +409,18 @@ public class MainActivity extends BaseActivity {
         badgeView.setTextSize(6);
         initLastNoReadNotification();
         getBusinessCommunityAboutMyNotify();
+
+        // 听云app集成
         NBSAppAgent.setLicenseKey("26f23f2f3f8447b6a450174320f25969").withLocationServiceEnabled(true).start(this);
+
+        // 推送初始化 集成
+        initPushServices();
 	}
+
+    @UiThread(delay = 1000)
+    void initPushServices() {
+        PushManager.getInstance().initialize(this);
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -452,7 +467,8 @@ public class MainActivity extends BaseActivity {
     @UiThread
     void dealMyNotification(BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper newData){
         BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper originData = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
-        if(originData!=null){
+        // && newData.data.tag != null 添加@ by dongyuangui 有空指针现象
+        if(originData!=null && newData.data.tag != null){
             if(newData.data.tag.equals("1")&&originData.data.tag.equals("0")){
                 originData.data.tag = "1";
             }

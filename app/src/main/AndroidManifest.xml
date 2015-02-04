@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="qfpay.wxshop" >
-
+<!--
+项目用gradle构建，version code 和version name 在build.gradle中配置
+-->
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -84,12 +86,14 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
             android:screenOrientation="portrait" />
+
+        <!--程序主Activity-->
         <activity
             android:name=".ui.web.WebActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
             android:screenOrientation="portrait" />
-        <!-- 所有无需特殊处理的页面的WebView包装 -->
+        <!-- 货源详情页面 -->
         <activity
             android:name=".ui.web.huoyuan.CommonWebActivityHuoyuan_"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -156,7 +160,7 @@
             android:name=".ui.lovelycard.LovelyCardCommentActivity_"
             android:screenOrientation="sensorPortrait" />
 
-        <!-- Receiver -->
+        <!-- Receiver  -->
         <receiver android:name=".getui.RestartReceiver" />
         <receiver
             android:name=".config.update.InstalledReceiver"
@@ -170,6 +174,8 @@
             </intent-filter>
         </receiver>
 
+        <!-- 个推配置-->
+        <!--###########################################################-->
         <meta-data
             android:name="PUSH_APPID"
             android:value="8imafJpbTT6OWrl4CZRjA2" />
@@ -191,7 +197,7 @@
                 <action android:name="com.igexin.sdk.action.8imafJpbTT6OWrl4CZRjA2" />
             </intent-filter>
         </receiver>
-        <!-- 本地通知service -->
+        <!-- 本地通知service 三天未打开app -->
         <service
             android:name=".getui.StartAlarmService"
             android:exported="true"
@@ -273,39 +279,45 @@
         <service
             android:name="com.igexin.getuiext.service.GetuiExtService"
             android:process=":pushservice" />
-
+        <!--###########################################################-->
         <!-- 个推配置结束 -->
 
+        <!--引导滑屏页面-->
         <activity
             android:name=".activity.NewIntroductionActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
+        <!--买家秀图片展示器-->
         <activity
             android:name="com.loveplusplus.demo.image.ImagePagerActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--公告编辑-->
         <activity
             android:name=".activity.EditAdvertisementActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--店铺名称编辑-->
         <activity
             android:name=".activity.ShopNameEditActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--微信名称编辑-->
         <activity
             android:name=".activity.WeixinEditActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--复制店铺连接引导-->
         <activity
             android:name=".activity.CopyUrlGuideActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"

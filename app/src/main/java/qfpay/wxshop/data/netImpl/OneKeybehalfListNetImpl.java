@@ -62,22 +62,25 @@ public class OneKeybehalfListNetImpl extends AbstractNet {
 				OneKeybehalfListResponseWrapper fromJson = gosn.fromJson(jsonStr,
                         OneKeybehalfListResponseWrapper.class);
 				if (!fromJson.getRespcd().equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					return bundle;
-				}
-                OneKeybehalfListResponseWrapper.MsgsWrapper data = fromJson.getData();
-				list = new ArrayList<HashMap<String, Object>>();
-				map = new HashMap<String, Object>();
-				// 2014-04-24 14:52:31
-				// 处理日期
-				map.put("orderList", data);
-				list.add(map);
+                    String errorMsg = fromJson.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
+				}else{
+                    OneKeybehalfListResponseWrapper.MsgsWrapper data = fromJson.getData();
+                    list = new ArrayList<HashMap<String, Object>>();
+                    map = new HashMap<String, Object>();
+                    // 2014-04-24 14:52:31
+                    // 处理日期
+                    map.put("orderList", data);
+                    list.add(map);
 
-				Long key = System.currentTimeMillis();
-				CacheData.getInstance().setData(key + "", list);
-				/** 界面上展示的时候直接根据key取存储类的数据 */
-				bundle.putString(ConstValue.CACHE_KEY, key + "");
+                    Long key = System.currentTimeMillis();
+                    CacheData.getInstance().setData(key + "", list);
+                    /** 界面上展示的时候直接根据key取存储类的数据 */
+                    bundle.putString(ConstValue.CACHE_KEY, key + "");
+                }
+
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
 			} catch (Exception e) {
 				T.e(e);

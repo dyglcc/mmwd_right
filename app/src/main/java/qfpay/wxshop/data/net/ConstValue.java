@@ -287,6 +287,7 @@ public class ConstValue {
 
 	public static final String ERROR_MSG = "errorMsg";
 	public static final String SUCCESS = "success";
+	public static final String FAILD = "success";
 
 	public static final String URL = "url";
 	public static final String TITLE = "title";

@@ -104,7 +104,6 @@ public class UserPaymentImpl extends AbstractNet {
 						strError = root.getString("respmsg");
 					}
 					bundle.putString(ConstValue.ERROR_MSG, strError);
-					return bundle;
 				}
 				Long key = System.currentTimeMillis();
 				/** 界面上展示的时候直接根据key取存储类的数据 */

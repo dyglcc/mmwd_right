@@ -447,7 +447,7 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
         }
         protected Boolean doInBackground(Void... param) {
                         /* this is very important - THIS IS THE HACK */
-			SystemClock.sleep(1000);
+//			SystemClock.sleep(1000);
             return false;
         }
         @Override
@@ -463,6 +463,26 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
                     webView.loadUrl(url, header);
                     return true;
                 }
+                @Override
+                public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                    setPageState(PageState.LOADING);
+                }
+
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    if (!Utils.isCanConnectionNetWork(CommonWebActivityHuoyuan.this)) {
+                        setPageState(PageState.ERROR);
+                    } else {
+                        setPageState(PageState.COMPLETE);
+                    }
+                }
+
+                @Override
+                public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                    setPageState(PageState.ERROR);
+                }
+
+
 
             });
             Utils.setCookiesHuoyuan(url, CommonWebActivityHuoyuan.this);

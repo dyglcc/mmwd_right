@@ -73,22 +73,25 @@ public class NoticeListNetImpl extends AbstractNet {
 				NoticeResponseWrapper fromJson = gosn.fromJson(jsonStr,
 						NoticeResponseWrapper.class);
 				if (!fromJson.getRespcd().equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					return bundle;
-				}
-				List<NoticeItemBean> notification = fromJson.getData()
-						.getNotifications();
+                    String errorMsg = fromJson.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
+				}else{
+                    List<NoticeItemBean> notification = fromJson.getData()
+                            .getNotifications();
 //				getClickAbleData(notification);
-				list = new ArrayList<HashMap<String, Object>>();
-				map = new HashMap<String, Object>();
-				map.put("orderList", notification);
-				list.add(map);
+                    list = new ArrayList<HashMap<String, Object>>();
+                    map = new HashMap<String, Object>();
+                    map.put("orderList", notification);
+                    list.add(map);
 
-				Long key = System.currentTimeMillis();
-				CacheData.getInstance().setData(key + "", list);
-				/** 界面上展示的时候直接根据key取存储类的数据 */
-				bundle.putString(ConstValue.CACHE_KEY, key + "");
+                    Long key = System.currentTimeMillis();
+                    CacheData.getInstance().setData(key + "", list);
+                    /** 界面上展示的时候直接根据key取存储类的数据 */
+                    bundle.putString(ConstValue.CACHE_KEY, key + "");
+                }
+
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
 			} catch (Exception e) {
 				T.e(e);

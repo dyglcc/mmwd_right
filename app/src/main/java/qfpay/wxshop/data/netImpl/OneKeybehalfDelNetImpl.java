@@ -51,9 +51,10 @@ public class OneKeybehalfDelNetImpl extends AbstractNet {
 				CommonJsonBean fromJson = gosn.fromJson(jsonStr,
                         CommonJsonBean.class);
 				if (!fromJson.getRespcd().equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					return bundle;
+                    String errorMsg = fromJson.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
 				}
 				/** 界面上展示的时候直接根据key取存储类的数据 */
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);

@@ -229,7 +229,7 @@ public class WDConfig {
 
 
 	public String pushBindServer() {
-		Toaster.l(WxShopApplication.app, " " + mPushServer);
+//		Toaster.l(WxShopApplication.app, " " + mPushServer);
 		switch (mPushServer) {
 		case 0:
 			return "http://0.openapi2.qfpay.com/app/v1/getuibind"+getRequestInfo("");

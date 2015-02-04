@@ -214,7 +214,7 @@ public class QFCommonUtils {
 	}
 	public static DialogFragment showDialogCancelBehalf(FragmentActivity context, String title, String msg, OnClickListener positiveListener) {
 		return showDialog(context, title, msg, "继续保留",
-				"确定取消", false, -1, positiveListener);
+				"确定", false, -1, positiveListener);
 	}
 
 	public static DialogFragment showSingleButtonDialog(FragmentActivity context, String title, String msg, OnClickListener positiveListener) {

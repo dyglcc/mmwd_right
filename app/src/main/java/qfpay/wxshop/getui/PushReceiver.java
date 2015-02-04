@@ -115,8 +115,10 @@ public class PushReceiver extends BroadcastReceiver {
 			String bindStr = shareData.getString("bindStr", "");
 			String oldUser = shareData.getString("Userid", "");
 
+            T.i("push---");
 			boolean needBind = checkNeedBind(bindStr, oldUser);
 			if (needBind) {
+                T.i("push---need bind");
 
 				AbstractNet net = new BindNetImpl(context, handler);
 				Bundle bundleBind = new Bundle();

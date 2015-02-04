@@ -57,7 +57,6 @@ public class RegImpl extends AbstractNet {
 	@Override
 	protected Bundle jsonParse(String jsonStr) {
 
-		Bundle bundle = new Bundle();
 		if (jsonStr != null && jsonStr.length() > 0) {
 			try {
 				JSONObject result = new JSONObject(jsonStr);
@@ -89,12 +88,10 @@ public class RegImpl extends AbstractNet {
 					bundle.putString(ConstValue.ERROR_MSG, result.getString("resperr"));
 					
 				}else{
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					T.i("jsonStr is null or jsonStr.length is 0");
-					bundle.putString(ConstValue.ERROR_MSG,
-							"未知错误，请重试");
-					return bundle;
+                    String errorMsg = result.getString("resperr");
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
 				}
 
 				Long key = System.currentTimeMillis();

@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="22dp"
                     android:layout_alignParentBottom="true"
-                    android:text="进价￥"
+                    android:text="价格￥"
                     android:gravity="bottom"
                     android:textColor="#91948d"
                     android:textSize="12dip" />
@@ -133,44 +133,44 @@
                     android:textSize="18dip" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/layout_guide"
-                android:layout_width="fill_parent"
-                android:layout_height="22dp">
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/layout_guide"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="22dp">-->
 
-                <TextView
-                    android:id="@+id/tv_yuan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="22dp"
-                    android:gravity="bottom"
-                    android:layout_alignParentBottom="true"
-                    android:text="进价￥"
-                    android:textColor="#e91e63"
-                    android:textSize="12dip" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_yuan"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="22dp"-->
+                    <!--android:gravity="bottom"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:text="进价￥"-->
+                    <!--android:textColor="#e91e63"-->
+                    <!--android:textSize="12dip" />-->
 
-                <TextView
-                    android:id="@+id/lowPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="26dp"
-                    android:layout_toRightOf="@+id/tv_yuan"
-                    android:text="699"
-                    android:layout_marginBottom="-3dp"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="bottom"
-                    android:textColor="#e91e63"
-                    android:textSize="18dip" />
+                <!--<TextView-->
+                    <!--android:id="@+id/lowPrice"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="26dp"-->
+                    <!--android:layout_toRightOf="@+id/tv_yuan"-->
+                    <!--android:text="699"-->
+                    <!--android:layout_marginBottom="-3dp"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:gravity="bottom"-->
+                    <!--android:textColor="#e91e63"-->
+                    <!--android:textSize="18dip" />-->
 
-                <TextView
-                    android:id="@+id/guidePrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="22dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="bottom"
-                    android:text="指导价1299"
-                    android:textColor="#91948d"
-                    android:textSize="12dip" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/guidePrice"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="22dp"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:gravity="bottom"-->
+                    <!--android:text="指导价1299"-->
+                    <!--android:textColor="#91948d"-->
+                    <!--android:textSize="12dip" />-->
+            <!--</RelativeLayout>-->
         </LinearLayout>
 
 

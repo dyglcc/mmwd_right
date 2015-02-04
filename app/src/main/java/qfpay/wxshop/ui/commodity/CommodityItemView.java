@@ -338,6 +338,9 @@ public class CommodityItemView extends LinearLayout {
     public GoodMSBean new2OldMS(CommodityModel model) {
         GoodMSBean bean = null;
         SalesPromotionModel msModel = model.getSalesPromotion();
+        if(msModel == null){
+            return bean;
+        }
         if (msModel.getPromotionFlag() == SalesPromotionModel.PromotionState.STARTED && msModel.getCommodityID() != 0) {
             bean = new GoodMSBean();
             bean.setNewprice(msModel.getPromotionPrice() + "");

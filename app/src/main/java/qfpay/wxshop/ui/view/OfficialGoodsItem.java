@@ -34,11 +34,9 @@ import com.squareup.picasso.Picasso;
 public class OfficialGoodsItem extends LinearLayout {
 	@ViewById
 	TextView tv_goods_name;
-	@ViewById
-	TextView lowPrice, guidePrice;
 	OfficialGoodItemBean gb;
     @ViewById
-    RelativeLayout layout_profit,layout_guide;
+    RelativeLayout layout_profit;
 //	@ViewById
 //	TagViews layout_tags;
 	@ViewById
@@ -50,7 +48,6 @@ public class OfficialGoodsItem extends LinearLayout {
 	private int width, height;
 	private Handler handler;
 	private Context context;
-
 
     @ViewById
     TextView lowPrice_0,tv_profit;
@@ -71,23 +68,22 @@ public class OfficialGoodsItem extends LinearLayout {
 		tv_goods_name.setText(gb.getTitle());
 		TextPaint tp2 = tv_goods_name.getPaint();
 		tp2.setStyle(Style.FILL);
-		lowPrice.setText(gb.getWholesale_price());
-        lowPrice_0.setText(gb.getWholesale_price());
+//		lowPrice.setText(gb.getWholesale_price());
+        lowPrice_0.setText(getPrice(gb.getPrice()));
 
-        if(OfficalListFragment.pos_order == OfficalListFragment.PROFIT){
-            layout_profit.setVisibility(View.GONE);
-            layout_guide.setVisibility(View.VISIBLE);
-        }else{
+//        if(OfficalListFragment.pos_order == OfficalListFragment.PROFIT){
+//            layout_profit.setVisibility(View.GONE);
+//            layout_guide.setVisibility(View.VISIBLE);
+//        }else{
             float guide = Float.parseFloat(gb.getPrice());
             float price = Float.parseFloat(gb.getWholesale_price());
             BigDecimal decimal = new BigDecimal((guide - price)+"");
 
             tv_profit.setText(getPrice(decimal.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
             layout_profit.setVisibility(View.VISIBLE);
-            layout_guide.setVisibility(View.GONE);
-        }
+//            layout_guide.setVisibility(View.GONE);
+//        }
 
-		guidePrice.setText("指导价￥" + getPrice(gb.getPrice()));
 
 		setclickListener(gb, pos);
 

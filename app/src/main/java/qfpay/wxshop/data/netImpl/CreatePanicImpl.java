@@ -57,16 +57,10 @@ public class CreatePanicImpl extends AbstractNet {
 			try {
 				JSONObject root = new JSONObject(jsonStr);
 				String resultState = root.getString("respcd");
-				if (resultState.equals("0000")) {
-					bundle.putString(ConstValue.ERROR_MSG, ConstValue.SUCCESS);
-					
-				}else{
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					T.i("jsonStr is null or jsonStr.length is 0");
+				if (!resultState.equals("0000")) {
+                    String errorMsg = root.getString("resperr");
 					bundle.putString(ConstValue.ERROR_MSG,
-							"未知错误，请重试");
-					return bundle;
+                            errorMsg);
 				}
 
 				Long key = System.currentTimeMillis();

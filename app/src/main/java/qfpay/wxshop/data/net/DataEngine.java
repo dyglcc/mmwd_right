@@ -356,14 +356,15 @@ public class DataEngine extends Activity {
 	public void isSetEdvertiseMent(boolean b) {
 		data.edit().putBoolean("first_in_edertisement", b).commit();
 	}
-
-	public boolean isFirstinMenuMaijiaxiu() {
-		return data.getBoolean("first_in_Maijiaxiu_menu", false);
+    // 微信分享第一次总是失败，所有默认第一次分享默认重试一次
+	public boolean isFirstWeixinShare() {
+		return data.getBoolean("first_share_wexin", true);
+	}
+    // 微信分享第一次总是失败，所有默认第一次分享默认重试一次
+	public void isSetFirstWeixinShare(boolean b) {
+		data.edit().putBoolean("first_share_wexin", b).commit();
 	}
 
-	public void isSetFirstInMenuMaijiaxiu(boolean b) {
-		data.edit().putBoolean("first_in_Maijiaxiu_menu", b).commit();
-	}
 
 	// 发现个喵
 	public boolean isFirstinFaxiangeMiao() {

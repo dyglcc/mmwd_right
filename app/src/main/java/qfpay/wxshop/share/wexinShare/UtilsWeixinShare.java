@@ -99,10 +99,33 @@ public class UtilsWeixinShare {
 //			}
 //		});
 //		tt1.start();
-		WxShopApplication.api.sendReq(req);
+
+        if(WxShopApplication.dataEngine.isFirstWeixinShare()){
+
+            share2Times(req);
+
+        }else{
+            WxShopApplication.api.sendReq(req);
+        }
 	}
 
-	// public static boolean processeImg(final WeiXinDataBean wdb,final String
+    private static void share2Times(final SendMessageToWX.Req req) {
+        WxShopApplication.api.sendReq(req);
+        WxShopApplication.dataEngine.isSetFirstWeixinShare(false);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                    WxShopApplication.api.sendReq(req);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    // public static boolean processeImg(final WeiXinDataBean wdb,final String
 	// extra, final Context context) {
 	// if (wdb.thumbData == null) {
 	// Glide.with(context).load(wdb.imgUrl).asBitmap().into(new

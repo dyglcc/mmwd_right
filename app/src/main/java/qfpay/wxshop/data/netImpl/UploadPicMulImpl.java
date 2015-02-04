@@ -104,11 +104,10 @@ public class UploadPicMulImpl extends AbstractNet {
 								root.getString("resperr"));
 
 					} else {
-						bundle.putInt(ConstValue.JSON_RETURN,
-								ConstValue.JSON_FAILED);
-						bundle.putString(ConstValue.ERROR_MSG, "未知错误，请重试");
-						T.i("jsonStr is null or jsonStr.length is 0");
-						return bundle;
+                        String errorMsg = root.getString("resperr");
+                        T.i("error mess :" + errorMsg);
+                        bundle.putString(ConstValue.ERROR_MSG,
+                                errorMsg);
 					}
 					Long key = System.currentTimeMillis();
 					/** 界面上展示的时候直接根据key取存储类的数据 */
