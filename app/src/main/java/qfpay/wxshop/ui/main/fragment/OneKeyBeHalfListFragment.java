@@ -45,6 +45,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.SSNPublishActivity;
 import qfpay.wxshop.activity.share.ShareActivity;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.OneKeybehalfListResponseWrapper;
 import qfpay.wxshop.data.beans.OneKeybehalfListResponseWrapper.MsgsWrapper;
@@ -70,6 +71,7 @@ import qfpay.wxshop.utils.QMMAlert;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
+
 
 @SuppressLint("HandlerLeak")
 @EFragment(R.layout.main_onkeybehalf_list)

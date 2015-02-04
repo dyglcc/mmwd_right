@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.indicator.TabPageIndicator;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -17,6 +15,7 @@ import org.androidannotations.annotations.IgnoredWhenDetached;
 import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.commodity.CommodityListFragment_;

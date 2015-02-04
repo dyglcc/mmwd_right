@@ -23,12 +23,12 @@ import de.greenrobot.event.EventBus;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.LoginActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.config.update.UpdateManager;
 import qfpay.wxshop.data.event.LogoutEvent;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.QFCommonUtils;
 

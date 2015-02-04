@@ -1,5 +1,12 @@
 package qfpay.wxshop;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.os.Message;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -17,8 +24,6 @@ import org.androidannotations.api.BackgroundExecutor;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.concurrent.Executors;
 
 import dagger.ObjectGraph;
@@ -38,6 +43,7 @@ import qfpay.wxshop.ui.main.MoreActivity;
 import qfpay.wxshop.ui.selectpic.ImageItem;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
+import android.os.Handler;
 
 @EApplication
 @ReportsCrashes(mailTo = "lifangzhe@qfpay.com", mode = ReportingInteractionMode.SILENT, formKey = "")
@@ -234,7 +240,7 @@ public class WxShopApplication extends Application {
 		try {
 			localVersionCode = getPackageManager().getPackageInfo(
 					getPackageName(), 0).versionCode;
-		} catch (NameNotFoundException e) {
+		} catch (PackageManager.NameNotFoundException e) {
 			T.e(e);
 		}
 		if (serverCode > localVersionCode) {
