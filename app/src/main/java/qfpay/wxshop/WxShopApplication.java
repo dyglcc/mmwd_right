@@ -1,12 +1,7 @@
 package qfpay.wxshop;
 
-import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.amap.mapapi.location.LocationManagerProxy;
 import com.tencent.mm.sdk.openapi.IWXAPI;
@@ -37,6 +32,7 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.listener.MaijiaxiuUploadListener;
+import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.MoreActivity;
 import qfpay.wxshop.ui.selectpic.ImageItem;
@@ -48,6 +44,7 @@ import qfpay.wxshop.utils.Utils;
 public class WxShopApplication extends Application {
 	public static IWXAPI api;
 	public static  boolean IS_NEED_REFRESH_MINE_HUOYUAN = false;
+	public static  boolean IS_NEED_REFRESH_ONE_KEY_BEFALLF = false;
 
     private ObjectGraph objectGraph;
 
@@ -69,6 +66,7 @@ public class WxShopApplication extends Application {
 	// 碎碎念活动参数
 	public String SSN_ACTIVITY_TEXT = "";
 	public String SSN_ACTIVITY_URL="http://www.qianmiaomiao.com/explore2/";
+    public MainActivity main;
 
 	@Override
 	public void onCreate() {

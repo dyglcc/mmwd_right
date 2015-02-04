@@ -49,7 +49,6 @@ public class SSNianListView extends ListView {
 	private void init() {
 		mInflater = LayoutInflater.from(mContext);
 		mFooterMOREView = mInflater.inflate(R.layout.more_view_maijiaxiu, null);
-
 	}
 
 	public void checkFooterView() {

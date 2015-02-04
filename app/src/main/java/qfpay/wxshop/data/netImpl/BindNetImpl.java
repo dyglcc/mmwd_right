@@ -42,6 +42,7 @@ public class BindNetImpl extends AbstractNet {
 			}
 			retryTime++;
 			String clientid = parameter2.getString("clientid");
+            T.i("push-- "+clientid);
 			this.cliendid = clientid;
 			map.put("clientid", clientid);
 			
@@ -74,12 +75,12 @@ public class BindNetImpl extends AbstractNet {
 
 		if (jsonStr != null && jsonStr.length() > 0) {
 			try {
+                T.i("push---bind result:"+jsonStr);
 				Gson gson = new Gson();
 				CommonJsonBean bean = gson.fromJson(jsonStr,
 						CommonJsonBean.class);
 				if (!bean.getRespcd().equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
+					bundle.putString(ConstValue.ERROR_MSG,bean.getResperr());
 					Bundle bun = new Bundle();
 					bun.putString("clientid", this.cliendid);
 					this.request(bun, handler);
@@ -116,8 +117,10 @@ public class BindNetImpl extends AbstractNet {
 							text = "设置标签失败，setTag异常";
 							break;
 						}
-						Toaster.l(activity, text);
+                        T.i(text);
+//						Toaster.l(activity, text);
 					}
+                    bundle.putString(ConstValue.ERROR_MSG, ConstValue.SUCCESS);
 				}
 
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);

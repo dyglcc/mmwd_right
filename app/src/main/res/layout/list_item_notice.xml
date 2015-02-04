@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="10dip"
             android:gravity="center_vertical"
-            android:maxLines="5"
+            android:maxLines="6"
             android:paddingRight="20dp"
             android:paddingLeft="6dip"
             android:textSize="@dimen/text_size_normal" />

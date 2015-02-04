@@ -21,12 +21,15 @@
             <TextView
                 android:id="@+id/header_hint_text"
                 android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:text="@string/header_hint_refresh_normal"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="3dp">
 
                 <TextView

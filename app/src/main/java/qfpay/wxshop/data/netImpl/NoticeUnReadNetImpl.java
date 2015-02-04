@@ -58,15 +58,18 @@ public class NoticeUnReadNetImpl extends AbstractNet {
 				NoticeUnReadResponseWrapper fromJson = gosn.fromJson(jsonStr,
 						NoticeUnReadResponseWrapper.class);
 				if (!fromJson.getRespcd().equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					return bundle;
-				}
-				 DataWrapper dataWrapper  = fromJson.getData();
-				 bundle.putInt("unread", dataWrapper.getUnread());
-				Long key = System.currentTimeMillis();
-				/** 界面上展示的时候直接根据key取存储类的数据 */
-				bundle.putString(ConstValue.CACHE_KEY, key + "");
+                    String errorMsg = fromJson.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
+				}else{
+                    DataWrapper dataWrapper  = fromJson.getData();
+                    bundle.putInt("unread", dataWrapper.getUnread());
+                    Long key = System.currentTimeMillis();
+                    /** 界面上展示的时候直接根据key取存储类的数据 */
+                    bundle.putString(ConstValue.CACHE_KEY, key + "");
+                }
+
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
 			} catch (Exception e) {
 				T.e(e);

@@ -54,28 +54,11 @@ public class CarriageGoodImpl extends AbstractNet {
 			try {
 				JSONObject root = new JSONObject(jsonStr);
 				String resultState = root.getString("respcd");
-				if (resultState.equals("0000")) {
-					bundle.putString(ConstValue.ERROR_MSG, ConstValue.SUCCESS);
-//					{
-//						  "resperr": "",
-//						  "respcd": "0000",
-//						  "respmsg": "",
-//						  "data": null
-//						}
-//						错误返回：
-//						{
-//						  "resperr": "错误信息",
-//						  "respcd": "2013",
-//						  "respmsg": "错误信息",
-//						  "data": null}
-					
-				}else if (!resultState.equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					T.i("jsonStr is null or jsonStr.length is 0");
-					bundle.putString(ConstValue.ERROR_MSG,
-							"未知错误，请重试");
-					return bundle;
+				if (!resultState.equals("0000")) {
+                    String errorMsg = root.getString("resperr");
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
 				}
 
 				Long key = System.currentTimeMillis();

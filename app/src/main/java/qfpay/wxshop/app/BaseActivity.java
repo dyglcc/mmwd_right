@@ -7,6 +7,8 @@ import qfpay.wxshop.data.net.ConstValue;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -14,44 +16,45 @@ import android.widget.EditText;
 
 import cn.sharesdk.framework.ShareSDK;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
+import qfpay.wxshop.utils.Toaster;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseActivity extends SherlockFragmentActivity {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		WxShopApplication.app.addActivity(this);
-		ShareSDK.initSDK(this);
-		if (getSupportActionBar() != null) {
-			getSupportActionBar().setTitle("");
-		}
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        WxShopApplication.app.addActivity(this);
+        ShareSDK.initSDK(this);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("");
+        }
+    }
 
-	@Override
-	protected void onPause() {
-		MobclickAgent.onPause(this);
-		super.onPause();
-	}
-	
-	@Override
-	protected void onResume() {
-		MobclickAgent.onResume(this);
-		super.onResume();
-	}
-	
-	@Override
-	protected void onDestroy() {
-		BackgroundExecutor.cancelAll(ConstValue.THREAD_CANCELABLE, true);
-		super.onDestroy();
-	}
-	
-	@Override
-	public void onLowMemory() {
-		super.onLowMemory();
-	}
+    @Override
+    protected void onPause() {
+        MobclickAgent.onPause(this);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        MobclickAgent.onResume(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        BackgroundExecutor.cancelAll(ConstValue.THREAD_CANCELABLE, true);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+    }
 
 //    @Override
 //    public boolean dispatchTouchEvent(MotionEvent ev) {

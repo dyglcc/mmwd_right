@@ -65,30 +65,33 @@ public class MaijiaxiuGetNetImpl extends AbstractNet {
 				BuyerResponseWrapper fromJson = gosn.fromJson(jsonStr,
 						BuyerResponseWrapper.class);
 				if (!fromJson.getRespcd().equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					return bundle;
-				}
-				MsgsWrapper data = fromJson.getData();
-				list = new ArrayList<HashMap<String, Object>>();
-				map = new HashMap<String, Object>();
-				// 2014-04-24 14:52:31
-				// 处理日期
+                    String errorMsg = fromJson.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
+				}else{
+                    MsgsWrapper data = fromJson.getData();
+                    list = new ArrayList<HashMap<String, Object>>();
+                    map = new HashMap<String, Object>();
+                    // 2014-04-24 14:52:31
+                    // 处理日期
 
-				for (BuyerShowBean bsb : data.getMsgs()) {
-					if (bsb != null && !bsb.getUpdate_time().equals("")) {
+                    for (BuyerShowBean bsb : data.getMsgs()) {
+                        if (bsb != null && !bsb.getUpdate_time().equals("")) {
 
-						
-						bsb.setChineseDate(getChineseDateStr(bsb.getUpdate_time()));
-					}
-				}
-				map.put("orderList", data);
-				list.add(map);
 
-				Long key = System.currentTimeMillis();
-				CacheData.getInstance().setData(key + "", list);
-				/** 界面上展示的时候直接根据key取存储类的数据 */
-				bundle.putString(ConstValue.CACHE_KEY, key + "");
+                            bsb.setChineseDate(getChineseDateStr(bsb.getUpdate_time()));
+                        }
+                    }
+                    map.put("orderList", data);
+                    list.add(map);
+
+                    Long key = System.currentTimeMillis();
+                    CacheData.getInstance().setData(key + "", list);
+                    /** 界面上展示的时候直接根据key取存储类的数据 */
+                    bundle.putString(ConstValue.CACHE_KEY, key + "");
+                }
+
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
 			} catch (Exception e) {
 				T.e(e);

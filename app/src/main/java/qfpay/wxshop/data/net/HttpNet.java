@@ -352,8 +352,10 @@ public class HttpNet {
 			post.addHeader("Cookie", "sessionid="
 					+ WxShopApplication.dataEngine.getcid());
 
+            T.i("push-- session id" + WxShopApplication.dataEngine.getcid());
 			post.setHeader("User-Agent",
 					WxShopApplication.dataEngine.getUserAgent());
+            T.i("push-- user agent" + WxShopApplication.dataEngine.getUserAgent());
 			disableConnectionReuseIfNecessary();
 			HttpClient client = HttpConnectionManager.getHttpClient();
 

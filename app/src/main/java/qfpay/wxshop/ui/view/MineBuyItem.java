@@ -287,7 +287,15 @@ public class MineBuyItem extends LinearLayout {
 
 		View line1 = v.findViewById(R.id.line1);
 		View line2 = v.findViewById(R.id.line2);
+		View parent = v.findViewById(R.id.parent);
 		// View line3 = v.findViewById(R.id.line3);
+
+        parent.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
 		TextView tvQQ = (TextView) v.findViewById(R.id.tv_qq);
 		final String qq = bundle.getString("qq");

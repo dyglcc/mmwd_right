@@ -3,7 +3,10 @@ package qfpay.wxshop.ui.common.actionbar;
 import org.androidannotations.annotations.EBean;
 
 import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.NoticeCenterActivity_;
+import qfpay.wxshop.ui.main.MainActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.XmlResourceParser;
@@ -58,6 +61,7 @@ public class NoticeActionProvider extends ActionProvider implements
 	}
 
 	private void startAct() {
+        WxShopApplication.app.main = (MainActivity) (context);
 		NoticeCenterActivity_.intent(context).start();
 	}
 

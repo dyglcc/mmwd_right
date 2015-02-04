@@ -50,6 +50,7 @@ public class ShopFragment extends BaseFragment implements OnShareLinstener {
 	}
 	
 	@Override public void onFragmentRefresh() {
+        ShopFragmentsWrapper.getFragment(0,getActivity()).onFragmentRefresh();
 		refreshView(true);
 	}
 	

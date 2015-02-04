@@ -52,14 +52,12 @@ public class LabelApplyNetImpl extends AbstractNet {
 				CommonJsonBean fromJson = gosn.fromJson(jsonStr,
 						CommonJsonBean.class);
 				if (!fromJson.getRespcd().equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					return bundle;
-				}else{
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_SUCCESS);
-					return bundle;
+                    String errorMsg = fromJson.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
 				}
+                bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
 			} catch (Exception e) {
 				T.e(e);
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_FAILED);

@@ -5,7 +5,6 @@ import java.lang.ref.SoftReference;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.commodity.CommodityListFragment_;
 import qfpay.wxshop.ui.web.CommonWebFragment_;
 import android.content.Context;
 
@@ -90,7 +89,7 @@ public enum ShopFragmentsWrapper {
 		switch (this) {
 		case COMMODITY:
 			fragmentRef = new SoftReference<BaseFragment>(
-					new CommodityListFragment_());
+					new GoodFragment_());
 			break;
 		case PREVIEW:
 			fragmentRef = new SoftReference<BaseFragment>(

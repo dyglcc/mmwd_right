@@ -63,7 +63,7 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 		initListView();
 	}
 	
-	@Override public void onDestroy() {
+    @Override public void onDestroy() {
 		dataController.removeCallback();
 		super.onDestroy();
 	}
@@ -428,9 +428,4 @@ public class CommodityListFragment extends BaseFragment implements IXListViewLis
 			return true;
 		}
 	}
-//	public void destory(){
-//		if(dataController!=null){
-//			dataController.removeCallback();
-//		}
-//	}
 }

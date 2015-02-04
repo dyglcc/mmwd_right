@@ -29,23 +29,23 @@ public class WDConfig {
 		case 2:
 			this.PIC_SERVER = "http://172.100.102.153:8181/";
 			// huoyuan url
-//			WD_URL_HUO_YUAN = url.replaceAll("qmm.la", "mmwd.me");
+			WD_URL_HUO_YUAN = url.replaceAll("qmm.la", "mmwd.me");
 			break;
 		case 1:
 			PIC_SERVER = "http://o2.qfpay.com/";
-//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		case -1:
 			PIC_SERVER = "http://o2.qfpay.com/";
-//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		case 0:
 			PIC_SERVER = "http://o2.qfpay.com/";
-//			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
+			WD_URL_HUO_YUAN = "http://bj.mmwd.me/";
 			break;
 		default:
 			PIC_SERVER = "http://o2.qfpay.com/";
-//			WD_URL_HUO_YUAN = "http://mmwd.me/";
+			WD_URL_HUO_YUAN = "http://mmwd.me/";
 			break;
 		}
 		this.WD_URL = url;
@@ -77,7 +77,7 @@ public class WDConfig {
 	public String WD_URL = "http://0.wx.qfpay.com/";
 	public int mPushServer;
 
-//	public String WD_URL_HUO_YUAN = "http://mmwd.me/";
+	public String WD_URL_HUO_YUAN = "http://mmwd.me/";
 
 	public String getShopUrl() {
 		return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/";
@@ -229,7 +229,7 @@ public class WDConfig {
 
 
 	public String pushBindServer() {
-		Toaster.l(WxShopApplication.app, " " + mPushServer);
+//		Toaster.l(WxShopApplication.app, " " + mPushServer);
 		switch (mPushServer) {
 		case 0:
 			return "http://0.openapi2.qfpay.com/app/v1/getuibind"+getRequestInfo("");
@@ -437,6 +437,12 @@ public class WDConfig {
 	public String suisuiNianDatalist(String get) {
 		return WD_URL + "qmm/hmsg/v1/hybrid_msg"+getRequestInfo(get);
 	}
+	/**
+	 * 一键代理商品列表
+	 * */
+	public String onkeybehlfList(String get) {
+		return WD_URL + "qmm/item/v2/mycpslist"+getRequestInfo(get);
+	}
 
 	/**
 	 * 得到label列表
@@ -460,6 +466,12 @@ public class WDConfig {
 	}
 
 	/**
+	 * 取消代理
+	 * */
+	public String delOnkeybehlf(String get) {
+		return WD_URL + "qmm/item/v2/cancelagent"+getRequestInfo(get);
+	}
+	/**
 	 * 获取厂商联系方式
 	 * */
 	public String getFactoryContract(String get) {
@@ -482,10 +494,23 @@ public class WDConfig {
 	 * */
 	public String getPreviewShopAddress() {
 		// TODO Auto-generated method stub
+        if(mPushServer !=0){
+            return  "http://bj.mmwd.me/shop/";
+        }
 		return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/shop/";
 	}
 
     public String getMyDynamicNotesListUrl(){
         return SOCIAL_URL + "my_forum";
     }
+    public String getGoodPreviewUrl(){
+
+        // 非线上都用北京06
+        if(mPushServer != 0){
+           return  "http://bj.mmwd.me/item/";
+        }
+        return "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/";
+    }
+
+
 }

@@ -72,12 +72,10 @@ public class CancelPanicImpl extends AbstractNet {
 					bundle.putString(ConstValue.ERROR_MSG, activity.getResources().getString(R.string.existing_phonenum));
 
 				}else if (!resultState.equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					T.i("jsonStr is null or jsonStr.length is 0");
-					bundle.putString(ConstValue.ERROR_MSG,
-							"未知错误，请重试");
-					return bundle;
+                    String errorMsg = root.getString("resperr");
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
 				}
 
 				Long key = System.currentTimeMillis();

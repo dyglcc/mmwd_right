@@ -25,7 +25,7 @@ apply plugin: 'newlens'
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // Common
-    compile "com.networkbench.newlens.agent.android:nbs.newlens.agent:1.2.4"
+    compile 'com.networkbench.newlens.agent.android:nbs.newlens.agent:1.2.4'
     compile 'com.android.support:support-v4:21.0.+'
     compile 'org.eclipse.birt.runtime.3_7_1:org.apache.commons.codec:1.3.0'
     compile 'org.apache.httpcomponents:httpmime:4.1.3'
@@ -58,6 +58,7 @@ dependencies {
     compile 'com.daimajia.androidanimations:library:1.1.3@aar'
     compile files('libs/mta-sdk-1.6.2.jar')
     compile files('libs/open_sdk_r4547.jar')
+    compile files('libs/GetuiSdk2.4.1.0.jar')
 }
 
 // Setup the Annotations Complier
@@ -76,8 +77,8 @@ android {
         applicationId "qfpay.wxshop"
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 102
-        versionName "3.9.6"
+        versionCode 103
+        versionName "3.9.8"
         manifestPlaceholders = [channelName: "home", isFirstLauncher: "false"]
     }
     // The Signing Setting

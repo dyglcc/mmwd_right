@@ -10,6 +10,7 @@ import qfpay.wxshop.data.beans.OfficialGoodsResponseWrapper;
 import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.CacheData;
 import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.ui.main.fragment.OfficalListFragment;
 import qfpay.wxshop.utils.T;
 
 import android.annotation.SuppressLint;
@@ -31,7 +32,7 @@ public class OfficialGoodGetNetImpl extends AbstractNet {
         try {
 
             int page = parameter2.getInt("page");
-            int offset = page * ConstValue.PAGE_SIZE;
+            int offset = page * OfficalListFragment.page_size;
             int category = parameter2.getInt("category");
 
             // 买家秀 1
@@ -41,7 +42,7 @@ public class OfficialGoodGetNetImpl extends AbstractNet {
                     + "?offset="
                     + offset
                     + "&length="
-                    + ConstValue.PAGE_SIZE;
+                    + OfficalListFragment.page_size;
             if (category != 0) {
                 url = url + "&cid=" + category;
             }
@@ -69,22 +70,25 @@ public class OfficialGoodGetNetImpl extends AbstractNet {
                 OfficialGoodsResponseWrapper fromJson = gosn.fromJson(jsonStr,
                         OfficialGoodsResponseWrapper.class);
                 if (!fromJson.getRespcd().equals("0000")) {
-                    bundle.putInt(ConstValue.JSON_RETURN,
-                            ConstValue.JSON_FAILED);
-                    return bundle;
-                }
-                qfpay.wxshop.data.beans.OfficialGoodsResponseWrapper.MsgsWrapper data = fromJson.getData();
-                list = new ArrayList<HashMap<String, Object>>();
-                map = new HashMap<String, Object>();
-                // 2014-04-24 14:52:31
-                // 处理日期
-                map.put("orderList", data);
-                list.add(map);
+                    String errorMsg = fromJson.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
+                }else{
+                    qfpay.wxshop.data.beans.OfficialGoodsResponseWrapper.MsgsWrapper data = fromJson.getData();
+                    list = new ArrayList<HashMap<String, Object>>();
+                    map = new HashMap<String, Object>();
+                    // 2014-04-24 14:52:31
+                    // 处理日期
+                    map.put("orderList", data);
+                    list.add(map);
 
-                Long key = System.currentTimeMillis();
-                CacheData.getInstance().setData(key + "", list);
-                /** 界面上展示的时候直接根据key取存储类的数据 */
-                bundle.putString(ConstValue.CACHE_KEY, key + "");
+                    Long key = System.currentTimeMillis();
+                    CacheData.getInstance().setData(key + "", list);
+                    /** 界面上展示的时候直接根据key取存储类的数据 */
+                    bundle.putString(ConstValue.CACHE_KEY, key + "");
+                }
+
                 bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
             } catch (Exception e) {
                 T.e(e);

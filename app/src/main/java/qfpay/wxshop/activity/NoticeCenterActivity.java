@@ -10,7 +10,10 @@ import java.util.Map;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EIntentService;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.Receiver;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -101,6 +104,8 @@ public class NoticeCenterActivity extends BaseActivity implements
 	ImageView ivImagelayer2;
 
 	public NoticeItem sharebean;
+
+
 
 	// 已经没有数据了吗？
 	public static boolean nodata;
@@ -469,6 +474,8 @@ public class NoticeCenterActivity extends BaseActivity implements
 	private static final int upload_success = NOTIFY_DATA + 1;
 	public static final int SSN_SHARE = upload_success + 1;
 
+    public static final int CHANGETAB =SSN_SHARE +1;
+
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
@@ -519,6 +526,9 @@ public class NoticeCenterActivity extends BaseActivity implements
 				break;
 			case SSN_SHARE:
 				popUpDialog();
+				break;
+			case CHANGETAB:
+                WxShopApplication.app.main.showOneKeybehalf();
 				break;
 			default:
 				break;

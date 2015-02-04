@@ -161,6 +161,7 @@ public class CommodityItemView extends LinearLayout {
                 ManPromoActivity_.intent(getContext()).gb(new2Old(data.model)).pos(controller.getIndex(data.model)).
                         from("GoodlistFragment").start();
             }
+<<<<<<< HEAD
 		}
 	}
 	
@@ -302,4 +303,241 @@ public class CommodityItemView extends LinearLayout {
 		gb.setWeight(model.getSortWeight());
 		return gb;
 	}
+=======
+        });
+    }
+
+    /**
+     * 反转当前的置顶显示
+     */
+    public void processTopUI(boolean currentState) {
+        if (currentState) {
+            iv_menu_top.setImageResource(R.drawable.shopmanager_item_down);
+            tv_menu_top.setText(R.string.item_menu_title_canceltop);
+            iv_top.setVisibility(View.VISIBLE);
+        } else {
+            iv_menu_top.setImageResource(R.drawable.shopmanager_item_top);
+            tv_menu_top.setText(R.string.item_menu_title_top);
+            iv_top.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 控制当前秒杀按钮的显示
+     */
+    public void processSalesPromotion(SalesPromotionModel salesPromotion) {
+        if (salesPromotion != null && salesPromotion.getCommodityID() != 0) {
+            iv_promotation.setVisibility(View.VISIBLE);
+            tv_menu_promotation.setText("关闭秒杀");
+            tv_price.setText(salesPromotion.getPromotionPrice() + "");
+        } else {
+            iv_promotation.setVisibility(View.GONE);
+            tv_menu_promotation.setText("秒杀活动");
+            tv_price.setText(data.model.getPrice() + "");
+        }
+    }
+
+    @Click
+    void ll_menu_share() {
+        shareUtils.onShare(data.model);
+    }
+
+    @Click
+    void ll_menu_promotation() {
+        SalesPromotionModel salesPromotion = data.model.getSalesPromotion();
+        if (salesPromotion != null && salesPromotion.getCommodityID() != 0) {
+            QFCommonUtils.showDialog((FragmentActivity) getContext(), getResources().getString(R.string.promotion_dialog_title_cancel),
+                    getResources().getString(R.string.promotion_dialog_msg_cancel),
+                    new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            controller.cancelPromotion(data.model);
+                        }
+                    });
+        } else {
+            MobAgentTools.OnEventMobOnDiffUser(getContext(), "manage_seckill");
+            ManPromoActivity_.intent(getContext()).gb(new2Old(data.model)).pos(controller.getIndex(data.model)).
+                    from("GoodlistFragment").start();
+        }
+    }
+
+    @Click
+    void ll_menu_edit() {
+        String goodid = data.model.getID() + "";
+        if (goodid == null || goodid.equals("")) {
+            Toaster.l(getContext(), "出错了,刷新界面试试");
+            return;
+        }
+        EditItemActivity_.intent(getContext()).commodityModel(data.model).start();
+    }
+
+    @Click
+    void ll_menu_top() {
+        if (controller.isTop(data.model)) {
+            QFCommonUtils.showDialog((FragmentActivity) getContext(), getResources().getString(R.string.item_dialog_title_taketop_cancel),
+                    getResources().getString(R.string.item_dialog_msg_taketop_cancel),
+                    new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            controller.cancelTop(data.model);
+                            processTopUI(false);
+                        }
+                    });
+            return;
+        }
+        if (controller.getTopList() != null) {
+            QFCommonUtils.showDialog((FragmentActivity) getContext(), getResources().getString(R.string.item_dialog_title_taketop_replace),
+                    getResources().getString(R.string.item_dialog_msg_taketop_replace),
+                    new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            controller.takeTop(data.model);
+                            processTopUI(false);
+                        }
+                    });
+        } else {
+            controller.takeTop(data.model);
+            processTopUI(false);
+            QFCommonUtils.showDialog((FragmentActivity) getContext(), getResources().getString(R.string.item_dialog_title_taketop_success),
+                    getResources().getString(R.string.item_dialog_msg_taketop_success),
+                    getResources().getString(R.string.item_dialog_negative_taketop),
+                    getResources().getString(R.string.item_dialog_positivebtn_taketop), false, -1,
+                    new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+//						Intent intent = new Intent(getContext(), ManagePreViewActivity.class);
+//						intent.putExtra(ConstValue.TITLE, "店铺预览");
+//						intent.putExtra(ConstValue.URL,
+//                                WDConfig.getInstance().getShopUrl()
+//                                + WxShopApplication.dataEngine.getShopId()
+//                                + "?ga_medium=android_mmwdapp_stickpreview_&ga_source=entrance");
+//						getContext().startActivity(intent);
+
+                            GoodsBean gb = new2Old(data.model);
+                            gb.setMsBean(new2OldMS(data.model));
+                            ManagePreViewActivity_.intent(getContext()).
+                                    title("商品预览").
+                                    url(WDConfig.getInstance().getGoodPreviewUrl() + data.model.getID() + "?ga_medium=android_mmwdapp_preview_&ga_source=entrance").
+                                    gooditem(gb).start();
+                        }
+                    });
+        }
+    }
+
+
+    @Click
+    void ll_menu_preview() {
+        MobAgentTools.OnEventMobOnDiffUser(getContext(), "management_goodspreview");
+
+        GoodsBean gb = new2Old(data.model);
+        gb.setMsBean(new2OldMS(data.model));
+        ManagePreViewActivity_.intent(getContext()).ga_medium("android_mmwdapp_previewshare_").
+                title("商品预览").
+                url(WDConfig.getInstance().getGoodPreviewUrl() + data.model.getID() + "?ga_medium=android_mmwdapp_preview_&ga_source=entrance").
+                gooditem(gb).start();
+//		Intent intent = new Intent(getContext(), ManagePreViewActivity.class);
+//		intent.putExtra(ConstValue.TITLE, "商品预览");
+//		intent.putExtra(ConstValue.URL, "http://" + WxShopApplication.app.getDomainMMWDUrl() + "/item/" + data.model.getID() + "?ga_medium=android_mmwdapp_managepreview_&ga_source=entrance&from=app_preview");
+//		getContext().startActivity(intent);
+    }
+
+    @Click
+    void ll_menu_offshelf() {
+        String msg = "";
+        if (data.model.getSortWeight() > 0) {
+            msg = "这是置顶的商品诶！确定下架吗？";
+        } else {
+            msg = "下架该商品吗？";
+        }
+        QFCommonUtils.showDialog((FragmentActivity) getContext(), getResources().getString(R.string.item_dialog_title_offshelf),
+                msg, new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        controller.remove(data.model);
+                    }
+                });
+        MobAgentTools.OnEventMobOnDiffUser(getContext(), "remove");
+    }
+
+    @SuppressLint("NewApi")
+    private void openMenu() {
+        if (!data.isAni) {
+            changeMenuHeight(QFCommonUtils.dip2px(getContext(), SIZE_MENU_HEIGHT_DP));
+            iv_indicator.setRotation(180);
+            return;
+        }
+
+        ValueAnimator menuAni = ValueAnimator.ofFloat(0, QFCommonUtils.dip2px(getContext(), SIZE_MENU_HEIGHT_DP));
+        menuAni.addUpdateListener(new AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator arg0) {
+                changeMenuHeight((Float) arg0.getAnimatedValue());
+            }
+        });
+        menuAni.setDuration(100);
+        menuAni.start();
+
+        data.isAni = false;
+    }
+
+    @SuppressLint("NewApi")
+    private void closeMenu() {
+        if (!data.isAni) {
+            changeMenuHeight(0);
+            iv_indicator.setRotation(0);
+            return;
+        }
+
+        ValueAnimator menuAni = ValueAnimator.ofFloat(QFCommonUtils.dip2px(getContext(), SIZE_MENU_HEIGHT_DP), 0);
+        menuAni.addUpdateListener(new AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator arg0) {
+                changeMenuHeight((Float) arg0.getAnimatedValue());
+            }
+        });
+        menuAni.setDuration(100);
+        menuAni.start();
+
+        data.isAni = false;
+    }
+
+    private void changeMenuHeight(float height) {
+        android.widget.RelativeLayout.LayoutParams lp = (android.widget.RelativeLayout.LayoutParams) ll_menu.getLayoutParams();
+        lp.height = (int) height;
+        ll_menu.requestLayout();
+    }
+
+    public GoodsBean new2Old(CommodityModel model) {
+        GoodsBean gb = new GoodsBean();
+        gb.setCreateDateStr(model.getCreateTimeForOld());
+        gb.setEditPos(controller.getIndex(model));
+        gb.setGoodDesc(model.getDescript());
+        gb.setGoodName(model.getName());
+        gb.setGoodsId(model.getID() + "");
+        gb.setGoodstate(model.getCommodityStateForOld() + "");
+        gb.setImageUrl(QFCommonUtils.generateQiniuUrl(model.getImgUrl(), ImageSizeForUrl.MIN));
+        gb.setPostage(model.getPostage() + "");
+        gb.setPriceStr(model.getPrice() + "");
+        gb.setSaled(model.getSalesCount() + "");
+        gb.setStock(model.getStock() + "");
+        gb.setWeight(model.getSortWeight());
+        return gb;
+    }
+
+    public GoodMSBean new2OldMS(CommodityModel model) {
+        GoodMSBean bean = null;
+        SalesPromotionModel msModel = model.getSalesPromotion();
+        if(msModel == null){
+            return bean;
+        }
+        if (msModel.getPromotionFlag() == SalesPromotionModel.PromotionState.STARTED && msModel.getCommodityID() != 0) {
+            bean = new GoodMSBean();
+            bean.setNewprice(msModel.getPromotionPrice() + "");
+            bean.setId(msModel.getPromotionID() + "");
+        }
+        return bean;
+
+    }
+>>>>>>> refs/heads/onkeybehalf
 }

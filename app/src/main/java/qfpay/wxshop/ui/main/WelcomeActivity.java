@@ -98,12 +98,13 @@ public class WelcomeActivity extends BaseActivity {
 			return;
 		}
 
+        // share sdk 集成 目前使用share Sdk 的有新浪 腾讯微博
 		ShareSDK.initSDK(this);
-		PushManager.getInstance().initialize(this);
-		WxShopApplication.dataEngine.setOpenTime(System.currentTimeMillis());
-
 		MainActivity_.intent(WelcomeActivity.this).start();
 		finish();
+
+        // 暂时没有发现在用open time
+        WxShopApplication.dataEngine.setOpenTime(System.currentTimeMillis());
 	}
 
 	void initImg() {

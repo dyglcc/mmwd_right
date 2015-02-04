@@ -287,6 +287,7 @@ public class ConstValue {
 
 	public static final String ERROR_MSG = "errorMsg";
 	public static final String SUCCESS = "success";
+	public static final String FAILD = "success";
 
 	public static final String URL = "url";
 	public static final String TITLE = "title";
@@ -311,7 +312,8 @@ public class ConstValue {
 	public static final long threeDay = 3* 24 * 60 * 60 * 1000;
 	public static final long fourDay = 4* 24 * 60 * 60 * 1000;
 	public static final int shareBigPic = 500;
-	
+	public static final int shareSmallPic = 120;
+
 	// 微信id
 	public static final String APP_ID = "wx8fa0f7931d181217";
 	public static final boolean circle_share = true;

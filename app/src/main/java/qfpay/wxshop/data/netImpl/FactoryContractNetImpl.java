@@ -57,16 +57,18 @@ public class FactoryContractNetImpl extends AbstractNet {
 				FactoryContractResponseWrapper fromJson = gosn.fromJson(jsonStr,
 						FactoryContractResponseWrapper.class);
 				if (!fromJson.getRespcd().equals("0000")) {
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					return bundle;
-				}
-				Contract contract = fromJson.getData().getContact();
+                    String errorMsg = fromJson.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
+				}else{
+                    Contract contract = fromJson.getData().getContact();
 
-				bundle.putString("qq", contract.getQq());
-				bundle.putString("weixin", contract.getWeixin());
-				bundle.putString("mobile", contract.getTelephone());
-				/** 界面上展示的时候直接根据key取存储类的数据 */
+                    bundle.putString("qq", contract.getQq());
+                    bundle.putString("weixin", contract.getWeixin());
+                    bundle.putString("mobile", contract.getTelephone());
+                }
+
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
 			} catch (Exception e) {
 				T.e(e);

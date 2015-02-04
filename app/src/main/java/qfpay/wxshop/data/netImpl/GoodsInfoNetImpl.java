@@ -50,18 +50,16 @@ public class GoodsInfoNetImpl extends AbstractNet {
 				Gson gosn = new Gson();
 				GoodSingleItemResponseWrapper fromJson2 = gosn.fromJson(jsonStr,GoodSingleItemResponseWrapper.class);
 				if (!fromJson2.getRespcd().equals("0000")) {
-					bundle.putString(ConstValue.ERROR_MSG, fromJson2.getResperr());
-					bundle.putInt(ConstValue.JSON_RETURN,
-							ConstValue.JSON_FAILED);
-					return bundle;
+                    String errorMsg = fromJson2.getResperr();
+                    T.i("error mess :" + errorMsg);
+                    bundle.putString(ConstValue.ERROR_MSG,
+                            errorMsg);
 				}else{
 					bundle.putString("good_name", fromJson2.getData().getGood().getGood_name());
 					bundle.putInt("id", fromJson2.getData().getGood().getId());
 					bundle.putString("good_img", fromJson2.getData().getGood().getGood_img());
 				}
 					
-				Long key = System.currentTimeMillis();
-				bundle.putString(ConstValue.CACHE_KEY, key + "");
 				bundle.putInt(ConstValue.JSON_RETURN, ConstValue.JSON_SUCCESS);
 			} catch (Exception e) {
 				T.e(e);
