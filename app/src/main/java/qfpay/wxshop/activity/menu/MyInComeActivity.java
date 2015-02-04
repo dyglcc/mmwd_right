@@ -7,7 +7,7 @@ import qfpay.wxshop.activity.RegBankAccountActivity_;
 import qfpay.wxshop.activity.ShowBankInfoActivity;
 import qfpay.wxshop.activity.WeixinQmmActivity;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.JsToJavaInteface;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;

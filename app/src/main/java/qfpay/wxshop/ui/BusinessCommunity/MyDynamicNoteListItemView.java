@@ -2,28 +2,14 @@ package qfpay.wxshop.ui.BusinessCommunity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.ResultReceiver;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.squareup.picasso.Picasso;
@@ -34,9 +20,9 @@ import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
-
+import java.util.List;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.beans.MyDynamicItemBean0;
@@ -44,7 +30,6 @@ import qfpay.wxshop.data.beans.MyDynamicItemReplyBean;
 import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Util;
@@ -52,6 +37,7 @@ import qfpay.wxshop.utils.Utils;
 
 /**
  * 我的动态列表item
+ * @author zhangzhichao
  */
 @EViewGroup(R.layout.mydynamic_notes_list_item)
 public class MyDynamicNoteListItemView extends LinearLayout {
@@ -63,35 +49,41 @@ public class MyDynamicNoteListItemView extends LinearLayout {
     @ViewById
     com.makeramen.RoundedImageView u_avatar, u_avatar_reply2, u_avatar_reply;
     @ViewById
-    TextView u_name, g_name, content, read_num, reply_num, like_data, content_reply, content_reply2, content_reply_name_tv1, content_reply_name_tv2;
+    TextView u_name, g_name, content, read_num, reply_num,
+            like_data, content_reply, content_reply2, content_reply_name_tv1, content_reply_name_tv2,u_name_topic;
     @ViewById
     LinearLayout parent_ll, reply_content_ll, reply_content_child1, reply_content_child2, reply_ll, link_ll, bottom_ll;
     @ViewById
     View imageview_below_line, reply_below_line;
     @ViewById
-    FrameLayout root_fl;
+    FrameLayout root_fl,topic_u_name_fl;
     @ViewById
     EditText input_reply_et;
     MyDynamicItemBean0 data;
     private int screenWidth;
     private Context context;
-    private int currentShowReplyIndex = 1;//当前显示评论的索引
+    private int currentShowReplyIndex = 0;//当前显示评论的索引
     private float scale;//屏幕密度
     private int position;
     BusinessCommunityDataController businessCommunityDataController;
-    private HashMap<String, MyDynamicItemReplyBean> myDynamicItemReplyBeans = new HashMap<String, MyDynamicItemReplyBean>();//待显示的评论列表数据
+    private List<MyDynamicItemReplyBean> replyBeanList = new ArrayList<MyDynamicItemReplyBean>();//待显示的评论列表数据
     private LoopperRunnable loopper;
+    int picWidth;
+    boolean hasResizeImageView;
+    private Picasso picasso;
 
     public MyDynamicNoteListItemView(Context context) {
         super(context);
         this.context = context;
+        hasResizeImageView = false;
         screenWidth = Util.getScreenWidth((Activity) context);
         scale = context.getResources().getDisplayMetrics().density;
     }
 
-    public MyDynamicNoteListItemView(Context context, BusinessCommunityDataController businessCommunityDataController) {
+    public MyDynamicNoteListItemView(Context context, BusinessCommunityDataController businessCommunityDataController,Picasso p) {
         this(context);
         this.businessCommunityDataController = businessCommunityDataController;
+        this.picasso = p;
     }
 
 
@@ -104,7 +96,14 @@ public class MyDynamicNoteListItemView extends LinearLayout {
     public MyDynamicNoteListItemView setData(MyDynamicItemBean0 data, int position) {
         this.data = data;
         this.position = position;
-
+        if(!hasResizeImageView){
+            android.view.ViewGroup.LayoutParams layoutParams = image
+                    .getLayoutParams();
+            picWidth = (int) (screenWidth - Utils.dip2px(context,38));
+            layoutParams.height = picWidth;
+            image.setLayoutParams(layoutParams);
+            hasResizeImageView = true;
+        }
         if (loopper == null) {
             loopper = new LoopperRunnable();
             loopper.start();
@@ -112,26 +111,30 @@ public class MyDynamicNoteListItemView extends LinearLayout {
             loopper.reset();
         }
 
-        android.view.ViewGroup.LayoutParams layoutParams = image
-                .getLayoutParams();
-        int picWidth = (int) (screenWidth - (36 * scale + 0.5f));
-        layoutParams.height = picWidth;
-        image.setLayoutParams(layoutParams);
-
         if (data.getItem_type().equals("0")) {
-            u_name.setText(data.getU_name());
             if (context instanceof MyTopicDetailActivity) {//如果是某一小组内的帖子，不显示来自组别,并且昵称居中
                 g_name.setVisibility(View.GONE);
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.CENTER_VERTICAL);
-                params.addRule(RelativeLayout.RIGHT_OF, u_avatar.getId());
-                params.setMargins(Utils.dip2px(context, 8), 0, 0, 0);
-                u_name.setLayoutParams(params);
+                u_name.setVisibility(View.GONE);
+                topic_u_name_fl.setVisibility(View.VISIBLE);
+                u_name_topic.setText(data.getU_name());
             } else {
+                topic_u_name_fl.setVisibility(View.GONE);
                 g_name.setVisibility(View.VISIBLE);
+                u_name.setVisibility(View.VISIBLE);
+                u_name.setText(data.getU_name());
+                g_name.setText("来自" + data.getG_name());
             }
-            g_name.setText("来自" + data.getG_name());
-            content.setText(data.getContent());
+
+
+            String noteContent = data.getContent();
+            if(noteContent!=null&&!noteContent.equals("")){
+                content.setVisibility(View.VISIBLE);
+                content.setText(noteContent);
+            }else{
+                content.setVisibility(View.GONE);
+            }
+
+
             read_num.setText(data.getRead_num());
             reply_num.setText(data.getReply_num());
             like_data.setText(data.getLike_data().getLike_count());
@@ -145,26 +148,30 @@ public class MyDynamicNoteListItemView extends LinearLayout {
                 image.setVisibility(View.VISIBLE);
                 imageview_below_line.setVisibility(View.INVISIBLE);
                 String picUrl = data.getImage() + "?imageView2/1/w/" + picWidth + "/h/" + picWidth;
-                Picasso.with(getContext()).load(picUrl).fit().centerCrop().placeholder(R.drawable.list_item_default).into(image);
+                picasso.load(picUrl).fit().centerCrop().placeholder(R.drawable.list_item_default).into(image);
             } else {
                 imageview_below_line.setVisibility(View.VISIBLE);
                 image.setVisibility(View.GONE);
             }
-            Picasso.with(getContext()).load(data.getU_avatar()).fit().centerInside().placeholder(R.drawable.list_item_default).
+            picasso.load(data.getU_avatar()).fit().centerInside().placeholder(R.drawable.list_item_default).
                     error(R.drawable.list_item_default).into(u_avatar);
 
             MyDynamicItemBean0.ReplyWrapper replyWrapper = data.getReply();
             if (replyWrapper != null) {
-                if (replyWrapper.getItems().size() > 0) {
-                    initReplyList(replyWrapper);
-                    currentShowReplyIndex = replyWrapper.getItems().size();
+                replyBeanList.clear();
+                replyBeanList.addAll(replyWrapper.getItems());
+                if (replyBeanList.size() > 0) {
+                    currentShowReplyIndex = 0;
+                    MyDynamicItemReplyBean replyBean =replyBeanList.get(currentShowReplyIndex);
                     reply_content_ll.setVisibility(View.VISIBLE);
                     reply_below_line.setVisibility(View.VISIBLE);
-                    Picasso.with(getContext()).load(getCurrentReply(myDynamicItemReplyBeans).getU_avatar()).fit().centerInside().placeholder(R.drawable.list_item_default).
-                            error(R.drawable.list_item_default).into(u_avatar_reply);
-                    animationRecovery();
-                    content_reply.setText(getCurrentReply(myDynamicItemReplyBeans).getContent());
-                    content_reply_name_tv1.setText(getCurrentReply(myDynamicItemReplyBeans).getU_name() + ": ");
+                    if(replyBean!=null){
+                        picasso.load(replyBean.getU_avatar()).fit().centerInside().placeholder(R.drawable.list_item_default).
+                                error(R.drawable.list_item_default).into(u_avatar_reply);
+                        animationRecovery();
+                        content_reply.setText(replyBean.getContent());
+                        content_reply_name_tv1.setText(replyBean.getU_name() + ": ");
+                    }
                 } else {
                     reply_content_ll.setVisibility(View.GONE);
                     reply_below_line.setVisibility(View.INVISIBLE);
@@ -185,8 +192,8 @@ public class MyDynamicNoteListItemView extends LinearLayout {
      * @param myDynamicItemReplyBeans
      * @return
      */
-    private MyDynamicItemReplyBean getCurrentReply(HashMap<String, MyDynamicItemReplyBean> myDynamicItemReplyBeans) {
-        MyDynamicItemReplyBean replyBean = myDynamicItemReplyBeans.get(currentShowReplyIndex + "");
+    private MyDynamicItemReplyBean getCurrentReply(List<MyDynamicItemReplyBean> myDynamicItemReplyBeans) {
+        MyDynamicItemReplyBean replyBean = myDynamicItemReplyBeans.get(currentShowReplyIndex);
         return replyBean;
     }
 
@@ -196,13 +203,13 @@ public class MyDynamicNoteListItemView extends LinearLayout {
      * @param myDynamicItemReplyBeans
      * @return
      */
-    private MyDynamicItemReplyBean getNextReply(HashMap<String, MyDynamicItemReplyBean> myDynamicItemReplyBeans) {
-        if (currentShowReplyIndex == 1) {
-            currentShowReplyIndex = myDynamicItemReplyBeans.size();
-            return myDynamicItemReplyBeans.get(currentShowReplyIndex + "");
+    private MyDynamicItemReplyBean getNextReply(List<MyDynamicItemReplyBean> myDynamicItemReplyBeans) {
+        if (currentShowReplyIndex == (myDynamicItemReplyBeans.size()-1)) {
+            currentShowReplyIndex = 0;
+            return myDynamicItemReplyBeans.get(currentShowReplyIndex);
         } else {
-            currentShowReplyIndex = currentShowReplyIndex - 1;
-            return myDynamicItemReplyBeans.get(currentShowReplyIndex + "");
+            currentShowReplyIndex = currentShowReplyIndex + 1;
+            return myDynamicItemReplyBeans.get(currentShowReplyIndex);
         }
     }
 
@@ -213,19 +220,35 @@ public class MyDynamicNoteListItemView extends LinearLayout {
      */
     @UiThread
     public void showReplyContent() {
-        if (myDynamicItemReplyBeans != null && myDynamicItemReplyBeans.size() > 0) {
+        if (replyBeanList != null && replyBeanList.size() > 0) {
             //当前评论
-            MyDynamicItemReplyBean currentReply = getCurrentReply(myDynamicItemReplyBeans);
-            Picasso.with(getContext()).load(currentReply.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
-                    error(R.drawable.list_item_default).into(u_avatar_reply);
-            content_reply.setText(currentReply.getContent());
-            content_reply_name_tv1.setText(currentReply.getU_name() + ": ");
+            final MyDynamicItemReplyBean currentReply = getCurrentReply(replyBeanList);
+            if(currentReply!=null){
+                Picasso.with(getContext()).load(currentReply.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
+                        error(R.drawable.list_item_default).into(u_avatar_reply);
+                u_avatar_reply.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getShopIdByUserId(currentReply.getU_id());
+                    }
+                });
+                content_reply.setText(currentReply.getContent());
+                content_reply_name_tv1.setText(currentReply.getU_name() + ": ");
+            }
             //下一条要显示的评论
-            MyDynamicItemReplyBean nextReply = getNextReply(myDynamicItemReplyBeans);
-            Picasso.with(getContext()).load(nextReply.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
-                    error(R.drawable.list_item_default).into(u_avatar_reply2);
-            content_reply2.setText(nextReply.getContent());
-            content_reply_name_tv2.setText(nextReply.getU_name() + ": ");
+            final MyDynamicItemReplyBean nextReply = getNextReply(replyBeanList);
+            if(nextReply!=null){
+                Picasso.with(getContext()).load(nextReply.getU_avatar()).fit().centerCrop().placeholder(R.drawable.list_item_default).
+                        error(R.drawable.list_item_default).into(u_avatar_reply2);
+                u_avatar_reply2.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getShopIdByUserId(nextReply.getU_id());
+                    }
+                });
+                content_reply2.setText(nextReply.getContent());
+                content_reply_name_tv2.setText(nextReply.getU_name() + ": ");
+            }
             //开始动画
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.playTogether(
@@ -263,17 +286,17 @@ public class MyDynamicNoteListItemView extends LinearLayout {
      *
      * @param replyWrapper
      */
-    private void initReplyList(MyDynamicItemBean0.ReplyWrapper replyWrapper) {
-        if (replyWrapper != null) {
-            myDynamicItemReplyBeans.clear();
-            for (MyDynamicItemReplyBean bean : replyWrapper.getItems()) {
-                if (bean != null) {
-                    myDynamicItemReplyBeans.put(bean.getFloor(), bean);
-                }
-            }
-
-        }
-    }
+//    private void initReplyList(MyDynamicItemBean0.ReplyWrapper replyWrapper) {
+//        if (replyWrapper != null) {
+//            myDynamicItemReplyBeans.clear();
+//            for (MyDynamicItemReplyBean bean : replyWrapper.getItems()) {
+//                if (bean != null) {
+//                    myDynamicItemReplyBeans.put(bean.getFloor(), bean);
+//                }
+//            }
+//
+//        }
+//    }
 
 
     /**

@@ -1,6 +1,6 @@
 package qfpay.wxshop.ui.main.fragmentcontroller;
 
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 
 public class MainWrapper extends BasePagerFragmentWrapper {
 

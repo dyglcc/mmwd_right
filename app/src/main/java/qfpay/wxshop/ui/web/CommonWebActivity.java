@@ -25,7 +25,7 @@ import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.common.actionbar.ShareActionProvider;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.utils.BitmapUtil;

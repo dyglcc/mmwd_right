@@ -20,7 +20,7 @@ import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.LovelyCardNetService;
 import qfpay.wxshop.data.netImpl.LovelyCardNetService.CommentBean;
 import qfpay.wxshop.data.netImpl.LovelyCardNetService.CommonNetBean;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.ui.view.XListView.IXListViewListener;

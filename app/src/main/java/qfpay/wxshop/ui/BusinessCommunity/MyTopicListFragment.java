@@ -1,78 +1,74 @@
 package qfpay.wxshop.ui.BusinessCommunity;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
-import android.os.Message;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
+
+import com.squareup.picasso.Cache;
+import com.squareup.picasso.LruCache;
+import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.IgnoredWhenDetached;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.net.DataEngine;
-import qfpay.wxshop.ui.main.MainActivity_;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
-import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
+import qfpay.wxshop.data.net.RetrofitWrapper;
+import qfpay.wxshop.data.netImpl.BusinessCommunityService;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
-import retrofit.mime.TypedFile;
-import retrofit.mime.TypedString;
 
 /**
  * 显示商户圈中“我加入的话题”列表页面
+ *
+ * @author zhangzhichao
  */
 @EFragment(R.layout.mydynamic_notes_list)
 public class MyTopicListFragment extends BaseFragment implements
-        XListView.IXListViewListener, BusinessCommunityDataController.BusinessCommunityCallback {
+        XListView.IXListViewListener{
     private MyTopicsListAdapter myTopicsListAdapter;
-    @ViewById XListView   listView;
     @ViewById
-    FrameLayout fl_indictor,input_reply_ll;
+    XListView listView;
+    @ViewById
+    FrameLayout fl_indictor, input_reply_ll;
     @ViewById
     ImageView iv_indictor;
-    @ViewById FrameLayout publish_note_fl;
+    @ViewById
+    FrameLayout publish_note_fl;
     @DrawableRes
     Drawable commodity_list_refresh;
-    @Bean BusinessCommunityDataController businessCommunityDataController;
+    @Bean
+    BusinessCommunityDataController businessCommunityDataController;
     DataEngine dataEngine;
+    BusinessCommunityService.TopicsListDataWrapper topicsListDataWrapper;
+    private Picasso picasso;
+    private Cache cache = new LruCache(1024*512);
     @AfterViews
-    void init(){
-        publish_note_fl.setVisibility(View.GONE);
+    void init() {
         dataEngine = new DataEngine(getActivity());
-        businessCommunityDataController.setCallback(this);
         initListView();
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        picasso = new Picasso.Builder(getActivity()).memoryCache(cache).build();
     }
+
     /**
      * 初始化列表
      */
@@ -83,16 +79,17 @@ public class MyTopicListFragment extends BaseFragment implements
         listView.setPullLoadEnable(false);
         myTopicsListAdapter = new MyTopicsListAdapter();
         listView.setAdapter(myTopicsListAdapter);
-        businessCommunityDataController.getMyTopicList(dataEngine.getUserId());
+        fl_indictor.setVisibility(View.VISIBLE);
+        iv_indictor.setImageDrawable(commodity_list_refresh);
+        ((AnimationDrawable) (commodity_list_refresh)).start();
+        getMyTopicList();
     }
 
     /**
      * 我的话题列表数据适配器
      */
-    class MyTopicsListAdapter extends BaseAdapter{
+    class MyTopicsListAdapter extends BaseAdapter {
         List<MyTopicBean> wrapperList = new ArrayList<MyTopicBean>();
-
-        public MyTopicsListAdapter(){processData();}
         @Override
         public int getCount() {
             return wrapperList.size();
@@ -110,9 +107,9 @@ public class MyTopicListFragment extends BaseFragment implements
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            TopicListItemView item = (TopicListItemView)convertView;
-            if(item==null){
-                item = TopicListItemView_.build(getActivity());
+            TopicListItemView item = (TopicListItemView) convertView;
+            if (item == null) {
+                item = TopicListItemView_.build(getActivity(),picasso);
             }
             item.setData(wrapperList.get(position));
             item.setOnClickListener(new View.OnClickListener() {
@@ -122,62 +119,65 @@ public class MyTopicListFragment extends BaseFragment implements
                     MyTopicDetailActivity_.intent(getActivity()).myTopicBean(wrapperList.get(position)).start();
                 }
             });
-            if(item!=null){
+            if (item != null) {
                 return item;
-            }else {
+            } else {
                 return null;
             }
         }
+
         @Override
         public void notifyDataSetChanged() {
             processData();
             super.notifyDataSetChanged();
         }
-        public void processData(){
+
+        void processData(){
             wrapperList.clear();
-            wrapperList.addAll(0,businessCommunityDataController.getMyTopicBeanList());
+            wrapperList.addAll(topicsListDataWrapper.data.items);
         }
     }
-//自定义的网络请求操作的回调事件
-    @Override  @UiThread
-    @IgnoredWhenDetached
-    public void onSuccess() {
-        listView.stopRefresh();
-            fl_indictor.setVisibility(View.INVISIBLE);
-            if(myTopicsListAdapter!=null){
-                listView.setVisibility(View.VISIBLE);
-                myTopicsListAdapter.notifyDataSetChanged();
-            }
-    }
 
-    @Override  @UiThread @IgnoredWhenDetached
-    public void onNetError(){
-        Toaster.s(getActivity(),"加载失败，请稍后重试！");
-        fl_indictor.setVisibility(View.GONE);
-        listView.stopRefresh();
-    }
-
-    @Override  @UiThread @IgnoredWhenDetached
-    public void onServerError( String msg) {
-        Toaster.l(getActivity(),msg);
-        fl_indictor.setVisibility(View.GONE);
-        listView.stopRefresh();
-    }
-
-    @Override  @UiThread @IgnoredWhenDetached
-    public void refresh() {
-        fl_indictor.setVisibility(View.VISIBLE);
-        iv_indictor.setImageDrawable(commodity_list_refresh);
-        ((AnimationDrawable) (commodity_list_refresh)).start();
-    }
-//XListView的回调事件
+    //XListView的回调事件
     @Override
     public void onRefresh() {
-        businessCommunityDataController.setCallback(this);
-        businessCommunityDataController.getMyTopicList(dataEngine.getUserId());
+        getMyTopicList();
     }
 
     @Override
     public void onLoadMore() {
+    }
+
+    @Background
+    void getMyTopicList(){
+        try{
+            topicsListDataWrapper =  businessCommunityDataController.getMyTopicList(dataEngine.getUserId());
+        }catch (Exception e){
+            if(e.getMessage()!=null){
+                T.i(e.getMessage());
+            }
+        }
+        showMyTopicList();
+    }
+    @UiThread
+    void showMyTopicList(){
+        if(topicsListDataWrapper!=null){
+            if(topicsListDataWrapper.getRespcd().equals(RetrofitWrapper.SUCCESS_CODE)){
+                listView.stopRefresh();
+                fl_indictor.setVisibility(View.GONE);
+                if (myTopicsListAdapter != null) {
+                    listView.setVisibility(View.VISIBLE);
+                    myTopicsListAdapter.notifyDataSetChanged();
+                }
+            }else{
+                Toaster.l(getActivity(), topicsListDataWrapper.getResperr());
+                fl_indictor.setVisibility(View.GONE);
+                listView.stopRefresh();
+            }
+        }else{
+            Toaster.s(getActivity(), "加载失败，请稍后重试！");
+            fl_indictor.setVisibility(View.GONE);
+            listView.stopRefresh();
+        }
     }
 }

@@ -29,6 +29,9 @@ import com.makeramen.RoundedImageView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.animation.ValueAnimator;
+import com.squareup.picasso.Cache;
+import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
@@ -53,7 +56,7 @@ import qfpay.wxshop.data.beans.MyDynamicItemLinkDataBean;
 import qfpay.wxshop.data.beans.MyDynamicItemReplyBean;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.net.DataEngine;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
@@ -62,7 +65,8 @@ import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 
 /**
- * 我的话题详情页
+ * 我的话题详情页  即显示该话题下所有帖子
+ * @author zhangzhichao
  */
 @EActivity(R.layout.mydynamic_notes_list)
 public class MyTopicDetailActivity extends BaseActivity implements XListView.IXListViewListener,BusinessCommunityDataController.BusinessCommunityCallback{
@@ -84,8 +88,13 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
     @ViewById ImageView publish_note;
     @ViewById View publish_note_line;
     final AnimatorSet animatorSet = new AnimatorSet();
+    private boolean isLoadingMore = false;//是否正在加载更多
+    private Cache cache = new LruCache(1024*1024*2);
+    private Picasso picasso;
+    private boolean isActivityRunnning = true;
     @AfterViews
     void init(){
+        isActivityRunnning = true;
         ActionBar bar = getSupportActionBar();
         bar.hide();//隐藏默认actionbars
         tool_bar.setVisibility(View.VISIBLE);
@@ -95,6 +104,8 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
         businessCommunityDataController.setCallback(this);
         initListView();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        picasso = new Picasso.Builder(this).memoryCache(cache).build();
+        startAnimatorThread();
     }
     /**
      * 初始化列表
@@ -108,23 +119,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
         businessCommunityDataController.getNotesListOfTopicFromServer(myTopicBean.getId());
         oneTopicNotesListAdapter = new OneTopicNotesListAdapter();
         listView.setAdapter(oneTopicNotesListAdapter);
-//        startItemReplyAnimation();
     }
-//    @Background
-//    void startItemReplyAnimation(){
-//        try {
-//            Thread.currentThread().sleep(4*1000);
-//            if(listItemViews!=null&&listItemViews.size()>0){
-//                for(MyDynamicNoteListItemView itemView:listItemViews){
-//                    itemView.showReplyContent();
-//                }
-//            }
-//            Thread.currentThread().sleep(4*1000);
-//            startItemReplyAnimation();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//    }
     /**
      * 某一小组帖子列表数据适配器
      */
@@ -152,7 +147,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
             final int jumpToPostion = position+1;
             MyDynamicNoteListItemView item = (MyDynamicNoteListItemView)convertView;
             if(item==null){
-                item = MyDynamicNoteListItemView_.build(MyTopicDetailActivity.this,businessCommunityDataController);
+                item = MyDynamicNoteListItemView_.build(MyTopicDetailActivity.this,businessCommunityDataController,picasso);
             }
             final MyDynamicItemBean0 myDynamicItemBean0 = wrapperList.get(position);
             item.setData(myDynamicItemBean0,position);
@@ -196,7 +191,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
         public void notifyDataSetChanged() {
             processData();
             publish_note_fl.setVisibility(View.VISIBLE);
-            startAnimation();
+//            startAnimation();
             super.notifyDataSetChanged();
         }
         public void processData(){
@@ -210,6 +205,7 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
         // 没有加判断是因为现在几乎所有的情况都需要刷新列表来完成
         listView.stopRefresh();
         listView.stopLoadMore();
+        isLoadingMore = false;
         refreshListView(RefreshFrom.REFRESH);
     }
 
@@ -240,8 +236,11 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
 
     @Override
     public void onLoadMore() {
-        businessCommunityDataController.setCallback(this);
-        businessCommunityDataController.getNotesListOfTopicFromServer(myTopicBean.getId());
+        if(!isLoadingMore) {
+            isLoadingMore = true;
+            businessCommunityDataController.setCallback(this);
+            businessCommunityDataController.getNotesListOfTopicFromServer(myTopicBean.getId());
+        }
     }
 
     /**
@@ -345,36 +344,15 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
     /**
      * 发帖按钮的动画
      */
+    @UiThread
     void startAnimation(){
         ViewWrapper viewWrapper = new ViewWrapper(publish_note_line);
         animatorSet.playTogether(
                 ObjectAnimator.ofFloat(publish_note, "translationX", 0, Utils.dip2px(this, 10), 0, Utils.dip2px(this, 10), 0, Utils.dip2px(this, 10), 0),
                 ObjectAnimator.ofInt(viewWrapper, "width", 0, Utils.dip2px(this, 10), 0, Utils.dip2px(this, 10), 0, Utils.dip2px(this, 10), 0)
         );
-        animatorSet.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                animatorSet.setDuration(2 * 1000).setStartDelay(2*1000);
-                animatorSet.start();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
         if(!animatorSet.isRunning()){
-            animatorSet.setDuration(2 * 1000).setStartDelay(2*1000);
+            animatorSet.setDuration(2 * 1000);
             animatorSet.start();
         }
     }
@@ -392,5 +370,25 @@ public class MyTopicDetailActivity extends BaseActivity implements XListView.IXL
             mTarget.getLayoutParams().width = width;
             mTarget.requestLayout();
         }
+    }
+
+    @Background
+    void startAnimatorThread(){
+        while(isActivityRunnning){
+            try {
+                Thread.currentThread().sleep(4*1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            startAnimation();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isActivityRunnning = false;
+        cache.clear();
+        picasso = null;
     }
 }

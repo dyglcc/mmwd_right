@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -30,6 +31,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Cache;
+import com.squareup.picasso.LruCache;
+import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -57,7 +62,7 @@ import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.main.MainTab;
-import qfpay.wxshop.ui.main.fragment.BaseFragment;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.main.fragment.BusinessCommunityFragment;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
@@ -68,6 +73,7 @@ import qfpay.wxshop.utils.Utils;
 
 /**
  * 显示商户圈中“我的动态”列表页面
+ * @author zhangzhichao
  */
 @EFragment(R.layout.mydynamic_notes_list)
 public class MyDynamicListFragment extends BaseFragment implements
@@ -85,12 +91,16 @@ public class MyDynamicListFragment extends BaseFragment implements
     @Bean BusinessCommunityDataController businessCommunityDataController;
     TextView textView = null;
     @ViewById FrameLayout publish_note_fl;
+    private boolean isLoadingMore = false;//是否正在加载更多
+    private Cache cache = new LruCache(1024*1024*2);
+    private Picasso picasso;
 
     @AfterViews
     void init(){
         publish_note_fl.setVisibility(View.GONE);
         refreshListView(RefreshFrom.LOADING);
         businessCommunityDataController.setCallback(this);
+        picasso = new Picasso.Builder(getActivity()).memoryCache(cache).build();
         initListView();
     }
     /**
@@ -112,7 +122,7 @@ public class MyDynamicListFragment extends BaseFragment implements
      */
     class MyDynamicNotesListAdapter extends BaseAdapter{
         List<MyDynamicItemBean0> wrapperList = new ArrayList<MyDynamicItemBean0>();
-
+        MyDynamicNoteListItemView item;
         public MyDynamicNotesListAdapter(){processData();}
         @Override
         public int getCount() {
@@ -121,7 +131,7 @@ public class MyDynamicListFragment extends BaseFragment implements
 
         @Override
         public Object getItem(int position) {
-            return wrapperList.get(position);
+            return item;
         }
 
         @Override
@@ -131,9 +141,9 @@ public class MyDynamicListFragment extends BaseFragment implements
 
         @Override
         public View getView(final int position, final View convertView, ViewGroup parent) {
-            MyDynamicNoteListItemView item = (MyDynamicNoteListItemView)convertView;
+           item = (MyDynamicNoteListItemView)convertView;
             if(item==null){
-                item = MyDynamicNoteListItemView_.build(getActivity(),businessCommunityDataController);
+                item = MyDynamicNoteListItemView_.build(getActivity(),businessCommunityDataController,picasso);
             }
                 final MyDynamicItemBean0 myDynamicItemBean0 = wrapperList.get(position);
                 item.setData(myDynamicItemBean0,position);
@@ -169,11 +179,7 @@ public class MyDynamicListFragment extends BaseFragment implements
                     businessCommunityDataController.setPriaseState(id,isLiked);//发送点赞请求
                 }
             });
-            if(item!=null){
                 return item;
-            }else {
-                return null;
-            }
         }
         @Override
         public void notifyDataSetChanged() {
@@ -194,6 +200,7 @@ public class MyDynamicListFragment extends BaseFragment implements
         // 没有加判断是因为现在几乎所有的情况都需要刷新列表来完成
         listView.stopRefresh();
         listView.stopLoadMore();
+        isLoadingMore = false;
         refreshListView(RefreshFrom.REFRESH);
     }
 
@@ -223,12 +230,16 @@ public class MyDynamicListFragment extends BaseFragment implements
         businessCommunityDataController.setLast_fid("");
         businessCommunityDataController.reloadData();
         removeNotificationImage();//清除商户圈TAB角标通知
+        cache.clear();
     }
 
     @Override
     public void onLoadMore() {
-        businessCommunityDataController.setCallback(this);
-        businessCommunityDataController.reloadData();
+        if(!isLoadingMore){
+            isLoadingMore = true;
+            businessCommunityDataController.setCallback(this);
+            businessCommunityDataController.reloadData();
+        }
     }
 
     /**
@@ -310,6 +321,11 @@ public class MyDynamicListFragment extends BaseFragment implements
                 }
                 break;
             case MaijiaxiuFragment.ACTION_PUBLISH_NOTE://发帖返回
+                BusinessCommunityFragment businessCommunityFragment = (BusinessCommunityFragment)MainTab.BUSINESS_COMMUNITY.getFragment();
+                if(businessCommunityFragment!=null){
+                    businessCommunityFragment.getPager().setCurrentItem(1);
+                    businessCommunityFragment.getIndicator().setCurrentItem(1);
+                }
                 listView.autoRefresh();
                 listView.setSelection(0);
                 break;
@@ -371,4 +387,26 @@ public class MyDynamicListFragment extends BaseFragment implements
 
         }
     }
+
+//    /**
+//     * 列表滚动监听
+//     */
+//    class ListViewScrollListener implements AbsListView.OnScrollListener{
+//
+//        @Override
+//        public void onScrollStateChanged(AbsListView absListView, int i) {
+//            if(i== AbsListView.OnScrollListener.SCROLL_STATE_IDLE){//停止滚动
+//
+//            }else if(i== AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){//正在滚动
+//
+//            }else {//手指抛滑
+//
+//            }
+//        }
+//
+//        @Override
+//        public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//
+//        }
+//    }
 }

@@ -20,10 +20,10 @@ import qfpay.wxshop.data.net.RetrofitWrapper;
 import qfpay.wxshop.data.netImpl.BuyersShowNetService;
 import qfpay.wxshop.data.netImpl.BuyersShowNetService.GoodNetWrapper;
 import qfpay.wxshop.data.netImpl.BuyersShowNetService.GoodWrapper;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-import retrofit.RestAdapter.LogLevel;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;

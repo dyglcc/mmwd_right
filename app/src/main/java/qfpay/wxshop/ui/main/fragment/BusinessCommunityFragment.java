@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
@@ -40,7 +41,7 @@ import qfpay.wxshop.utils.Utils;
 
 @EFragment(R.layout.businesscommunity_layout)
 public class BusinessCommunityFragment extends BaseFragment {
-    private static final int[] titles = {R.string.community_pagertitle_mydynamic, R.string.community_pagertitle_discovery, R.string.community_pagertitle_ranginglist, R.string.community_pagertitle_mytopic};
+    private static final int[] titles = { R.string.community_pagertitle_mytopic,R.string.community_pagertitle_mydynamic,R.string.community_pagertitle_ranginglist,R.string.community_pagertitle_discovery};
 
     private Map<String, String> header = new HashMap<String, String>();
     @ViewById
@@ -74,24 +75,19 @@ public class BusinessCommunityFragment extends BaseFragment {
             indicator.setOnPageChangeListener((OnPageChangeListener) adapter);
             indicator.notifyDataSetChanged();
 
-            TextView textView = ((TextView) indicator.getTabView(0));
+            TextView textView = ((TextView) indicator.getTabView(1));
             badgeView = new BadgeView2(getActivity(), textView);
             badgeView.setPager(pager);
             badgeView.setBackgroundResource(R.drawable.icon_reddot2);
             badgeView.setWidth(Utils.dip2px(getActivity(), 10));
             badgeView.setHeight(Utils.dip2px(getActivity(), 10));
+            badgeView.setTextSize(7);
             badgeView.setGravity(Gravity.CENTER);
-            badgeView.setTextSize(6);
+            badgeView.setBadgeMargin(Utils.dip2px(getActivity(),17),Utils.dip2px(getActivity(),12));
             //初始化动态消息通知角标
             BusinessCommunityService.BusinessCommmunityMyNotificationDataWrapper dataWrapper = WxShopApplication.dataEngine.getBusinessCommmunityMyNotificationData();
             if (dataWrapper.data.tag.equals("1") && dataWrapper.data.items.size() > 0) {
                 showCommunityNotification("1", dataWrapper.data.items.size() + "");
-            }
-            if (dataWrapper.data.tag.equals("0") && dataWrapper.data.has_new.equals("1")) {
-                showCommunityNotification("0", "0");
-            }
-            if (dataWrapper.data.tag.equals("0") && dataWrapper.data.has_new.equals("0")) {
-                hideCommunityNotification();
             }
         }
     }
@@ -148,13 +144,18 @@ public class BusinessCommunityFragment extends BaseFragment {
             String pointName = "";
             switch (arg0) {
                 case 0:
+                    pointName = "click_merchant_mine";
+                    break;
+                case 1:
                     pointName = "click_merchant_dynamic";
                     break;
                 case 2:
                     pointName = "click_merchant_ranklist";
                     break;
                 case 3:
-                    pointName = "click_merchant_mine";
+                    pointName = "click_merchant_fxgm";
+                    break;
+
             }
             MobAgentTools.OnEventMobOnDiffUser(getActivity(), pointName);
         }
@@ -183,5 +184,21 @@ public class BusinessCommunityFragment extends BaseFragment {
     public void hideCommunityNotification() {
         badgeView.setText("");
         badgeView.hide();
+    }
+
+    public ViewPager getPager() {
+        return pager;
+    }
+
+    public void setPager(ViewPager pager) {
+        this.pager = pager;
+    }
+
+    public TabPageIndicator getIndicator() {
+        return indicator;
+    }
+
+    public void setIndicator(TabPageIndicator indicator) {
+        this.indicator = indicator;
     }
 }

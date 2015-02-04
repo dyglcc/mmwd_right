@@ -6,7 +6,7 @@ import qfpay.wxshop.activity.share.ShareActivity;
 import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.common.actionbar.SharePopupView;

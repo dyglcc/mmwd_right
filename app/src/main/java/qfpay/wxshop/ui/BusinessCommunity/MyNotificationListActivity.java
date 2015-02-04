@@ -32,12 +32,13 @@ import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
 
 /**
  * 我的消息列表页
+ * @author zhangzhichao
  */
 @EActivity(R.layout.mydynamic_notes_list)
 public class MyNotificationListActivity extends BaseActivity {
@@ -109,9 +110,9 @@ public class MyNotificationListActivity extends BaseActivity {
             switch (code) {
                 case MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE:
                     int position = data.getIntExtra("position",-1);
-                    if(position!=-1){
-                        notificationDataWrapper.data.items.remove(position);
-                        adapter.notifyDataSetChanged();
+                    MyDynamicItemBean0 myDynamicItemBean0 = (MyDynamicItemBean0)data.getSerializableExtra("myDynamicItemBean0");
+                    if(position!=-1&&myDynamicItemBean0!=null){
+                        notificationDataWrapper.data.items.get(position).getTopic().items.set(0,myDynamicItemBean0);
                     }
                     break;
             }

@@ -21,7 +21,7 @@ import qfpay.wxshop.data.netImpl.UploadPic4QiNiuImpl;
 import qfpay.wxshop.data.netImpl.UploadPicImpl;
 import qfpay.wxshop.takepicUtils.PictureBean;
 import qfpay.wxshop.takepicUtils.TakePicUtils;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.ShopFragmentsWrapper;
 import qfpay.wxshop.ui.view.CustomImageView;
 import qfpay.wxshop.utils.MobAgentTools;

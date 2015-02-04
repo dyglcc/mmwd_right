@@ -16,7 +16,7 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.beans.ImageWrapper;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.net.RetrofitWrapper;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Toaster;
 import android.content.Context;

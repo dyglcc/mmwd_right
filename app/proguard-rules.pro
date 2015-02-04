@@ -37,17 +37,34 @@
 -keepnames class qfpay.wxshop.imageprocesser.** {*;}
 -keepnames class qfpay.wxshop.beans.** {*;}
 
+# Retrofit, OkHttp, Gson
+-keepattributes *Annotation*
+-keepattributes Signature
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+-dontwarn com.squareup.okhttp.**
+-dontwarn rx.**
+-dontwarn retrofit.**
+-keep class retrofit.** { *; }
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}
+-keep class sun.misc.Unsafe { *; }
+-dontwarn java.nio.file.*
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+
+# Dagger
+-keep class * extends dagger.internal.*
+-keep class qfpay.wxshop.app.dependencies.*
+-keep class qfpay.wxshop.ui.commodity.detailmanager.ItemDetailPresenterImpl_
+-keep class dagger.Lazy
+-dontwarn dagger.internal.**
+
 -keep class com.de.greenrobot.event.** { *;}
 -dontwarn com.de.greenrobot.event.**
 
 -keep class cn.sharesdk.** { *;}
 -dontwarn cn.sharesdk.**
-
--keep class retrofit.** { *;}
--dontwarn retrofit.**
-
--keep class com.squareup.okhttp.** { *;}
--dontwarn com.squareup.okhttp.**
 
 -keep class com.squareup.picasso.** { *;}
 -dontwarn com.squareup.picasso.**

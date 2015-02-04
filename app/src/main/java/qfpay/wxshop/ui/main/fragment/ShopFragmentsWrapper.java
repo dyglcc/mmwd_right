@@ -3,11 +3,11 @@ package qfpay.wxshop.ui.main.fragment;
 import java.lang.ref.SoftReference;
 
 import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.ui.commodity.CommodityListFragment_;
 import qfpay.wxshop.ui.web.CommonWebFragment_;
 import android.content.Context;
-import qfpay.wxshop.utils.T;
 
 public enum ShopFragmentsWrapper {
 	COMMODITY("click_shopmanagement"), PREVIEW("Preview"), STATISTICS(

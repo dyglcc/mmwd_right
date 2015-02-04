@@ -2,7 +2,7 @@ package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 import android.app.AlertDialog;

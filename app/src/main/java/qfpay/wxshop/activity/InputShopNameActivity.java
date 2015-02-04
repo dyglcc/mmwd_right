@@ -12,11 +12,12 @@ import qfpay.wxshop.data.netImpl.UploadPic4QiNiuImpl;
 import qfpay.wxshop.data.netImpl.UploadPicImpl;
 import qfpay.wxshop.takepicUtils.PictureBean;
 import qfpay.wxshop.takepicUtils.TakePicUtils;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.utils.BitmapUtil;
 import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
@@ -51,6 +52,7 @@ public class InputShopNameActivity extends BaseActivity {
 
 		MobAgentTools.OnEventMobOnDiffUser(InputShopNameActivity.this,
 				"store information");
+        QFCommonUtils.collect("register_success_"+QFCommonUtils.getMetaData(this),this);
 
 	}
 

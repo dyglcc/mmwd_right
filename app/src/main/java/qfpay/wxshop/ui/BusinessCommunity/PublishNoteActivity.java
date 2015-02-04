@@ -13,6 +13,7 @@ import android.os.Message;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -59,7 +60,7 @@ import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.processer.ImageType;
 import qfpay.wxshop.takepicUtils.PictureBean;
 import qfpay.wxshop.takepicUtils.TakePicUtils;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.utils.MobAgentTools;
@@ -71,6 +72,7 @@ import retrofit.mime.TypedString;
 
 /**
  * 发帖页
+ * @author 张志超
  */
 @EActivity(R.layout.businesscommunity_publish_note)
 public class PublishNoteActivity extends BaseActivity implements BusinessCommunityDataController.BusinessCommunityCallback{
@@ -99,6 +101,23 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
         tv_title.setText(myTopicBean.getG_name());
         businessCommunityDataController.setCallback(this);
         initPublishNoteRules();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(ev.getAction()==MotionEvent.ACTION_DOWN){
+            View v = getCurrentFocus();
+            if(Utils.isShouldHideInput(v,ev)){
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        if(getWindow().superDispatchTouchEvent(ev)){
+            return true;
+        }
+        return onTouchEvent(ev);
     }
 
     @Override @UiThread
@@ -135,6 +154,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
         if (requestCode == TakePicUtils.TAKE_PIC_REQUEST_CODE) {
 
             if (resultCode != RESULT_OK) {
+                Toaster.s(this,"选取照片失败！请重试！");
                 return;
             }
             if(Utils.getFreeSizeOfSDCard()<100){
@@ -151,7 +171,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
                 params.height = screenWidth*3/7;
                 note_iamge.setLayoutParams(params);
                 File picFile = new File(fb.getFileStr());
-                Picasso.with(PublishNoteActivity.this).load(picFile).fit().centerInside().into(note_iamge);
+                Picasso.with(PublishNoteActivity.this).load(picFile).fit().centerCrop().into(note_iamge);
                 hasPic = true;
                 uploadThePicture(fb.getFileStr());
             }
@@ -180,7 +200,9 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
     @Click
     void publish_note(){
         String noteConentStr = note_content.getText().toString().trim();
-        if(!noteConentStr.equals("")){
+        if(noteConentStr.equals("")&&hasPic==false){
+            Toaster.s(this, "不写东西的裸奔帖会被警察蜀黍抓走的！");
+        }else{
             MobAgentTools.OnEventMobOnDiffUser(this, "click_merchant_topic_send");
             if(hasPic==true){
                 if(picUrl!=null&&!picUrl.equals("")){
@@ -193,10 +215,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
                 businessCommunityDataController.publishOneNote(myTopicBean.getId()
                         ,noteConentStr,picUrl);
             }
-        }else{
-            Toaster.s(this,"帖子内容不能为空！");
         }
-
     }
 
     /**

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 
 /**
  * Created by dongyuangui on 14-12-25.

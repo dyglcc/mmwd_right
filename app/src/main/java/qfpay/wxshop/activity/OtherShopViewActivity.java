@@ -1,7 +1,7 @@
 package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.view.CustomProgressDialog;
 import qfpay.wxshop.utils.Utils;
 import android.app.AlertDialog;

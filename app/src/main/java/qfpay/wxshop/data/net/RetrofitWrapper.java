@@ -51,6 +51,7 @@ public class RetrofitWrapper {
         okHttpClient.setWriteTimeout(20,TimeUnit.SECONDS);
         okHttpClient.setReadTimeout(20,TimeUnit.SECONDS);
 
+
 		RestAdapter ra = new RestAdapter.Builder()
 			.setEndpoint(endPoiont)
 			.setLogLevel(logLevel)

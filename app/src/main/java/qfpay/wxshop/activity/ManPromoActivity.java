@@ -22,7 +22,7 @@ import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.CreatePanicImpl;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.commodity.CommodityDataController;
 import qfpay.wxshop.ui.view.MoneyEditTextView;
 import qfpay.wxshop.utils.Toaster;

@@ -2,12 +2,16 @@ package qfpay.wxshop.activity;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.MobAgentTools;
+import qfpay.wxshop.utils.QFCommonUtils;
+
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LoginPreviewActivity extends BaseActivity {
@@ -24,6 +28,7 @@ public class LoginPreviewActivity extends BaseActivity {
 	TextView tvLogin;
 	TextView tvOldLogin;
 	View tv_other_people;
+    ImageView shouFaImageView;
 
 	private void initView() {
 
@@ -32,6 +37,12 @@ public class LoginPreviewActivity extends BaseActivity {
 		tvRegister = (TextView) findViewById(R.id.tv_register);
 		tvLogin = (TextView) findViewById(R.id.tv_login);
 		tvOldLogin = (TextView) findViewById(R.id.tv_old_login);
+        shouFaImageView = (ImageView)findViewById(R.id.imageView1);
+        if (QFCommonUtils.isFirstLaunch(this)) {
+            shouFaImageView.setVisibility(View.VISIBLE);
+        } else {
+            shouFaImageView.setVisibility(View.INVISIBLE);
+        }
 		tvRegister.setOnClickListener(new OnClickListener() {
 
 			@Override

@@ -43,7 +43,7 @@ public class BadgeView2 extends TextView {
     public static final int POSITION_BOTTOM_RIGHT = 4;
     public static final int POSITION_CENTER = 5;
 
-    private static final int DEFAULT_MARGIN_DIP = 3;
+    private static final int DEFAULT_MARGIN_DIP = 5;
     private static final int DEFAULT_LR_PADDING_DIP = 0;
     private static final int DEFAULT_CORNER_RADIUS_DIP = 8;
     private static final int DEFAULT_POSITION = POSITION_TOP_RIGHT;
@@ -147,14 +147,12 @@ public class BadgeView2 extends TextView {
     }
 
     private void applyTo(View target) {
-        TextView targetTextView = (TextView)target;
-        LinearLayout linearLayout = new LinearLayout(context,null, R.attr.vpiTabPageIndicatorStyle);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0,LayoutParams.MATCH_PARENT,1);
-        linearLayout.setLayoutParams(params);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LayoutParams lp = target.getLayoutParams();
+        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(0,lp.height,1);
+        lp2.gravity = Gravity.CENTER;
         ViewParent parent = target.getParent();
         FrameLayout container = new FrameLayout(context);
-
+        container.setBackground(getResources().getDrawable(R.drawable.vpi__tab_indicator));
         if (target instanceof TabWidget) {
 
             // set target to the relevant tab child container
@@ -173,22 +171,22 @@ public class BadgeView2 extends TextView {
             ViewGroup group = (ViewGroup) parent;
             int index = group.indexOfChild(target);
             group.removeView(target);
+            group.addView(container,index,lp2);
+
             TextView textView = new TextView(context,null,R.attr.vpiTitlePageIndicatorTextViewStyle);
-            textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
             textView.setText(R.string.community_pagertitle_mydynamic);
-            linearLayout.addView(container,new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
-            container.addView(textView);
+            container.addView(textView,new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT,Gravity.CENTER));
             this.setVisibility(View.GONE);
             container.addView(this);
-            group.addView(linearLayout,index);
-            linearLayout.setOnClickListener(new OnClickListener() {
+            container.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getPager().setCurrentItem(0);
+                    getPager().setCurrentItem(1);
                 }
             });
 
             group.invalidate();
+
 
         }
 
@@ -276,6 +274,11 @@ public class BadgeView2 extends TextView {
     private void show(boolean animate, Animation anim) {
         if (getBackground() == null) {
             if (badgeBg == null) {
+
+
+
+
+
                 badgeBg = getDefaultBackground();
             }
             setBackgroundDrawable(badgeBg);

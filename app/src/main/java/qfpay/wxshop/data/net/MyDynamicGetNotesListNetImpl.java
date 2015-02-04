@@ -42,7 +42,6 @@ public class MyDynamicGetNotesListNetImpl extends AbstractNet{
 
     @Override
     protected Bundle jsonParse(String jsonStr) {
-        System.out.println("我的动态返回数据----->"+jsonStr);
         return null;
     }
 }

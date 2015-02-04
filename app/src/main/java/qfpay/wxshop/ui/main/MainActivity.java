@@ -28,6 +28,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.InputShopNameActivity;
 import qfpay.wxshop.activity.SSNPublishActivity_;
+import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.update.UpdateManager;
 import qfpay.wxshop.data.beans.LabelBean;
 import qfpay.wxshop.data.handler.MainHandler;
@@ -42,10 +43,10 @@ import qfpay.wxshop.getui.StartAlarmService;
 import qfpay.wxshop.listener.MaijiaxiuUploadListener;
 import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
-import qfpay.wxshop.ui.BaseActivity;
 import qfpay.wxshop.ui.BusinessCommunity.AllTopicListActivity_;
 import qfpay.wxshop.ui.BusinessCommunity.BusinessCommunityDataController;
 import qfpay.wxshop.ui.BusinessCommunity.MyDynamicListFragment;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseActivity_;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseNetProcesser;
 import qfpay.wxshop.ui.common.actionbar.InfoMenuProvider;
@@ -62,6 +63,11 @@ import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 import com.networkbench.agent.impl.NBSAppAgent;
+import com.squareup.okhttp.Cache;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.picasso.OkHttpDownloader;
+import com.squareup.picasso.Picasso;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -109,6 +115,7 @@ public class MainActivity extends BaseActivity {
     private BadgeView badgeView;//商户圈选项右上角有更新提示点
     @Bean
     BusinessCommunityDataController businessCommunityDataController;
+
 	private void changeTab(MainTab tab, View view) {
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		tab.showFragment(ft, this);
@@ -324,7 +331,6 @@ public class MainActivity extends BaseActivity {
 		}
 
 		running = true;
-
 		mStartupProcessor.processLovelyCard();
 
 		handler = new Handler();
@@ -399,9 +405,9 @@ public class MainActivity extends BaseActivity {
         badgeView.setBackgroundResource(R.drawable.icon_reddot2);
         badgeView.setWidth(Utils.dip2px(this, 10));
         badgeView.setHeight(Utils.dip2px(this, 10));
+        badgeView.setBadgeMargin(Utils.dip2px(this,10),Utils.dip2px(this,6));
+        badgeView.setTextSize(7);
         badgeView.setGravity(Gravity.CENTER);
-        badgeView.setBadgeMargin(15,10);
-        badgeView.setTextSize(6);
         initLastNoReadNotification();
         getBusinessCommunityAboutMyNotify();
         NBSAppAgent.setLicenseKey("26f23f2f3f8447b6a450174320f25969").withLocationServiceEnabled(true).start(this);
@@ -437,7 +443,7 @@ public class MainActivity extends BaseActivity {
         }
         try {
             Thread.currentThread().sleep(30*1000);
-            if(!this.isFinishing()){
+            if(WxShopApplication.MAIN_IS_RUNNING){
                 getBusinessCommunityAboutMyNotify();
             }
         } catch (InterruptedException e) {
@@ -465,7 +471,7 @@ public class MainActivity extends BaseActivity {
             BusinessCommunityFragment businessCommunityFragment = (BusinessCommunityFragment)MainTab.BUSINESS_COMMUNITY.getFragment();
             if(originData.data.tag.equals("1")){
                 showCommunityNotifycation("1",originData.data.items.size()+"");
-                MyDynamicListFragment myDynamicListFragment = (MyDynamicListFragment)MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(0);
+                MyDynamicListFragment myDynamicListFragment = (MyDynamicListFragment)MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(1);
                 if(myDynamicListFragment!=null){//我的动态列表头部添加消息通知
                     myDynamicListFragment.addNewMyNotificationLayout(originData.data.items.size()+"");
                 }
@@ -476,11 +482,6 @@ public class MainActivity extends BaseActivity {
                 showCommunityNotifycation("0","0");
                 if(businessCommunityFragment!=null){//我的动态tab添加角标通知
                     businessCommunityFragment.showCommunityNotification("0","0");
-                }
-            }else{
-                hideCommunityNotifycation();
-                if(businessCommunityFragment!=null){//我的动态tab隐藏角标通知
-                    businessCommunityFragment.hideCommunityNotification();
                 }
             }
         }
@@ -694,10 +695,10 @@ public class MainActivity extends BaseActivity {
 			ShopFragmentsWrapper.getFragment(3, this).onActivityResult(
 					requestCode, resultCode, intent);
 		}else if(result == MaijiaxiuFragment.ACTION_MYDYNAMIC_EDIT_NOTE){
-            MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(0)
+            MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(1)
                     .onActivityResult(requestCode, resultCode, intent);
         }else if(result == MaijiaxiuFragment.ACTION_PUBLISH_NOTE){
-            MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(0)
+            MainFragmentController.get(WrapperType.BUSINESS_COMMUNITY).get(1)
                     .onActivityResult(requestCode, resultCode, intent);
         }
 	}
@@ -729,8 +730,6 @@ public class MainActivity extends BaseActivity {
 				.startForResult(MaijiaxiuFragment_.ACTION_ADD_SSN);
 	}
 
-
-
     /**
      * 商户圈 根据tag值显示角标 0 显示红点 1 显示数字加红点
      * @param tag
@@ -754,4 +753,6 @@ public class MainActivity extends BaseActivity {
         badgeView.setText("");
         badgeView.hide();
     }
+
+
 }

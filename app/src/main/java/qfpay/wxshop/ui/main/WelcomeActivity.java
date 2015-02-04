@@ -3,9 +3,12 @@ package qfpay.wxshop.ui.main;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,7 +31,7 @@ import qfpay.wxshop.activity.NewIntroductionActivity;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.SplashParams;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 
@@ -37,8 +40,9 @@ public class WelcomeActivity extends BaseActivity {
 	private static final int DEFAULT_SHOW_TIME = 5000;
 
 	@ViewById ImageView iv_net, iv_firstlaunch;
-	@ViewById TextView tv_version;
-	@ViewById RelativeLayout rl_default, rl_root;
+    @ViewById TextView tv_version;
+    @ViewById RelativeLayout rl_default, rl_root;
+
 
 	@AfterViews
 	void init() {
@@ -103,11 +107,11 @@ public class WelcomeActivity extends BaseActivity {
 	}
 
 	void initImg() {
-		if (QFCommonUtils.isFirstLaunch(this)) {
-			iv_firstlaunch.setVisibility(View.VISIBLE);
-		} else {
-			iv_firstlaunch.setVisibility(View.INVISIBLE);
-		}
+//		if (QFCommonUtils.isFirstLaunch(this)) {
+//			iv_firstlaunch.setVisibility(View.VISIBLE);
+//		} else {
+//			iv_firstlaunch.setVisibility(View.INVISIBLE);
+//		}
 
 		// 处理运营背景图的加载
 		final SplashParams params = getParams();

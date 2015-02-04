@@ -29,7 +29,7 @@ public class QFImageUploader {
 	@OrmLiteDao(helper = QFDataHelper.class) Dao<ImageWrapper, Integer> mDao;
 	Map<String, Cancelable> mRequests = new HashMap<String, Cancelable>();
 	
-	public QFImageUploader setLinstener(ImageGroupUploadLinstener linstener) {
+	public QFImageUploader setGroupLinstener(ImageGroupUploadLinstener linstener) {
 		mHandler.setLinstener(linstener);
 		return this;
 	}
@@ -50,7 +50,7 @@ public class QFImageUploader {
 		bean.setImageType(builder.mType);
 		bean.setPath(builder.mImagePath);
 		
-		ImageAsyncUploader uploader = new ImageAsyncUploader(bean, mDao, mHandler, builder.mImageURlSetter);
+		ImageAsyncUploader uploader = new ImageAsyncUploader(bean, mDao, mHandler, builder.mImageURlSetter, builder.mLinstener);
 		uploader.upload();
 		mRequests.put(bean.getPath(), uploader);
 		
@@ -88,6 +88,16 @@ public class QFImageUploader {
 		mRequests.clear();
 		mHandler.resetState();
 	}
+
+    public void cancel(String path) {
+        if (mRequests.containsKey(path)) {
+            mRequests.get(path).cancel();
+        }
+    }
+
+    public void setSingleTaskLinstener(String path, ImageProgressListener linstener) {
+        ((ImageAsyncUploader) mRequests.get(path)).setLinstener(linstener);
+    }
 	
 	public class Builder {
 		QFImageUploader mUploader;
@@ -95,6 +105,7 @@ public class QFImageUploader {
 		String          mImagePath;
 		ImageUrlSetter  mImageURlSetter;
 		ImageType       mType = ImageType.NORMAL;
+        ImageProgressListener mLinstener;
 		
 		Builder(QFImageUploader mUploader) {
 			super();
@@ -120,11 +131,16 @@ public class QFImageUploader {
 			this.mType = type;
 			return this;
 		}
+
+        public Builder linstener(ImageProgressListener linstener) {
+            this.mLinstener = linstener;
+            return this;
+        }
 		
 		public void uploadInGroup() {
 			QFImageUploader.this.uploadInGroup(this);
 		}
-		
+
 		public String uploadSync() {
 			return QFImageUploader.this.uploadSync(this);
 		}

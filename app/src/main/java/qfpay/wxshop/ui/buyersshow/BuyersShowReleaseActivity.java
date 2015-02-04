@@ -25,7 +25,7 @@ import qfpay.wxshop.data.netImpl.BuyersShowNetService.GoodWrapper;
 import qfpay.wxshop.data.netImpl.EdititemService;
 import qfpay.wxshop.data.netImpl.EdititemService.GetItemWrapper;
 import qfpay.wxshop.image.ImageProcesserBean;
-import qfpay.wxshop.ui.BaseActivity;
+import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
