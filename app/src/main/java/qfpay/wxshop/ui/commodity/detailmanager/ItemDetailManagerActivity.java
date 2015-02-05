@@ -1,7 +1,6 @@
 package qfpay.wxshop.ui.commodity.detailmanager;
 
 import android.content.Intent;
-import android.text.Editable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,7 +9,6 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
@@ -108,18 +106,18 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
     }
 
     @Click void ll_add_sku() {
-        if (isPromotation) {
-            showErrorMessage("亲，此商品正在进行秒杀活动，暂时不能设置多个规格哦！请先取消秒杀活动，或等待秒杀活动结束，再尝试吧！");
+        if (mPresenter.getSkuModelList().size() == 10) {
+            showErrorMessage("最多只能新建十个规格");
             return;
         }
-        ItemDetailSkuEditActivity_.intent(this).skuModelList(mPresenter.getSkuModelList()).startForResult(ItemDetailManagerView.REQUEST_SKU_ADD);
+        ItemDetailSkuEditActivity_.intent(this).isPromotation(isPromotation).skuModelList(mPresenter.getSkuModelList()).startForResult(ItemDetailManagerView.REQUEST_SKU_ADD);
     }
 
     /**
      * 页面中SkuItem的编辑按钮回调方法
      */
     public void onSkuEditClick(int position, SkuViewModel skuViewModel) {
-        ItemDetailSkuEditActivity_.intent(this).skuViewModel(skuViewModel).skuModelList(mPresenter.getSkuModelList()).position(position).startForResult(ItemDetailManagerView.REQUEST_SKU_EDIT);
+        ItemDetailSkuEditActivity_.intent(this).isPromotation(isPromotation).skuViewModel(skuViewModel).skuModelList(mPresenter.getSkuModelList()).position(position).startForResult(ItemDetailManagerView.REQUEST_SKU_EDIT);
     }
 
     @Override public void addSku(SkuViewModel skuViewModel) {
@@ -175,12 +173,12 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
         tv_description.setText(description);
     }
 
-    @Override public void disableCommit() {
+    @Override @UiThread public void disableCommit() {
         tv_save.setClickable(false);
         tv_save.setTextColor(getResources().getColor(R.color.common_text_grey));
     }
 
-    @Override public void enableCommit() {
+    @Override @UiThread public void enableCommit() {
         tv_save.setClickable(true);
         tv_save.setTextColor(getResources().getColor(R.color.common_white));
     }

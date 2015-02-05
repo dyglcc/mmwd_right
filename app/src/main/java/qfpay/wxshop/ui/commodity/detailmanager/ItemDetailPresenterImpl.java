@@ -115,6 +115,7 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
     }
 
     @Override public void addSku(SkuViewModel skuViewModel) {
+        if (mModel == null) return;
         SKUModel model = new SKUModel();
         model.setName(skuViewModel.getName());
         model.setPrice(Float.parseFloat(skuViewModel.getPrice()));
@@ -141,6 +142,7 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
     }
 
     @Override public List<SKUModel> getSkuModelList() {
+        if (mModel == null) return new ArrayList<SKUModel>();
         return mModel.getSkuList();
     }
 
@@ -164,9 +166,12 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
     }
 
     @Override public void commit(List<PictureViewModel> pictureViewModelList, String name, String postage, String description) {
+        if (mModel == null) return;
         if (! checkCommoitData(pictureViewModelList, mModel.getSkuList(), name, postage, description)) {
             return;
         }
+
+        mView.disableCommit();
 
         mModel.getPictureList().clear();
         for (PictureViewModel pic : pictureViewModelList) {
@@ -190,6 +195,7 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
 
     @Override
     public void onClose(List<PictureViewModel> pictureViewModelList, String name, String postage, String description) {
+        if (mModel == null) return;
         if (isSkuEdited) {
             showCloseDialog();
             return;
@@ -235,9 +241,6 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
         if (isNull(name)) {
             mView.showErrorMessage("请输入名称");
             return false;
-        } else if (isNull(postage)) {
-            mView.showErrorMessage("请输入邮费");
-            return false;
         } else if (isNull(description)) {
             mView.showErrorMessage("请输入描述");
             return false;
@@ -273,6 +276,7 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
             onModelRequestDone(mModel.getId());
         } catch (MessageException e) {
             mView.showErrorMessage(e.getMsgForToast());
+            mView.enableCommit();
         }
     }
 
@@ -281,6 +285,7 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
             onModelRequestDone(mRepository.createCommodity(mModel));
         } catch (MessageException e) {
             mView.showErrorMessage(e.getMsgForToast());
+            mView.enableCommit();
         }
     }
 

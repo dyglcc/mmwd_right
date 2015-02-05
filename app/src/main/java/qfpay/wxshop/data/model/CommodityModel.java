@@ -16,7 +16,7 @@ public class CommodityModel implements Serializable {
     private int                id;
     private String             name;
     private float              price;
-    private float              postage;
+    private float              postage     = 0f;
     private String             description;
     private CommodityStatus    status;
     private List<SKUModel>     skuList     = new ArrayList<SKUModel>();

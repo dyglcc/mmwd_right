@@ -34,6 +34,7 @@ public class ItemDetailSkuEditActivity extends BaseActivity {
 
     @Extra    SkuViewModel   skuViewModel;
     @Extra    int            position;
+    @Extra    boolean        isPromotation = false; // 是否为秒杀
     @Extra    List<SKUModel> skuModelList; // 当前SkuList的数量, 添加的时候在这个步骤的时候其实List里面并没有这个Sku, 编辑的时候则已经包含了当前这个Sku
 
     @AfterViews void onInit() {
@@ -96,6 +97,11 @@ public class ItemDetailSkuEditActivity extends BaseActivity {
             return;
         }
 
+        if (isPromotation && !checkPriceEquals(skuModelList, et_price.getText().toString())) {
+            Toaster.s(this, "正在秒杀的商品所有的规格价格必须相同");
+            return;
+        }
+
         if (skuViewModel == null) skuViewModel = new SkuViewModel();
 
         skuViewModel.setName(et_name.getText().toString());
@@ -121,6 +127,15 @@ public class ItemDetailSkuEditActivity extends BaseActivity {
     public boolean checkSkuName(String name, List<SKUModel> skuModels, int withoutPosition) {
         for (SKUModel model : skuModels) {
             if (model.getName().equals(name) && withoutPosition != skuModels.indexOf(model)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkPriceEquals(List<SKUModel> skuModels, String price) {
+        for (SKUModel model : skuModels) {
+            if (model.getPrice() != Float.parseFloat(price)) {
                 return false;
             }
         }
