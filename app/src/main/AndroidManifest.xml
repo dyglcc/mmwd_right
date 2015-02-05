@@ -50,6 +50,7 @@
         android:allowClearUserData="false"
         android:icon="@drawable/icon"
         android:killAfterRestore="true"
+        android:hardwareAccelerated="true"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:logo="@drawable/actionbar_title_icon"
@@ -98,6 +99,13 @@
             android:name=".ui.web.huoyuan.CommonWebActivityHuoyuan_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="true"
+            android:screenOrientation="portrait" />
+        <!-- 一键代发教程页面 -->
+        <activity
+            android:name=".activity.OnekeybehalfWhatisActivty_"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="true"
+            android:hardwareAccelerated="false"
             android:screenOrientation="portrait" />
         <!-- 上传商品以及编辑商品 -->
         <activity
