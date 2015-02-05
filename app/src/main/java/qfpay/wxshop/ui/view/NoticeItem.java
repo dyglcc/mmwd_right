@@ -18,7 +18,6 @@ import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
@@ -101,16 +100,13 @@ public class NoticeItem extends LinearLayout {
 				if(gb2.getClickable() == null){
 					return;
 				}
-                // 一键代发 消息类
-                if(gb2.getType() == 6){
-                    handler.sendEmptyMessage(NoticeCenterActivity.CHANGETAB);
-                    ((Activity)(context)).finish();
-                    return;
-                }
 				if(gb2.getClickable().equals("1")){
 					go2ReadingActivity(gb2);
 				}
-
+                // 一键代发 消息类
+                if(gb2.getType() == 6){
+                    handler.sendEmptyMessage(NoticeCenterActivity.CHANGETAB);
+                }
 				
 			}
 		});
