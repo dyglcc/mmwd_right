@@ -20,9 +20,10 @@ import cn.sharesdk.framework.ShareSDK;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.LabelActivity_;
-import qfpay.wxshop.activity.ManagePreViewActivity;
+import qfpay.wxshop.activity.ManagePreViewActivity_;
 import qfpay.wxshop.activity.share.ShareActivity;
 import qfpay.wxshop.app.BaseActivity;
+import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.beans.LabelBean;
 import qfpay.wxshop.data.handler.MainHandler;
@@ -116,14 +117,25 @@ public class EdititemDoneActivity extends BaseActivity {
 		finish();
 	}
 
+//	@Click void btn_preview() {
+//		Intent intent = new Intent(this, ManagePreViewActivity.class);
+//		intent.putExtra(ConstValue.TITLE, "商品预览");
+//		intent.putExtra(ConstValue.URL,
+//				"http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance");
+//		MobAgentTools.OnEventMobOnDiffUser(this, "goods_preview");
+//		this.startActivity(intent);
+//	}
 	@Click void btn_preview() {
-		Intent intent = new Intent(this, ManagePreViewActivity.class);
-		intent.putExtra(ConstValue.TITLE, "商品预览");
-		intent.putExtra(ConstValue.URL,
-				"http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance");
-		MobAgentTools.OnEventMobOnDiffUser(this, "goods_preview");
-		this.startActivity(intent);
+        ManagePreViewActivity_.intent(this).ga_medium("android_mmwdapp_postpreviewshare_").title("商品预览").url(WDConfig.getInstance().getGoodPreviewUrl()  + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance").gooditem(getGoodsBean(wrapper)).start();
+
+//		Intent intent = new Intent(this, ManagePreViewActivity.class);
+//		intent.putExtra(ConstValue.URL,
+//				"http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance");
+        MobAgentTools.OnEventMobOnDiffUser(this, "goods_preview");
+//		this.startActivity(intent);
 	}
+
+
 
 	@Click(R.id.ll_share_moments) void shareMoments() {
 		ShareUtils.momentsGoodItem(getGoodsBean(wrapper), this, "android_mmwdapp_postshare_wctimeline");

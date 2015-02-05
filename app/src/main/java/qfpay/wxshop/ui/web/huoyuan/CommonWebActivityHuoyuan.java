@@ -456,6 +456,8 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
                 cookieManager.setCookie(url, sessionCookie);
                 CookieSyncManager.getInstance().sync();
             }
+
+            webView.setDownloadListener(new MyWebViewDownLoadListener());
             webView.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -501,5 +503,6 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
     }
 
     public static final int REFRESH = 1;
+
 
 }
