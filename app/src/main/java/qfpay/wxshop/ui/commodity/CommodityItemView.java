@@ -197,8 +197,12 @@ public class CommodityItemView extends LinearLayout {
                     });
         } else {
             MobAgentTools.OnEventMobOnDiffUser(getContext(), "manage_seckill");
-            ManPromoActivity_.intent(getContext()).gb(new2Old(data.model)).pos(controller.getIndex(data.model)).
-                    from("GoodlistFragment").start();
+            if (data.model.getPrice_count() > 1) {
+                Toaster.s(getContext(), "多规格多价格商品暂时无法设置秒杀");
+            } else {
+                ManPromoActivity_.intent(getContext()).gb(new2Old(data.model)).pos(controller.getIndex(data.model)).
+                        from("GoodlistFragment").start();
+            }
         }
     }
 

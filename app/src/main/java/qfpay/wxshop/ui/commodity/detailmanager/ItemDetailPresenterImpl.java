@@ -183,7 +183,9 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
             mModel.getPictureList().add(model);
         }
         mModel.setName(name);
-        mModel.setPostage(Float.parseFloat(postage));
+        if (postage != null && !postage.equals("")) {
+            mModel.setPostage(Float.parseFloat(postage));
+        }
         mModel.setDescription(description);
 
         if (commodityId > 0) {
