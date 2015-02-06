@@ -80,6 +80,7 @@
                 android:background="#00000000"
                 android:imeOptions="actionNext"
                 android:inputType="numberDecimal"
+                android:maxLength="7"
                 android:nextFocusForward="@+id/et_count"
                 android:padding="5dp"
                 android:singleLine="true"
@@ -116,6 +117,7 @@
                 android:background="#00000000"
                 android:imeOptions="actionDone"
                 android:inputType="number"
+                android:maxLength="5"
                 android:padding="5dp"
                 android:singleLine="true"
                 android:textColor="@color/common_text_grey"
@@ -128,11 +130,9 @@
         android:id="@+id/btn_delete"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="29dp"
-        android:background="@drawable/selector_button_click"
+        android:layout_marginTop="15dp"
+        android:background="#FFFFFF"
         android:text="删除规格"
-        android:textColor="@color/common_white"
-        android:visibility="gone" />
+        android:textColor="@color/common_text_red"
+        android:visibility="visible" />
 </LinearLayout>

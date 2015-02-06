@@ -216,7 +216,6 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
 
     @Override
     public void onShare(SharedPlatfrom which) {
-
         switch (which) {
             case ONEKEY:
                 WxShopApplication.shareBean = ShareUtils.getShareBean(gooditem, this);
@@ -239,8 +238,6 @@ public class ManagePreViewActivity extends BaseActivity implements OnShareLinste
             default:
                 break;
         }
-
-
     }
 
     @Override
