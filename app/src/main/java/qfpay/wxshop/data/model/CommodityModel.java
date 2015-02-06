@@ -15,7 +15,6 @@ import java.util.List;
 public class CommodityModel implements Serializable {
     private int                id;
     private String             name;
-    private float              price;
     private float              postage     = 0f;
     private String             description;
     private CommodityStatus    status;
@@ -37,14 +36,6 @@ public class CommodityModel implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public float getPostage() {
@@ -104,7 +95,6 @@ public class CommodityModel implements Serializable {
 
         if (id != that.id) return false;
         if (Float.compare(that.postage, postage) != 0) return false;
-        if (Float.compare(that.price, price) != 0) return false;
         if (description != null ? !description.equals(that.description) : that.description != null)
             return false;
         if (lastModified != null ? !lastModified.equals(that.lastModified) : that.lastModified != null)
@@ -122,7 +112,6 @@ public class CommodityModel implements Serializable {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         result = 31 * result + (postage != +0.0f ? Float.floatToIntBits(postage) : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
@@ -137,7 +126,6 @@ public class CommodityModel implements Serializable {
         return "CommodityModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + price +
                 ", postage=" + postage +
                 ", descript='" + description + '\'' +
                 ", status=" + status +

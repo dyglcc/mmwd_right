@@ -75,7 +75,6 @@ public class CommodityDataMapperImpl implements CommodityDataMapper {
         CommodityModel model = new CommodityModel();
         model.setId(itemWrapper.data.item.id);
         model.setName(itemWrapper.data.item.title);
-        model.setPrice(itemWrapper.data.item.price);
         model.setPostage(itemWrapper.data.item.postage);
         model.setDescription(itemWrapper.data.item.descr);
         model.setStatus(CommodityStatus.getStatus(itemWrapper.data.item.status));

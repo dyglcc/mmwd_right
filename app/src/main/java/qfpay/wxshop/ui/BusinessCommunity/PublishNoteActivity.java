@@ -171,7 +171,7 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
                 params.height = screenWidth*3/7;
                 note_iamge.setLayoutParams(params);
                 File picFile = new File(fb.getFileStr());
-                Picasso.with(PublishNoteActivity.this).load(picFile).fit().centerCrop().into(note_iamge);
+                Picasso.with(PublishNoteActivity.this).load(picFile).resize(1000, 1000).centerCrop().into(note_iamge);
                 hasPic = true;
                 uploadThePicture(fb.getFileStr());
             }
@@ -234,7 +234,6 @@ public class PublishNoteActivity extends BaseActivity implements BusinessCommuni
         picUrl = imageUploader.with(-1).path(path).imageType(ImageType.BIG).uploadSync();
         if(picUrl==null||"".equals(picUrl)){
             MobAgentTools.OnEventMobOnDiffUser(this, "fail_merchant_topic_upload");
-            uploadThePicture(path);
         }else{
             MobAgentTools.OnEventMobOnDiffUser(this, "succ_merchant_topic_upload");
         }

@@ -28,6 +28,7 @@ import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.beans.LabelBean;
 import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.model.CommodityModel;
+import qfpay.wxshop.data.model.SKUModel;
 import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.LabelupdateNetImpl;
@@ -117,25 +118,10 @@ public class EdititemDoneActivity extends BaseActivity {
 		finish();
 	}
 
-//	@Click void btn_preview() {
-//		Intent intent = new Intent(this, ManagePreViewActivity.class);
-//		intent.putExtra(ConstValue.TITLE, "商品预览");
-//		intent.putExtra(ConstValue.URL,
-//				"http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance");
-//		MobAgentTools.OnEventMobOnDiffUser(this, "goods_preview");
-//		this.startActivity(intent);
-//	}
 	@Click void btn_preview() {
         ManagePreViewActivity_.intent(this).ga_medium("android_mmwdapp_postpreviewshare_").title("商品预览").url(WDConfig.getInstance().getGoodPreviewUrl()  + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance").gooditem(getGoodsBean(wrapper)).start();
-
-//		Intent intent = new Intent(this, ManagePreViewActivity.class);
-//		intent.putExtra(ConstValue.URL,
-//				"http://"+WxShopApplication.app.getDomainMMWDUrl()+"/item/" + wrapper.getId() + "?ga_medium=android_mmwdapp_postpreview_&ga_source=entrance");
         MobAgentTools.OnEventMobOnDiffUser(this, "goods_preview");
-//		this.startActivity(intent);
 	}
-
-
 
 	@Click(R.id.ll_share_moments) void shareMoments() {
 		ShareUtils.momentsGoodItem(getGoodsBean(wrapper), this, "android_mmwdapp_postshare_wctimeline");
@@ -163,7 +149,24 @@ public class EdititemDoneActivity extends BaseActivity {
 		gb.setSrcimgUrl(wrapper.getPictureList().get(0).getUrl());
 		gb.setGoodDesc(wrapper.getDescription());
 		gb.setGoodName(wrapper.getName());
-		gb.setPriceStr(wrapper.getPrice() + "");
+        if (wrapper.getSkuList() != null && !wrapper.getSkuList().isEmpty()) {
+            float min = -1f, max = -1f;
+            for (SKUModel model : wrapper.getSkuList()) {
+                if (min == -1f) min = model.getPrice();
+                if (max == -1f) max = model.getPrice();
+                if (model.getPrice() > max) {
+                    max = model.getPrice();
+                }
+                if (model.getPrice() < min) {
+                    min = model.getPrice();
+                }
+            }
+            if (min == max) {
+                gb.setPriceStr(max + "");
+            } else {
+                gb.setPriceStr(min + " ~ " + max);
+            }
+        }
 		return gb;
 	}
 
