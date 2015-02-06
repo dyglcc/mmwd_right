@@ -24,6 +24,9 @@
 -keep class qfpay.wxshop.activity.menu.MyInComeActivity$*{ *;}
 -keep class qfpay.wxshop.activity.menu.ForumActivity$*{ *;}
 
+-keepnames class qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan$* { *;}
+-keepnames class qfpay.wxshop.ui.web.huoyuan.CommonWebFragmentHuyuan$* { *;}
+
 
 -keep class com.networkbench.** { *; }
 -dontwarn com.networkbench.**

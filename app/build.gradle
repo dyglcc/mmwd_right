@@ -20,7 +20,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'hugo'
 apply plugin: 'android'
-apply plugin: 'newlens'
+//apply plugin: 'newlens'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
