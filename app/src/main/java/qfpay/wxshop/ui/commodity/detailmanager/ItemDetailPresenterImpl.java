@@ -195,7 +195,10 @@ public class ItemDetailPresenterImpl extends BasePresenter implements ItemDetail
 
     @Override
     public void onClose(List<PictureViewModel> pictureViewModelList, String name, String postage, String description) {
-        if (mModel == null) return;
+        if (mModel == null) {
+            mView.finish();
+            return;
+        }
         if (isSkuEdited) {
             showCloseDialog();
             return;
