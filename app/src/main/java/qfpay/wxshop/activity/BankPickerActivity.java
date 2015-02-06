@@ -25,6 +25,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ *
+ * 添加银行卡，选择银行
+ *
+ * */
 @EActivity(R.layout.activity_bankpicker)
 public class BankPickerActivity extends BaseActivity {
 	public static final String DATANAME_BANKNAME = "bankname";
