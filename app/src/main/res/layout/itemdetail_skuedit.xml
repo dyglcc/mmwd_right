@@ -134,5 +134,5 @@
         android:background="#FFFFFF"
         android:text="删除规格"
         android:textColor="@color/common_text_red"
-        android:visibility="visible" />
+        android:visibility="gone" />
 </LinearLayout>
