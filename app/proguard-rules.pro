@@ -24,8 +24,22 @@
 -keep class qfpay.wxshop.activity.menu.MyInComeActivity$*{ *;}
 -keep class qfpay.wxshop.activity.menu.ForumActivity$*{ *;}
 
--keepnames class qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan$* { *;}
--keepnames class qfpay.wxshop.ui.web.huoyuan.CommonWebFragmentHuyuan$* { *;}
+-keep class qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan$* { *;}
+-keep class qfpay.wxshop.ui.web.huoyuan.CommonWebFragmentHuyuan$* { *;}
+-keep class qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan$callCameroJavaScriptInterface {
+    public <methods>;
+}
+-keep class qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan$SendUidInterface{
+    public <methods>;
+}
+-keep class qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan$OnkeybehalfSuccess {
+    public <methods>;
+}
+
+-keep class qfpay.wxshop.ui.web.huoyuan.CommonWebFragmentHuyuan$* {
+    public <fields>;
+    public <methods>;
+}
 
 
 -keep class com.networkbench.** { *; }

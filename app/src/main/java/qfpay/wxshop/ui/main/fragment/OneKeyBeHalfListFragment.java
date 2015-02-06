@@ -63,8 +63,11 @@ import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.view.CustomProgressDialog;
 import qfpay.wxshop.ui.view.OnekeybeHalfItem;
 import qfpay.wxshop.ui.view.OnekeybeHalfItem_;
+import qfpay.wxshop.ui.view.XFooterView;
+import qfpay.wxshop.ui.view.XHeaderView;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.QMMAlert;
@@ -133,7 +136,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
     View btn_retry;
 
     private boolean isloadding;
-    private int pageIndex = -1;
+    private int pageIndex = 0;
 
     @ViewById
     FrameLayout fl_indictor;
@@ -190,8 +193,10 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
     @Override
     public void onFragmentRefresh() {
 
+
         if(WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF){
-            pageIndex = -1;
+
+            resetPagesize();
             getData(true);
             WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF = false;
             return;
@@ -266,6 +271,9 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
     @ItemClick
     void listView(int position) {
         int pos = position - 1;
+        if(adapter.getItem(pos) == null){
+            return;
+        }
         if (adapter.getItem(pos).isMenuOpened) {
             adapter.closeMenu(adapter.getItem(pos));
         } else {
@@ -288,10 +296,9 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
      * 初始化列表
      */
     private void initListView() {
-//        listView.setAutoLoadEnable(false);
+        listView.setAutoLoadEnable(false);
         listView.setXListViewListener(this);
-        listView.setPullLoadEnable(false);
-        listView.setAutoLoadEnable(true);
+        listView.setPullLoadEnable(true);
         listView.setPullRefreshEnable(true);
         adapter = new MyAdatpter();
         listView.setAdapter(adapter);
@@ -305,15 +312,16 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
             return;
         }
 
+        if(nodata){
+            checkEmptyfooter();
+            return;
+        }
+
         isloadding = true;
 
         AbstractNet net = new OneKeybehalfListNetImpl(getActivity());
         Bundle bun = new Bundle();
-        if (pageIndex == -1) {
-            bun.putInt("page", 0);
-        } else {
-            bun.putInt("page", pageIndex);
-        }
+        bun.putInt("page", pageIndex);
         net.request(bun, new MainHandler(getActivity(), handler) {
 
             @Override
@@ -328,13 +336,11 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
                     List<OnekeybehalfItemBean> datas = tradeData.getItems();
                     if (datas.size() < ConstValue.PAGE_SIZE_MANAGE) {
                         nodata = true;
+                    }else{
+                        nodata = false;
                     }
                     if (data == null) {
                         data = new ArrayList<OnekeybehalfItemBean>();
-                    }
-                    if (pageIndex == -1) {
-                        data.clear();
-                        pageIndex = 0;
                     }
                     if (refresh) {
                         data.clear();
@@ -383,7 +389,8 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
     @Override
     public void onRefresh() {
 
-        pageIndex = -1;
+
+        resetPagesize();
         getData(true);
 
     }
@@ -555,16 +562,21 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
         if (initShare) {
             ShareSDK.stopSDK(getActivity());
         }
-        pageIndex = -1;
+
+        resetPagesize();
         initSuccess = false;
         isloadding = false;
     }
 
     private boolean initShare;
 
+    private void resetPagesize(){
+        pageIndex = 0;
+        nodata = false;
+    }
     @UiThread
     public void refreshListView() {
-        pageIndex = -1;
+        resetPagesize();
         getData(false);
     }
 
@@ -825,8 +837,17 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
 
     private void checkFooterView() {
         listView.stopRefresh();
-        listView.stopLoadMore();
 
+        listView.stopLoadMore();
+        XFooterView footerView = listView.getmFooterView();
+        if(nodata){
+            if(footerView!=null){
+                footerView.normalhHitView();
+            }
+        }else{
+
+            footerView.setState(XFooterView.STATE_NORMAL);
+        }
 
         if (OneKeyBeHalfListFragment_.data.isEmpty() && OneKeyBeHalfListFragment_.nodata) {
             fl_indictor.setVisibility(View.VISIBLE);

@@ -292,7 +292,7 @@ public class ConstValue {
 	public static final String URL = "url";
 	public static final String TITLE = "title";
 	public static final int MSG_ERROR_FROM_MAINHANDLER= 67;
-	public static final int PAGE_SIZE_MANAGE= 10;
+	public static final int PAGE_SIZE_MANAGE= 30;
 	
 	public static final String TOMORROW = "明天";
 	public static final String TODAY = "今天";

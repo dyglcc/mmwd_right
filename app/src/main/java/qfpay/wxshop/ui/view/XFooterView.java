@@ -146,6 +146,13 @@ public class XFooterView extends LinearLayout {
         mHintView.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
     }
+    /**
+     * normal status
+     */
+    public void normalhHitView() {
+        mHintView.setVisibility(View.INVISIBLE);
+//        mProgressBar.setVisibility(View.GONE);
+    }
 
     /**
      * loading status

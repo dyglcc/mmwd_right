@@ -202,6 +202,7 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
     private class OnkeybehalfSuccess {
         @JavascriptInterface
         public void clickOnAndroid() {
+            T.i("clickOnAndroid" +  " OnkeybehalfSuccess");
 
             WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF = true;
 
@@ -228,7 +229,7 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 				if(btn_save.getVisibility() == View.VISIBLE){
 					go2Myhuoyuan();
 				}else{
-					finish();
+                    finishAct();
 				}
 
 			}
@@ -242,7 +243,7 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 		Intent intent = new Intent();
         intent.putExtra("result", MaijiaxiuFragment.ACTION_HUOYUAN_ADD);
         setResult(Activity.RESULT_OK, intent);
-        finish();
+        finishAct();
         WxShopApplication.IS_NEED_REFRESH_MINE_HUOYUAN = true;
     }
 
@@ -265,7 +266,7 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
-			finish();
+			finishAct();
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -276,11 +277,16 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 			if(webView.canGoBack()){
 				webView.goBack();
 			}else{
-				finish();
+                finishAct();
 			}
 		}
 	}
 
+
+    private void finishAct(){
+//        WxShopApplication.IS_NEED_REFRESH_ONE_KEY_BEFALLF = true;
+        finish();
+    }
 
 	@Override
 	public void onShare(SharedPlatfrom which) {

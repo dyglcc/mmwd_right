@@ -59,6 +59,15 @@ public class XListView extends ListView implements OnScrollListener {
     private int mHeaderHeight;
 
     private LinearLayout mFooterLayout;
+
+    public XFooterView getmFooterView() {
+        return mFooterView;
+    }
+
+    public void setmFooterView(XFooterView mFooterView) {
+        this.mFooterView = mFooterView;
+    }
+
     private XFooterView mFooterView;
     private boolean mIsFooterReady = false;
 

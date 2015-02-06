@@ -32,8 +32,8 @@ public class NewIntroductionActivity extends Activity {
 
 	private LayoutInflater inflater;
 
-	private View page1, page2, page3, page5;
-	// private View page1, page2,page3,page4,page5;
+//	private View page1, page2, page3, page5;
+	private View page1, page2,page3,page4,page5;
 	private ViewPager pager;
 	TextView tvRegister;
 	TextView tvLogin;
@@ -203,7 +203,7 @@ public class NewIntroductionActivity extends Activity {
 		page1 = inflater.inflate(R.layout.layout_page1, null);
 		page2 = inflater.inflate(R.layout.layout_page2, null);
 		page3 = inflater.inflate(R.layout.layout_page3, null);
-//		page4 = inflater.inflate(R.layout.layout_page4, null);
+		page4 = inflater.inflate(R.layout.layout_page4, null);
 		page5 = inflater.inflate(R.layout.main_login_preview, null);
 
 		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
@@ -219,7 +219,7 @@ public class NewIntroductionActivity extends Activity {
 	private class MyViewPagerAdapter extends PagerAdapter {
 		@Override
 		public int getCount() {
-			return 4;
+			return 5;
 		}
 
 		@Override
@@ -243,6 +243,8 @@ public class NewIntroductionActivity extends Activity {
 			} else if (position == 2) {
 				new_view = page3;
 			} else if (position == 3) {
+				new_view = page4;
+			} else if (position == 4) {
 				new_view = page5;
 			}
 
@@ -267,6 +269,9 @@ public class NewIntroductionActivity extends Activity {
 		}
 		if (page3 != null) {
 			page3 = null;
+		}
+		if (page4 != null) {
+			page4 = null;
 		}
 		if (page5 != null) {
 			page5 = null;
