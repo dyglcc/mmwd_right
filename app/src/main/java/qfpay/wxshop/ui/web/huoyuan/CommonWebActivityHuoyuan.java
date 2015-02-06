@@ -70,6 +70,7 @@ import qfpay.wxshop.ui.web.WebActivity_;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
+import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 @EActivity(R.layout.web_common_activity_huoyuan)
 public class CommonWebActivityHuoyuan extends BaseActivity implements
@@ -193,7 +194,8 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
         @JavascriptInterface
         public String clickOnAndroid() {
 
-            T.i("get uid click on android ..");
+//            Toaster.l(CommonWebActivityHuoyuan.this,"click on android get id");
+            T.i("get uid click on android .." + WxShopApplication.dataEngine.getUserId());
             return WxShopApplication.dataEngine.getUserId();
         }
     }
@@ -431,7 +433,7 @@ public class CommonWebActivityHuoyuan extends BaseActivity implements
 
     private class WebViewTask11 extends AsyncTask<Void, Void, Boolean> {
         String sessionCookie ="sessionid="
-                + WxShopApplication.dataEngine.getcid()+";qf_uid=" + WxShopApplication.dataEngine.getUserId();
+                + WxShopApplication.dataEngine.getcid();
         CookieManager cookieManager;
 
         @Override

@@ -33,7 +33,7 @@ public class OneKeybehalfListNetImpl extends AbstractNet {
 
             int page = parameter2.getInt("page");
             int offset = page * OfficalListFragment.page_size;
-            map.put("offset",""+0);
+            map.put("offset",""+offset);
             map.put("length","" +OfficalListFragment.page_size);
 
 			map.put(ConstValue.REQUEST_URL, WDConfig.getInstance()

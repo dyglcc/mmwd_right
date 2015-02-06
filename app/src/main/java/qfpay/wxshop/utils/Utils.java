@@ -949,8 +949,8 @@ public class Utils {
         if(pre.indexOf("/")!=-1){
            domain = pre.substring(0, pre.indexOf("/"));
         }
-        cookieManager.setCookie("1.wx.qfpay.com", "sessionid="+WxShopApplication.dataEngine.getcid());
-        cookieManager.setCookie("1.wx.qfpay.com", cookieString);
+        cookieManager.setCookie(".qfpay.com", "sessionid="+WxShopApplication.dataEngine.getcid());
+        cookieManager.setCookie(".qfpay.com", cookieString);
         cookieManager.setCookie(domain, "sessionid="+WxShopApplication.dataEngine.getcid());
         cookieManager.setCookie(domain, cookieString);
 		CookieSyncManager.getInstance().sync();

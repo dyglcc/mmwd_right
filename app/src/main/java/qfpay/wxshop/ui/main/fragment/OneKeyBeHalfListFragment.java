@@ -133,7 +133,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
     View btn_retry;
 
     private boolean isloadding;
-    private int pageIndex = 1;
+    private int pageIndex = -1;
 
     @ViewById
     FrameLayout fl_indictor;
@@ -288,9 +288,10 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
      * 初始化列表
      */
     private void initListView() {
-        listView.setAutoLoadEnable(false);
+//        listView.setAutoLoadEnable(false);
         listView.setXListViewListener(this);
         listView.setPullLoadEnable(false);
+        listView.setAutoLoadEnable(true);
         listView.setPullRefreshEnable(true);
         adapter = new MyAdatpter();
         listView.setAdapter(adapter);
@@ -309,7 +310,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
         AbstractNet net = new OneKeybehalfListNetImpl(getActivity());
         Bundle bun = new Bundle();
         if (pageIndex == -1) {
-            bun.putInt("page", 1);
+            bun.putInt("page", 0);
         } else {
             bun.putInt("page", pageIndex);
         }
@@ -333,7 +334,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
                     }
                     if (pageIndex == -1) {
                         data.clear();
-                        pageIndex = 1;
+                        pageIndex = 0;
                     }
                     if (refresh) {
                         data.clear();
@@ -350,8 +351,6 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
             public void onFailed(Bundle bundle) {
                 isLoadingData = false;
                 loadFail = true;
-                MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                        "maijiaxiu_pub_faild");
             }
         });
     }

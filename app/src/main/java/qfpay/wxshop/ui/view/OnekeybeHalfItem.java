@@ -198,18 +198,21 @@ public class OnekeybeHalfItem extends LinearLayout {
         msg.setData(bun);
         msg.sendToTarget();
 
+        MobAgentTools.OnEventMobOnDiffUser(getContext(), "click_share_distgood");
+
     }
 
 
     @Click
     void ll_menu_preview() {
-        MobAgentTools.OnEventMobOnDiffUser(getContext(), "management_goodspreview");
+        MobAgentTools.OnEventMobOnDiffUser(getContext(), "click_preview_distgood");
 
         GoodsBean gb = new2Old(data);
         ManagePreViewActivity_.intent(getContext()).ga_medium("android_mmwdapp_previewshare_").
                 title("商品预览").
                 url(WDConfig.getInstance().getGoodPreviewUrl() + data.getId() + "?fx_refer=qfuid_"+WxShopApplication.dataEngine.getUserId()+"&ga_medium=android_mmwdapp_preview_&ga_source=entrance").
                 gooditem(gb).start();
+
     }
 
     @Click
@@ -225,7 +228,7 @@ public class OnekeybeHalfItem extends LinearLayout {
 
                     }
                 });
-        MobAgentTools.OnEventMobOnDiffUser(getContext(), "remove");
+        MobAgentTools.OnEventMobOnDiffUser(getContext(), "click_cancel_distgood");
     }
 
     private void removeData() {
