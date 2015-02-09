@@ -122,9 +122,9 @@ public class WebViewSavePic extends WebView {
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                int idx = imgurl.lastIndexOf(".");
-                String ext = imgurl.substring(idx);
-                file = new File(sdcard + "/miaomiaowd/" + new Date().getTime() + ext);
+//                int idx = imgurl.lastIndexOf(".");
+//                String ext = imgurl.substring(idx);
+                file = new File(sdcard + "/miaomiaowd/" + new Date().getTime() + ".jpg");
                 InputStream inputStream = null;
                 URL url = new URL(imgurl);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();

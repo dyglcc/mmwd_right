@@ -120,14 +120,6 @@ public class ShopCreateImpl extends AbstractNet {
 						}
 					}
 
-				} else if (resultState.equals("2101")) {
-					bundle.putString(ConstValue.ERROR_MSG,
-							"参数错误");
-
-				} else if (resultState.startsWith("2")) {
-					bundle.putString(ConstValue.ERROR_MSG,
-							root.getString("resperr"));
-
 				} else {
                     String errorMsg = root.getString("resperr");
                     T.i("error mess :" + errorMsg);
