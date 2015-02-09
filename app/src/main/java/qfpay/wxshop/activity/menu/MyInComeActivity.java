@@ -28,7 +28,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.actionbarsherlock.view.MenuItem;
-
+/**
+ *
+ * 我的收入activity
+ */
 @SuppressLint("SetJavaScriptEnabled")
 public class MyInComeActivity extends BaseActivity {
 

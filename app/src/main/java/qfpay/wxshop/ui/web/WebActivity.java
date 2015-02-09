@@ -36,7 +36,9 @@ import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.main.fragment.OrderFragment_;
 import qfpay.wxshop.ui.view.WebViewSavePic;
 import qfpay.wxshop.utils.Utils;
-
+/**
+ * 订单管理内部打开app页面
+ */
 @EActivity(R.layout.web_activity)
 public class WebActivity extends BaseActivity {
 	@ViewById

@@ -37,7 +37,10 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
-
+/**
+ *
+ * 微信收款
+ */
 public class WeiXinCollectMoney extends BaseActivity implements
 		PlatformActionListener, Callback {
 	private Handler handler = new Handler() {

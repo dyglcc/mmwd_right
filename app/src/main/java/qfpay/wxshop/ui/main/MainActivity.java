@@ -71,7 +71,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
-
+/**
+ * 主界面
+ */
 @EActivity(R.layout.main_myshop)
 @SuppressLint({ "InflateParams", "HandlerLeak" })
 public class MainActivity extends BaseActivity {

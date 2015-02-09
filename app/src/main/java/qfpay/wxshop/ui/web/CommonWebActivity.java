@@ -35,7 +35,9 @@ import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-
+/**
+ * 通用webview activity 传参title,url,
+ */
 @EActivity(R.layout.web_common_activity)
 public class CommonWebActivity extends BaseActivity implements OnShareLinstener {
 	@ViewById
