@@ -88,12 +88,6 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
-        <!--程序主Activity-->
-        <activity
-            android:name=".ui.web.WebActivity_"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="true"
-            android:screenOrientation="portrait" />
         <!-- 货源详情页面 -->
         <activity
             android:name=".ui.web.huoyuan.CommonWebActivityHuoyuan_"
@@ -114,16 +108,19 @@
             android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 添加商品描述 -->
         <activity
             android:name="qfpay.wxshop.ui.commodity.detailmanager.ItemDetailDescriptionEditActivity_"
             android:windowSoftInputMode="stateAlwaysVisible"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 上传商品规格价格录入 -->
 		<activity
             android:name="qfpay.wxshop.ui.commodity.detailmanager.ItemDetailSkuEditActivity_"
             android:windowSoftInputMode="stateAlwaysVisible"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 上传商品成功 -->
         <activity
             android:name=".ui.commodity.EdititemDoneActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -223,7 +220,7 @@
             android:process=":alarmService" >
         </service>
 
-        <!-- 配置SDK核心服务 -->
+        <!-- 个推配置SDK核心服务 -->
         <service
             android:name="com.igexin.sdk.PushService"
             android:exported="true"
@@ -342,54 +339,56 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--图片显示类-->
         <activity
             android:name=".ui.selectpic.ImageGridActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--相册缩略页面-->
         <activity
             android:name=".ui.selectpic.AlbumActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--功能介绍类（已经不用）-->
         <activity
             android:name=".activity.Function1Activity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
+        <!--公告引导介绍-->
         <activity
             android:name=".activity.FunctionNoticeActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        <activity
-            android:name=".activity.menu.OrderListActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+        <!--买家秀引导介绍-->
         <activity
             android:name=".activity.MaijiaxiuEmptyActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--买家秀发布-->
         <activity
             android:name=".ui.buyersshow.BuyersShowReleaseActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--买家秀商品列表-->
         <activity
             android:name=".ui.buyersshow.GoodsListForBuyersShowActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--设置秒杀-->
         <activity
             android:name=".activity.ManPromoActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -397,6 +396,7 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
+        <!--设置秒杀成功-->
         <activity
             android:name=".activity.ManPromoSuccessActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -404,6 +404,7 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
+        <!--分享页面-->
         <activity
             android:name=".activity.share.ShareActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -411,30 +412,28 @@
             android:theme="@style/QFAppTheme"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
+        <!--通用webviewactivity-->
         <activity
             android:name=".activity.GeneralWebViewActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--修改密码页面-->
         <activity
             android:name=".activity.ChangePwdActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        <activity
-            android:name=".activity.ChangeBankAccoutActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+        <!--更改银行卡账户-->
         <activity
             android:name=".activity.ChangeBankCardInfoActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--编辑店铺名称-->
         <activity
             android:name=".activity.InputShopNameActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -442,17 +441,20 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
         </activity>
+        <!--登陆银行账号-->
         <activity
             android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--登陆前一页，注册-->
         <activity
             android:name=".activity.LoginPreviewActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
+        <!--注册银行账号-->
         <activity
             android:name=".activity.RegBankAccountActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -460,6 +462,8 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
         </activity>
+
+        <!--选择银行-->
         <activity
             android:name=".activity.BankPickerActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -467,22 +471,27 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
         </activity>
+
+        <!--注册银行-->
         <activity
             android:name=".activity.RegStep1Activity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
+        <!--注册成功-->
         <activity
             android:name=".activity.RegCompleteActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
+        <!--展示银行卡信息-->
         <activity
             android:name=".activity.ShowBankInfoActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
+        <!--微信收款-->
         <activity
             android:name=".activity.menu.WeiXinCollectMoney"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -490,11 +499,15 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
+
+        <!--微信收款 成功-->
         <activity
             android:name=".activity.CollectMoneyCompleteActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait" >
         </activity>
+
+        <!--店铺信息 -->
         <activity
             android:name=".ui.presonalinfo.ShopInfoActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -502,24 +515,29 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
+
+        <!--查看店铺背景图信息-->
         <activity
             android:name=".activity.SelectPicActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--其他店铺查看-->
         <activity
             android:name=".activity.OtherShopViewActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <!--碎碎念发布-->
         <activity
             android:name=".activity.SSNPublishActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
         </activity>
+        <!--碎碎念编辑-->
         <activity
             android:name=".activity.SSNEditActivity_"
             android:configChanges="orientation|keyboardHidden|navigation"

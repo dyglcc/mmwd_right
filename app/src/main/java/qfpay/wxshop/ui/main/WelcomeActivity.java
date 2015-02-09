@@ -35,6 +35,11 @@ import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 
+/**
+ *
+ * 欢迎页
+ */
+
 @EActivity(R.layout.welcome_layout) @WindowFeature({ Window.FEATURE_NO_TITLE, WindowManager.LayoutParams.FLAG_FULLSCREEN })
 public class WelcomeActivity extends BaseActivity {
 	private static final int DEFAULT_SHOW_TIME = 5000;
