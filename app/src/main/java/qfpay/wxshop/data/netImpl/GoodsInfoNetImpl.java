@@ -14,7 +14,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 商品信息网络请求
+ * */
 public class GoodsInfoNetImpl extends AbstractNet {
 
 	public GoodsInfoNetImpl(Context act) {

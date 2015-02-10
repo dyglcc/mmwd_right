@@ -11,7 +11,9 @@ import android.os.Handler;
 import android.os.Message;
 
 import qfpay.wxshop.utils.Toaster;
-
+/**
+ * 微信分享回调
+ * */
 public class BaseUIListener implements IUiListener {
     private Context mContext;
     private boolean mIsCaneled;

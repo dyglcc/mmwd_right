@@ -12,7 +12,10 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 碎碎念删除
+ *
+ * */
 public class SSnDelNetImpl extends AbstractNet {
 
 	public SSnDelNetImpl(Context act) {

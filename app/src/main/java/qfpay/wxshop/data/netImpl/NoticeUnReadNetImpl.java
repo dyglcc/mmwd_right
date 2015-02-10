@@ -15,7 +15,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 未读消息列表网络请求
+ * */
 public class NoticeUnReadNetImpl extends AbstractNet {
 
 	public NoticeUnReadNetImpl(Context act) {

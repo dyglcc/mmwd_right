@@ -71,7 +71,9 @@ import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 
 import com.actionbarsherlock.app.ActionBar;
-
+/**
+ * 消息中心 页面
+ */
 @SuppressLint("HandlerLeak")
 @EActivity(R.layout.main_list_notice_center)
 public class NoticeCenterActivity extends BaseActivity implements

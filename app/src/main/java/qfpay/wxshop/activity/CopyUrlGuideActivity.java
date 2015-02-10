@@ -8,6 +8,9 @@ import org.androidannotations.annotations.EActivity;
 import qfpay.wxshop.R;
 import qfpay.wxshop.utils.Toaster;
 
+/**
+ *
+ * */
 @EActivity(R.layout.copyurlguide_layout)
 public class CopyUrlGuideActivity extends BaseActivity {
 	@Click

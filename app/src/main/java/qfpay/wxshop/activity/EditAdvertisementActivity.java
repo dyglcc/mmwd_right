@@ -9,7 +9,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.handler.MainHandler;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.data.netImpl.NoticeUpdateImpl;
+import qfpay.wxshop.data.netImpl.AdertisementUpdateImpl;
 import qfpay.wxshop.dialogs.SimpleDialogFragment;
 import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.presonalinfo.ShopInfoActivity;
@@ -27,7 +27,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 公告编辑页面
+ * */
 @EActivity(R.layout.main_edit_advert)
 public class EditAdvertisementActivity extends BaseActivity {
 
@@ -161,7 +163,7 @@ public class EditAdvertisementActivity extends BaseActivity {
 		}
 		btn_share.setVisibility(View.GONE);
 		layout_progress_load.setVisibility(View.VISIBLE);
-		NoticeUpdateImpl net = new NoticeUpdateImpl(
+		AdertisementUpdateImpl net = new AdertisementUpdateImpl(
 				EditAdvertisementActivity.this);
 		Bundle bun = new Bundle();
 		bun.putString("intro", content);

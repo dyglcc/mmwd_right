@@ -26,7 +26,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 店铺名称编辑页面
+ */
 @EActivity(R.layout.main_edit_shopname)
 public class ShopNameEditActivity extends BaseActivity {
 

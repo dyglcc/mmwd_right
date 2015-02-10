@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 注册登录选择界面
+ */
 public class LoginPreviewActivity extends BaseActivity {
 
 	@Override

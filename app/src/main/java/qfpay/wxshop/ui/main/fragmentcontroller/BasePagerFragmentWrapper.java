@@ -4,7 +4,9 @@ import java.lang.ref.WeakReference;
 
 import qfpay.wxshop.app.BaseFragment;
 import android.util.SparseArray;
-
+/**
+ *上传照片网络请求
+ * */
 public abstract class BasePagerFragmentWrapper implements FragmentWrapper {
 	SparseArray<WeakReference<BaseFragment>> fragmentList = new SparseArray<WeakReference<BaseFragment>>();
 

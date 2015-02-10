@@ -1,5 +1,8 @@
 package qfpay.wxshop.ui.lovelycard;
 
+import org.androidannotations.annotations.EActivity;
+
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -52,6 +55,10 @@ import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
+
+/**
+ * 萌片页编辑
+ * */
 
 @EActivity(R.layout.lovelycard_edit)
 public class LovelyCardEditActivity extends BaseActivity implements ISimpleDialogListener {

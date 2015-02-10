@@ -7,7 +7,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
+/**
+ * handler 网络请求 回调
+ * */
 public abstract class MainHandler extends Handler {
 	
 	Context context;

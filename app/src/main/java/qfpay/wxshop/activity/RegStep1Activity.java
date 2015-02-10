@@ -34,7 +34,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+/**
+ * 手机号选择界面
+ */
 @EActivity(R.layout.main_reg_step1)
 public class RegStep1Activity extends BaseActivity implements Callback {
 

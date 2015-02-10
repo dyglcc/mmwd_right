@@ -14,7 +14,9 @@ import org.androidannotations.annotations.ViewById;
 import qfpay.wxshop.R;
 import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.MobAgentTools;
-
+/**
+ *一键代发引导介绍
+ */
 @EActivity(R.layout.main_whatis_onekeybehalf)
 public class OnekeybehalfWhatisActivty extends BaseActivity {
 

@@ -15,7 +15,9 @@ import qfpay.wxshop.data.net.RetrofitWrapper.CommonJsonBean;
 import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ * 保存微信信息
+ * */
 public class WeixinUpdateImpl extends AbstractNet {
 
 	public WeixinUpdateImpl(Activity act) {

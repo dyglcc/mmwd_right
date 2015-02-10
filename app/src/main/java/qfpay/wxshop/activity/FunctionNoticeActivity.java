@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-
+/**
+ * 公告引导介绍页面
+ */
 public class FunctionNoticeActivity extends Activity {
 
 	@Override

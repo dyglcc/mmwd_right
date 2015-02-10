@@ -6,7 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-
+/**
+ * 安装成功自动启动喵喵
+ */
 public class InstalledReceiver extends BroadcastReceiver {
 
 	@Override

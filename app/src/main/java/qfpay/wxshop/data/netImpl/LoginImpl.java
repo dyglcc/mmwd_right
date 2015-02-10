@@ -15,7 +15,9 @@ import qfpay.wxshop.utils.T;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ * 登陆网络请求
+ * */
 public class LoginImpl extends AbstractNet {
 
 	public LoginImpl(Activity act) {

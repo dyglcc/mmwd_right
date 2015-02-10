@@ -24,7 +24,9 @@ import android.os.Bundle;
 import android.text.style.BulletSpan;
 
 import com.google.gson.Gson;
-
+/**
+ * 保存标签网络请求
+ * */
 public class LabelupdateNetImpl extends AbstractNet {
 
 	public LabelupdateNetImpl(Context act) {

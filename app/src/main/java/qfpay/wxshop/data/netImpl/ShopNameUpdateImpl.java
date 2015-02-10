@@ -16,7 +16,10 @@ import qfpay.wxshop.data.net.RetrofitWrapper.CommonJsonBean;
 import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ * 店铺名称注册
+ *
+ * */
 public class ShopNameUpdateImpl extends AbstractNet {
 
 	public ShopNameUpdateImpl(Activity act) {

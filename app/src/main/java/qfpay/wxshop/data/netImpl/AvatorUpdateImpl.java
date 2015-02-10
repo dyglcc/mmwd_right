@@ -12,7 +12,9 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 注册头像上传网络请求
+ * */
 public class AvatorUpdateImpl extends AbstractNet {
 
 	public AvatorUpdateImpl(Activity act) {

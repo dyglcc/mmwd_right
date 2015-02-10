@@ -353,13 +353,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        <!--功能介绍类（已经不用）-->
-        <activity
-            android:name=".activity.Function1Activity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
         <!--公告引导介绍-->
         <activity
             android:name=".activity.FunctionNoticeActivity"
@@ -499,14 +492,6 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
         </activity>
-
-        <!--微信收款 成功-->
-        <activity
-            android:name=".activity.CollectMoneyCompleteActivity_"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait" >
-        </activity>
-
         <!--店铺信息 -->
         <activity
             android:name=".ui.presonalinfo.ShopInfoActivity"
@@ -687,6 +672,7 @@
             android:name="com.amap.api.v2.apikey"
             android:value="6d013aa533a74cdf324d4706900239e8" />
 
+        <!--sharesdk 授权页面-->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:noHistory="true"

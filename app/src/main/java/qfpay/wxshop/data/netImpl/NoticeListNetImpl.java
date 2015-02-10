@@ -23,7 +23,9 @@ import android.hardware.Camera.Size;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 消息中心列表网络请求
+ * */
 public class NoticeListNetImpl extends AbstractNet {
 
 	public NoticeListNetImpl(Context act) {

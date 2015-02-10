@@ -11,7 +11,9 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ *上传照片网络请求
+ * */
 public class UploadPicImpl extends AbstractNet {
 
 	public UploadPicImpl(Activity act) {

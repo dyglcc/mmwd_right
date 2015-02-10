@@ -16,7 +16,10 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 碎碎念demo请求
+ *
+ * */
 public class SSNGetDemoNetImpl extends AbstractNet {
 
 	public SSNGetDemoNetImpl(Context act) {

@@ -45,7 +45,9 @@ import com.actionbarsherlock.view.MenuItem;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxStatus;
 import com.androidquery.callback.BitmapAjaxCallback;
-
+/*
+ * 店铺信息页面
+ **/
 @EActivity(R.layout.main_shop_info)
 public class ShopInfoActivity extends BaseActivity {
 

@@ -17,7 +17,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Bundle;
-
+/**
+ * 下架网络请求
+ * */
 public class CarriageGoodImpl extends AbstractNet {
 
 

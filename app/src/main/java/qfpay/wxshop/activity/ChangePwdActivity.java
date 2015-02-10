@@ -23,7 +23,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 更改密码界面
+ */
 public class ChangePwdActivity extends BaseActivity {
 	private View failView;
     qfpay.wxshop.ui.view.WebViewSavePic webView = null;

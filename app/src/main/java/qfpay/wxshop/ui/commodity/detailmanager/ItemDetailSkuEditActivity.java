@@ -23,7 +23,7 @@ import qfpay.wxshop.utils.Toaster;
 
 /**
  *
- *
+ * 规格价格录入
  * Created by LiFZhe on 1/21/15.
  */
 @EActivity(R.layout.itemdetail_skuedit)

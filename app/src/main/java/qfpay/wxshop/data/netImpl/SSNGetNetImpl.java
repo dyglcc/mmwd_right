@@ -18,7 +18,10 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 碎碎念列表
+ *
+ * */
 public class SSNGetNetImpl extends AbstractNet {
 
 	public SSNGetNetImpl(Context act) {

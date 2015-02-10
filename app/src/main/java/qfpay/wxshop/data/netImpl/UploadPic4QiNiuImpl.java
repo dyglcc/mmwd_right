@@ -13,6 +13,9 @@ import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ * 上传七牛照片请求
+ * */
 public class UploadPic4QiNiuImpl extends UploadPicImpl {
 
 	private String tokenString;

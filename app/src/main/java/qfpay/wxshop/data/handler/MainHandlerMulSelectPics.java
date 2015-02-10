@@ -10,7 +10,12 @@ import android.os.Bundle;
 import android.os.Message;
 
 public abstract class MainHandlerMulSelectPics extends MainHandler {
-	
+
+    /**
+     *
+     *  上传图片时候回调Handle
+     *
+     * */
 	private UploadPicMulImpl net;
 	public MainHandlerMulSelectPics(Context context,UploadPicMulImpl net){
 		super(context);

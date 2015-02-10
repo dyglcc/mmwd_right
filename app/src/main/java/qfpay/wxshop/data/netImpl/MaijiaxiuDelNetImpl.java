@@ -12,7 +12,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 买家秀删除网络请求
+ * */
 public class MaijiaxiuDelNetImpl extends AbstractNet {
 
 	public MaijiaxiuDelNetImpl(Context act) {

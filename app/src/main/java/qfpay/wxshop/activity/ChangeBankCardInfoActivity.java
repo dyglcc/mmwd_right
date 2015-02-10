@@ -23,7 +23,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 更改银行卡界面
+ */
 public class ChangeBankCardInfoActivity extends BaseActivity {
 
 	private View failView;

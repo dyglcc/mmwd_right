@@ -42,7 +42,9 @@ import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 预览店铺页面
+ */
 @EActivity(R.layout.main_preview_webview)
 public class ManagePreViewActivity extends BaseActivity implements OnShareLinstener {
     @ViewById(R.id.contact_webview)

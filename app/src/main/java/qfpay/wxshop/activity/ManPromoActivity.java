@@ -44,7 +44,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
-
+/**
+ * 秒杀界面
+ */
 @EActivity(R.layout.main_man_promo)
 public class ManPromoActivity extends BaseActivity {
 

@@ -36,7 +36,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.amap.mapapi.location.LocationManagerProxy;
-
+/**
+ * 完善店铺信息界面
+ */
 public class InputShopNameActivity extends BaseActivity {
 
 	@Override

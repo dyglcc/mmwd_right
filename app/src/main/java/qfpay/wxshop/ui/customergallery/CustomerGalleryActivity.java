@@ -1,5 +1,8 @@
 package qfpay.wxshop.ui.customergallery;
 
+/**
+ * 发布商品相册
+ * */
 import java.io.File;
 import java.util.ArrayList;
 

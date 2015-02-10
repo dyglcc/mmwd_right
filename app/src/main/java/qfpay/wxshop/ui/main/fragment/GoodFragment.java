@@ -21,6 +21,7 @@ import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.commodity.CommodityListFragment_;
 
 /**
+ * 商品列表包括CommoditylistFragment(自有商品)、Onekeybefalffragment（代理商品）
  * Created by dongyuangui
  */
 
