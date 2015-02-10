@@ -23,7 +23,9 @@ import android.widget.TextView;
 
 import com.indicator.CirclePageIndicator;
 import com.indicator.PageIndicator;
-
+/**
+ * 引导滑屏页面
+ */
 public class NewIntroductionActivity extends Activity {
 
 	

@@ -15,7 +15,9 @@ import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-
+/**
+ *上传照片多图网络请求
+ * */
 public class UploadPicMulImpl extends AbstractNet {
 
 	public static final int MAX_TIMES = 2;

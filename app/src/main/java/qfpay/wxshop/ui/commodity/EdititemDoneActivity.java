@@ -39,7 +39,9 @@ import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.ShareUtils;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
-
+/**
+ * 发布商品成功页面
+ */
 @EActivity(R.layout.edititem_done_layout)
 public class EdititemDoneActivity extends BaseActivity {
 	@ViewById LinearLayout ll_share_friends,

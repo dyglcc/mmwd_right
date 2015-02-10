@@ -20,7 +20,9 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 import com.indicator.TabPageIndicator;
 import com.indicator.TabPageIndicator.TabClickListener;
-
+/**
+ * 货源tab fragment
+ * */
 @SuppressLint("DefaultLocale") @EFragment(R.layout.huoyuan_manager)
 public class HuoYuanFragment extends BaseFragment implements TabClickListener, OnShareLinstener {
 	private static final String[] CONTENT = new String[] {"官方货源","粉丝货源","货源推荐","已购货源"};

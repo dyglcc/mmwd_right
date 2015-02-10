@@ -35,7 +35,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 订单货源列表
+ * */
 @EFragment(R.layout.main_publish_goods)
 public class OrderFragment extends BaseFragment {
 	@ViewById(R.id.load_fail) View failView;

@@ -7,7 +7,9 @@ import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.ui.web.CommonWebFragment_;
 import android.content.Context;
-
+/**
+ * 小店四个viewpager 对象 shopfragment、店铺预览 fragment、统计、订单fragment
+ * */
 public enum ShopFragmentsWrapper {
 	COMMODITY("click_shopmanagement"), PREVIEW("Preview"), STATISTICS(
 			"shop statistic"),ORDER("click_order");

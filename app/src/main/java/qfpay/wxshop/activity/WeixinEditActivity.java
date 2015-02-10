@@ -27,7 +27,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 微信号编辑页面
+ * */
 @EActivity(R.layout.main_edit_weixin)
 public class WeixinEditActivity extends BaseActivity {
 

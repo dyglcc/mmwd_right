@@ -8,7 +8,10 @@ import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.ui.web.CommonWebFragment_;
 import qfpay.wxshop.utils.MobAgentTools;
-
+/**
+ * 对三个fragment的封装，official(官方货源)
+ * 粉丝货源、已购货源
+ * */
 public enum HuoYuanFragmentsWrapper {
     OFFICIAL("click_official"), FANS("click_fans"), MINE("click_mine"),CommoditySource("click_source");
 

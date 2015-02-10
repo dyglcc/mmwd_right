@@ -13,7 +13,9 @@ import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-
+/**
+ *上传七牛多图照片网络请求
+ * */
 public class UploadPicMul4QniuImpl extends UploadPicMulImpl {
 
 	public static final int MAX_TIMES = 2;

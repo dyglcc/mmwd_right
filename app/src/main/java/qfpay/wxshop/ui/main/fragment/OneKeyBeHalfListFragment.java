@@ -74,7 +74,9 @@ import qfpay.wxshop.utils.QMMAlert;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-
+/**
+ *  一键代发货源列表
+ * */
 
 @SuppressLint("HandlerLeak")
 @EFragment(R.layout.main_onkeybehalf_list)

@@ -16,7 +16,7 @@ import qfpay.wxshop.app.BaseActivity;
 
 /**
  *
- *
+ *添加商品描述
  * Created by LiFZhe on 1/21/15.
  */
 @EActivity(R.layout.itemdetail_descriptionedit)

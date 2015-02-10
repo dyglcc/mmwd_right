@@ -86,7 +86,9 @@ import cn.sharesdk.tencent.weibo.TencentWeibo;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.BitmapAjaxCallback;
-
+/**
+ * 买家秀fragment
+ * */
 @SuppressLint("HandlerLeak")
 @EFragment(R.layout.main_maijiaxiu_list)
 public class MaijiaxiuFragment extends BaseFragment implements

@@ -34,7 +34,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 import com.indicator.TabPageIndicator;
-
+/**
+ * TAB 小店fragment
+ * */
 @SuppressLint("DefaultLocale") @EFragment(R.layout.shop_manager)
 public class ShopFragment extends BaseFragment implements OnShareLinstener {
 	private static final String[] CONTENT = new String[] {"商品", "预览","统计","订单"};

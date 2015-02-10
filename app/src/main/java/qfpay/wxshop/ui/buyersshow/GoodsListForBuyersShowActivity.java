@@ -34,7 +34,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
+/**
+ *  发布买家秀商品列表
+ */
 @EActivity(R.layout.goodslistforbuyersshow_layout)
 public class GoodsListForBuyersShowActivity extends BaseActivity {
 	public static final String RESULT_GOOD_KEY = "data";

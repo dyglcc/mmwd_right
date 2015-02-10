@@ -22,7 +22,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 买家秀列表网络请求
+ * */
 public class MaijiaxiuGetNetImpl extends AbstractNet {
 
 	public MaijiaxiuGetNetImpl(Context act) {

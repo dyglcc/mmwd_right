@@ -25,7 +25,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import cn.sharesdk.framework.ShareSDK;
-
+/**
+ * 买家秀发布成功界面
+ */
 @EActivity(R.layout.edititem_done_layout)
 public class ManPromoSuccessActivity extends BaseActivity {
 	@ViewById

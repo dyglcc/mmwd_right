@@ -42,7 +42,9 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-
+/**
+ * 分享界面
+ */
 public class ShareActivity extends BaseActivity implements
         PlatformActionListener, Callback {
     private boolean initShare;
@@ -360,6 +362,7 @@ public class ShareActivity extends BaseActivity implements
 //		return imgUrl;
 //	}
 
+    // 显示框里的地址需要替换，添加ga 统计。
     protected String getRepleaceText(String text, String platform) {
 
         if (gaSrcfrom == null) {

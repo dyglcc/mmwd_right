@@ -30,7 +30,9 @@ import android.widget.RelativeLayout;
 
 import com.actionbarsherlock.view.MenuItem;
 import com.squareup.picasso.Picasso;
-
+/**
+ * 店铺背景图
+ */
 @EActivity(R.layout.shopimg_picker)
 public class ShopHeaderPhotoPickerActivity extends BaseActivity {
 	public static final int REQUEST_TAKE_PHOTO = 100;

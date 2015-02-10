@@ -12,10 +12,12 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.os.Bundle;
+/**
+ * 注册头像上传网络请求
+ * */
+public class AdertisementUpdateImpl extends AbstractNet {
 
-public class NoticeUpdateImpl extends AbstractNet {
-
-	public NoticeUpdateImpl(Activity act) {
+	public AdertisementUpdateImpl(Activity act) {
 		super(act);
 		setNoNeedShowDialog();
 	}

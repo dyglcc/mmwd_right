@@ -22,7 +22,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 获取标签网络请求
+ * */
 public class LabelGetNetImpl extends AbstractNet {
 
 	public LabelGetNetImpl(Context act) {

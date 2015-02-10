@@ -14,7 +14,9 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.utils.T;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ * 创建微信收款网络请求
+ * */
 public class CreateWeixinCMImpl extends AbstractNet {
 
 	public CreateWeixinCMImpl(Activity act) {

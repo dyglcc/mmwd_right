@@ -13,7 +13,10 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 碎碎念创建
+ *
+ * */
 public class SuiSuiNianCreateImpl extends AbstractNet {
 
 	public SuiSuiNianCreateImpl(Activity act) {

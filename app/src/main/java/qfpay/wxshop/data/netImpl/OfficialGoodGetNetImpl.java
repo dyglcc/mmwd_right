@@ -18,7 +18,10 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 一键代发删除
+ *
+ * */
 public class OfficialGoodGetNetImpl extends AbstractNet {
 
     public OfficialGoodGetNetImpl(Context act) {

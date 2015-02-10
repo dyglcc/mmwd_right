@@ -18,7 +18,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
+/**
+ * 已购货源网络请求
+ * */
 public class MineHuoyuanGetNetImpl extends AbstractNet {
 
 	public MineHuoyuanGetNetImpl(Context act) {

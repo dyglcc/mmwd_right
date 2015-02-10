@@ -31,7 +31,9 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.utils.QFCommonUtils;
-
+/**
+ * 更多页面
+ */
 @EActivity(R.layout.more_layout)
 public class MoreActivity extends BaseActivity implements Callback {
 	public static final int SHOW_UPDATE_DIALOG = 1;

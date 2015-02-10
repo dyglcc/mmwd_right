@@ -16,7 +16,9 @@ import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ * 创建秒杀网络请求
+ * */
 public class CreatePanicImpl extends AbstractNet {
 
 	public CreatePanicImpl(Activity act) {

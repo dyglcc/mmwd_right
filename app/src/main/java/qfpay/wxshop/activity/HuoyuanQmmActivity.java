@@ -13,7 +13,9 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
-
+/**
+ * 货源客服 引导界面
+ * */
 @EActivity(R.layout.main_weixin_huoyuan)
 public class HuoyuanQmmActivity extends BaseActivity {
 

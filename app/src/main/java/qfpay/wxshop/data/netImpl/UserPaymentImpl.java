@@ -13,7 +13,9 @@ import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ *上传照片注册银行卡网络请求
+ * */
 public class UserPaymentImpl extends AbstractNet {
 
 	public UserPaymentImpl(Activity act) {

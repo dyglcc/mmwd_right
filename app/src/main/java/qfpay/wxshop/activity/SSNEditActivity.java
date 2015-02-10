@@ -62,7 +62,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
-
+/**
+ * 碎碎念编辑
+ * */
 @EActivity(R.layout.main_suisuinian_pub)
 public class SSNEditActivity extends BaseActivity implements
 		onScrollviewFocusListener {

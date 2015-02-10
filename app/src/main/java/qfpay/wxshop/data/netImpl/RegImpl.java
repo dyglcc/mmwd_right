@@ -13,7 +13,10 @@ import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ * 注册
+ *
+ * */
 public class RegImpl extends AbstractNet {
 
 	public RegImpl(Activity act) {

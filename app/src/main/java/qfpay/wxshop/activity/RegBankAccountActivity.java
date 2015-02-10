@@ -33,7 +33,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.umeng.analytics.MobclickAgent;
-
+/**
+ * 银行卡录入界面
+ */
 @EActivity(R.layout.main_reg_bank_setting)
 public class RegBankAccountActivity extends BaseActivity {
 	@ViewById

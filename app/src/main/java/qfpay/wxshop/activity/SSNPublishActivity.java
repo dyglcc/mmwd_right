@@ -63,7 +63,9 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
-
+/**
+ * 碎碎念发布页面
+ * */
 @EActivity(R.layout.main_suisuinian_pub)
 public class SSNPublishActivity extends BaseActivity implements
 		onScrollviewFocusListener {

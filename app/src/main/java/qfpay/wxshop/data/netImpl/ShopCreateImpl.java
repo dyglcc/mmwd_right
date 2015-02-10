@@ -15,7 +15,10 @@ import qfpay.wxshop.utils.T;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ * 店铺创建手机号注册
+ *
+ * */
 public class ShopCreateImpl extends AbstractNet {
 
 	public ShopCreateImpl(Activity act) {

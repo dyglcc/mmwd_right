@@ -18,7 +18,10 @@ import qfpay.wxshop.data.net.CacheData;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.main.fragment.OfficalListFragment;
 import qfpay.wxshop.utils.T;
-
+/**
+ * 一键代发列表请求
+ *
+ * */
 public class OneKeybehalfListNetImpl extends AbstractNet {
 
 	public OneKeybehalfListNetImpl(Context act) {

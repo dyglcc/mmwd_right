@@ -19,6 +19,10 @@ import android.widget.TextView;
 
 import com.umeng.analytics.MobclickAgent;
 
+/*
+ * 银行信息界面展示
+ **/
+
 public class ShowBankInfoActivity extends BaseActivity implements Callback {
 
 	@Override

@@ -22,7 +22,9 @@ import qfpay.wxshop.ui.main.MainActivity_;
 import qfpay.wxshop.ui.view.MyWatcher;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.Utils;
-
+/**
+ * 登录界面
+ */
 public class LoginActivity extends BaseActivity {
 
 	@Override

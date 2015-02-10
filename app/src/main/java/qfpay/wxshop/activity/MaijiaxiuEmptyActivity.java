@@ -17,7 +17,9 @@ import qfpay.wxshop.data.event.AddBuyersShowEvent;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.ui.web.CommonWebActivity_;
 import qfpay.wxshop.app.BaseActivity;
-
+/**
+ * 买家秀空列表引导界面
+ */
 @EActivity(R.layout.main_maijiaxiu_empty)
 public class MaijiaxiuEmptyActivity extends BaseActivity {
 

@@ -36,7 +36,9 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.view.MenuItem;
 import com.squareup.picasso.Picasso;
-
+/**
+ * 萌片页描述编辑页
+ * */
 @EActivity(R.layout.lovelycard_comment)
 public class LovelyCardCommentActivity extends BaseActivity implements IXListViewListener {
 	private static final int LIST_PAGE_LENGTH = 15;

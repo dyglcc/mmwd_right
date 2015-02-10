@@ -51,7 +51,9 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
-
+/**
+ * 买家秀发布界面
+ */
 @EActivity(R.layout.buyersshow_release_layout)
 public class BuyersShowReleaseActivity extends BaseActivity implements BuyersShowDataprovider {
 	public static final int COUNT_MAX_CONTENTEDIT = 90;

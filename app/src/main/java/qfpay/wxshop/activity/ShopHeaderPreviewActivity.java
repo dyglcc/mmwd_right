@@ -39,7 +39,9 @@ import android.widget.TextView;
 import com.actionbarsherlock.view.ActionProvider;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-
+/**
+ * 店铺背景图预览
+ */
 @EActivity(R.layout.web_common_fragment)
 public class ShopHeaderPreviewActivity extends BaseActivity {
 	@ViewById qfpay.wxshop.ui.view.WebViewSavePic webView;

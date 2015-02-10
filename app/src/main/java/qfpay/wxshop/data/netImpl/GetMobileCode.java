@@ -17,7 +17,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Bundle;
-
+/**
+ * 获取注册码网络请求
+ * */
 public class GetMobileCode extends AbstractNet {
 
 

@@ -15,7 +15,10 @@ import android.os.Bundle;
 
 import com.google.gson.Gson;
 
-
+/**
+ * 碎碎念编辑
+ *
+ * */
 public class SuiSuiNianEditImpl extends AbstractNet {
 
 	public SuiSuiNianEditImpl(Activity act) {
