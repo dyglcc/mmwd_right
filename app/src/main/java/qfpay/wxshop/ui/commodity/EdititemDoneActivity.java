@@ -14,13 +14,13 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.sharedpreferences.Pref;
+//import org.androidannotations.annotations.sharedpreferences.Pref;
 
-import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.ShareSDK;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.activity.LabelActivity_;
-import qfpay.wxshop.activity.ManagePreViewActivity_;
+import qfpay.wxshop.activity.*;
+import qfpay.wxshop.activity.*;
 import qfpay.wxshop.activity.share.ShareActivity;
 import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.config.WDConfig;
@@ -32,8 +32,8 @@ import qfpay.wxshop.data.model.SKUModel;
 import qfpay.wxshop.data.net.AbstractNet;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.LabelupdateNetImpl;
-import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
-import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+import qfpay.wxshop.ui.commodity.detailmanager.*;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.ShareUtils;
@@ -54,7 +54,7 @@ public class EdititemDoneActivity extends BaseActivity {
                            tv_modify_label;
 
 	@Extra CommodityModel  wrapper;
-	@Pref AppStateSharePreferences_ statePref;
+//	@Pref AppStateSharePreferences_ statePref;
 	
 	private static final boolean add = true;
 	private static final boolean edit = false;
@@ -70,9 +70,9 @@ public class EdititemDoneActivity extends BaseActivity {
 	}
 
 	@AfterViews void init() {
-		statePref.guidePointer().put(MainActivity.GUIDE_PREVIEW);
-		statePref.isShowGuide().put(true);
-		ShareSDK.initSDK(this);
+//		statePref.guidePointer().put(MainActivity.GUIDE_PREVIEW);
+//		statePref.isShowGuide().put(true);
+//		ShareSDK.initSDK(this);
 		tv_show_label.setVisibility(View.VISIBLE);
 		tv_selected.setVisibility(View.GONE);
 		tv_modify_label.setVisibility(View.GONE);

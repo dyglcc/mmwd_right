@@ -9,7 +9,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
 
-import org.apache.commons.codec.binary.Base64;
+//import org.apache.commons.codec.binary.Base64;
 /**
  * URLEncoding is the alternate base64 encoding defined in RFC 4648. It is
  * typically used in URLs and file names.

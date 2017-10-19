@@ -24,7 +24,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.ShareSDK;
 /**
  * 买家秀发布成功界面
  */
@@ -67,7 +67,7 @@ public class ManPromoSuccessActivity extends BaseActivity {
 			return;
 		}
 		if (!initShare) {
-			ShareSDK.initSDK(this);
+//			ShareSDK.initSDK(this);
 			initShare = true;
 		}
 		iv_success.setImageResource(R.drawable.man_promo_success);

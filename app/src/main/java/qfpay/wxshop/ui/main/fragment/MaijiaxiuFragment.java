@@ -18,6 +18,7 @@ import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import m.framework.utils.UIHandler;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.GeneralWebViewActivity;
@@ -39,7 +40,7 @@ import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
-import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseActivity_;
+import qfpay.wxshop.ui.buyersshow.*;
 import qfpay.wxshop.ui.buyersshow.BuyersShowReleaseNetProcesser;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.view.CustomProgressDialog;
@@ -76,23 +77,25 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
+//import cn.sharesdk.framework.Platform;
+//import cn.sharesdk.framework.PlatformActionListener;
+//import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.utils.UIHandler;
+//import cn.sharesdk.sina.weibo.SinaWeibo;
+//import cn.sharesdk.tencent.qzone.QZone;
+//import cn.sharesdk.tencent.weibo.TencentWeibo;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.BitmapAjaxCallback;
+import com.squareup.okhttp.internal.Platform;
+
 /**
  * 买家秀fragment
  * */
 @SuppressLint("HandlerLeak")
 @EFragment(R.layout.main_maijiaxiu_list)
 public class MaijiaxiuFragment extends BaseFragment implements
-		OnScrollListener, ISimpleDialogListener, PlatformActionListener,
+		OnScrollListener, ISimpleDialogListener,
 		Callback, OnShareLinstener, MaijiaxiuUploadListener {
 	private static final long serialVersionUID = 1L;
 	public static final String SP_NAME_MANAGE = "config";
@@ -377,13 +380,13 @@ public class MaijiaxiuFragment extends BaseFragment implements
 		getData();
 
 		if (!initShare) {
-			ShareSDK.initSDK(getActivity());
+//			ShareSDK.initSDK(getActivity());
 			initShare = true;
 		}
 
-		weibo = ShareSDK.getPlatform(getActivity(), SinaWeibo.NAME);
-		qzone = ShareSDK.getPlatform(getActivity(), QZone.NAME);
-		tecentWeibo = ShareSDK.getPlatform(getActivity(), TencentWeibo.NAME);
+//		weibo = ShareSDK.getPlatform(getActivity(), SinaWeibo.NAME);
+//		qzone = ShareSDK.getPlatform(getActivity(), QZone.NAME);
+//		tecentWeibo = ShareSDK.getPlatform(getActivity(), TencentWeibo.NAME);
 
 		WxShopApplication.app.maijiaxiuListener = this;
 
@@ -875,7 +878,7 @@ public class MaijiaxiuFragment extends BaseFragment implements
 		nodata = false;
 		data = null;
 		if (initShare) {
-			ShareSDK.stopSDK(getActivity());
+//			ShareSDK.stopSDK(getActivity());
 		}
 		pageIndex = -1;
 		initSuccess = false;
@@ -1134,73 +1137,73 @@ public class MaijiaxiuFragment extends BaseFragment implements
 
 	@Background(id = ConstValue.THREAD_CANCELABLE)
 	void shareActivity() {
-		try {
-			Thread.sleep(800);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		if (isWb) {
-			SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
-			// sp.text = WxShopApplication.shareBean.title
-			// + WxShopApplication.shareBean.link;
-
-			// 人气口碑商品在此：（商品link） ，（店铺名）的更多买家好评点此查看哦~：link （分享自 @喵喵微店）
-
-			String content = "#" + WxShopApplication.dataEngine.getShopName()
-					+ "的买家秀#" + bsb.getContent();
-
-			if (!getLink(bsb).equals("")) {
-				content += "  人气口碑商品在此：" + getLink(bsb) + " ,";
-			} else {
-				content += "  更多买家好评点此查看哦~" + getMaijiaxiuUrl() + " ,";
-			}
-			content += "（分享自 @喵喵微店）";
-			sp.text = content;
-			sp.imageUrl = getImageUrl(bsb);
-			weibo.setPlatformActionListener(this); // 设置分享事件回调
-			// 执行图文分享
-
-			weibo.share(sp);
-		}
-		if (isTwb) {
-			TencentWeibo.ShareParams sp = new TencentWeibo.ShareParams();
-			// sp.text = WxShopApplication.shareBean.title
-			// + WxShopApplication.shareBean.link;
-			String content = "#" + WxShopApplication.dataEngine.getShopName()
-					+ "的买家秀#" + bsb.getContent();
-
-			if (!getLink(bsb).equals("")) {
-				content += "  人气口碑商品在此：" + getLink(bsb);
-			} else {
-				content += "  更多买家好评点此查看哦~" + getMaijiaxiuUrl();
-			}
-			sp.text = content;
-			sp.imageUrl = getImageUrl(bsb);
-			tecentWeibo.setPlatformActionListener(this); // 设置分享事件回调
-			// 执行图文分享
-			tecentWeibo.share(sp);
-		}
-		if (isQzone) {
-			QZone.ShareParams sp = new QZone.ShareParams();
-			String linkurl = getLink(bsb);
-			String shareText = "#" + WxShopApplication.dataEngine.getShopName()
-					+ "的买家秀#";
-			if (linkurl.equals("")) {
-				linkurl = getMaijiaxiuUrl();
-			}
-			sp.title = shareText;
-
-			sp.titleUrl = linkurl; // 标题的超链接
-			// + WxShopApplication.shareBean.link;
-			sp.text = bsb.getContent() + " 更多买家好评点此查看哦~";
-			sp.imageUrl = getImageUrl(bsb);
-			// sp.comment = "我对此分享内容的评论";
-			sp.site = "发布分享的网站名称";
-			sp.siteUrl = getMaijiaxiuUrl();
-			qzone.setPlatformActionListener(this); // 设置分享事件回调
-			// 执行图文分享
-			qzone.share(sp);
-		}
+//		try {
+//			Thread.sleep(800);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		if (isWb) {
+//			SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
+//			// sp.text = WxShopApplication.shareBean.title
+//			// + WxShopApplication.shareBean.link;
+//
+//			// 人气口碑商品在此：（商品link） ，（店铺名）的更多买家好评点此查看哦~：link （分享自 @喵喵微店）
+//
+//			String content = "#" + WxShopApplication.dataEngine.getShopName()
+//					+ "的买家秀#" + bsb.getContent();
+//
+//			if (!getLink(bsb).equals("")) {
+//				content += "  人气口碑商品在此：" + getLink(bsb) + " ,";
+//			} else {
+//				content += "  更多买家好评点此查看哦~" + getMaijiaxiuUrl() + " ,";
+//			}
+//			content += "（分享自 @喵喵微店）";
+//			sp.text = content;
+//			sp.imageUrl = getImageUrl(bsb);
+//			weibo.setPlatformActionListener(this); // 设置分享事件回调
+//			// 执行图文分享
+//
+//			weibo.share(sp);
+//		}
+//		if (isTwb) {
+//			TencentWeibo.ShareParams sp = new TencentWeibo.ShareParams();
+//			// sp.text = WxShopApplication.shareBean.title
+//			// + WxShopApplication.shareBean.link;
+//			String content = "#" + WxShopApplication.dataEngine.getShopName()
+//					+ "的买家秀#" + bsb.getContent();
+//
+//			if (!getLink(bsb).equals("")) {
+//				content += "  人气口碑商品在此：" + getLink(bsb);
+//			} else {
+//				content += "  更多买家好评点此查看哦~" + getMaijiaxiuUrl();
+//			}
+//			sp.text = content;
+//			sp.imageUrl = getImageUrl(bsb);
+//			tecentWeibo.setPlatformActionListener(this); // 设置分享事件回调
+//			// 执行图文分享
+//			tecentWeibo.share(sp);
+//		}
+//		if (isQzone) {
+//			QZone.ShareParams sp = new QZone.ShareParams();
+//			String linkurl = getLink(bsb);
+//			String shareText = "#" + WxShopApplication.dataEngine.getShopName()
+//					+ "的买家秀#";
+//			if (linkurl.equals("")) {
+//				linkurl = getMaijiaxiuUrl();
+//			}
+//			sp.title = shareText;
+//
+//			sp.titleUrl = linkurl; // 标题的超链接
+//			// + WxShopApplication.shareBean.link;
+//			sp.text = bsb.getContent() + " 更多买家好评点此查看哦~";
+//			sp.imageUrl = getImageUrl(bsb);
+//			// sp.comment = "我对此分享内容的评论";
+//			sp.site = "发布分享的网站名称";
+//			sp.siteUrl = getMaijiaxiuUrl();
+//			qzone.setPlatformActionListener(this); // 设置分享事件回调
+//			// 执行图文分享
+//			qzone.share(sp);
+//		}
 	}
 
 	private String getLink(BuyerShowBean bsb2) {
@@ -1227,61 +1230,62 @@ public class MaijiaxiuFragment extends BaseFragment implements
 
 	@Override
 	public boolean handleMessage(Message msg) {
-		// TODO Auto-generated method stub
-		String text = Utils.actionToString(msg.arg2);
-		switch (msg.arg1) {
-		case 1: {
-			// 成功
-			Platform plat = (Platform) msg.obj;
-			text = plat.getName() + "分享成功";
-		}
-			break;
-		case 2: {
-			// 失败
-			if ("WechatClientNotExistException".equals(msg.obj.getClass()
-					.getSimpleName())) {
-				text = getActivity().getString(
-						R.string.wechat_client_inavailable);
-			} else if ("WechatTimelineNotSupportedException".equals(msg.obj
-					.getClass().getSimpleName())) {
-				text = getActivity().getString(
-						R.string.wechat_client_inavailable);
-			} else {
-				text = getString(R.string.fail_share2);
-			}
-		}
-			break;
-		case 3: {
-			// 取消
-			Platform plat = (Platform) msg.obj;
-			text = plat.getName() + "取消分享";
-		}
-			break;
-		}
-
-		Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+//		// TODO Auto-generated method stub
+//		String text = Utils.actionToString(msg.arg2);
+//		switch (msg.arg1) {
+//		case 1: {
+//			// 成功
+//			Platform plat = (Platform) msg.obj;
+//			text = plat.getName() + "分享成功";
+//		}
+//			break;
+//		case 2: {
+//			// 失败
+//			if ("WechatClientNotExistException".equals(msg.obj.getClass()
+//					.getSimpleName())) {
+//				text = getActivity().getString(
+//						R.string.wechat_client_inavailable);
+//			} else if ("WechatTimelineNotSupportedException".equals(msg.obj
+//					.getClass().getSimpleName())) {
+//				text = getActivity().getString(
+//						R.string.wechat_client_inavailable);
+//			} else {
+//				text = getString(R.string.fail_share2);
+//			}
+//		}
+//			break;
+//		case 3: {
+//			// 取消
+//			Platform plat = (Platform) msg.obj;
+//			text = plat.getName() + "取消分享";
+//		}
+//			break;
+//		}
+//
+//		Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+//		return false;
 		return false;
 	}
 
-	@Override
+//	@Override
 	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
-		Message msg = new Message();
-		msg.arg1 = 1;
-		msg.arg2 = action;
-		msg.obj = plat;
-		UIHandler.sendMessage(msg, this);
-
-		if (plat.getName().equals(SinaWeibo.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-					"sina_share_success_sharesdk");
-		} else if (plat.getName().equals(QZone.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-					"qzone_share_success_sharesdk");
-		} else if (plat.getName().equals(TencentWeibo.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-					"qqweibo_share_success_sharesdk");
-		}
+//		Message msg = new Message();
+//		msg.arg1 = 1;
+//		msg.arg2 = action;
+//		msg.obj = plat;
+//		UIHandler.sendMessage(msg, this);
+//
+//		if (plat.getName().equals(SinaWeibo.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//					"sina_share_success_sharesdk");
+//		} else if (plat.getName().equals(QZone.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//					"qzone_share_success_sharesdk");
+//		} else if (plat.getName().equals(TencentWeibo.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//					"qqweibo_share_success_sharesdk");
+//		}
 
 	}
 
@@ -1294,22 +1298,22 @@ public class MaijiaxiuFragment extends BaseFragment implements
 	}
 
 	public void onError(Platform plat, int action, Throwable t) {
-		t.printStackTrace();
-		Message msg = new Message();
-		msg.arg1 = 2;
-		msg.arg2 = action;
-		msg.obj = t;
-		UIHandler.sendMessage(msg, this);
-		if (plat.getName().equals(SinaWeibo.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-					"sina_share_faill_sharesdk");
-		} else if (plat.getName().equals(QZone.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-					"qzone_share_fail_sharesdk");
-		} else if (plat.getName().equals(TencentWeibo.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-					"qqweibo_share_fail_sharesdk");
-		}
+//		t.printStackTrace();
+//		Message msg = new Message();
+//		msg.arg1 = 2;
+//		msg.arg2 = action;
+//		msg.obj = t;
+//		UIHandler.sendMessage(msg, this);
+//		if (plat.getName().equals(SinaWeibo.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//					"sina_share_faill_sharesdk");
+//		} else if (plat.getName().equals(QZone.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//					"qzone_share_fail_sharesdk");
+//		} else if (plat.getName().equals(TencentWeibo.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//					"qqweibo_share_fail_sharesdk");
+//		}
 	}
 
 	@Override

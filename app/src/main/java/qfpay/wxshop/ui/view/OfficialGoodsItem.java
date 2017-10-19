@@ -12,7 +12,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.OfficialGoodItemBean;
 import qfpay.wxshop.ui.main.fragment.OfficalListFragment;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.Toaster;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;

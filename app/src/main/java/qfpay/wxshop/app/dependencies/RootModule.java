@@ -7,9 +7,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import qfpay.wxshop.WxShopApplication_;
-import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
-import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailPresenterImpl_;
+import qfpay.wxshop.*;
+import qfpay.wxshop.ui.commodity.detailmanager.*;
 
 /**
  * 关系图表的跟Module

@@ -24,7 +24,7 @@ import java.util.Date;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.activity.ManagePreViewActivity_;
+import qfpay.wxshop.activity.*;
 import qfpay.wxshop.activity.SSNPublishActivity;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.GoodsBean;

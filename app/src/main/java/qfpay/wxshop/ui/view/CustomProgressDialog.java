@@ -1,14 +1,14 @@
 package qfpay.wxshop.ui.view;
 
-import qfpay.wxshop.utils.MobAgentTools;
 
-import qfpay.wxshop.R;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import qfpay.wxshop.R;
 
 
 /********************************************************************

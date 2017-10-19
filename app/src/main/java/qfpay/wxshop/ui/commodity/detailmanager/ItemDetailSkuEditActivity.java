@@ -14,6 +14,7 @@ import org.androidannotations.annotations.EditorAction;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import qfpay.wxshop.R;
@@ -35,7 +36,7 @@ public class ItemDetailSkuEditActivity extends BaseActivity {
     @Extra    SkuViewModel   skuViewModel;
     @Extra    int            position;
     @Extra    boolean        isPromotation = false; // 是否为秒杀
-    @Extra    List<SKUModel> skuModelList; // 当前SkuList的数量, 添加的时候在这个步骤的时候其实List里面并没有这个Sku, 编辑的时候则已经包含了当前这个Sku
+    @Extra    ArrayList<SKUModel> skuModelList; // 当前SkuList的数量, 添加的时候在这个步骤的时候其实List里面并没有这个Sku, 编辑的时候则已经包含了当前这个Sku
 
     @AfterViews void onInit() {
         if (skuViewModel != null) {

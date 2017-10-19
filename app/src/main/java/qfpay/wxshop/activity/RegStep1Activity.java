@@ -14,7 +14,7 @@ import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.data.netImpl.GetMobileCode;
 import qfpay.wxshop.data.netImpl.RegImpl;
 import qfpay.wxshop.app.BaseActivity;
-import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.view.MyWatcher;
 import qfpay.wxshop.utils.MobAgentTools;

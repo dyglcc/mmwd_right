@@ -47,9 +47,8 @@ import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.processer.ImageType;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.app.BaseActivity;
-import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
-import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.customergallery.*;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.T;
@@ -262,7 +261,7 @@ public class LovelyCardEditActivity extends BaseActivity implements ISimpleDialo
 						.shareName("萌片页")
 						.shareDescript(SHARE_CONTENT)
                         .shareIconUrl(bgimg)
-						.platFroms(Arrays.asList(SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS, SharedPlatfrom.COPY))
+						.platFroms((ArrayList<SharedPlatfrom>) Arrays.asList(SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS, SharedPlatfrom.COPY))
 						.start();
 				if (hasEdited) toast("保存成功辣!");
 				mPref.name().put(name);

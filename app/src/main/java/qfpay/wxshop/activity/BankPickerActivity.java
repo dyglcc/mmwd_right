@@ -13,6 +13,8 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.data.beans.BankBean;
 import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.view.BankPickerItem;
+
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -25,9 +27,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
+
 /**
  *
- * 添加银行卡，选择银行
+ * 添加银行卡，选择银行类
  *
  * */
 @EActivity(R.layout.activity_bankpicker)
@@ -49,7 +53,7 @@ public class BankPickerActivity extends BaseActivity {
 		tv_title.setText("选择开户银行");
 		tv_complete.setVisibility(View.GONE);
 		processView();
-		
+
 		String tips = tv_tips.getText().toString();
 		SpannableString span = new SpannableString(tips);
 		span.setSpan(new MyClickSpan(), tips.length() - 6, tips.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

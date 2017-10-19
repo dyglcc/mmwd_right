@@ -5,7 +5,7 @@ import com.google.gson.JsonSyntaxException;
 
 import qfpay.wxshop.data.repository.api.netbean.NetDataContainer;
 import retrofit.RetrofitError;
-import timber.log.Timber;
+//import timber.log.Timber;
 
 /**
  * 用于包装Http的错误消息

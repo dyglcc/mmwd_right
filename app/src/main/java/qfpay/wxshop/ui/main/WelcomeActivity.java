@@ -22,7 +22,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.WindowFeature;
 
-import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.ShareSDK;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.InputShopNameActivity;
@@ -104,7 +104,7 @@ public class WelcomeActivity extends BaseActivity {
 		}
 
         // share sdk 集成 目前使用share Sdk 的有新浪 腾讯微博
-		ShareSDK.initSDK(this);
+//		ShareSDK.initSDK(this);
 		MainActivity_.intent(WelcomeActivity.this).start();
 		finish();
 

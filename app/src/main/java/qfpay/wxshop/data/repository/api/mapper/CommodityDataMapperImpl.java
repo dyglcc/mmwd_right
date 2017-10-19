@@ -17,7 +17,7 @@ import qfpay.wxshop.data.repository.api.netbean.Item;
 import qfpay.wxshop.data.repository.api.netbean.ItemImage;
 import qfpay.wxshop.data.repository.api.netbean.ItemWrapper;
 import qfpay.wxshop.data.repository.api.netbean.Sku;
-import timber.log.Timber;
+//import timber.log.Timber;
 
 /**
  * 商品的数据转换器
@@ -84,7 +84,7 @@ public class CommodityDataMapperImpl implements CommodityDataMapper {
         try {
             createDate = formatter.parse(itemWrapper.data.item.modified);
         } catch (ParseException e) {
-            Timber.e(e, "解析创建日期报错");
+//            Timber.e(e, "解析创建日期报错");
             MessageException exception = new ParserException("数据解析出错");
             exception.setStackTrace(e.getStackTrace());
             throw exception;

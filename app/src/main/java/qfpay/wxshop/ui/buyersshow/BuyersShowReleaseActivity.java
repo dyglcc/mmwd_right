@@ -26,7 +26,7 @@ import qfpay.wxshop.data.netImpl.EdititemService;
 import qfpay.wxshop.data.netImpl.EdititemService.GetItemWrapper;
 import qfpay.wxshop.image.ImageProcesserBean;
 import qfpay.wxshop.app.BaseActivity;
-import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
+import qfpay.wxshop.ui.customergallery.*;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.utils.MobAgentTools;
@@ -45,12 +45,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
+
+import com.squareup.okhttp.internal.Platform;
+//import cn.sharesdk.framework.Platform;
+//import cn.sharesdk.framework.PlatformActionListener;
+//import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.sina.weibo.SinaWeibo;
+//import cn.sharesdk.tencent.qzone.QZone;
+//import cn.sharesdk.tencent.weibo.TencentWeibo;
 /**
  * 买家秀发布界面
  */
@@ -84,10 +86,10 @@ public class BuyersShowReleaseActivity extends BaseActivity implements BuyersSho
 		} else {
 			tv_title.setText("编辑买家秀");
 		}
-		et_input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(COUNT_MAX_CONTENTEDIT)});
-		cb_share_wb.setChecked(ShareSDK.getPlatform(SinaWeibo.NAME).isValid());
-		cb_share_twb.setChecked(ShareSDK.getPlatform(TencentWeibo.NAME).isValid());
-		cb_share_qzone.setChecked(ShareSDK.getPlatform(QZone.NAME).isValid());
+//		et_input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(COUNT_MAX_CONTENTEDIT)});
+//		cb_share_wb.setChecked(ShareSDK.getPlatform(SinaWeibo.NAME).isValid());
+//		cb_share_twb.setChecked(ShareSDK.getPlatform(TencentWeibo.NAME).isValid());
+//		cb_share_qzone.setChecked(ShareSDK.getPlatform(QZone.NAME).isValid());
 	}
 	
 	void initViews() {
@@ -260,43 +262,43 @@ public class BuyersShowReleaseActivity extends BaseActivity implements BuyersSho
 		if (!isCheck) {
 			return;
 		}
-		String tag = (String) checkBox.getTag();
-		String temp = "";
-		if (tag.equals("sina")) {
-			temp = SinaWeibo.NAME;
-			MobAgentTools.OnEventMobOnDiffUser(this, "maijiaxiu_sina_auth");
-		} else
-		if (tag.equals("qqweibo")) {
-			temp = TencentWeibo.NAME;
-			MobAgentTools.OnEventMobOnDiffUser(this, "maijiaxiu_tencent_weibo_auth");
-		} else
-		if (tag.equals("qzone")) {
-			temp = QZone.NAME;
-			MobAgentTools.OnEventMobOnDiffUser(this, "maijiaxiu_qqzone_auth");
-		}
-		final String platfromName = temp;
-		Platform platform = ShareSDK.getPlatform(this, platfromName);
-		if (platform.isValid()) {
-			return;
-		}
-		PlatformActionListener authorListener = new PlatformActionListener() {
-			@Override
-			public void onCancel(Platform arg0, int arg1) {
-				checkBox.setChecked(false);
-			}
-			@Override
-			public void onComplete(Platform platform, int arg1, HashMap<String, Object> arg2) {
-				checkBox.setChecked(platform.isValid());
-				MobAgentTools.OnEventMobOnDiffUser(BuyersShowReleaseActivity.this, platfromName + "_auth_success");
-			}
-			@Override
-			public void onError(Platform platform, int arg1, Throwable arg2) {
-				checkBox.setChecked(false);
-				MobAgentTools.OnEventMobOnDiffUser(BuyersShowReleaseActivity.this, platfromName + "_auth_success");
-			}
-		};
-		platform.setPlatformActionListener(authorListener);
-		platform.authorize();
+//		String tag = (String) checkBox.getTag();
+//		String temp = "";
+//		if (tag.equals("sina")) {
+//			temp = SinaWeibo.NAME;
+//			MobAgentTools.OnEventMobOnDiffUser(this, "maijiaxiu_sina_auth");
+//		} else
+//		if (tag.equals("qqweibo")) {
+//			temp = TencentWeibo.NAME;
+//			MobAgentTools.OnEventMobOnDiffUser(this, "maijiaxiu_tencent_weibo_auth");
+//		} else
+//		if (tag.equals("qzone")) {
+//			temp = QZone.NAME;
+//			MobAgentTools.OnEventMobOnDiffUser(this, "maijiaxiu_qqzone_auth");
+//		}
+//		final String platfromName = temp;
+//		Platform platform = ShareSDK.getPlatform(this, platfromName);
+//		if (platform.isValid()) {
+//			return;
+//		}
+//		PlatformActionListener authorListener = new PlatformActionListener() {
+//			@Override
+//			public void onCancel(Platform arg0, int arg1) {
+//				checkBox.setChecked(false);
+//			}
+//			@Override
+//			public void onComplete(Platform platform, int arg1, HashMap<String, Object> arg2) {
+//				checkBox.setChecked(platform.isValid());
+//				MobAgentTools.OnEventMobOnDiffUser(BuyersShowReleaseActivity.this, platfromName + "_auth_success");
+//			}
+//			@Override
+//			public void onError(Platform platform, int arg1, Throwable arg2) {
+//				checkBox.setChecked(false);
+//				MobAgentTools.OnEventMobOnDiffUser(BuyersShowReleaseActivity.this, platfromName + "_auth_success");
+//			}
+//		};
+//		platform.setPlatformActionListener(authorListener);
+//		platform.authorize();
 	}
 	
 	@UiThread

@@ -3,7 +3,7 @@ package qfpay.wxshop.activity.menu;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.LoginActivity;
-import qfpay.wxshop.activity.RegBankAccountActivity_;
+import qfpay.wxshop.activity.*;
 import qfpay.wxshop.activity.ShowBankInfoActivity;
 import qfpay.wxshop.activity.WeixinQmmActivity;
 import qfpay.wxshop.config.WDConfig;
@@ -28,6 +28,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.actionbarsherlock.view.MenuItem;
+
 /**
  *
  * 我的收入activity
@@ -42,7 +43,8 @@ public class MyInComeActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_publish_income);
-		
+
+
 		getSupportActionBar().setTitle("我的收入");
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
@@ -80,6 +82,7 @@ public class MyInComeActivity extends BaseActivity {
 					failView.setVisibility(View.INVISIBLE);
 				}
 			}
+
 
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 				webView.setVisibility(View.INVISIBLE);
@@ -196,4 +199,5 @@ public class MyInComeActivity extends BaseActivity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+
 }

@@ -4,7 +4,7 @@ import org.androidannotations.annotations.EBean;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.activity.NoticeCenterActivity_;
+import qfpay.wxshop.activity.*;
 import qfpay.wxshop.ui.main.MainActivity;
 
 import android.annotation.SuppressLint;

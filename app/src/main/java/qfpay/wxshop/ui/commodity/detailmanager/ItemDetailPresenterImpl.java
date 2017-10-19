@@ -24,7 +24,7 @@ import qfpay.wxshop.image.ImageProgressListener;
 import qfpay.wxshop.image.QFImageUploader;
 import qfpay.wxshop.image.processer.ImageType;
 import qfpay.wxshop.ui.commodity.CommodityDataController;
-import qfpay.wxshop.ui.commodity.EdititemDoneActivity_;
+import qfpay.wxshop.ui.commodity.*;
 import qfpay.wxshop.utils.Utils;
 
 /**

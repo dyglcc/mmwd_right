@@ -57,7 +57,7 @@ import qfpay.wxshop.data.beans.MyDynamicItemReplyBean;
 import qfpay.wxshop.data.beans.MyTopicBean;
 import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.app.BaseActivity;
-import qfpay.wxshop.ui.main.MainActivity_;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.view.XListView;
 import qfpay.wxshop.utils.MobAgentTools;

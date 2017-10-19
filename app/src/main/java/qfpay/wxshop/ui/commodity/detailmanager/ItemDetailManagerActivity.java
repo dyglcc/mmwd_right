@@ -24,10 +24,11 @@ import java.util.List;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.app.BaseActivity;
+import qfpay.wxshop.data.model.SKUModel;
 import qfpay.wxshop.dialogs.ISimpleDialogListener;
 import qfpay.wxshop.image.ImageProcesserBean;
 import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity;
-import qfpay.wxshop.ui.customergallery.CustomerGalleryActivity_;
+import qfpay.wxshop.ui.customergallery.*;
 import qfpay.wxshop.utils.Toaster;
 
 /**
@@ -110,14 +111,14 @@ public class ItemDetailManagerActivity extends BaseActivity implements ItemDetai
             showErrorMessage("最多只能新建十个规格");
             return;
         }
-        ItemDetailSkuEditActivity_.intent(this).isPromotation(isPromotation).skuModelList(mPresenter.getSkuModelList()).startForResult(ItemDetailManagerView.REQUEST_SKU_ADD);
+        ItemDetailSkuEditActivity_.intent(this).isPromotation(isPromotation).skuModelList((ArrayList<SKUModel>) mPresenter.getSkuModelList()).startForResult(ItemDetailManagerView.REQUEST_SKU_ADD);
     }
 
     /**
      * 页面中SkuItem的编辑按钮回调方法
      */
     public void onSkuEditClick(int position, SkuViewModel skuViewModel) {
-        ItemDetailSkuEditActivity_.intent(this).isPromotation(isPromotation).skuViewModel(skuViewModel).skuModelList(mPresenter.getSkuModelList()).position(position).startForResult(ItemDetailManagerView.REQUEST_SKU_EDIT);
+        ItemDetailSkuEditActivity_.intent(this).isPromotation(isPromotation).skuViewModel(skuViewModel).skuModelList((ArrayList<SKUModel>) mPresenter.getSkuModelList()).position(position).startForResult(ItemDetailManagerView.REQUEST_SKU_EDIT);
     }
 
     @Override public void addSku(SkuViewModel skuViewModel) {

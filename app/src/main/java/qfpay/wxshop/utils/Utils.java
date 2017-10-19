@@ -1,30 +1,5 @@
 package qfpay.wxshop.utils;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.regex.Pattern;
-
-import org.json.JSONException;
-
-import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.data.beans.OfficialGoodItemBean;
-import qfpay.wxshop.data.beans.SSNItemBean;
-import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.dialogs.BaseDialogFragment;
-import qfpay.wxshop.dialogs.SimpleDialogFragment;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -67,11 +42,38 @@ import android.webkit.CookieSyncManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import cn.sharesdk.framework.Platform;
 
 import com.qiniu.upload.tool.AuthException;
 import com.qiniu.upload.tool.Mac;
 import com.qiniu.upload.tool.PutPolicy;
+
+import org.json.JSONException;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.regex.Pattern;
+
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.data.beans.OfficialGoodItemBean;
+import qfpay.wxshop.data.beans.SSNItemBean;
+import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.dialogs.BaseDialogFragment;
+import qfpay.wxshop.dialogs.SimpleDialogFragment;
+
+//import cn.sharesdk.framework.Platform;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class Utils {
@@ -1200,25 +1202,27 @@ public class Utils {
 
 	/** 将action转换为String */
 	public static String actionToString(int action) {
-		switch (action) {
-		case Platform.ACTION_AUTHORIZING:
-			return "认证中";
-		case Platform.ACTION_GETTING_FRIEND_LIST:
-			return "得到朋友列表";
-		case Platform.ACTION_FOLLOWING_USER:
-			return "取粉丝朋友";
-		case Platform.ACTION_SENDING_DIRECT_MESSAGE:
-			return "发送消息";
-		case Platform.ACTION_TIMELINE:
-			return "时间轴";
-		case Platform.ACTION_USER_INFOR:
-			return "用户信息";
-		case Platform.ACTION_SHARE:
-			return "分享";
-		default: {
-			return "未知";
-		}
-		}
+//		switch (action) {
+//		case Platform.ACTION_AUTHORIZING:
+//			return "认证中";
+//		case Platform.ACTION_GETTING_FRIEND_LIST:
+//			return "得到朋友列表";
+//		case Platform.ACTION_FOLLOWING_USER:
+//			return "取粉丝朋友";
+//		case Platform.ACTION_SENDING_DIRECT_MESSAGE:
+//			return "发送消息";
+//		case Platform.ACTION_TIMELINE:
+//			return "时间轴";
+//		case Platform.ACTION_USER_INFOR:
+//			return "用户信息";
+//		case Platform.ACTION_SHARE:
+//			return "分享";
+//		default: {
+//			return "未知";
+//		}
+//		}
+		return "";
+
 	}
 
 	public static String buildTransaction(final String type) {

@@ -1,5 +1,6 @@
 package qfpay.wxshop.ui.web;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -179,7 +180,7 @@ public class CommonWebFragment extends BaseFragment {
             CommonWebActivity_.intent(getActivity()).url(url).title(title).start();
         } else {
             CommonWebActivity_.intent(getActivity()).url(url).title(title)
-                    .shareName(this.shareName).shareTitle(this.shareTitle).platFroms(this.platFroms).start();
+                    .shareName(this.shareName).shareTitle(this.shareTitle).platFroms((ArrayList<SharedPlatfrom>) this.platFroms).start();
         }
     }
 

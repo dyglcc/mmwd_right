@@ -15,7 +15,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.event.AddBuyersShowEvent;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.app.BaseActivity;
 /**
  * 买家秀空列表引导界面

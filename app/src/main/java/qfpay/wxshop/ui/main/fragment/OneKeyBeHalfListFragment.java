@@ -20,6 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.okhttp.internal.Platform;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ItemClick;
@@ -34,13 +36,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
+//import cn.sharesdk.framework.Platform;
+//import cn.sharesdk.framework.PlatformActionListener;
+//import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.utils.UIHandler;
+//import cn.sharesdk.sina.weibo.SinaWeibo;
+//import cn.sharesdk.tencent.qzone.QZone;
+//import cn.sharesdk.tencent.weibo.TencentWeibo;
+import m.framework.utils.UIHandler;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.activity.SSNPublishActivity;
@@ -62,11 +65,11 @@ import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.ui.view.CustomProgressDialog;
 import qfpay.wxshop.ui.view.OnekeybeHalfItem;
-import qfpay.wxshop.ui.view.OnekeybeHalfItem_;
+import qfpay.wxshop.ui.view.*;
 import qfpay.wxshop.ui.view.XFooterView;
 import qfpay.wxshop.ui.view.XHeaderView;
 import qfpay.wxshop.ui.view.XListView;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.ui.web.huoyuan.CommonWebActivityHuoyuan;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
@@ -81,7 +84,7 @@ import qfpay.wxshop.utils.Utils;
 @SuppressLint("HandlerLeak")
 @EFragment(R.layout.main_onkeybehalf_list)
 public class OneKeyBeHalfListFragment extends BaseFragment implements
-        ISimpleDialogListener, XListView.IXListViewListener, PlatformActionListener, Callback {
+        ISimpleDialogListener, XListView.IXListViewListener, Callback {
     public static final String SP_NAME_MANAGE = "config";
     public static final String SP_ITEN_ISNEW = "copy_isnew";
     public static final String SP_HEADER_ISNEW = "header_header_img_isnew";
@@ -171,7 +174,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
 
 
         if (!initShare) {
-            ShareSDK.initSDK(getActivity());
+//            ShareSDK.initSDK(getActivity());
             initShare = true;
         }
 
@@ -562,7 +565,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
         nodata = false;
         data = null;
         if (initShare) {
-            ShareSDK.stopSDK(getActivity());
+//            ShareSDK.stopSDK(getActivity());
         }
 
         resetPagesize();
@@ -757,7 +760,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
             case 1: {
                 // 成功
                 Platform plat = (Platform) msg.obj;
-                text = plat.getName() + "分享成功";
+//                text = plat.getName() + "分享成功";
             }
             break;
             case 2: {
@@ -778,7 +781,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
             case 3: {
                 // 取消
                 Platform plat = (Platform) msg.obj;
-                text = plat.getName() + "取消分享";
+//                text = plat.getName() + "取消分享";
             }
             break;
         }
@@ -787,7 +790,7 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
         return false;
     }
 
-    @Override
+//    @Override
     public void onComplete(Platform plat, int action,
                            HashMap<String, Object> res) {
         Message msg = new Message();
@@ -796,16 +799,16 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
         msg.obj = plat;
         UIHandler.sendMessage(msg, this);
 
-        if (plat.getName().equals(SinaWeibo.NAME)) {
-            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                    "sina_share_success_sharesdk");
-        } else if (plat.getName().equals(QZone.NAME)) {
-            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                    "qzone_share_success_sharesdk");
-        } else if (plat.getName().equals(TencentWeibo.NAME)) {
-            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                    "qqweibo_share_success_sharesdk");
-        }
+//        if (plat.getName().equals(SinaWeibo.NAME)) {
+//            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//                    "sina_share_success_sharesdk");
+//        } else if (plat.getName().equals(QZone.NAME)) {
+//            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//                    "qzone_share_success_sharesdk");
+//        } else if (plat.getName().equals(TencentWeibo.NAME)) {
+//            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//                    "qqweibo_share_success_sharesdk");
+//        }
 
     }
 
@@ -824,16 +827,16 @@ public class OneKeyBeHalfListFragment extends BaseFragment implements
         msg.arg2 = action;
         msg.obj = t;
         UIHandler.sendMessage(msg, this);
-        if (plat.getName().equals(SinaWeibo.NAME)) {
-            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                    "sina_share_faill_sharesdk");
-        } else if (plat.getName().equals(QZone.NAME)) {
-            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                    "qzone_share_fail_sharesdk");
-        } else if (plat.getName().equals(TencentWeibo.NAME)) {
-            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
-                    "qqweibo_share_fail_sharesdk");
-        }
+//        if (plat.getName().equals(SinaWeibo.NAME)) {
+//            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//                    "sina_share_faill_sharesdk");
+//        } else if (plat.getName().equals(QZone.NAME)) {
+//            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//                    "qzone_share_fail_sharesdk");
+//        } else if (plat.getName().equals(TencentWeibo.NAME)) {
+//            MobAgentTools.OnEventMobOnDiffUser(getActivity(),
+//                    "qqweibo_share_fail_sharesdk");
+//        }
     }
 
 

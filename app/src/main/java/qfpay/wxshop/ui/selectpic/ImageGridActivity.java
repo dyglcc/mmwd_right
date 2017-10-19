@@ -5,7 +5,7 @@ import java.util.List;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
+import qfpay.wxshop.ui.commodity.detailmanager.*;
 import qfpay.wxshop.ui.selectpic.ImageGridAdapter.TextCallback;
 import qfpay.wxshop.utils.Toaster;
 

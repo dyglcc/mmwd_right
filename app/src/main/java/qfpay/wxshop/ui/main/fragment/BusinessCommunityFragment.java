@@ -22,7 +22,7 @@ import qfpay.wxshop.ui.main.fragmentcontroller.MainFragmentController.WrapperTyp
 import qfpay.wxshop.ui.view.BadgeView;
 import qfpay.wxshop.ui.view.BadgeView2;
 import qfpay.wxshop.ui.web.CommonWebFragment;
-import qfpay.wxshop.ui.web.CommonWebFragment_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.MobAgentTools;
 
 import android.support.v4.app.Fragment;
@@ -168,13 +168,13 @@ public class BusinessCommunityFragment extends BaseFragment {
      * @param count
      */
     @UiThread
-    public void showCommunityNotification(String tag, String count) {
-        if (tag.equals("0")) {
-            badgeView.show();
-        }
-        if (tag.equals("1")) {
-            badgeView.setText(count);
-            badgeView.show();
+        public void showCommunityNotification(String tag, String count) {
+            if (tag.equals("0")) {
+                badgeView.show();
+            }
+            if (tag.equals("1")) {
+                badgeView.setText(count);
+                badgeView.show();
         }
     }
 

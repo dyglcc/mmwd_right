@@ -7,8 +7,8 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
-import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+import qfpay.wxshop.ui.commodity.detailmanager.*;
+//import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.ui.main.MainAddAniUtils;
 import qfpay.wxshop.utils.MobAgentTools;
@@ -84,7 +84,7 @@ public class AddedPopupView extends RelativeLayout {
 	@ViewById LinearLayout ll_content;
 	@ViewById ImageView iv_add;
 	@Bean MainAddAniUtils aniUtils;
-	@Pref AppStateSharePreferences_ statePref;
+//	@Pref AppStateSharePreferences_ statePref;
 	MainActivity activity;
 	
 	public AddedPopupView(Context context) {

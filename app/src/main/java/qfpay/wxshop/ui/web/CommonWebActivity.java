@@ -16,6 +16,7 @@ import org.androidannotations.annotations.FragmentById;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import hugo.weaving.DebugLog;
@@ -27,7 +28,7 @@ import qfpay.wxshop.share.wexinShare.UtilsWeixinShare;
 import qfpay.wxshop.share.wexinShare.WeiXinDataBean;
 import qfpay.wxshop.app.BaseActivity;
 import qfpay.wxshop.ui.common.actionbar.ShareActionProvider;
-import qfpay.wxshop.ui.main.MainActivity_;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.view.WebViewSavePic;
 import qfpay.wxshop.utils.BitmapUtil;
 import qfpay.wxshop.utils.MobAgentTools;
@@ -50,7 +51,8 @@ public class CommonWebActivity extends BaseActivity implements OnShareLinstener 
 	@Extra String title = "";
 	@Extra String push = "";
 	@Extra String pointName = ""; // 用于统计分享次数
-    @Extra List<SharedPlatfrom> platFroms;// 需要分享到的平台
+    @Extra
+	ArrayList<SharedPlatfrom> platFroms;// 需要分享到的平台
     @Extra String shareTitle = "", shareName = "", shareDescript = "", shareIconUrl = ""; // 分享有关字段, 分享包括gam_medium的情况只需要在预览的时候就携带ga_medium
 
 

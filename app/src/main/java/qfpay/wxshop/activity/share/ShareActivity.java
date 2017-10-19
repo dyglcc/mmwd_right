@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.androidquery.AQuery;
+import com.squareup.okhttp.internal.Platform;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.Tencent;
 
@@ -28,13 +29,14 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
+//import cn.sharesdk.framework.Platform;
+//import cn.sharesdk.framework.PlatformActionListener;
+//import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.utils.UIHandler;
+//import cn.sharesdk.sina.weibo.SinaWeibo;
+//import cn.sharesdk.tencent.qzone.QZone;
+//import cn.sharesdk.tencent.weibo.TencentWeibo;
+import m.framework.utils.UIHandler;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.app.BaseActivity;
@@ -45,8 +47,7 @@ import qfpay.wxshop.utils.Utils;
 /**
  * 分享界面
  */
-public class ShareActivity extends BaseActivity implements
-        PlatformActionListener, Callback {
+public class ShareActivity extends BaseActivity {
     private boolean initShare;
 
     private Button btn_back;
@@ -107,7 +108,7 @@ public class ShareActivity extends BaseActivity implements
         aq = new AQuery(this);
         // 初始化ShareSDK
         if (!initShare) {
-            ShareSDK.initSDK(this);
+//            ShareSDK.initSDK(this);
             initShare = true;
         }
         ActionBar actionBar = getSupportActionBar();
@@ -134,33 +135,33 @@ public class ShareActivity extends BaseActivity implements
         iv_qzone = (CheckBox) findViewById(R.id.ck_zone);
         iv_tencent = (CheckBox) findViewById(R.id.ck_qqweibo);
 
-        weibo = ShareSDK.getPlatform(ShareActivity.this, SinaWeibo.NAME);
-        qzone = ShareSDK.getPlatform(ShareActivity.this, QZone.NAME);
-        tecentWeibo = ShareSDK.getPlatform(ShareActivity.this,
-                TencentWeibo.NAME);
-
-        if (!weibo.isValid()) {
-            iv_sina.setChecked(false);
-        }
-        iv_qzone.setChecked(true);
-        if (!tecentWeibo.isValid()) {
-            iv_tencent.setChecked(false);
-        }
-
-        iv_sina.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            public void onCheckedChanged(CompoundButton view, boolean checked) {
-                if (checked) {
-                    // 如果微博未绑定
-                    if (!weibo.isValid()) {
-                        Toaster.l(ShareActivity.this, "开始授权");
-                        weibo.setPlatformActionListener(authorListener);
-                        weibo.authorize();
-                    }
-                }
-
-            }
-        });
+//        weibo = ShareSDK.getPlatform(ShareActivity.this, SinaWeibo.NAME);
+//        qzone = ShareSDK.getPlatform(ShareActivity.this, QZone.NAME);
+//        tecentWeibo = ShareSDK.getPlatform(ShareActivity.this,
+//                TencentWeibo.NAME);
+//
+//        if (!weibo.isValid()) {
+//            iv_sina.setChecked(false);
+//        }
+//        iv_qzone.setChecked(true);
+//        if (!tecentWeibo.isValid()) {
+//            iv_tencent.setChecked(false);
+//        }
+//
+//        iv_sina.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//
+//            public void onCheckedChanged(CompoundButton view, boolean checked) {
+//                if (checked) {
+//                    // 如果微博未绑定
+//                    if (!weibo.isValid()) {
+//                        Toaster.l(ShareActivity.this, "开始授权");
+//                        weibo.setPlatformActionListener(authorListener);
+//                        weibo.authorize();
+//                    }
+//                }
+//
+//            }
+//        });
 
         iv_qzone.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -200,21 +201,21 @@ public class ShareActivity extends BaseActivity implements
             }
         });
 
-        iv_tencent.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-                if (isChecked) {
-
-                    if (!tecentWeibo.isValid()) {
-                        Toaster.l(ShareActivity.this, "开始授权");
-                        tecentWeibo.setPlatformActionListener(authorListener);
-                        tecentWeibo.authorize();
-                    }
-                }
-            }
-        });
+//        iv_tencent.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView,
+//                                         boolean isChecked) {
+//                if (isChecked) {
+//
+//                    if (!tecentWeibo.isValid()) {
+//                        Toaster.l(ShareActivity.this, "开始授权");
+//                        tecentWeibo.setPlatformActionListener(authorListener);
+//                        tecentWeibo.authorize();
+//                    }
+//                }
+//            }
+//        });
 
         if (WxShopApplication.shareBean != null) {
             if (WxShopApplication.shareBean.from != null) {
@@ -255,7 +256,7 @@ public class ShareActivity extends BaseActivity implements
                 // TODO Auto-generated method stub
                 if (!iv_tencent.isChecked() && !iv_sina.isChecked()
                         && !iv_qzone.isChecked()) {
-                    handler.sendEmptyMessage(12);
+//                    handler.sendEmptyMessage(12);
                     return;
                 }
 
@@ -270,41 +271,41 @@ public class ShareActivity extends BaseActivity implements
                 // 首先
                 if (iv_sina.isChecked()) {
 
-                    if (isSinaSharing) {
-                        Toaster.l(ShareActivity.this, "新浪微博正在分享中，稍等一下吧");
-                    } else {
-                        SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
-                        String text = tv_content.getText().toString();
-                        String repleaceText = getRepleaceText(text, "sinaweibo");
-                        if (content_type > 0) {
-                            repleaceText += "(分享自 @喵喵微店 http://www.mmweidian.com )";
-                        }
-                        sp.text = repleaceText;
-                        sp.imageUrl = WxShopApplication.shareBean.imgUrl;
-                        weibo.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
-                        // 执行图文分享
-                        weibo.share(sp);
-                        isSinaSharing = true;
-                    }
+//                    if (isSinaSharing) {
+//                        Toaster.l(ShareActivity.this, "新浪微博正在分享中，稍等一下吧");
+//                    } else {
+//                        SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
+//                        String text = tv_content.getText().toString();
+//                        String repleaceText = getRepleaceText(text, "sinaweibo");
+//                        if (content_type > 0) {
+//                            repleaceText += "(分享自 @喵喵微店 http://www.mmweidian.com )";
+//                        }
+//                        sp.text = repleaceText;
+//                        sp.imageUrl = WxShopApplication.shareBean.imgUrl;
+//                        weibo.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
+//                        // 执行图文分享
+//                        weibo.share(sp);
+//                        isSinaSharing = true;
+//                    }
 
 
                 }
                 if (iv_tencent.isChecked()) {
-                    if (isTencentSharing) {
-                        Toaster.l(ShareActivity.this, "腾讯微博正在分享中，稍等一下吧");
-                    } else {
-                        TencentWeibo.ShareParams sp = new TencentWeibo.ShareParams();
-                        // sp.text = WxShopApplication.shareBean.title
-                        // + WxShopApplication.shareBean.link;
-                        String textTcentent = tv_content.getText().toString();
-                        sp.text = getRepleaceText(textTcentent, "tencentweibo");
-                        sp.imageUrl = WxShopApplication.shareBean.imgUrl;
-                        tecentWeibo.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
-                        // 执行图文分享
-                        tecentWeibo.share(sp);
-
-                        isTencentSharing = true;
-                    }
+//                    if (isTencentSharing) {
+//                        Toaster.l(ShareActivity.this, "腾讯微博正在分享中，稍等一下吧");
+//                    } else {
+//                        TencentWeibo.ShareParams sp = new TencentWeibo.ShareParams();
+//                        // sp.text = WxShopApplication.shareBean.title
+//                        // + WxShopApplication.shareBean.link;
+//                        String textTcentent = tv_content.getText().toString();
+//                        sp.text = getRepleaceText(textTcentent, "tencentweibo");
+//                        sp.imageUrl = WxShopApplication.shareBean.imgUrl;
+//                        tecentWeibo.setPlatformActionListener(ShareActivity.this); // 设置分享事件回调
+//                        // 执行图文分享
+//                        tecentWeibo.share(sp);
+//
+//                        isTencentSharing = true;
+//                    }
 
                 }
 
@@ -408,184 +409,182 @@ public class ShareActivity extends BaseActivity implements
     private static final int author_cancle = 1;
     private static final int author_complete = author_cancle + 1;
     private static final int author_error = author_complete + 1;
-    private PlatformActionListener authorListener = new PlatformActionListener() {
+//    private PlatformActionListener authorListener = new PlatformActionListener() {
 
-        @Override
+//        @Override
         public void onCancel(Platform arg0, int arg1) {
-            handler.sendEmptyMessage(author_cancle);
-            checkAuth();
+//            handler.sendEmptyMessage(author_cancle);
+//            checkAuth();
         }
 
-        @Override
+//        @Override
         public void onComplete(Platform platform, int arg1,
                                HashMap<String, Object> arg2) {
-            handler.sendEmptyMessage(author_complete);
-            checkAuth();
-            if (platform.getName().equals(SinaWeibo.NAME)) {
-                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                        "sina_auth_success");
-            } else if (platform.getName().equals(QZone.NAME)) {
-                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                        "qzone_auth_success");
-            } else if (platform.getName().equals(TencentWeibo.NAME)) {
-                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                        "qqweibo_auth_success");
-            }
+//            handler.sendEmptyMessage(author_complete);
+//            checkAuth();
+//            if (platform.getName().equals(SinaWeibo.NAME)) {
+//                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                        "sina_auth_success");
+//            } else if (platform.getName().equals(QZone.NAME)) {
+//                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                        "qzone_auth_success");
+//            } else if (platform.getName().equals(TencentWeibo.NAME)) {
+//                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                        "qqweibo_auth_success");
+//            }
         }
 
-        @Override
+//        @Override
         public void onError(Platform platform, int arg1, Throwable arg2) {
-            handler.sendEmptyMessage(author_error);
-            checkAuth();
-            if (platform.getName().equals(SinaWeibo.NAME)) {
-                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                        "sina_auth_fail");
-            } else if (platform.getName().equals(QZone.NAME)) {
-                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                        "qzone_auth_fail");
-            } else if (platform.getName().equals(TencentWeibo.NAME)) {
-                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                        "qqweibo_auth_fail");
-            }
+//            handler.sendEmptyMessage(author_error);
+//            checkAuth();
+//            if (platform.getName().equals(SinaWeibo.NAME)) {
+//                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                        "sina_auth_fail");
+//            } else if (platform.getName().equals(QZone.NAME)) {
+//                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                        "qzone_auth_fail");
+//            } else if (platform.getName().equals(TencentWeibo.NAME)) {
+//                MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                        "qqweibo_auth_fail");
+//            }
         }
     };
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
+//    private Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//
+//            if (msg.what == author_cancle) {
+//                Toaster.l(ShareActivity.this, "授权取消");
+//            } else if (msg.what == author_complete) {
+//                Toaster.l(ShareActivity.this, "授权完成");
+//
+//            } else if (msg.what == 12) {
+//                Toaster.l(ShareActivity.this, "请选择分享的平台");
+//            } else if (msg.what == author_error) {
+//                Toaster.l(ShareActivity.this, "授权错误");
+//            }
+//
+//        }
+//
+//        ;
+//    };
 
-            if (msg.what == author_cancle) {
-                Toaster.l(ShareActivity.this, "授权取消");
-            } else if (msg.what == author_complete) {
-                Toaster.l(ShareActivity.this, "授权完成");
+//    @Override
+//    public boolean handleMessage(Message msg) {
+//        // TODO Auto-generated method stub
+//        String text = Utils.actionToString(msg.arg2);
+//        switch (msg.arg1) {
+//            case 1: {
+//                // 成功
+//                Platform plat = (Platform) msg.obj;
+//                text = plat.getName() + "分享成功";
+//            }
+//            break;
+//            case 2: {
+//                // 失败
+//                if ("WechatClientNotExistException".equals(msg.obj.getClass()
+//                        .getSimpleName())) {
+//                    text = ShareActivity.this
+//                            .getString(R.string.wechat_client_inavailable);
+//                } else if ("WechatTimelineNotSupportedException".equals(msg.obj
+//                        .getClass().getSimpleName())) {
+//                    text = ShareActivity.this
+//                            .getString(R.string.wechat_client_inavailable);
+//                } else {
+//                    text = getString(R.string.fail_share2);
+//                }
+//            }
+//            break;
+//            case 3: {
+//                // 取消
+//                Platform plat = (Platform) msg.obj;
+//                text = plat.getName() + "取消分享";
+//            }
+//            break;
+//        }
+//
+//        Toast.makeText(ShareActivity.this, text, Toast.LENGTH_SHORT).show();
+//        return false;
+//    }
 
-            } else if (msg.what == 12) {
-                Toaster.l(ShareActivity.this, "请选择分享的平台");
-            } else if (msg.what == author_error) {
-                Toaster.l(ShareActivity.this, "授权错误");
-            }
+//    @Override
+//    public void onComplete(Platform plat, int action,
+//                           HashMap<String, Object> res) {
+//        Message msg = new Message();
+//        msg.arg1 = 1;
+//        msg.arg2 = action;
+//        msg.obj = plat;
+//        UIHandler.sendMessage(msg, this);
+//        if (plat.getName().equals(SinaWeibo.NAME)) {
+//            isSinaSharing = false;
+//            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                    "sina_share_success_sharesdk");
+//        } else if (plat.getName().equals(QZone.NAME)) {
+//            shareQQzoneSuccess = true;
+//            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                    "qzone_share_success_sharesdk");
+//        } else if (plat.getName().equals(TencentWeibo.NAME)) {
+//            isTencentSharing = false;
+//            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                    "qqweibo_share_success_sharesdk");
+//        }
+//
+//    }
 
-        }
+//    public void onCancel(Platform plat, int action) {
+//        Message msg = new Message();
+//        msg.arg1 = 3;
+//        msg.arg2 = action;
+//        msg.obj = plat;
+//        UIHandler.sendMessage(msg, this);
+//        if (plat.getName().equals(SinaWeibo.NAME)) {
+//            isSinaSharing = false;
+//        } else if (plat.getName().equals(QZone.NAME)) {
+//        } else if (plat.getName().equals(TencentWeibo.NAME)) {
+//            isTencentSharing = false;
+//        }
+//
+//    }
 
-        ;
-    };
+//    public void onError(Platform plat, int action, Throwable t) {
+//        t.printStackTrace();
+//        Message msg = new Message();
+//        msg.arg1 = 2;
+//        msg.arg2 = action;
+//        msg.obj = t;
+//        UIHandler.sendMessage(msg, this);
+//        if (plat.getName().equals(SinaWeibo.NAME)) {
+//            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                    "sina_share_faill_sharesdk");
+//            isSinaSharing = false;
+//        } else if (plat.getName().equals(QZone.NAME)) {
+//            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                    "qzone_share_fail_sharesdk");
+////            Toaster.l(this, getResources().getString(R.string.qqshareFail));
+//        } else if (plat.getName().equals(TencentWeibo.NAME)) {
+//            isTencentSharing = false;
+//            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
+//                    "qqweibo_share_fail_sharesdk");
+//        }
+//    }
 
-    @Override
-    public boolean handleMessage(Message msg) {
-        // TODO Auto-generated method stub
-        String text = Utils.actionToString(msg.arg2);
-        switch (msg.arg1) {
-            case 1: {
-                // 成功
-                Platform plat = (Platform) msg.obj;
-                text = plat.getName() + "分享成功";
-            }
-            break;
-            case 2: {
-                // 失败
-                if ("WechatClientNotExistException".equals(msg.obj.getClass()
-                        .getSimpleName())) {
-                    text = ShareActivity.this
-                            .getString(R.string.wechat_client_inavailable);
-                } else if ("WechatTimelineNotSupportedException".equals(msg.obj
-                        .getClass().getSimpleName())) {
-                    text = ShareActivity.this
-                            .getString(R.string.wechat_client_inavailable);
-                } else {
-                    text = getString(R.string.fail_share2);
-                }
-            }
-            break;
-            case 3: {
-                // 取消
-                Platform plat = (Platform) msg.obj;
-                text = plat.getName() + "取消分享";
-            }
-            break;
-        }
-
-        Toast.makeText(ShareActivity.this, text, Toast.LENGTH_SHORT).show();
-        return false;
-    }
-
-    @Override
-    public void onComplete(Platform plat, int action,
-                           HashMap<String, Object> res) {
-        Message msg = new Message();
-        msg.arg1 = 1;
-        msg.arg2 = action;
-        msg.obj = plat;
-        UIHandler.sendMessage(msg, this);
-        if (plat.getName().equals(SinaWeibo.NAME)) {
-            isSinaSharing = false;
-            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                    "sina_share_success_sharesdk");
-        } else if (plat.getName().equals(QZone.NAME)) {
-            shareQQzoneSuccess = true;
-            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                    "qzone_share_success_sharesdk");
-        } else if (plat.getName().equals(TencentWeibo.NAME)) {
-            isTencentSharing = false;
-            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                    "qqweibo_share_success_sharesdk");
-        }
-
-    }
-
-    public void onCancel(Platform plat, int action) {
-        Message msg = new Message();
-        msg.arg1 = 3;
-        msg.arg2 = action;
-        msg.obj = plat;
-        UIHandler.sendMessage(msg, this);
-        if (plat.getName().equals(SinaWeibo.NAME)) {
-            isSinaSharing = false;
-        } else if (plat.getName().equals(QZone.NAME)) {
-        } else if (plat.getName().equals(TencentWeibo.NAME)) {
-            isTencentSharing = false;
-        }
-
-    }
-
-    public void onError(Platform plat, int action, Throwable t) {
-        t.printStackTrace();
-        Message msg = new Message();
-        msg.arg1 = 2;
-        msg.arg2 = action;
-        msg.obj = t;
-        UIHandler.sendMessage(msg, this);
-        if (plat.getName().equals(SinaWeibo.NAME)) {
-            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                    "sina_share_faill_sharesdk");
-            isSinaSharing = false;
-        } else if (plat.getName().equals(QZone.NAME)) {
-            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                    "qzone_share_fail_sharesdk");
-//            Toaster.l(this, getResources().getString(R.string.qqshareFail));
-        } else if (plat.getName().equals(TencentWeibo.NAME)) {
-            isTencentSharing = false;
-            MobAgentTools.OnEventMobOnDiffUser(ShareActivity.this,
-                    "qqweibo_share_fail_sharesdk");
-        }
-    }
-
-    private void checkAuth() {
-        if (!weibo.isValid()) {
-            iv_sina.setChecked(false);
-        }
-        if (!tecentWeibo.isValid()) {
-            iv_tencent.setChecked(false);
-        }
-        if (!qzone.isValid()) {
-            iv_qzone.setChecked(false);
-        }
-    }
+//    private void checkAuth() {
+//        if (!weibo.isValid()) {
+//            iv_sina.setChecked(false);
+//        }
+//        if (!tecentWeibo.isValid()) {
+//            iv_tencent.setChecked(false);
+//        }
+//        if (!qzone.isValid()) {
+//            iv_qzone.setChecked(false);
+//        }
+//    }
 
     // sp.site = "http://www.mmweidian.com";
 
-    private void shareToQzone() {
-
-        //分享类型
-
-    }
-
-}
+//    private void shareToQzone() {
+//
+//        //分享类型
+//
+//    }

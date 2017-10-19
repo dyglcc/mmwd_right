@@ -5,7 +5,7 @@ import java.lang.ref.SoftReference;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.web.CommonWebFragment_;
+import qfpay.wxshop.ui.web.*;
 import android.content.Context;
 /**
  * 小店四个viewpager 对象 shopfragment、店铺预览 fragment、统计、订单fragment

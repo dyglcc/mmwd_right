@@ -24,8 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.activity.ManPromoActivity_;
-import qfpay.wxshop.activity.ManagePreViewActivity_;
+import qfpay.wxshop.activity.*;
 import qfpay.wxshop.config.WDConfig;
 import qfpay.wxshop.data.beans.CommodityModel;
 import qfpay.wxshop.data.beans.GoodMSBean;
@@ -33,7 +32,7 @@ import qfpay.wxshop.data.beans.GoodsBean;
 import qfpay.wxshop.data.beans.SalesPromotionModel;
 import qfpay.wxshop.getui.ImageUtils.ImageSizeForUrl;
 import qfpay.wxshop.ui.commodity.CommodityListFragment.CommodityWrapper;
-import qfpay.wxshop.ui.commodity.detailmanager.ItemDetailManagerActivity_;
+import qfpay.wxshop.ui.commodity.detailmanager.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import qfpay.wxshop.utils.Toaster;

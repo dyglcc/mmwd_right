@@ -6,7 +6,7 @@ import android.content.Context;
 
 import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.web.CommonWebFragment_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.MobAgentTools;
 /**
  * 对三个fragment的封装，official(官方货源)

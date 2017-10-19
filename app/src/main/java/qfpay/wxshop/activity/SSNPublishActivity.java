@@ -29,12 +29,11 @@ import qfpay.wxshop.listener.onScrollviewFocusListener;
 import qfpay.wxshop.takepicUtils.PictureBean;
 import qfpay.wxshop.takepicUtils.TakePicUtils;
 import qfpay.wxshop.app.BaseActivity;
-import qfpay.wxshop.ui.buyersshow.GoodsListForBuyersShowActivity;
-import qfpay.wxshop.ui.buyersshow.GoodsListForBuyersShowActivity_;
+import qfpay.wxshop.ui.buyersshow.*;
 import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
 import qfpay.wxshop.ui.selectpic.ImageItem;
 import qfpay.wxshop.ui.view.EditorView;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
@@ -63,6 +62,8 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
+//import com.adhoc.adhocsdk.AdhocTracker;
+
 /**
  * 碎碎念发布页面
  * */
@@ -120,6 +121,8 @@ public class SSNPublishActivity extends BaseActivity implements
 
 	@AfterViews
 	void inits() {
+//		AdhocTracker.reportCrashEnable(false);
+//		mScrollview = null;
 		mScrollview.init();
 		mScrollview.addOnFocusListener(this);
 		ActionBar actionBar = getSupportActionBar();

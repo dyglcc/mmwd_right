@@ -5,11 +5,16 @@ import android.util.Log;
 public class T {
 	static String AppName = "wd";
 
-	public static Boolean isTesting = false;
+	public static Boolean isTesting = true;
 
 	public static void i(String string) {
 		if (isTesting) {
 			Log.i(AppName, string);
+		}
+	}
+	public static void i(String logName,String string) {
+		if (isTesting) {
+			Log.i(logName, string);
 		}
 	}
 

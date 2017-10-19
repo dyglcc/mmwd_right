@@ -2,6 +2,7 @@ package qfpay.wxshop.activity.menu;
 
 import java.util.HashMap;
 
+import m.framework.utils.UIHandler;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.handler.MainHandler;
@@ -33,15 +34,17 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
+
+import com.squareup.okhttp.internal.Platform;
+
+//import cn.sharesdk.framework.Platform;
+//import cn.sharesdk.framework.PlatformActionListener;
+//import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.utils.UIHandler;
 /*
  * 微信收款
  ***/
-public class WeiXinCollectMoney extends BaseActivity implements
-		PlatformActionListener, Callback {
+public class WeiXinCollectMoney extends BaseActivity implements Callback {
 	private Handler handler = new Handler() {
 
 		@Override
@@ -67,7 +70,7 @@ public class WeiXinCollectMoney extends BaseActivity implements
 		setContentView(R.layout.main_collect_money_weixin);
 		initView();
 		if (!initShare) {
-			ShareSDK.initSDK(this);
+//			ShareSDK.initSDK(this);
 			initShare = true;
 		}
 	}
@@ -82,7 +85,7 @@ public class WeiXinCollectMoney extends BaseActivity implements
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		if (initShare) {
-			ShareSDK.stopSDK(this);
+//			ShareSDK.stopSDK(this);
 		}
 		MobAgentTools.OnEventMobOnDiffUser(WeiXinCollectMoney.this, "receipt");
 
@@ -94,7 +97,7 @@ public class WeiXinCollectMoney extends BaseActivity implements
 	protected void onRestart() {
 		// TODO Auto-generated method stub
 		super.onRestart();
-		ShareSDK.initSDK(this);
+//		ShareSDK.initSDK(this);
 	}
 
 	private void initView() {
@@ -320,7 +323,7 @@ public class WeiXinCollectMoney extends BaseActivity implements
 		return super.onKeyDown(keyCode, event);
 	}
 
-	@Override
+//	@Override
 	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
@@ -354,7 +357,7 @@ public class WeiXinCollectMoney extends BaseActivity implements
 		case 1: {
 			// 成功
 			Platform plat = (Platform) msg.obj;
-			text = plat.getName() + "分享成功";
+//			text = plat.getName() + "分享成功";
 		}
 			break;
 		case 2: {
@@ -387,20 +390,20 @@ public class WeiXinCollectMoney extends BaseActivity implements
 	/** 将action转换为String */
 	public static String actionToString(int action) {
 		switch (action) {
-		case Platform.ACTION_AUTHORIZING:
-			return "认证中";
-		case Platform.ACTION_GETTING_FRIEND_LIST:
-			return "得到朋友列表";
-		case Platform.ACTION_FOLLOWING_USER:
-			return "取粉丝朋友";
-		case Platform.ACTION_SENDING_DIRECT_MESSAGE:
-			return "发送消息";
-		case Platform.ACTION_TIMELINE:
-			return "时间轴";
-		case Platform.ACTION_USER_INFOR:
-			return "用户信息";
-		case Platform.ACTION_SHARE:
-			return "分享";
+//		case Platform.ACTION_AUTHORIZING:
+//			return "认证中";
+//		case Platform.ACTION_GETTING_FRIEND_LIST:
+//			return "得到朋友列表";
+//		case Platform.ACTION_FOLLOWING_USER:
+//			return "取粉丝朋友";
+//		case Platform.ACTION_SENDING_DIRECT_MESSAGE:
+//			return "发送消息";
+//		case Platform.ACTION_TIMELINE:
+//			return "时间轴";
+//		case Platform.ACTION_USER_INFOR:
+//			return "用户信息";
+//		case Platform.ACTION_SHARE:
+//			return "分享";
 		default: {
 			return "未知";
 		}

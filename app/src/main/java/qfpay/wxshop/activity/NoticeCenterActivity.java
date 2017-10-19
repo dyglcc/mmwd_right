@@ -1,48 +1,5 @@
 package qfpay.wxshop.activity;
 
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.EIntentService;
-import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.OnActivityResult;
-import org.androidannotations.annotations.Receiver;
-import org.androidannotations.annotations.UiThread;
-import org.androidannotations.annotations.ViewById;
-
-import qfpay.wxshop.R;
-import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.data.beans.NoticeItemBean;
-import qfpay.wxshop.data.beans.SsnContentBean;
-import qfpay.wxshop.data.handler.MainHandler;
-import qfpay.wxshop.data.net.AbstractNet;
-import qfpay.wxshop.data.net.CacheData;
-import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.data.netImpl.NoticeListNetImpl;
-import qfpay.wxshop.dialogs.ISimpleDialogListener;
-import qfpay.wxshop.app.BaseActivity;
-import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
-import qfpay.wxshop.ui.view.CustomProgressDialog;
-import qfpay.wxshop.ui.view.EditorView;
-import qfpay.wxshop.ui.view.NoticeItem;
-import qfpay.wxshop.ui.view.NoticeItem_;
-import qfpay.wxshop.ui.view.NoticeListView;
-import qfpay.wxshop.ui.view.TopCloseAnimation;
-import qfpay.wxshop.ui.view.TopExpandAnimation;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
-import qfpay.wxshop.utils.MobAgentTools;
-import qfpay.wxshop.utils.QMMAlert;
-import qfpay.wxshop.utils.T;
-import qfpay.wxshop.utils.Toaster;
-import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -62,22 +19,66 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.framework.utils.UIHandler;
-import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.squareup.okhttp.internal.Platform;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
+
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import m.framework.utils.UIHandler;
+import qfpay.wxshop.R;
+import qfpay.wxshop.WxShopApplication;
+import qfpay.wxshop.app.BaseActivity;
+import qfpay.wxshop.config.WDConfig;
+import qfpay.wxshop.data.beans.NoticeItemBean;
+import qfpay.wxshop.data.beans.SsnContentBean;
+import qfpay.wxshop.data.handler.MainHandler;
+import qfpay.wxshop.data.net.AbstractNet;
+import qfpay.wxshop.data.net.CacheData;
+import qfpay.wxshop.data.net.ConstValue;
+import qfpay.wxshop.data.netImpl.NoticeListNetImpl;
+import qfpay.wxshop.dialogs.ISimpleDialogListener;
+import qfpay.wxshop.ui.main.fragment.MaijiaxiuFragment;
+import qfpay.wxshop.ui.view.CustomProgressDialog;
+import qfpay.wxshop.ui.view.EditorView;
+import qfpay.wxshop.ui.view.NoticeItem;
+import qfpay.wxshop.ui.view.NoticeItem_;
+import qfpay.wxshop.ui.view.NoticeListView;
+import qfpay.wxshop.ui.view.TopCloseAnimation;
+import qfpay.wxshop.ui.view.TopExpandAnimation;
+import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.utils.QMMAlert;
+import qfpay.wxshop.utils.T;
+import qfpay.wxshop.utils.Toaster;
+import qfpay.wxshop.utils.Utils;
+
+//import cn.sharesdk.framework.Platform;
+//import cn.sharesdk.framework.PlatformActionListener;
+//import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.utils.UIHandler;
+//import cn.sharesdk.sina.weibo.SinaWeibo;
+//import cn.sharesdk.tencent.qzone.QZone;
+//import cn.sharesdk.tencent.weibo.TencentWeibo;
+
 /**
  * 消息中心 页面
  */
 @SuppressLint("HandlerLeak")
 @EActivity(R.layout.main_list_notice_center)
 public class NoticeCenterActivity extends BaseActivity implements
-		ISimpleDialogListener, PlatformActionListener, Callback {
+		ISimpleDialogListener, Callback {
 	public static final String SP_NAME_MANAGE = "config";
 	public static final String SP_ITEN_ISNEW = "copy_isnew";
 	public static final String SP_HEADER_ISNEW = "header_header_img_isnew";
@@ -178,7 +179,7 @@ public class NoticeCenterActivity extends BaseActivity implements
 		getData();
 
 		if (!initShare) {
-			ShareSDK.initSDK(this);
+//			ShareSDK.initSDK(this);
 			initShare = true;
 		}
 
@@ -553,7 +554,7 @@ public class NoticeCenterActivity extends BaseActivity implements
 		nodata = false;
 		data = null;
 		if (initShare) {
-			ShareSDK.stopSDK(this);
+//			ShareSDK.stopSDK(this);
 		}
 		pageIndex = 1;
 		initSuccess = false;
@@ -723,7 +724,7 @@ public class NoticeCenterActivity extends BaseActivity implements
 		case 1: {
 			// 成功
 			Platform plat = (Platform) msg.obj;
-			text = plat.getName() + "分享成功";
+//			text = plat.getName() + "分享成功";
 		}
 			break;
 		case 2: {
@@ -744,7 +745,7 @@ public class NoticeCenterActivity extends BaseActivity implements
 		case 3: {
 			// 取消
 			Platform plat = (Platform) msg.obj;
-			text = plat.getName() + "取消分享";
+//			text = plat.getName() + "取消分享";
 		}
 			break;
 		}
@@ -753,7 +754,7 @@ public class NoticeCenterActivity extends BaseActivity implements
 		return false;
 	}
 
-	@Override
+//	@Override
 	public void onComplete(Platform plat, int action,
 			HashMap<String, Object> res) {
 		Message msg = new Message();
@@ -762,16 +763,16 @@ public class NoticeCenterActivity extends BaseActivity implements
 		msg.obj = plat;
 		UIHandler.sendMessage(msg, this);
 
-		if (plat.getName().equals(SinaWeibo.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(this,
-					"sina_share_success_sharesdk");
-		} else if (plat.getName().equals(QZone.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(this,
-					"qzone_share_success_sharesdk");
-		} else if (plat.getName().equals(TencentWeibo.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(this,
-					"qqweibo_share_success_sharesdk");
-		}
+//		if (plat.getName().equals(SinaWeibo.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(this,
+//					"sina_share_success_sharesdk");
+//		} else if (plat.getName().equals(QZone.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(this,
+//					"qzone_share_success_sharesdk");
+//		} else if (plat.getName().equals(TencentWeibo.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(this,
+//					"qqweibo_share_success_sharesdk");
+//		}
 
 	}
 
@@ -790,16 +791,16 @@ public class NoticeCenterActivity extends BaseActivity implements
 		msg.arg2 = action;
 		msg.obj = t;
 		UIHandler.sendMessage(msg, this);
-		if (plat.getName().equals(SinaWeibo.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(this,
-					"sina_share_faill_sharesdk");
-		} else if (plat.getName().equals(QZone.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(this,
-					"qzone_share_fail_sharesdk");
-		} else if (plat.getName().equals(TencentWeibo.NAME)) {
-			MobAgentTools.OnEventMobOnDiffUser(this,
-					"qqweibo_share_fail_sharesdk");
-		}
+//		if (plat.getName().equals(SinaWeibo.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(this,
+//					"sina_share_faill_sharesdk");
+//		} else if (plat.getName().equals(QZone.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(this,
+//					"qzone_share_fail_sharesdk");
+//		} else if (plat.getName().equals(TencentWeibo.NAME)) {
+//			MobAgentTools.OnEventMobOnDiffUser(this,
+//					"qqweibo_share_fail_sharesdk");
+//		}
 	}
 
 }

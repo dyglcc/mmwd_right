@@ -8,7 +8,7 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.net.ConstValue;
-import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+//import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.utils.MobAgentTools;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 
 @EBean
 public class InfoMenuProvider extends ActionProvider implements OnClickListener {
-	@Pref   AppStateSharePreferences_ pref;
+//	@Pref   AppStateSharePreferences_ pref;
 	private Context                   context;
 	private MenuItem                  item;
 	private RoundedImageView          imageView;
@@ -51,12 +51,12 @@ public class InfoMenuProvider extends ActionProvider implements OnClickListener 
 		imageView = (RoundedImageView) rootView.findViewById(R.id.iv);
 		Picasso.with(context).load(WxShopApplication.dataEngine.getAvatar()).fit().centerCrop().into(imageView);
 		this.y = imageView.getY();
-		if (pref.isShowInfoHeaderbtnPrompt().get()) {
-			if (!isAnimationing) {
-				isAnimationing = true;
-				startAni();
-			}
-		}
+//		if (pref.isShowInfoHeaderbtnPrompt().get()) {
+//			if (!isAnimationing) {
+//				isAnimationing = true;
+//				startAni();
+//			}
+//		}
 		return rootView;
 	}
 	
@@ -92,7 +92,7 @@ public class InfoMenuProvider extends ActionProvider implements OnClickListener 
 	@Override
 	public void onClick(View v) {
 		MobAgentTools.OnEventMobOnDiffUser(context, "click_Individual center");
-		pref.isShowInfoHeaderbtnPrompt().put(false);
+//		pref.isShowInfoHeaderbtnPrompt().put(false);
 		stopAni();
 		hideImage();
 		InfoPopupView.showInfoPopupwin(item, item.getActionView()).setOnDismissListener(new OnDismissListener() {

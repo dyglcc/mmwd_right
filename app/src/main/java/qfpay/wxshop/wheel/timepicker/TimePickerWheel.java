@@ -7,7 +7,7 @@ import java.util.Date;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.activity.ManPromoActivity;
-import qfpay.wxshop.activity.ManPromoActivity_;
+import qfpay.wxshop.activity.*;
 import qfpay.wxshop.wheel.deflaut.ArrayWheelAdapter;
 import qfpay.wxshop.wheel.deflaut.OnWheelChangedListener;
 import qfpay.wxshop.wheel.deflaut.OnWheelScrollListener;

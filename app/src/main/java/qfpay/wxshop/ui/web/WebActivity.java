@@ -33,7 +33,7 @@ import java.util.Map;
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.app.BaseActivity;
-import qfpay.wxshop.ui.main.fragment.OrderFragment_;
+import qfpay.wxshop.ui.main.fragment.*;
 import qfpay.wxshop.ui.view.WebViewSavePic;
 import qfpay.wxshop.utils.Utils;
 /**

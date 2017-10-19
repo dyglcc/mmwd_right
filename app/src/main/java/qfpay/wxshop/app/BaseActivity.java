@@ -5,6 +5,7 @@ import org.androidannotations.api.BackgroundExecutor;
 import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.net.ConstValue;
 
+import android.app.Instrumentation;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -14,11 +15,14 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.framework.ShareSDK;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
+import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Toaster;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+//import com.adhoc.adhocsdk.AdhocTracker;
+//import com.adhoc.adhocsdk.AdhocTracker;
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseActivity extends SherlockFragmentActivity {
@@ -27,22 +31,27 @@ public class BaseActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WxShopApplication.app.addActivity(this);
-        ShareSDK.initSDK(this);
+//        ShareSDK.initSDK(this);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("");
         }
+
     }
 
     @Override
     protected void onPause() {
         MobclickAgent.onPause(this);
+//        AdhocTracker.onPause(this);
         super.onPause();
+        T.i("wwd","activity Pause:" + getClass().getName());
     }
 
     @Override
     protected void onResume() {
         MobclickAgent.onResume(this);
+//        AdhocTracker.onResume(this);
         super.onResume();
+        T.i("wwd", "activity Resume:" + getClass().getName());
     }
 
     @Override

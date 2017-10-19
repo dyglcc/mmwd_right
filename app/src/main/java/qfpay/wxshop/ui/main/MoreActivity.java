@@ -17,6 +17,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import de.greenrobot.event.EventBus;
@@ -29,7 +30,7 @@ import qfpay.wxshop.config.update.UpdateManager;
 import qfpay.wxshop.data.event.LogoutEvent;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.QFCommonUtils;
 /**
  * 更多页面
@@ -69,7 +70,7 @@ public class MoreActivity extends BaseActivity implements Callback {
 		CommonWebActivity_.intent(this)
 			.title("喵喵微店")
 			.url(url)
-			.platFroms(Arrays.asList(new SharedPlatfrom[]{SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS, SharedPlatfrom.COPY}))
+			.platFroms((ArrayList<SharedPlatfrom>) Arrays.asList(new SharedPlatfrom[]{SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS, SharedPlatfrom.COPY}))
 			.shareTitle("官方店")
 			.shareName("官方店")
 			.start();

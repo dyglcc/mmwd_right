@@ -1,5 +1,6 @@
 package qfpay.wxshop.ui.common.actionbar;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.androidannotations.annotations.Click;
@@ -9,16 +10,16 @@ import org.androidannotations.annotations.ViewById;
 
 import qfpay.wxshop.R;
 import qfpay.wxshop.WxShopApplication;
-import qfpay.wxshop.activity.RegBankAccountActivity_;
+import qfpay.wxshop.activity.*;
 import qfpay.wxshop.activity.ShowBankInfoActivity;
 import qfpay.wxshop.activity.WeixinQmmActivity;
 import qfpay.wxshop.activity.menu.MyInComeActivity;
 import qfpay.wxshop.activity.menu.WeiXinCollectMoney;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.main.MoreActivity_;
-import qfpay.wxshop.ui.presonalinfo.ShopInfoActivity_;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.main.*;
+import qfpay.wxshop.ui.presonalinfo.*;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.MobAgentTools;
 import qfpay.wxshop.utils.QFCommonUtils;
 import android.annotation.SuppressLint;
@@ -154,7 +155,7 @@ public class InfoPopupView extends FrameLayout {
 					CommonWebActivity_.intent(getContext())
 							.title("喵喵微店")
 							.url(url)
-							.platFroms(Arrays.asList(SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS, SharedPlatfrom.COPY))
+							.platFroms((ArrayList<SharedPlatfrom>) Arrays.asList(SharedPlatfrom.WXFRIEND, SharedPlatfrom.WXMOMENTS, SharedPlatfrom.COPY))
 							.shareTitle("喵喵购")
 							.shareName("喵喵购")
 							.pointName("click_mmg_share")

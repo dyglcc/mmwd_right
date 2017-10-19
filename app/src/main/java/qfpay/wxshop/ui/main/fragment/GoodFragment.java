@@ -18,7 +18,7 @@ import qfpay.wxshop.R;
 import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.share.OnShareLinstener;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.commodity.CommodityListFragment_;
+import qfpay.wxshop.ui.commodity.*;
 
 /**
  * 商品列表包括CommoditylistFragment(自有商品)、Onekeybefalffragment（代理商品）

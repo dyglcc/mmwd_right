@@ -1,6 +1,7 @@
 package qfpay.wxshop.ui.web.huoyuan;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,7 @@ import qfpay.wxshop.WxShopApplication;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
 import qfpay.wxshop.app.BaseFragment;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -202,7 +203,7 @@ public class CommonWebFragmentHuyuan extends BaseFragment {
 		} else {
 			CommonWebActivity_.intent(getActivity()).url(url)
 					.title(webView.getTitle()).shareName(this.shareName)
-					.shareTitle(this.shareTitle).platFroms(this.platFroms)
+					.shareTitle(this.shareTitle).platFroms((ArrayList<SharedPlatfrom>) this.platFroms)
 					.start();
 		}
 	}

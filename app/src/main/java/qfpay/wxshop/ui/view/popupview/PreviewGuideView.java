@@ -6,7 +6,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import qfpay.wxshop.R;
-import qfpay.wxshop.ui.main.AppStateSharePreferences_;
+//import qfpay.wxshop.ui.main.AppStateSharePreferences_;
 import qfpay.wxshop.ui.main.MainActivity;
 import qfpay.wxshop.utils.QFCommonUtils;
 import android.content.Context;
@@ -43,7 +43,7 @@ public class PreviewGuideView extends RelativeLayout {
 	}
 	
 	@ViewById ImageView iv_preview, star1, star2, star3;
-	@Pref AppStateSharePreferences_ statePref;
+//	@Pref AppStateSharePreferences_ statePref;
 	
 	private MainActivity activity;
 
@@ -99,7 +99,7 @@ public class PreviewGuideView extends RelativeLayout {
 	}
 	
 	@Click void iv_preview() {
-		statePref.guidePointer().put(MainActivity.GUIDE_SHARE);
+//		statePref.guidePointer().put(MainActivity.GUIDE_SHARE);
 		activity.onPreviewGuide();
 		if (win != null && win.isShowing()) {
 			win.dismiss();

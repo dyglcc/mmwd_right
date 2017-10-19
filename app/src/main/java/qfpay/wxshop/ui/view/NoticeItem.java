@@ -14,7 +14,7 @@ import qfpay.wxshop.ui.main.MainTab;
 import qfpay.wxshop.ui.main.fragment.GoodFragment;
 import qfpay.wxshop.ui.main.fragment.ShopFragment;
 import qfpay.wxshop.ui.main.fragment.ShopFragmentsWrapper;
-import qfpay.wxshop.ui.web.CommonWebActivity_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.T;
 import qfpay.wxshop.utils.Utils;
 import android.annotation.SuppressLint;

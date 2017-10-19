@@ -60,7 +60,7 @@ import qfpay.wxshop.data.beans.MyDynamicItemBean0;
 import qfpay.wxshop.data.net.DataEngine;
 import qfpay.wxshop.data.netImpl.BusinessCommunityService;
 import qfpay.wxshop.ui.main.MainActivity;
-import qfpay.wxshop.ui.main.MainActivity_;
+import qfpay.wxshop.ui.main.*;
 import qfpay.wxshop.ui.main.MainTab;
 import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.main.fragment.BusinessCommunityFragment;

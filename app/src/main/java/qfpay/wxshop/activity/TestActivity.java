@@ -2,9 +2,9 @@ package qfpay.wxshop.activity;
 
 import android.os.Bundle;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
+//import cn.sharesdk.framework.Platform;
+//import cn.sharesdk.framework.ShareSDK;
+//import cn.sharesdk.sina.weibo.SinaWeibo;
 import qfpay.wxshop.app.BaseActivity;
 
 /**
@@ -12,10 +12,10 @@ import qfpay.wxshop.app.BaseActivity;
  */
 public class TestActivity extends BaseActivity{
 
-    private Platform weibo;
+//    private Platform weibo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        weibo = ShareSDK.getPlatform(TestActivity.this, SinaWeibo.NAME);
+//        weibo = ShareSDK.getPlatform(TestActivity.this, SinaWeibo.NAME);
     }
 }

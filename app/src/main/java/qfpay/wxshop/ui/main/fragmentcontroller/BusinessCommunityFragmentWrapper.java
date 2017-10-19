@@ -3,13 +3,11 @@ package qfpay.wxshop.ui.main.fragmentcontroller;
 import qfpay.wxshop.R;
 import qfpay.wxshop.data.net.ConstValue;
 import qfpay.wxshop.share.SharedPlatfrom;
-import qfpay.wxshop.ui.BusinessCommunity.DiscoveryFragment_;
-import qfpay.wxshop.ui.BusinessCommunity.MyDynamicListFragment_;
-import qfpay.wxshop.ui.BusinessCommunity.MyTopicListFragment_;
+import qfpay.wxshop.ui.BusinessCommunity.*;
 import qfpay.wxshop.app.BaseFragment;
 import qfpay.wxshop.ui.web.CommonWebFragment;
 import qfpay.wxshop.config.WDConfig;
-import qfpay.wxshop.ui.web.CommonWebFragment_;
+import qfpay.wxshop.ui.web.*;
 import qfpay.wxshop.utils.T;
 
 public class BusinessCommunityFragmentWrapper extends BasePagerFragmentWrapper {
